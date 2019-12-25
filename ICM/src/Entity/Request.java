@@ -2,7 +2,11 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 
+ * @author aimanouda
+ *
+ */
 public class Request implements Serializable{
 
 private static final long serialVersionUID = 1L;
@@ -18,7 +22,7 @@ private String reason;
 private String comment;
 private Date date;
 private String currentPhase;
-   
+
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
 Date date, String currentPhase) {
@@ -35,6 +39,7 @@ Date date, String currentPhase) {
 	this.date = date;
 	this.currentPhase = currentPhase;
 }
+
 public String getId() {
 	return id;
 }
