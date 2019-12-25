@@ -13,13 +13,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="616.0" fitWidth="900.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@PIC/NEW-background-resizer.jpg" />
-         </image>
-      </ImageView>
       <AnchorPane layoutX="200.0" prefHeight="430.0" prefWidth="703.0">
          <children>
             <MenuButton layoutX="599.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
@@ -28,7 +23,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@PIC/585e4beacb11b227491c3399.png" />
+                              <Image url="@images/585e4beacb11b227491c3399.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -38,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/585e4beacb11b227491c3399.png" />
+                        <Image url="@images/585e4beacb11b227491c3399.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/PinClipart.com_notification-clipart_1895786.png" />
+                        <Image url="@images/PinClipart.com_notification-clipart_1895786.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -72,7 +67,7 @@
             </Label>
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@PIC/back-arrow.png" />
+                  <Image url="@images/back-arrow.png" />
                </image>
             </ImageView>
             <Label layoutX="182.0" layoutY="7.0" text="-&gt;" />
@@ -101,11 +96,11 @@
             <Button layoutX="227.0" layoutY="297.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="save" textFill="#fffdfd" />
             <ImageView fitHeight="137.0" fitWidth="145.0" layoutX="30.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@PIC/kisspng-timesheet-computer-icons-time-tracking-software-cl-land-developer-5b495960560b54.7467423115315336643525.png" />
+                  <Image url="@images/kisspng-timesheet-computer-icons-time-tracking-software-cl-land-developer-5b495960560b54.7467423115315336643525.png" />
                </image></ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" stylesheets="@../Logocolor.css">
+      <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>
             <Button alignment="BASELINE_LEFT" layoutY="99.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
@@ -147,44 +142,44 @@
                <children>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/PikPng.com_home-icon-png_1819710%20(1).png" />
+                        <Image url="@Images/home.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                        <Image url="@images/PinClipart.com_clip-art-computer-programs_4057042.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                        <Image url="@images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/128x128.png" />
+                        <Image url="@images/128x128.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                        <Image url="@images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="6.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@PIC/myRequests.png" />
+                        <Image url="@images/myRequests.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+                  <Image url="@images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@PIC/LOGO%20White.png" />
+                  <Image url="@images/LOGO%20White.png" />
                </image>
             </ImageView>
          </children>

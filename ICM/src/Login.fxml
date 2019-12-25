@@ -12,11 +12,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="725.0" style="-fx-background-color: #DADADA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="725.0" style="-fx-background-color: #DADADA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="430.0" fitWidth="740.0" layoutX="-14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@PIC/BACKGROUND.jpg" />
+            <Image url="@images/BACKGROUND.jpg" />
          </image>
       </ImageView>
       <Circle fill="#9d1b34" layoutX="80.0" layoutY="152.0" radius="259.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -35,12 +35,12 @@
       </TextField>
       <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="368.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@PIC/signuplock.png" />
+            <Image url="@images/signuplock.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="368.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@PIC/Sighn-Up-Lock.png" />
+            <Image url="@images/Sighn-Up-Lock.png" />
          </image>
       </ImageView>
       <CheckBox layoutX="408.0" layoutY="274.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="100.0" text="Remember me" textFill="#a0a2ab">
@@ -55,7 +55,7 @@
       </Button>
       <ImageView fitHeight="152.0" fitWidth="278.0" layoutX="34.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@PIC/LOGO%20White.png" />
+            <Image url="@images/LOGO%20White.png" />
          </image>
       </ImageView>
       <Button layoutX="462.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #a8a8a8;" text="Forget Password?" textFill="#222222">
