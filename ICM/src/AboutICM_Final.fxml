@@ -76,7 +76,7 @@
             </Label>
             <ImageView fitHeight="156.0" fitWidth="267.0" layoutX="216.0" layoutY="45.0">
                <image>
-                  <Image url="@../Downloads/log-in/log-in/logo%20ICM.png" />
+                  <Image url="@PIC/logo%20ICM.png" />
                </image>
             </ImageView>
             <Label layoutX="73.0" layoutY="494.0" text="Bshara Sahoury" textFill="#9d1b34">
@@ -371,7 +371,7 @@
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Downloads/home/PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+                  <Image url="@PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
