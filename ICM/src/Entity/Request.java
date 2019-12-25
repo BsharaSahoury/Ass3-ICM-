@@ -22,33 +22,33 @@ private String currentPhase;
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
 Date date, String currentPhase) {
-this.id = id;
-this.initiatorName = initiatorName;
-this.initiatorEmail = initiatorEmail;
-this.initiatorRole = initiatorRole;
-this.status = status;
-this.existingSituation = existingSituation;
-this.explainRequest = explainRequest;
-this.privilegedInfoSys = privilegedInfoSys;
-this.reason = reason;
-this.comment = comment;
-this.date = date;
-this.currentPhase = currentPhase;
+	this.id = id;
+	this.initiatorName = initiatorName;
+	this.initiatorEmail = initiatorEmail;
+	this.initiatorRole = initiatorRole;
+	this.status = status;
+	this.existingSituation = existingSituation;
+	this.explainRequest = explainRequest;
+	this.privilegedInfoSys = privilegedInfoSys;
+	this.reason = reason;
+	this.comment = comment;
+	this.date = date;
+	this.currentPhase = currentPhase;
 }
 public String getId() {
-return id;
+	return id;
 }
 public void setId(String id) {
-this.id = id;
+	this.id = id;
 }
 public String getInitiatorName() {
-return initiatorName;
+	return initiatorName;
 }
 public void setInitiatorName(String initiatorName) {
-this.initiatorName = initiatorName;
+	this.initiatorName = initiatorName;
 }
 public String getInitiatorEmail() {
-return initiatorEmail;
+	return initiatorEmail;
 }
 public void setInitiatorEmail(String initiatorEmail) {
 this.initiatorEmail = initiatorEmail;
