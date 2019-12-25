@@ -51,64 +51,64 @@ public String getInitiatorEmail() {
 	return initiatorEmail;
 }
 public void setInitiatorEmail(String initiatorEmail) {
-this.initiatorEmail = initiatorEmail;
+	this.initiatorEmail = initiatorEmail;
 }
 public String getInitiatorRole() {
-return initiatorRole;
+	return initiatorRole;
 }
 public void setInitiatorRole(String initiatorRole) {
-this.initiatorRole = initiatorRole;
+	this.initiatorRole = initiatorRole;
 }
 public String getStatus() {
-return status;
+	return status;
 }
 public void setStatus(String status) {
-this.status = status;
+	this.status = status;
 }
 public String getExistingSituation() {
-return existingSituation;
+	return existingSituation;
 }
 public void setExistingSituation(String existingSituation) {
-this.existingSituation = existingSituation;
+	this.existingSituation = existingSituation;
 }
 public String getExplainRequest() {
-return explainRequest;
+	return explainRequest;
 }
 public void setExplainRequest(String explainRequest) {
-this.explainRequest = explainRequest;
+	this.explainRequest = explainRequest;
 }
 public String getPrivilegedInfoSys() {
-return privilegedInfoSys;
+	return privilegedInfoSys;
 }
 public void setPrivilegedInfoSys(String privilegedInfoSys) {
-this.privilegedInfoSys = privilegedInfoSys;
+	this.privilegedInfoSys = privilegedInfoSys;
 }
 public String getReason() {
-return reason;
+	return reason;
 }
 public void setReason(String reason) {
-this.reason = reason;
+	this.reason = reason;
 }
 public String getComment() {
-return comment;
+	return comment;
 }
 public void setComment(String comment) {
-this.comment = comment;
+	this.comment = comment;
 }
 public Date getDate() {
-return date;
+	return date;
 }
 public void setDate(Date date) {
-this.date = date;
+	this.date = date;
 }
 public String getCurrentPhase() {
-return currentPhase;
+	return currentPhase;
 }
 public void setCurrentPhase(String currentPhase) {
-this.currentPhase = currentPhase;
+	this.currentPhase = currentPhase;
 }
 public static long getSerialversionuid() {
-return serialVersionUID;
+	return serialVersionUID;
 }
    
 }
