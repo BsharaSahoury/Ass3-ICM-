@@ -6,6 +6,7 @@ public class Request implements Serializable{
 	/**
 	 * 
 	 */
+	public int x;
 	private static final long serialVersionUID = 1L;
 	private String id;  //The system number for treatment
 	private String nameInitiator;
