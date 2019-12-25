@@ -75,7 +75,7 @@
             <TextArea layoutX="28.0" layoutY="215.0" prefHeight="50.0" prefWidth="670.0" />
             <TextArea layoutX="28.0" layoutY="146.0" prefHeight="50.0" prefWidth="670.0" />
             <TextArea layoutX="28.0" layoutY="292.0" prefHeight="50.0" prefWidth="670.0" />
-            <Label layoutX="32.0" layoutY="357.0" text="Attach Files:" />
+            <Label layoutX="26.0" layoutY="454.0" text="Attach Files:" />
             <MenuButton layoutX="200.0" layoutY="99.0" mnemonicParsing="false" text="Choose System">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -89,13 +89,13 @@
             </ImageView>
             <Button layoutX="391.0" layoutY="547.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px;" text="Submit" />
             <Button layoutX="557.0" layoutY="547.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px;" text="Home" />
-            <CheckBox layoutX="29.0" layoutY="504.0" mnemonicParsing="false" text="I agree to send my details (Full name, Role description, Email)" />
-            <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="104.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+            <CheckBox layoutX="35.0" layoutY="517.0" mnemonicParsing="false" text="I agree to send my details (Full name, Role description, Email)" />
+            <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="98.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Xd554%20Pics/attach.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="86.0" layoutX="287.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="86.0" layoutX="297.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Xd554%20Pics/upload.png" />
                </image>
@@ -115,7 +115,7 @@
                   <Image url="@Xd554%20Pics/required.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="21.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Xd554%20Pics/required.png" />
                </image>
@@ -123,6 +123,13 @@
             <ImageView fitHeight="18.0" fitWidth="23.0" layoutX="9.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Xd554%20Pics/back-arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="31.0" layoutY="357.0" text="Comment:" />
+            <TextArea layoutX="28.0" layoutY="375.0" prefHeight="50.0" prefWidth="670.0" />
+            <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/required.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
@@ -185,7 +192,7 @@
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@home/PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+                  <Image url="@PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
