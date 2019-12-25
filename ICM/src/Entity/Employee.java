@@ -3,11 +3,11 @@ package Entity;
 public class Employee extends User {
 
 private int id;	
-private String Job;
+private Job job;
 
-public Employee(String Job,String email, String password,String username,int id) {
+public Employee(Job job,String email, String password,String username,int id) {
 	super(email,password,username);
-	this.Job = Job;
+	this.job = job;
 	this.id=id;
 }
 
@@ -19,12 +19,14 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public String getJob() {
-	return this.Job;
+public Job getJob() {
+	return this.job;
 }
 
-public void setJob(String job) {
-	this.Job = job;
+public void setJob(Job job) {
+	this.job = job;
 }
-	
+public enum Job {
+	Lecturer, Employee,Manager;
+}
 }

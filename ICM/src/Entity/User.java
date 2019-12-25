@@ -47,6 +47,6 @@ public void setUsername(String username) {
 }
 
 public enum Role {
-	Studint, Secturer, Employee;
+	Student, Lecturer, Employee;
 }
 }
