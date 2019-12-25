@@ -3,11 +3,7 @@ package Entity;
 import java.io.Serializable;
 
 public class Request implements Serializable{
-	/**
-	 * 
-	 */
-	public int y;//ayman Odeh111188
-	public int x;
+	
 	private static final long serialVersionUID = 1L;
 	private String id;  //The system number for treatment
 	private String nameInitiator;
@@ -15,7 +11,15 @@ public class Request implements Serializable{
 	private String nameWorker;
 	private String currentSituation;
 	private String explainRequest;
-	
+	/**
+	 * 
+	 * @param nameInitiator
+	 * @param id
+	 * @param currentSituation
+	 * @param explainRequest
+	 * @param status
+	 * @param nameWorker
+	 */
 
 	
 	public Request(String nameInitiator,String id,String currentSituation,String explainRequest, String status, String nameWorker) {
