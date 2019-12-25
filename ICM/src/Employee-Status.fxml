@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="431.0" fitWidth="740.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@home/log-in/BACKGROUND.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="194.0" prefHeight="430.0" prefWidth="540.0">
+         <children>
+            <MenuButton layoutX="435.0" layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #9d1b34;" text="Employee" textFill="WHITE">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Admin">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Downloads/585e4beacb11b227491c3399.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></MenuItem>
+                <MenuItem mnemonicParsing="false" text="Log Out" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/585e4beacb11b227491c3399.png" />
+                     </image></ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="365.0" layoutY="6.0" text="Notification" />
+            <Line endX="236.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+            <Label layoutX="34.0" layoutY="6.0" text="ICM">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="62.0" layoutY="5.0" text="-&gt;" />
+            <Label layoutX="160.0" layoutY="5.0" text="Request-Status">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="55.0" prefHeight="51.0" prefWidth="152.0" text="Status">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="54.0" layoutX="166.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554/Xd554%20Pics/circle-cropped.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="19.0" layoutX="346.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/PinClipart.com_notification-clipart_1895786.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="53.0" layoutY="154.0" prefHeight="31.0" prefWidth="134.0" text="Request-Phase:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="253.0" prefHeight="27.0" prefWidth="194.0" text="Due date for this Phase:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="124.0" text="Request-Status:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="141.0" layoutY="5.0" text="-&gt;" />
+            <Label layoutX="83.0" layoutY="5.0" text="Requests">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField editable="false" layoutX="190.0" layoutY="125.0" prefHeight="18.0" prefWidth="50.0" text="Active" />
+            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="247.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/circle-cropped%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="187.0" layoutY="156.0" text="Exuction-Phase">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="247.0" layoutY="254.0" text="13/1/2020">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="222.0" text="Reamining-Time For this phase:">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="315.0" layoutY="223.0" text="4 days">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/back-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="62.0" layoutX="11.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/phase.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="11.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/statusocinn.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="12.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/rem.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="14.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/due-date.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="37.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="194.0" style="-fx-font-style: white;" text="Back to Requests">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="268.0" layoutY="369.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="194.0" style="-fx-font-style: white;" text="Back to Home">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="14.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/current.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="51.0" layoutY="285.0" prefHeight="27.0" prefWidth="159.0" text="Current-Date:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="172.0" layoutY="286.0" text="Saturday, 10/1/2020">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="208.0" fitWidth="134.0" layoutX="392.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/status-main.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" stylesheets="@Logocolor.css">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutY="99.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="199.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="249.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="299.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <AnchorPane layoutX="-4.0" layoutY="-11.0" prefHeight="442.0" prefWidth="37.0" style="-fx-background-color: #ffffff;">
+               <effect>
+                  <DropShadow radius="17.4125" width="50.65" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/PikPng.com_home-icon-png_1819710%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/submission2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="4.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Xd554%20Pics/128x128.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@home/PIC/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Xd554%20Pics/LOGO%20White.png" />
+               </image></ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="208.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Xd554%20Pics/article-submission-5-880719.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="249.0" layoutY="187.0" prefHeight="31.0" prefWidth="219.0" text="Request-Submission-Date:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="466.0" layoutY="190.0" text="9/12/2019">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
