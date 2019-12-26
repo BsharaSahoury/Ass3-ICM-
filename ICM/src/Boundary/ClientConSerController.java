@@ -28,7 +28,8 @@ public class ClientConSerController implements Initializable {
      * @throws Exception
      */
 	public void connecttoserver(ActionEvent event) throws Exception {
-	String IP = Iptxt.getText();	
+	String IP = Iptxt.getText();
+	System.out.print(IP);
 	 if(IP!=null) {	
 		 /**
 		  * We called the connecttoIP function in the ClientConsole to connect to the server

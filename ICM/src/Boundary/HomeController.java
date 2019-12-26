@@ -35,11 +35,11 @@ public Stage getPrimaryStage() {
 public void GoToHome(ActionEvent event) throws Exception {
 	this.start(this.primaryStage);
 }
-
+/*
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkedOnController 
 }
-
+*/
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(this.primaryStage);
@@ -51,8 +51,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {
-	AboutICMController Submit=new AboutICMController();
-	Submit.start(this.primaryStage);
+	AboutICMController about=new AboutICMController();
+	about.start(this.primaryStage);
 }
 
 }

@@ -31,8 +31,9 @@ public void start(Stage primaryStage)  {
 	this.primaryStage=primaryStage;
 	try{			
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Login.fxml"));
-			Scene scene = new Scene(root,900,600);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+			Scene scene =new Scene(root);
+			//Scene scene = new Scene(root,462,318);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
 			this.primaryStage.setScene(scene);
 			this.primaryStage.setResizable(false);
 			this.primaryStage.setTitle("ICM-Login");

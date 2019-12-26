@@ -16,9 +16,9 @@ public class ServerWindow extends Application {
 	public void start(Stage primaryStage) {	//create the server's window//
 		try {		
 			FXMLLoader loader = new FXMLLoader();
-			Pane root = loader.load(getClass().getResource("/server/Server.fxml").openStream());
+			Pane root = loader.load(getClass().getResource("/Server/Server.fxml").openStream());
 			Scene scene = new Scene(root,400,320);		
-			scene.getStylesheets().add(getClass().getResource("/server/Server.css").toExternalForm());	
+			scene.getStylesheets().add(getClass().getResource("/Server/Server.css").toExternalForm());	
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("ICM-Server");

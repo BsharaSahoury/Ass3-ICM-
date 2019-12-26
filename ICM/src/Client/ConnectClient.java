@@ -31,9 +31,9 @@ public class ConnectClient extends Application{
 	@Override
 	public void start(Stage primaryStage) throws IOException  {
 		this.primaryStage = primaryStage;
-		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/connect.fxml"));	
+		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Server Configure.fxml"));	
 		Scene scene = new Scene(root,900,600);
-		scene.getStylesheets().add(getClass().getResource("/Boundary/Connect.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("/Boundary/Connect.css").toExternalForm());
 		this.primaryStage.setScene(scene);
 		this.primaryStage.setResizable(false);		
 		this.primaryStage.setTitle("ICM-Connect");
