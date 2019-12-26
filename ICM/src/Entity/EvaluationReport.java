@@ -10,7 +10,6 @@ private String estimatedPerfomanceDuration;
 
 public EvaluationReport(String location, String description, String expectedResult, String constraints, String risks,
 		String estimatedPerfomanceDuration) {
-	super();
 	this.location = location;
 	this.description = description;
 	this.expectedResult = expectedResult;
