@@ -20,7 +20,7 @@
    <children>
       <AnchorPane layoutX="200.0" prefHeight="430.0" prefWidth="703.0">
          <children>
-            <MenuButton layoutX="599.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
+            <MenuButton layoutX="599.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Admin">
                      <graphic>
@@ -50,7 +50,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Line endX="396.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+            <Line endX="403.0" endY="-12.999984741210938" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
             <Label layoutX="40.0" layoutY="7.0" text="ICM">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -62,7 +62,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TabPane layoutX="-7.0" layoutY="30.0" prefHeight="568.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="-7.0" layoutY="27.0" prefHeight="571.0" prefWidth="710.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Request Info">
                      <content>
@@ -119,7 +119,7 @@
                   </Tab>
                   <Tab text="Initiator Info">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="554.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="715.0">
                            <children>
                               <Label layoutX="19.0" layoutY="26.0" text="Initiator Name:">
                                  <font>
@@ -152,7 +152,7 @@
                </tabs>
             </TabPane>
             <Label layoutX="114.0" layoutY="6.0" text="-&gt;" />
-            <Label layoutX="127.0" layoutY="7.0" text="Requests">
+            <Label layoutX="127.0" layoutY="7.0" text="Requests that I work on">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -162,8 +162,8 @@
                   <Image url="@../images/back-arrow.png" />
                </image>
             </ImageView>
-            <Label layoutX="182.0" layoutY="6.0" text="-&gt;" />
-            <Label layoutX="193.0" layoutY="7.0" text="Information">
+            <Label layoutX="269.0" layoutY="6.0" text="-&gt;" />
+            <Label layoutX="283.0" layoutY="7.0" text="Request Info">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -177,7 +177,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests that I work on" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
