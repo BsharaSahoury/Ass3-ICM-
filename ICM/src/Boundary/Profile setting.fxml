@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ProfileSettingController">
    <children>
       <AnchorPane layoutX="194.0" prefHeight="430.0" prefWidth="548.0">
          <children>
@@ -72,8 +72,8 @@
             <Label layoutX="244.0" layoutY="197.0" text="Lecturer" />
             <Label layoutX="184.0" layoutY="284.0" text="Upload profile picture: " />
             <TextField layoutX="313.0" layoutY="280.0" promptText="Destination" />
-            <Button layoutX="471.0" layoutY="280.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
-            <Button layoutX="436.0" layoutY="383.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Apply and save" textFill="#ffffff" />
+            <Button layoutX="471.0" layoutY="280.0" mnemonicParsing="false" onAction="#BrowsAction" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
+            <Button layoutX="436.0" layoutY="383.0" mnemonicParsing="false" onAction="#ApplyAndSaveAction" style="-fx-background-color: #9d1b34;" text="Apply and save" textFill="#ffffff" />
          </children></AnchorPane>
       <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>

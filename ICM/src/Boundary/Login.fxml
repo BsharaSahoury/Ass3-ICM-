@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="725.0" style="-fx-background-color: #DADADA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="725.0" style="-fx-background-color: #DADADA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.LoginController">
    <children>
       <ImageView fitHeight="430.0" fitWidth="740.0" layoutX="-14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <Circle fill="#9d1b34" layoutX="80.0" layoutY="152.0" radius="259.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <TextField layoutX="403.0" layoutY="183.0" prefHeight="25.0" prefWidth="278.0" promptText="  Username">
+      <TextField fx:id="Username" layoutX="403.0" layoutY="183.0" prefHeight="25.0" prefWidth="278.0" promptText="  Username">
          <font>
             <Font size="14.0" />
          </font>
@@ -28,7 +28,7 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <TextField layoutX="403.0" layoutY="223.0" prefHeight="25.0" prefWidth="278.0" promptText="  Password">
+      <TextField fx:id="Password" layoutX="403.0" layoutY="223.0" prefHeight="25.0" prefWidth="278.0" promptText="  Password">
          <font>
             <Font size="14.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <Button layoutX="584.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #9D1B34;" text="Login" textFill="WHITE">
+      <Button fx:id="Loginbtn" layoutX="584.0" layoutY="270.0" mnemonicParsing="false" onAction="#LoginAction" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #9D1B34;" text="Login" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

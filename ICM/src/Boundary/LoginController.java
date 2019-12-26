@@ -31,9 +31,7 @@ public void start(Stage primaryStage)  {
 	this.primaryStage=primaryStage;
 	try{			
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Login.fxml"));
-			Scene scene =new Scene(root);
-			//Scene scene = new Scene(root,462,318);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+			Scene scene =new Scene(root);		
 			this.primaryStage.setScene(scene);
 			this.primaryStage.setResizable(false);
 			this.primaryStage.setTitle("ICM-Login");
@@ -53,29 +51,32 @@ public void start(Stage primaryStage)  {
  * @throws Exception
  */
 public void LoginAction(ActionEvent event) throws Exception{
-	if(Username.getText().equals("")) {
+	System.out.println("Sssssss");
+	//if(Username.getText().equals("")) {
 		//show message username is empty
-	}
-	else if(Password.getText().equals("")) {
+	//}
+	//else if(Password.getText().equals("")) {
 		//show message password is empty
-	}
-	else if(Remember.isSelected()) {
+	//}
+	//else if(Remember.isSelected()) {
 		//save the username and the password
-	}
-	else {
+	//}
+	//else {
 		//go to database and check if the username and password are exist	
-		if(true) {//if the username and password exist in database
-		if(Remember.isSelected()) {
+		//if(true) {//if the username and password exist in database
+	//	if(Remember.isSelected()) {
 			//save the username and the password
-		}
-		HomeController home =new HomeController();
+		//}
+		System.out.println("Ssxxxxxxsssss");
 		((Node)event.getSource()).getScene().getWindow().hide();
+		HomeController home =new HomeController();
+		
 		home.start(primaryStage);
-		}
-		else {
+		//}
+		//else {
 		//show message username or password is incorrect	
-		}
-	}	
+		//}
+	//}	
 }
 /**
  * 
@@ -83,6 +84,7 @@ public void LoginAction(ActionEvent event) throws Exception{
  * @throws Exception
  */
 public void ForgetPassAction(ActionEvent event) throws Exception{
+	System.out.println("sssssss");
 	//open new window to get the password by enter the email address and then send link to reset the password
 }
 }
