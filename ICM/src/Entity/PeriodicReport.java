@@ -11,7 +11,6 @@ private int numRejected;
 private int numTreatment;
 public PeriodicReport(float median, float std, float frequencyDistribution, int numActive, int numFrozen, int numClosed,
 		int numRejected, int numTreatment) {
-	super();
 	this.median = median;
 	Std = std;
 	this.frequencyDistribution = frequencyDistribution;
