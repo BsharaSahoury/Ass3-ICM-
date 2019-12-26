@@ -21,7 +21,7 @@ private String privilegedInfoSys;
 private String reason;
 private String comment;
 private Date date;
-private String currentPhase;
+
 /**
  * 
  * @param id
@@ -37,9 +37,13 @@ private String currentPhase;
  * @param date
  * @param currentPhase
  */
+
+private Phase currentPhase;
+
+
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-Date date, String currentPhase) {
+Date date, Phase currentPhase) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -120,10 +124,10 @@ public Date getDate() {
 public void setDate(Date date) {
 	this.date = date;
 }
-public String getCurrentPhase() {
+public Phase getCurrentPhase() {
 	return currentPhase;
 }
-public void setCurrentPhase(String currentPhase) {
+public void setCurrentPhase(Phase currentPhase) {
 	this.currentPhase = currentPhase;
 }
 public static long getSerialversionuid() {

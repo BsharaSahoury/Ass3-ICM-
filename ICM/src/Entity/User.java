@@ -1,46 +1,47 @@
 package Entity;
 
-
 /**
  * The <code>Member</code> entity, represents a Member in the database.
  */
 public class User {
 
-private String email;  
-private String password;
-private String username;
-        
-public User(String email, String password,String username) {
-	this.email = email;
-	this.password = password;
-	this.username = username;
-}
+	private String email;
+	private String password;
+	private String username;
 
-public String getEmail() {
-	return email;
-}
+	public User() {
 
-public void setEmail(String email) {
-	this.email = email;
-}
+	}
 
-public String getPassword() {
-		return password;
-}
-
-public void setPassword(String password) {
+	public User(String email, String password, String username) {
+		super();
+		this.email = email;
 		this.password = password;
-}
+		this.username = username;
+	}
 
-public String getUsername() {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
 		return username;
-}
+	}
 
-public void setUsername(String username) {
-	this.username = username;
-}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-public enum Role {
-	Studint, Secturer, Employee;
-}
 }

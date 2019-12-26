@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="200.0" prefHeight="430.0" prefWidth="703.0">
+         <children>
+            <MenuButton layoutX="599.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Admin">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/585e4beacb11b227491c3399.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Label layoutX="502.0" layoutY="2.0" text="Notification">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Line endX="396.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+            <Label layoutX="40.0" layoutY="7.0" text="ICM">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="5.0" text="-&gt;" />
+            <Label layoutX="78.0" layoutY="7.0" text="Home">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TabPane layoutX="-7.0" layoutY="30.0" prefHeight="568.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Request Info">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="11.0" layoutY="53.0" prefHeight="20.0" prefWidth="219.0" text="Privileged Information System: ">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="90.0" text="Description of an exciting situation:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="153.0" prefHeight="20.0" prefWidth="237.0" text="Description of requested change:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="211.0" text="Comment:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="12.0" layoutY="14.0" text="Request id:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="257.0" text="Files:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="23.0" layoutX="71.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/kissclipart-icon-word-png-clipart-microsoft-word-computer-ico-11658691c56ae5d9.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="#1100ff" layoutX="102.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="expalin.doc" underline="true">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="260.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Now we dont have a watch, It's hard that I can't see the time when i am in the moodle" wrappingWidth="360.3137969970703" />
+                              <Text layoutX="250.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Request to add a Digital watch in moodle then we can to see the time when we be in the moodle" wrappingWidth="381.39984130859375" />
+                              <Text layoutX="99.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="55" />
+                              <Text layoutX="230.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Moodle" />
+                              <Text layoutX="103.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I hope you will fulfill my request" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Initiator Info">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="554.0">
+                           <children>
+                              <Label layoutX="19.0" layoutY="26.0" text="Initiator Name:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="17.0" layoutY="80.0" text="Initiator role:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="23.0" layoutY="132.0" text="Date:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="179.0" text="Email:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="130.0" layoutY="24.0" prefHeight="26.0" prefWidth="100.0" text="Ahmad" />
+                              <TextField layoutX="120.0" layoutY="78.0" prefHeight="26.0" prefWidth="84.0" text="Student" />
+                              <TextField layoutX="70.0" layoutY="130.0" prefHeight="26.0" prefWidth="93.0" text="15/12/2020" />
+                              <TextField layoutX="72.0" layoutY="177.0" prefHeight="26.0" prefWidth="193.0" text="rm.ahmad1997@gmail.com" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <Label layoutX="114.0" layoutY="6.0" text="-&gt;" />
+            <Label layoutX="127.0" layoutY="7.0" text="Requests">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back-arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="182.0" layoutY="6.0" text="-&gt;" />
+            <Label layoutX="193.0" layoutY="7.0" text="Information">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutY="99.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="199.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="249.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            My Requests" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="-4.0" layoutY="-11.0" prefHeight="611.0" prefWidth="38.0" style="-fx-background-color: #ffffff;">
+               <effect>
+                  <DropShadow radius="17.4125" width="50.65" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/home.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/128x128.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="6.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/myRequests.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/LOGO%20White.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
