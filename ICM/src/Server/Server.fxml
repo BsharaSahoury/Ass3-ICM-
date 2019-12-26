@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="356.0" prefWidth="438.0" style="-fx-background-color: white;" styleClass="anchor" stylesheets="@Server.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.ServerController">
+   <children>
+      <Label layoutX="70.0" layoutY="41.0" prefHeight="114.0" prefWidth="298.0" text="Server is Listenning" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="27.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="196.0" prefHeight="55.0" prefWidth="49.0" text="IP:" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="IpLable" layoutX="119.0" layoutY="186.0" prefHeight="76.0" prefWidth="298.0" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

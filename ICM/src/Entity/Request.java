@@ -10,18 +10,36 @@ import java.util.Date;
 public class Request implements Serializable{
 
 private static final long serialVersionUID = 1L;
-private String id;  //The system number for treatment
+private String id;
 private String initiatorName;
 private String initiatorEmail;
 private String initiatorRole;
 private String status;
-private String existingSituation;//  Description of an existing situation
-private String explainRequest;  // Description of request change
-private String privilegedInfoSys; //
+private String existingSituation;
+private String explainRequest;  
+private String privilegedInfoSys; 
 private String reason;
 private String comment;
 private Date date;
+
+/**
+ * 
+ * @param id
+ * @param initiatorName
+ * @param initiatorEmail
+ * @param initiatorRole
+ * @param status
+ * @param existingSituation
+ * @param explainRequest
+ * @param privilegedInfoSys
+ * @param reason
+ * @param comment
+ * @param date
+ * @param currentPhase
+ */
+
 private Phase currentPhase;
+
 
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
