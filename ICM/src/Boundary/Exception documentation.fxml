@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,13 +19,13 @@
    <children>
       <AnchorPane layoutX="194.0" prefHeight="430.0" prefWidth="548.0">
          <children>
-            <MenuButton layoutX="428.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #9d1b34;" text="Ayman" textFill="WHITE">
+            <MenuButton layoutX="428.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #9d1b34;" text="Ayman" textFill="WHITE">
               <items>
                 <MenuItem mnemonicParsing="false" text="Admin">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/585e4beacb11b227491c3399.png" />
+                              <Image url="@../images/585e4beacb11b227491c3399.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
@@ -32,7 +34,7 @@
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/585e4beacb11b227491c3399.png" />
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
                      </image></ImageView>
                </graphic>
             </MenuButton>
@@ -40,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/PinClipart.com_notification-clipart_1895786.png" />
+                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,25 +62,55 @@
             <Label layoutX="121.0" layoutY="206.0" />
             <Label layoutX="66.0" layoutY="52.0" text="Exception documentation ">
                <font>
-                  <Font size="17.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
             <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="22.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/exception_peculiarity_omission-512.png" />
+                  <Image url="@../images/exception_peculiarity_omission-512.png" />
                </image>
             </ImageView>
-            <Label layoutX="59.0" layoutY="113.0" text="Request ID:" />
-            <Label layoutX="59.0" layoutY="148.0" text="Phase: " />
-            <Label layoutX="126.0" layoutY="113.0" prefHeight="18.0" prefWidth="31.0" text="9" />
-            <Label layoutX="108.0" layoutY="148.0" text="Performance" />
-            <Label layoutX="64.0" layoutY="189.0" text="documentation:" />
-            <TextArea layoutX="157.0" layoutY="189.0" prefHeight="118.0" prefWidth="200.0" />
-            <Button layoutX="441.0" layoutY="363.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Save" textFill="WHITE" />
+            <Label layoutX="59.0" layoutY="113.0" text="Request ID :">
+               <effect>
+                  <Lighting bumpInput="$null">
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="57.0" layoutY="148.0" text="Phase : ">
+               <effect>
+                  <Lighting bumpInput="$null">
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="153.0" layoutY="113.0" prefHeight="18.0" prefWidth="31.0" text="9" />
+            <Label layoutX="118.0" layoutY="148.0" text="Performance" />
+            <Label layoutX="58.0" layoutY="189.0" text="documentation :">
+               <effect>
+                  <Lighting bumpInput="$null">
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextArea layoutX="157.0" layoutY="189.0" prefHeight="169.0" prefWidth="312.0" />
+            <Button layoutX="441.0" layoutY="367.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Save" textFill="WHITE" />
             <ImageView fitHeight="18.0" fitWidth="23.0" layoutX="2.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="18.0" fitWidth="14.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/back-arrow.png" />
+                  <Image url="@../images/back-arrow.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
@@ -119,39 +151,39 @@
                <children>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/home.png" />
+                        <Image url="@../Images/home.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                        <Image url="@../images/PinClipart.com_clip-art-computer-programs_4057042.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/128x128.png" />
+                        <Image url="@../images/128x128.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                        <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+                  <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/LOGO%20White.png" />
+                  <Image url="@../images/LOGO%20White.png" />
                </image>
             </ImageView>
          </children>

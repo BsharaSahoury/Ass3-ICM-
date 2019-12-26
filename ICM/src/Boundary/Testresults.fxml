@@ -24,7 +24,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/namepicture.png" />
+                              <Image url="@../images/namepicture.png" />
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/namepicture.png" />
+                        <Image url="@../images/namepicture.png" />
                      </image></ImageView>
                </graphic>
             </MenuButton>
@@ -41,7 +41,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/notification.png" />
+                        <Image url="@../images/notification.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -65,7 +65,7 @@
             </Label>
             <ImageView fitHeight="98.0" fitWidth="168.0" layoutX="38.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/testresults.png" />
+                  <Image url="@../images/testresults.png" />
                </image>
             </ImageView>
             <Label layoutX="231.0" layoutY="56.0" prefHeight="61.0" prefWidth="193.0" text="Test Results" textAlignment="CENTER" textFill="#9d1b34" underline="true">
@@ -76,7 +76,7 @@
             <TextArea layoutX="327.0" layoutY="264.0" prefHeight="216.0" prefWidth="249.0" />
             <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/back-arrow.png" />
+                  <Image url="@../images/back-arrow.png" />
                </image>
             </ImageView>
             <Label layoutX="189.0" layoutY="145.0" text="Choose one of this options:" textFill="#9d1b34">
@@ -131,44 +131,44 @@
                <children>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/home.png" />
+                        <Image url="@../images/home.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/back.png" />
+                        <Image url="@../images/back.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/requestsubmission.png" />
+                        <Image url="@../images/requestsubmission.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="4.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/abouticm.png" />
+                        <Image url="@../images/abouticm.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="4.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/setting.png" />
+                        <Image url="@../images/setting.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="6.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/myRequests.png" />
+                        <Image url="@../images/myRequests.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/3lines.png" />
+                  <Image url="@../images/3lines.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/LOGO%20White.png" />
+                  <Image url="@../images/LOGO%20White.png" />
                </image></ImageView>
          </children>
          <effect>

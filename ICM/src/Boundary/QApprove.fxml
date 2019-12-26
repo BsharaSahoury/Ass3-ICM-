@@ -18,7 +18,7 @@
       <Button layoutX="300.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="No" />
       <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/SeekPng.com_success-icon-png_8065900.png" />
+            <Image url="@../images/SeekPng.com_success-icon-png_8065900.png" />
          </image>
       </ImageView>
    </children>

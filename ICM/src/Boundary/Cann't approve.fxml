@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="24.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/kisspng-computer-icons-error-icon-design-graphical-user-in-5af9baa4b37e69.5673003515263156847352.png" />
+            <Image url="@../images/kisspng-computer-icons-error-icon-design-graphical-user-in-5af9baa4b37e69.5673003515263156847352.png" />
          </image>
       </ImageView>
       <Label layoutX="91.0" layoutY="41.0" text="You cann't approve this Request">
