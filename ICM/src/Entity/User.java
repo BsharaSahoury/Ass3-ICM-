@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.ArrayList;
+
 /**
  * The <code>Member</code> entity, represents a Member in the database.
  */
@@ -8,16 +10,53 @@ public class User {
 	private String email;
 	private String password;
 	private String username;
-
+	private String firstName;
+	private String lastName;
+	private ArrayList<Request> myRequests = new ArrayList<Request>(); 
 	public User() {
 
 	}
 
-	public User(String email, String password, String username) {
-		super();
+	public User(String email, String password, String username, String firstName, String lastName) {
 		this.email = email;
 		this.password = password;
 		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public User(String email, String password, String username, String firstName, String lastName,
+			ArrayList<Request> myRequests) {
+		this.email = email;
+		this.password = password;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.myRequests = myRequests;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public ArrayList<Request> getMyRequests() {
+		return myRequests;
+	}
+
+	public void setMyRequests(ArrayList<Request> myRequests) {
+		this.myRequests = myRequests;
 	}
 
 	public String getEmail() {

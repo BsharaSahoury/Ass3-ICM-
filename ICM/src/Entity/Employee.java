@@ -8,14 +8,17 @@ public class Employee extends User {
 	private Job job;
 	private ArrayList<Role> roles = new ArrayList<Role>();
 
-	public Employee(Job job, String email, String password, String username, int id) {
-		super(email, password, username);
-		this.job = job;
+	
+
+	public Employee(int id, Job job, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName) {
+		super( email, password, username, firstName, lastName);
 		this.id = id;
+		this.job = job;
 	}
 
-	public Employee(int id, Job job, ArrayList<Role> roles) {
-		super();
+	public Employee(int id, Job job, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName,
+			ArrayList<Request> myRequests) {
+		super( email, password, username, firstName, lastName,myRequests);
 		this.id = id;
 		this.job = job;
 		this.roles = roles;
@@ -44,7 +47,7 @@ public class Employee extends User {
 		this.roles = roles;
 	}
 	public enum Job {
-		Lecturer, Manager;
+		Lecturer,AdminEmployee, Manager;
 	}
 
 	public Boolean addRole(Role role) {
