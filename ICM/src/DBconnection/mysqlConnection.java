@@ -25,7 +25,7 @@ public class mysqlConnection {
         	 System.out.println("Driver definition failed");
         	 }      
         try 
-        {       
+        {      
             conn = DriverManager.getConnection("jdbc:mysql://localhost/test?serverTimezone=IST","root","Aa123456");
             System.out.println("SQL connection succeed");
             return conn;

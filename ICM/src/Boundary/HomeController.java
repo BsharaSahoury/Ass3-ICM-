@@ -1,5 +1,6 @@
 package Boundary;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,8 +25,34 @@ public class HomeController {
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
+	
+public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+public void GoToHome(ActionEvent event) throws Exception {
+	this.start(this.primaryStage);
+}
+
+public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+	RequestWorkedOnController 
+}
+
+public void RequestSubmissionAction(ActionEvent event) throws Exception {
+	RequestSubmissionController Submit=new RequestSubmissionController();
+	Submit.start(this.primaryStage);
+}
+
+public void ProfileSettingAction(ActionEvent event) throws Exception {
+	ProfileSettingController Submit=new ProfileSettingController();
+	Submit.start(this.primaryStage);
+}
+
+public void AboutICMAction(ActionEvent event) throws Exception {
+	AboutICMController Submit=new AboutICMController();
+	Submit.start(this.primaryStage);
+}
 
 }
