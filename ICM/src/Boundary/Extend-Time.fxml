@@ -166,7 +166,7 @@
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/submission2.png" />
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
