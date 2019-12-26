@@ -28,15 +28,15 @@ public class HomeController {
 	private Stage primaryStage;
 	public void start(Stage primaryStage) {
 		this.primaryStage=primaryStage;
-		try{	
-			
+		try{
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/home.fxml"));
-			Scene scene = new Scene(root,900,600);
-			System.out.println("zzzzzzz");
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+			if(root.equals(null))
+				System.out.println("zzzzzzzEE");	
+			Scene scene = new Scene(root);		
 			this.primaryStage.setScene(scene);
+			System.out.println("zzzzzzzEE");
 			this.primaryStage.setResizable(false);
-			this.primaryStage.setTitle("ICM-Home");
+			this.primaryStage.setTitle("ICM-Home");			
 			this.primaryStage.show();
 			this.primaryStage.setOnCloseRequest( event ->
 		    {

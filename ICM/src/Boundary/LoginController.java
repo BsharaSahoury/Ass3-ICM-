@@ -68,6 +68,7 @@ public void LoginAction(ActionEvent event) throws Exception{
 			//save the username and the password
 		//}
 		System.out.println("Ssxxxxxxsssss");
+	//	((Node)event.getSource()).getScene().
 		((Node)event.getSource()).getScene().getWindow().hide();
 		HomeController home =new HomeController();
 		
