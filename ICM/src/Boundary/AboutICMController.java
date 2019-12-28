@@ -6,19 +6,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AboutICMController {
-	private Stage primaryStage;
-	public void start(Stage primaryStage) {
-		this.primaryStage=primaryStage;
+	public static Stage primaryStage;
+	public void start() {
+		primaryStage=LoginController.primaryStage;
 		try{		
-			System.out.println("aaaaaaaaa");
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/AboutICM.fxml"));
 			Scene scene = new Scene(root,900,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
-			this.primaryStage.setScene(scene);
-			this.primaryStage.setResizable(false);
-			this.primaryStage.setTitle("ICM-About");
-			this.primaryStage.show();
-			this.primaryStage.setOnCloseRequest( event ->
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("ICM-About");
+			primaryStage.show();
+			primaryStage.setOnCloseRequest( event ->
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	

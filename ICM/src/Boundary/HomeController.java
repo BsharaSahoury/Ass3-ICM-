@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class HomeController {
@@ -25,17 +26,14 @@ public class HomeController {
 	private Button AboutICMbtn;
 	@FXML
 	private ComboBox Usercombobtn;	
-	private Stage primaryStage;
+
+	public static Stage primaryStage;
 	public void start() {
-		//this.primaryStage=primaryStage;
-		this.primaryStage=LoginController.primaryStage;
+		primaryStage=LoginController.primaryStage;
 		try{
-		//	Stage s=new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/home.fxml"));
-				
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/home.fxml"));			
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
-			System.out.println("zzzzzzzEE");
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("ICM-Home");			
 			primaryStage.show();
@@ -54,7 +52,7 @@ public Stage getPrimaryStage() {
 	}
 
 public void GoToHome(ActionEvent event) throws Exception {
-	this.start(this.primaryStage);
+	this.start();
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
@@ -63,17 +61,17 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(this.primaryStage);
+	Submit.start();
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(this.primaryStage);
+	Submit.start();
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
-	about.start(this.primaryStage);
+	about.start();
 }
 
 }

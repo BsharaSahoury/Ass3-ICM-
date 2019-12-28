@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mysceneboss" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.HomeController">
    <children>
-      <AnchorPane layoutX="193.0" prefHeight="600.0" prefWidth="540.0">
+      <AnchorPane fx:id="myscene" layoutX="193.0" prefHeight="600.0" prefWidth="540.0">
          <children>
             <MenuButton layoutX="563.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="145.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
               <items>
@@ -74,27 +74,27 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutY="110.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+            <Button alignment="BASELINE_LEFT" layoutY="110.0" mnemonicParsing="false" onAction="#GoToHome" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="159.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests that I work on" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="159.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests that I work on" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutY="212.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutY="212.0" mnemonicParsing="false" onAction="#RequestSubmissionAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="312.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="             Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="312.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="             Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutY="362.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutY="362.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

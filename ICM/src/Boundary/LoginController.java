@@ -52,11 +52,10 @@ public void start(Stage primaryStage)  {
  * @throws Exception
  */
 public void LoginAction(ActionEvent event) throws Exception{
-	System.out.println("Sssssss");
 	//if(Username.getText().equals("")) {
 		//show message username is empty
 	//}
-	//else if(Password.getText().equals("")) {
+//	else if(Password.getText().equals("")) {
 		//show message password is empty
 	//}
 	//else if(Remember.isSelected()) {
@@ -65,11 +64,9 @@ public void LoginAction(ActionEvent event) throws Exception{
 	//else {
 		//go to database and check if the username and password are exist	
 		//if(true) {//if the username and password exist in database
-	//	if(Remember.isSelected()) {
+		//if(Remember.isSelected()) {
 			//save the username and the password
 		//}
-		System.out.println("Ssxxxxxxsssss");
-	//	((Node)event.getSource()).getScene().
 		((Node)event.getSource()).getScene().getWindow().hide();
 		HomeController home =new HomeController();
 		
