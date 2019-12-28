@@ -6,17 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ProfileSettingController extends HomeController{
-
+public class ProfileSettingController{
+public static Stage primaryStage;
 public void start() {
-
-	try{			
-		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Profile.fxml"));
-		Scene scene = new Scene(root,900,600);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+	primaryStage=LoginController.primaryStage;
+	try{	
+		
+		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Error.fxml"));
+		//System.out.print("sss");
+		Scene scene = new Scene(root);
+		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
-		primaryStage.setTitle("ICM-Profile");
+		primaryStage.setTitle("ICM-ProfileSetting");
 		primaryStage.show();
 		primaryStage.setOnCloseRequest( event ->
 	    {
