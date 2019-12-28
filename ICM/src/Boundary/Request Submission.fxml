@@ -138,15 +138,15 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="199.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="199.0" mnemonicParsing="false" onAction="#RequestSubmissionAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="249.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="249.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="299.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="299.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

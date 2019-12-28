@@ -31,10 +31,25 @@ public class RequestSubmissionController {
 	}
 	
 public void GoToHome(ActionEvent event) throws Exception {
-	HomeController ss=new HomeController();
-	ss.start();
+	HomeController backhome=new HomeController();
+	backhome.start();
 }
-	
+public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+	//RequestWorkedOnController 
+}
+
+public void RequestSubmissionAction(ActionEvent event) throws Exception {
+}
+
+public void ProfileSettingAction(ActionEvent event) throws Exception {
+	ProfileSettingController Submit=new ProfileSettingController();
+	Submit.start();
+}
+
+public void AboutICMAction(ActionEvent event) throws Exception {
+	AboutICMController about=new AboutICMController();
+	about.start();
+}	
 	
 
 }

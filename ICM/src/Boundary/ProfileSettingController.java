@@ -12,7 +12,7 @@ public void start() {
 	primaryStage=LoginController.primaryStage;
 	try{	
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Error.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Profile setting.fxml"));
 		//System.out.print("sss");
 		Scene scene = new Scene(root);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
@@ -29,23 +29,34 @@ public void start() {
 		e.printStackTrace();
 	}	
 	}
-public void GoToHomeFromProfile(ActionEvent event) throws Exception {
-	GoToHome(event);
+
+public void ApplyAndSaveAction(ActionEvent event) {
+	
 }
-/*
+public void BrowsAction(ActionEvent event) {
+	
+}
+
+public void GoToHome(ActionEvent event) throws Exception {
+	HomeController backhome=new HomeController();
+	backhome.start();
+}
+
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	RequestWorkedOnController 
-}
-*/
-public void RequestSubmissionActionFromProfile(ActionEvent event) throws Exception {
-	this.start();
+	//RequestWorkedOnController 
 }
 
-public void ProfileSettingActionFromProfile(ActionEvent event) throws Exception {
-	ProfileSettingAction(event);
+public void RequestSubmissionAction(ActionEvent event) throws Exception {
+	RequestSubmissionController Submit=new RequestSubmissionController();
+	Submit.start();
 }
 
-public void AboutICMActionFromProfile(ActionEvent event) throws Exception {
-	AboutICMAction(event);
+public void ProfileSettingAction(ActionEvent event) throws Exception {
+
+}
+
+public void AboutICMAction(ActionEvent event) throws Exception {
+	AboutICMController about=new AboutICMController();
+	about.start();
 }
 }

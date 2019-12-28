@@ -1,5 +1,6 @@
 package Boundary;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +27,25 @@ public class AboutICMController {
 			e.printStackTrace();
 		}	
 	}
+	
+	public void GoToHome(ActionEvent event) throws Exception {
+		HomeController backhome=new HomeController();
+		backhome.start();
+	}
+	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+		//RequestWorkedOnController 
+	}
 
+	public void RequestSubmissionAction(ActionEvent event) throws Exception {
+		RequestSubmissionController Submit=new RequestSubmissionController();
+		Submit.start();
+	}
 
+	public void ProfileSettingAction(ActionEvent event) throws Exception {
+		ProfileSettingController Submit=new ProfileSettingController();
+		Submit.start();
+	}
+
+	public void AboutICMAction(ActionEvent event) throws Exception {
+	}
 }
