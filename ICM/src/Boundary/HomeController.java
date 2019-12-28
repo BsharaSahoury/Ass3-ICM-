@@ -26,19 +26,20 @@ public class HomeController {
 	@FXML
 	private ComboBox Usercombobtn;	
 	private Stage primaryStage;
-	public void start(Stage primaryStage) {
-		this.primaryStage=primaryStage;
+	public void start() {
+		//this.primaryStage=primaryStage;
+		this.primaryStage=LoginController.primaryStage;
 		try{
+		//	Stage s=new Stage();
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/home.fxml"));
-			if(root.equals(null))
-				System.out.println("zzzzzzzEE");	
+				
 			Scene scene = new Scene(root);		
-			this.primaryStage.setScene(scene);
+			primaryStage.setScene(scene);
 			System.out.println("zzzzzzzEE");
-			this.primaryStage.setResizable(false);
-			this.primaryStage.setTitle("ICM-Home");			
-			this.primaryStage.show();
-			this.primaryStage.setOnCloseRequest( event ->
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("ICM-Home");			
+			primaryStage.show();
+			primaryStage.setOnCloseRequest( event ->
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	

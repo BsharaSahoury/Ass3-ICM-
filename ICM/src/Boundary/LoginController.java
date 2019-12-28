@@ -26,7 +26,7 @@ private TextField Password;
 private CheckBox Remember;
 @FXML
 private Button ForgetPass;
-private Stage primaryStage;
+public static Stage primaryStage;
 public void start(Stage primaryStage)  {
 	this.primaryStage=primaryStage;
 	try{			
@@ -40,7 +40,8 @@ public void start(Stage primaryStage)  {
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	
-		    });			
+		    });	
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	
@@ -72,7 +73,7 @@ public void LoginAction(ActionEvent event) throws Exception{
 		((Node)event.getSource()).getScene().getWindow().hide();
 		HomeController home =new HomeController();
 		
-		home.start(primaryStage);
+		home.start();
 		//}
 		//else {
 		//show message username or password is incorrect	
