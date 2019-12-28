@@ -9,7 +9,8 @@ public class AboutICMController {
 	private Stage primaryStage;
 	public void start(Stage primaryStage) {
 		this.primaryStage=primaryStage;
-		try{			
+		try{		
+			System.out.println("aaaaaaaaa");
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/AboutICM.fxml"));
 			Scene scene = new Scene(root,900,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
