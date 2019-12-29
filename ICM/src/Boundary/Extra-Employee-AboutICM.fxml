@@ -272,9 +272,9 @@
                   </Lighting>
                </effect>
             </Label>
-            <MenuButton layoutX="578.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+            <MenuButton layoutX="578.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="EmployeeName" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Role : Student">
+                  <MenuItem mnemonicParsing="false" text="Role : Employee">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -311,9 +311,9 @@
                </graphic>
             </Button>
          </children></AnchorPane>
-      <AnchorPane layoutX="1.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
+      <AnchorPane layoutY="-1.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -323,17 +323,22 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Requests in work" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="428.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -351,22 +356,27 @@
                         <Image url="@../Images/PikPng.com_home-icon-png_1819710.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="9.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/128x128.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/myRequests.png" />
                      </image>

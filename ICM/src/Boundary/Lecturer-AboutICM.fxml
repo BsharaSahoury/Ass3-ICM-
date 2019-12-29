@@ -272,9 +272,9 @@
                   </Lighting>
                </effect>
             </Label>
-            <MenuButton layoutX="578.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+            <MenuButton layoutX="578.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="LecturerName" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Role : Student">
+                  <MenuItem mnemonicParsing="false" text="Role : Lecturer">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
