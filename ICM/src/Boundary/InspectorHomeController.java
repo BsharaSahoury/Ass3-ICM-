@@ -1,6 +1,8 @@
 package Boundary;
 
-import Entity.Student;
+import Client.MainForClient;
+import Entity.Employee;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class StudentHomeController {
-
+public class InspectorHomeController {
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -26,12 +28,12 @@ public class StudentHomeController {
 	private ComboBox Usercombobtn;	
 
 	public static Stage primaryStage;
-	private Student student;
-	public void start(Student student) {
-		this.student=student;
-		primaryStage=LoginController.primaryStage;
+	private Employee inspector;
+	public void start(Employee inspector,Stage primaryStage) {
+		this.inspector=inspector;
+		this.primaryStage=primaryStage;
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));			
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));			
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -52,7 +54,7 @@ public Stage getPrimaryStage() {
 	}
 
 public void GoToHome(ActionEvent event) throws Exception {
-	this.start();
+	this.start(inspector);
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {

@@ -1,12 +1,17 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * The <code>Member</code> entity, represents a Member in the database.
  */
-public class User {
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 	private String password;
 	private String username;
