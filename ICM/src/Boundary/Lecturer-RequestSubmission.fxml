@@ -45,7 +45,7 @@
             <Label layoutX="26.0" layoutY="454.0" text="You can Attach Files :" />
             <MenuButton layoutX="200.0" layoutY="99.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Choose System">
               <items>
-                <MenuItem mnemonicParsing="false" text="Student's Information Station" />
+                <MenuItem mnemonicParsing="false" text="Lecturer's Information Station" />
                 <MenuItem mnemonicParsing="false" text="Moodle" />
                   <MenuItem mnemonicParsing="false" text="Library System" />
                   <MenuItem mnemonicParsing="false" text="Computers' Classroom" />
@@ -90,9 +90,9 @@
                   <Image url="@../images/required.png" />
                </image>
             </ImageView>
-            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="LecturerName" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Role : Student">
+                  <MenuItem mnemonicParsing="false" text="Role : Lecturer">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
