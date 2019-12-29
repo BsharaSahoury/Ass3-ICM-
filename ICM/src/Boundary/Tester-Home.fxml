@@ -16,25 +16,6 @@
    <children>
       <AnchorPane layoutX="193.0" prefHeight="600.0" prefWidth="540.0">
          <children>
-            <MenuButton layoutX="571.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="Tester" textFill="WHITE">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Admin">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/585e4beacb11b227491c3399.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-                <MenuItem mnemonicParsing="false" text="Log Out" />
-              </items>
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
-                     </image></ImageView>
-               </graphic>
-            </MenuButton>
             <ImageView fitHeight="359.0" fitWidth="631.0" layoutX="93.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo%20ICM.png" />
@@ -66,6 +47,35 @@
                   </ImageView>
                </graphic>
             </Button>
+            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="TesterName" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Role : Tester">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
          </children></AnchorPane>
       <AnchorPane layoutX="4.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>
@@ -74,7 +84,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
