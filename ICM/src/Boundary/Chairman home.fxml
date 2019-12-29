@@ -22,16 +22,16 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/585e4beacb11b227491c3399.png" />
+                              <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/585e4beacb11b227491c3399.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Role : Tester">
+                  <MenuItem mnemonicParsing="false" text="Role : Chairman">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/kissclipart-testing-icon-png-clipart-software-testing-computer-51bced1cfa2da30a.png" />
+                              <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/Images/Chairman.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -40,7 +40,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                              <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/Images/vippng.com-logout-icon-png-2967.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -49,21 +49,21 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/585e4beacb11b227491c3399.png" />
                      </image>
                   </ImageView>
                </graphic>
             </MenuButton>
             <ImageView fitHeight="359.0" fitWidth="631.0" layoutX="93.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo%20ICM.png" />
+                  <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/logo%20ICM.png" />
                </image>
             </ImageView>
             <Label layoutX="473.0" layoutY="3.0" text="Notification">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/PinClipart.com_notification-clipart_1895786.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -129,44 +129,44 @@
                <children>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/PikPng.com_home-icon-png_1819710.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/Images/PikPng.com_home-icon-png_1819710.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="9.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="6.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/128x128.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/128x128.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/myRequests.png" />
+                        <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/myRequests.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
+                  <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/LOGO%20White.png" />
+                  <Image url="@../Documents/GitHub/Ass3-ICM-/ICM/src/images/LOGO%20White.png" />
                </image>
             </ImageView>
          </children>

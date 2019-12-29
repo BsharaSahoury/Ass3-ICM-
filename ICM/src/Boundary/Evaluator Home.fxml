@@ -27,11 +27,11 @@
                         </ImageView>
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Role : Tester">
+                  <MenuItem mnemonicParsing="false" text="Role : Evaluator">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/kissclipart-testing-icon-png-clipart-software-testing-computer-51bced1cfa2da30a.png" />
+                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
                            </image>
                         </ImageView>
                      </graphic>
