@@ -47,9 +47,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="ComitteeMemberName" textFill="WHITE">
+            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="CommitteeMemberName" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Role : ComitteeMember">
+                  <MenuItem mnemonicParsing="false" text="Role : CommitteeMember">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
