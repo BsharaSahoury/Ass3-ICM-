@@ -9,13 +9,11 @@ import javafx.stage.Stage;
 public class ProfileSettingController{
 public static Stage primaryStage;
 public void start() {
-	primaryStage=LoginController.primaryStage;
+	primaryStage=HomeController.primaryStage;
 	try{	
 		
 		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Profile setting.fxml"));
-		//System.out.print("sss");
-		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+		Scene scene = new Scene(root);		
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("ICM-ProfileSetting");
