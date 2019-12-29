@@ -5,22 +5,29 @@ import java.util.ArrayList;
 public class Employee extends User {
 
 	private int id;
-	private Job job;
+	private Belong belong;
+	private String job;
 	private ArrayList<Role> roles = new ArrayList<Role>();
+	
+	public Employee(String firstName, String lastName, String job) {
+		super(firstName,lastName);
+		this.job=job;
+	}
 
 	
 
-	public Employee(int id, Job job, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName) {
+	public Employee(int id, Belong belong, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName,String job) {
 		super( email, password, username, firstName, lastName);
 		this.id = id;
-		this.job = job;
+		this.belong = belong;
+		this.job=job;
 	}
 
-	public Employee(int id, Job job, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName,
+	public Employee(int id, Belong belong, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName,
 			ArrayList<Request> myRequests) {
 		super( email, password, username, firstName, lastName,myRequests);
 		this.id = id;
-		this.job = job;
+		this.belong = belong;
 		this.roles = roles;
 	}
 
@@ -32,12 +39,12 @@ public class Employee extends User {
 		this.id = id;
 	}
 
-	public Job getJob() {
+	public String getJob() {
 		return this.job;
 	}
 
-	public void setJob(Job job) {
-		this.job = job;
+	public void setBelong(Belong belong) {
+		this.belong = belong;
 	}
 	public ArrayList<Role> getRoles() {
 		return roles;
@@ -46,7 +53,7 @@ public class Employee extends User {
 	public void setRoles(ArrayList<Role> roles) {
 		this.roles = roles;
 	}
-	public enum Job {
+	public enum Belong{
 		Lecturer,AdminEmployee, Manager;
 	}
 

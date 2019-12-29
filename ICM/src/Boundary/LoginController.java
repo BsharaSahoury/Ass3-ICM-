@@ -1,5 +1,6 @@
 package Boundary;
 
+import Client.ClientConsole;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,17 +27,22 @@ private TextField Password;
 private CheckBox Remember;
 @FXML
 private Button ForgetPass;
+
+private ClientConsole cc;
 public static Stage primaryStage;
+public LoginController(ClientConsole cc) {
+	this.cc=cc;
+}
 public void start(Stage primaryStage)  {
-	this.primaryStage=primaryStage;
-	try{			
+	try{	
+		    
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Login.fxml"));
-			Scene scene =new Scene(root);		
-			this.primaryStage.setScene(scene);
-			this.primaryStage.setResizable(false);
-			this.primaryStage.setTitle("ICM-Login");
-			this.primaryStage.show();
-			this.primaryStage.setOnCloseRequest( event ->
+			Scene scene =new Scene(root);
+			primaryStage.setScene(scene);
+		    primaryStage.setResizable(false);
+			primaryStage.setTitle("ICM-Login");
+			primaryStage.show();
+			primaryStage.setOnCloseRequest( event ->
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	
@@ -52,30 +58,13 @@ public void start(Stage primaryStage)  {
  * @throws Exception
  */
 public void LoginAction(ActionEvent event) throws Exception{
-	//if(Username.getText().equals("")) {
-		//show message username is empty
-	//}
-//	else if(Password.getText().equals("")) {
-		//show message password is empty
-	//}
-	//else if(Remember.isSelected()) {
-		//save the username and the password
-	//}
-	//else {
-		//go to database and check if the username and password are exist	
-		//if(true) {//if the username and password exist in database
-		//if(Remember.isSelected()) {
-			//save the username and the password
-		//}
-		((Node)event.getSource()).getScene().getWindow().hide();
-		HomeController home =new HomeController();
-		
-		home.start();
-		//}
-		//else {
-		//show message username or password is incorrect	
-		//}
-	//}	
+	String username=Username.getText();
+	String password=Password.getText();
+	String[] loginMessage=new String[3];
+	loginMessage[0]="login";
+	loginMessage[1]=username;
+	loginMessage[2]=password;
+	cc.getClient().sendToServer(loginMessage);
 }
 /**
  * 

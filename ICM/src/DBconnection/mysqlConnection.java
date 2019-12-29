@@ -9,7 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import Entity.Employee;
 import Entity.Request;
+import Entity.Student;
+import Entity.User;
 
 public class mysqlConnection {
 	private static Connection conn = null;
@@ -26,7 +30,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?serverTimezone=IST","root","Aa123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?serverTimezone=IST","root","hbk12345");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -38,6 +42,34 @@ public class mysqlConnection {
         return null;
         
    	}
+	public static User isInDB(Connection con,String username,String password) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("SELECT user.username, user.password FROM user WHERE username=? AND password=?;");
+			stm.setString(1, username);
+			stm.setString(2, password);
+			ResultSet rs=stm.executeQuery();
+			if(!rs.next()) return null;
+			stm=con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
+			stm.setString(1, username);
+			rs=stm.executeQuery();
+			if(rs.next()) {
+				Employee employee1=new Employee(rs.getString(2),rs.getString(3),rs.getString(8));
+				return employee1;
+			}
+			stm=con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
+			stm.setString(1, username);
+			rs=stm.executeQuery();
+			Student student1=new Student(rs.getString(2),rs.getString(3));
+			return student1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+
+	}
 	//here we collect all the requests from the database and put it in an ArrayList<Request> and returns that array
 	public static ArrayList<Request> getDataFromDB(Connection con)
 	{

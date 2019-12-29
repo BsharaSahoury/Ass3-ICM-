@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
+import ocsf.client.ObservableClient;
 
 
 /**
@@ -37,7 +38,7 @@ public class ClientConsole
   /**
    * The instance of the client that created this ConsoleChat.
    */
-  ICMClient client;
+  ObservableClient client;
 
   
   //Constructors ****************************************************
@@ -50,21 +51,13 @@ public class ClientConsole
    */
   public ClientConsole(String host)
   {
-    try 
-    {
     	/**
     	 * this is the class is our client class that inherit AbstractClient
     	 */
-      client= new ICMClient(host,DEFAULT_PORT,this);
+      client= new ObservableClient(host,DEFAULT_PORT);
     } 
-    catch(IOException exception) 
-    {
-      System.out.println("Error: Can't setup connection!"
-                + " Terminating client.");
-      System.exit(1);
-    }
-  }
-  public ICMClient getICMClient() {
+ 
+  public ObservableClient getClient() {
 	  return client;
   }
   /**
@@ -73,22 +66,6 @@ public class ClientConsole
    * @param stage this is the main stage.
    * This function will be called when the client pressed Connect button and want to connect to the server.
    */
-  public static void connecttoIP(String IP,Stage stage) {/*in case the ip inserted was correct the clientConsole and ICM client that will be created successfully*/
-	    String host = "";
-	    int port = 0;  //The port number
-	    connectstage=stage;
-	    try
-	    {	    
-	      host = IP;
-	    }
-	    catch(ArrayIndexOutOfBoundsException e)
-	    {
-	      System.out.println("error connected");
-	      host = "localhost";
-	    }
-	 ClientConsole cc = new ClientConsole(host);
-	
-  }
   public Stage getstage() {
 	  return connectstage;
   }
