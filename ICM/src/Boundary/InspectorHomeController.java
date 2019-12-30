@@ -1,5 +1,7 @@
 package Boundary;
 
+import java.io.IOException;
+
 import Client.MainForClient;
 import Entity.Employee;
 import javafx.application.Application;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -27,7 +30,10 @@ public class InspectorHomeController {
 	private Button AboutICMbtn;
 	@FXML
 	private ComboBox Usercombobtn;	
-
+	@FXML
+	private SplitPane splitpane ;
+	@FXML
+    private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private Employee inspector;
 	public void start(Employee inspector) {
@@ -39,7 +45,7 @@ public class InspectorHomeController {
 				// TODO Auto-generated method stub
 				primaryStage=new Stage();
 				try{
-					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));			
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));	
 					Scene scene = new Scene(root);		
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
@@ -56,23 +62,6 @@ public class InspectorHomeController {
 			}
 			
 		});
-		/*this.inspector=inspector;
-		this.primaryStage=primaryStage;
-		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));			
-			Scene scene = new Scene(root);		
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("ICM-Home");			
-			primaryStage.show();
-			primaryStage.setOnCloseRequest( event ->
-		    {
-		        System.out.println("EXIT ICM");
-		        System.exit(0);	
-		    });			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}*/		
 	}
 	
 public Stage getPrimaryStage() {
@@ -96,10 +85,24 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
 	Submit.start();
 }
-
+//@FXML
 public void AboutICMAction(ActionEvent event) throws Exception {
+	/*
 	AboutICMController about=new AboutICMController();
-	about.start();
-}
+	about.start(splitpane);*/
+	
+    try {
+    	//Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Chairman-Home.fxml"));	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Chairman-Home.fxml"));
+    	//System.out.println("sssss");
+		lowerAnchorPane = loader.load();
+		//lowerAnchorPane.getChildren().setAll(FXMLLoader.load("/Boundary/Chairman-Home.fxml"));
+		splitpane.getItems().set(1, lowerAnchorPane);
+		//content.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
+	} catch (IOException e) {		
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		}   
 
 }

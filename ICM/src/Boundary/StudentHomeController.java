@@ -1,6 +1,7 @@
 package Boundary;
 
 import Entity.Student;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,10 @@ public class StudentHomeController {
 	public void start(Student student) {
 		this.student=student;
 		primaryStage=LoginController.primaryStage;
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
 		try{
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));			
 			Scene scene = new Scene(root);		
@@ -46,15 +51,16 @@ public class StudentHomeController {
 			e.printStackTrace();
 		}		
 	}
-	
+		});
+	}
 public Stage getPrimaryStage() {
 		return primaryStage;
 	}
-
+/*
 public void GoToHome(ActionEvent event) throws Exception {
 	this.start();
 }
-
+*/
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	//RequestWorkedOnController 
 }

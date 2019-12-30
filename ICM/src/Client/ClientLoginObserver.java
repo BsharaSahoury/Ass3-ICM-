@@ -40,7 +40,9 @@ public class ClientLoginObserver extends Application implements Observer{
 				evaluator.start(employee1);
 				break;
 			case "comittee member":
+				
 				ComitteeMemberHomeController comitteeMember=new ComitteeMemberHomeController();
+				System.out.println("ssss");
 				comitteeMember.start(employee1);
 				break;
 			case "chairman":
@@ -71,7 +73,7 @@ public class ClientLoginObserver extends Application implements Observer{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		inspector.start(employee1, primaryStage);
+		//inspector.start(employee1, primaryStage);
 	}
 
 }

@@ -1,6 +1,7 @@
 package Boundary;
 
 import Entity.Employee;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,9 +31,12 @@ public class EvaluatorHomeController {
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
 		primaryStage=LoginController.primaryStage;
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
 		try{
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Evaluator-Home.fxml"));			
-			Scene scene = new Scene(root);		
+			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("ICM-Home");			
@@ -46,15 +50,17 @@ public class EvaluatorHomeController {
 			e.printStackTrace();
 		}		
 	}
+		});
+	}
 	
 public Stage getPrimaryStage() {
 		return primaryStage;
 	}
-
+/*
 public void GoToHome(ActionEvent event) throws Exception {
 	this.start();
 }
-
+*/
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	//RequestWorkedOnController 
 }
