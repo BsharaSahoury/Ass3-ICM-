@@ -42,13 +42,14 @@ public class RequestsWorkedOnController {
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			String AllRequests="All Requests";
+			System.out.print("ssssssssss");
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
 	}
 	public void fillTable(ArrayList<Request> arr1) {
-		System.out.print("ssssssssss");
+		
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
 			colID.setStyle("-fx-alignment: CENTER;");

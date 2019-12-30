@@ -53,7 +53,7 @@
                   <Image url="@../images/submission2.png" />
                </image>
             </ImageView>
-            <Button layoutX="391.0" layoutY="547.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px;" text="Submit" />
+            <Button layoutX="391.0" layoutY="547.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px; -fx-background-color: blue;" text="Submit" />
             <Button layoutX="557.0" layoutY="547.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px;" text="Home" />
             <CheckBox layoutX="35.0" layoutY="517.0" mnemonicParsing="false" text="I agree to send my details (Full name, Role description, Email)" />
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="98.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
