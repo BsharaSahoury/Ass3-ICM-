@@ -39,7 +39,7 @@ private CheckBox Remember;
 @FXML
 private Button ForgetPass;
 
-private static ClientConsole cc;
+public static ClientConsole cc;
 public static  Stage primaryStage;
 
 public void start(Stage primaryStage,ClientConsole cc)  {
