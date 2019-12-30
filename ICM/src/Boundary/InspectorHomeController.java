@@ -2,6 +2,7 @@ package Boundary;
 
 import java.io.IOException;
 
+import Client.ClientConsole;
 import Client.MainForClient;
 import Entity.Employee;
 import javafx.application.Application;
@@ -36,6 +37,7 @@ public class InspectorHomeController {
     private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private Employee inspector;
+    public static RequestsWorkedOnController AllRequests;
 	public void start(Employee inspector) {
 		this.inspector=inspector;
 		primaryStage=LoginController.primaryStage;
@@ -80,7 +82,10 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
+	
+	AllRequests=new RequestsWorkedOnController();
+	AllRequests.start(splitpane); 
+
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {

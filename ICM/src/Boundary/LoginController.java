@@ -47,7 +47,7 @@ private CheckBox Remember;
 private Button ForgetPass;
 public static boolean flag=false;
 
-private static ClientConsole cc;
+public static ClientConsole cc;
 public static  Stage primaryStage;
 
 

@@ -40,7 +40,13 @@ private Date date;
 
 private Phase currentPhase;
 
-
+public Request(String id, String initiatorName, String status,String privilegedInfoSys,Date date) {
+	this.id = id;
+	this.initiatorName = initiatorName;
+	this.status = status;
+	this.privilegedInfoSys = privilegedInfoSys;
+	this.date = date;
+}
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
 Date date, Phase currentPhase) {

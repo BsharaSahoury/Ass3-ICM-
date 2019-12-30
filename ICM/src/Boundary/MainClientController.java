@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
 import Client.ClientLoginObserver;
 import Client.ClientObserver;
@@ -33,6 +34,7 @@ public class MainClientController {
 			ClientConsole cc=new ClientConsole(host);
 			ClientObserver co=new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
+			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
@@ -49,3 +51,4 @@ public class MainClientController {
 
 
 }
+
