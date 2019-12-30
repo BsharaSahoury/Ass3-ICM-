@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.HomeController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ComitteeMemberHomeController">
    <children>
       <AnchorPane layoutX="193.0" prefHeight="600.0" prefWidth="540.0">
          <children>
@@ -93,27 +93,27 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToHome" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Requests in work" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Requests in work" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="428.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="428.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
