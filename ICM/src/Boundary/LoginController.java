@@ -1,12 +1,17 @@
 package Boundary;
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Client.MainForClient;
 import Entity.Employee;
 import Entity.Inspector;
+import Entity.Student;
+import Entity.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -27,7 +34,7 @@ import ocsf.client.ObservableClient;
  */
 public  class LoginController {
 @FXML
-private Label error;
+public Label error;
 @FXML
 private Button Loginbtn;
 @FXML
@@ -38,9 +45,12 @@ private TextField Password;
 private CheckBox Remember;
 @FXML
 private Button ForgetPass;
+public static boolean flag=false;
 
 private static ClientConsole cc;
 public static  Stage primaryStage;
+
+
 
 public void start(Stage primaryStage,ClientConsole cc)  {
 	this.cc=cc;
@@ -76,6 +86,8 @@ public void LoginAction(ActionEvent event) throws Exception{
 	loginMessage[1]=username;
 	loginMessage[2]=password;
 	cc.getClient().sendToServer(loginMessage);
+	Username.clear();
+	Password.clear();
 }
 /**
  * 
@@ -86,14 +98,14 @@ public void ForgetPassAction(ActionEvent event) throws Exception{
 	System.out.println("sssssss");
 	//open new window to get the password by enter the email address and then send link to reset the password
 }
-public void displayErrorMessage() {
-	error.setVisible(true);
-	Username.clear();
-	Password.clear();
-}
+
 public Stage getStage() {
 	return primaryStage;
 }
 
+	
+
 
 }
+
+

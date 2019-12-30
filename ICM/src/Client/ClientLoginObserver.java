@@ -8,6 +8,7 @@ import Boundary.ComitteeMemberHomeController;
 import Boundary.EvaluatorHomeController;
 import Boundary.InspectorHomeController;
 import Boundary.LecturerHomeController;
+import Boundary.LoginController;
 import Boundary.MainClientController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
@@ -15,9 +16,12 @@ import Entity.Employee;
 import Entity.Student;
 import Entity.User;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class ClientLoginObserver extends Application implements Observer{
+public class ClientLoginObserver implements Observer{
 	private static InspectorHomeController  inspector;
 	private Employee employee1;
 	
@@ -64,16 +68,22 @@ public class ClientLoginObserver extends Application implements Observer{
 			StudentHomeController student=new StudentHomeController();
 			student.start(student1);
 		}
-		else {
-			MainClientController.login.displayErrorMessage();
 		}
-	}
-	}
+		else if(arg1==null) {
+			Platform.runLater(new Runnable() {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		//inspector.start(employee1, primaryStage);
+				@Override
+				public void run() {
+					Alert alert = new Alert(AlertType.INFORMATION);
+			        alert.setTitle("TEST");
+			        alert.setHeaderText("ERROR");
+			        alert.setContentText("incorrect username or password");
+			        alert.showAndWait();
+					
+				}
+				
+			});
+		}
 	}
 
 }
