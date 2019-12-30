@@ -4,8 +4,10 @@ import java.awt.Button;
 
 
 import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
@@ -13,6 +15,7 @@ import Client.ClientLoginObserver;
 import Client.ClientObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -46,4 +49,6 @@ public class MainClientController {
 		
 	}
 
+
 }
+
