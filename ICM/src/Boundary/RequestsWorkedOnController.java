@@ -33,6 +33,7 @@ public class RequestsWorkedOnController {
 	@FXML
 	private TableView<Request> tableRequests;
 	private static ObservableList<Request> list;
+	public static 
 	public void start(SplitPane splitpane) {
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;

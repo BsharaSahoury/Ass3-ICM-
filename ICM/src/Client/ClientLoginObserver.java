@@ -17,7 +17,7 @@ import Entity.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class ClientLoginObserver extends Application implements Observer{
+public class ClientLoginObserver implements Observer{
 	private static InspectorHomeController  inspector;
 	private Employee employee1;
 	
@@ -68,12 +68,6 @@ public class ClientLoginObserver extends Application implements Observer{
 			MainClientController.login.displayErrorMessage();
 		}
 	}
-	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		//inspector.start(employee1, primaryStage);
 	}
 
 }
