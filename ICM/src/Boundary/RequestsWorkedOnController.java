@@ -48,6 +48,7 @@ public class RequestsWorkedOnController {
 		}			
 	}
 	public void fillTable(ArrayList<Request> arr1) {
+		System.out.print("ssssssssss");
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
 			colID.setStyle("-fx-alignment: CENTER;");
