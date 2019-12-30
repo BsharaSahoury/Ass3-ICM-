@@ -21,6 +21,7 @@ public class MainClientController {
 	TextField ip;
 	@FXML
 	Label wrong;
+	public static Stage primaryStage;
 	public void connect() {
 		String host=ip.getText();
 		try {

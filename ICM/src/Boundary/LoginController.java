@@ -1,6 +1,7 @@
 package Boundary;
 
 import Client.ClientConsole;
+import Client.MainForClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,19 +36,20 @@ public LoginController(ClientConsole cc) {
 }
 public void start(Stage primaryStage)  {
 	try{	
+		    this.primaryStage=MainForClient.stage;
 		    
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Login.fxml"));
+			System.out.print("Ssss");
 			Scene scene =new Scene(root);
-			primaryStage.setScene(scene);
-		    primaryStage.setResizable(false);
-			primaryStage.setTitle("ICM-Login");
-			primaryStage.show();
-			primaryStage.setOnCloseRequest( event ->
+			this.primaryStage.setScene(scene);
+			this.primaryStage.setResizable(false);
+			this.primaryStage.setTitle("ICM-Login");
+			this.primaryStage.show();
+			this.primaryStage.setOnCloseRequest( event ->
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	
-		    });	
-			
+		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	
