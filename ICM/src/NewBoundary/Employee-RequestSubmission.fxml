@@ -14,19 +14,19 @@
 
 <AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Line endX="429.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
-      <Label layoutX="24.0" layoutY="6.0" text="ICM">
+      <Line endX="433.0" endY="-14.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+      <Label layoutX="25.0" layoutY="6.0" text="ICM">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="6.0" text="-&gt;" />
-      <Label layoutX="64.0" layoutY="6.0" text="Request Submission">
+      <Label layoutX="51.0" layoutY="6.0" text="-&gt;" />
+      <Label layoutX="65.0" layoutY="6.0" text="Request Submission">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="82.0" layoutY="47.0" text="Request-Submission">
+      <Label layoutX="82.0" layoutY="47.0" text="Request-Submission" textOverrun="CLIP">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -41,7 +41,7 @@
       <Label layoutX="26.0" layoutY="454.0" text="You can Attach Files :" />
       <MenuButton layoutX="200.0" layoutY="99.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" text="Choose System">
          <items>
-            <MenuItem mnemonicParsing="false" text="Student's Information Station" />
+            <MenuItem mnemonicParsing="false" text="Employee's Information Station" />
             <MenuItem mnemonicParsing="false" text="Moodle" />
             <MenuItem mnemonicParsing="false" text="Library System" />
             <MenuItem mnemonicParsing="false" text="Computers' Classroom" />
@@ -87,9 +87,9 @@
             <Image url="@../images/required.png" />
          </image>
       </ImageView>
-      <MenuButton layoutX="581.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+      <MenuButton layoutX="587.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" style="-fx-background-color: #9d1b34;" text="EmployeeName" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Role : Student">
+            <MenuItem mnemonicParsing="false" text="Role : Employee">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -116,7 +116,7 @@
             </ImageView>
          </graphic>
       </MenuButton>
-      <Button alignment="BASELINE_LEFT" layoutX="461.0" layoutY="2.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+      <Button alignment="BASELINE_LEFT" layoutX="469.0" layoutY="2.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
