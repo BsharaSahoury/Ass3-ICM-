@@ -33,14 +33,14 @@ public class RequestsWorkedOnController {
 	@FXML
 	private TableView<Request> tableRequests;
 	private static ObservableList<Request> list;
-	public static 
+	//public static 
 	public void start(SplitPane splitpane) {
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/requestss.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/allRequests.fxml"));
 			lowerAnchorPane = loader.load();
-			splitpane.getItems().set(1, lowerAnchorPane);		
+			splitpane.getItems().set(1, lowerAnchorPane);
 			String AllRequests="All Requests";
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
