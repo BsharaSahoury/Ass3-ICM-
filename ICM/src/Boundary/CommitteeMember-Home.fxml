@@ -12,42 +12,23 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.HomeController">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ComitteeMemberHomeController">
    <children>
       <AnchorPane layoutX="193.0" prefHeight="600.0" prefWidth="540.0">
          <children>
-            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="ComitteMember" textFill="WHITE">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Admin">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/585e4beacb11b227491c3399.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-                <MenuItem mnemonicParsing="false" text="Log Out" />
-              </items>
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
-                     </image></ImageView>
-               </graphic>
-            </MenuButton>
             <ImageView fitHeight="359.0" fitWidth="631.0" layoutX="93.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo%20ICM.png" />
                </image>
             </ImageView>
             <Line endX="408.0" endY="-13.0" layoutX="301.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
-            <Label layoutX="26.0" layoutY="6.0" text="ICM">
+            <Label layoutX="38.0" layoutY="6.0" text="ICM">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="52.0" layoutY="6.0" text="-&gt;" />
-            <Label layoutX="66.0" layoutY="6.0" text="Home">
+            <Label layoutX="64.0" layoutY="6.0" text="-&gt;" />
+            <Label layoutX="78.0" layoutY="6.0" text="Home">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -66,30 +47,73 @@
                   </ImageView>
                </graphic>
             </Button>
+            <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #9d1b34;" text="CommitteeMemberName" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Role : CommitteeMember">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Button layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="40.0" style="-fx-background-insets: 88888888888;">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></AnchorPane>
-      <AnchorPane layoutX="4.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
+      <AnchorPane layoutY="-1.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToHome" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Requests in work" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="242.0" mnemonicParsing="false" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Request Submission" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="366.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="428.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="About ICM" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -107,22 +131,27 @@
                         <Image url="@../Images/PikPng.com_home-icon-png_1819710.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="9.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/128x128.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/myRequests.png" />
                      </image>

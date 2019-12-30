@@ -13,9 +13,12 @@ import javafx.stage.Stage;
 
 public class MainForClient extends Application {
 	public static Stage stage;
+	public static  String[] args;
 
 
 	public static void main(String[] args) {
+		MainForClient.args=args;
+		System.out.println(args.toString());
 		MainForClient.launch(args);
 		// TODO Auto-generated method stub
 

@@ -1,6 +1,6 @@
 package Boundary;
 
-import Entity.Student;
+import Entity.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
-public class StudentHomeController {
+public class TesterHomeController {
 
 	@FXML
 	private Button Homebtn;
@@ -26,12 +26,12 @@ public class StudentHomeController {
 	private ComboBox Usercombobtn;	
 
 	public static Stage primaryStage;
-	private Student student;
-	public void start(Student student) {
-		this.student=student;
+	private Employee tester;
+	public void start(Employee tester) {
+		this.tester=tester;
 		primaryStage=LoginController.primaryStage;
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));			
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Tester-Home.fxml"));			
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);

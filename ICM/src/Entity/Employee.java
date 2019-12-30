@@ -75,6 +75,6 @@ public class Employee extends User {
 	}
 
 	public enum Role {
-		Tester, ComitteMember, Chairman, PerformanceLeader, Evaluator;
+		Tester, CommitteeMember, Chairman, PerformanceLeader, Evaluator;
 	}
 }
