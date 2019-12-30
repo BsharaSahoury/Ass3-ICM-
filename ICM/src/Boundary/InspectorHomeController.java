@@ -38,12 +38,12 @@ public class InspectorHomeController {
 	private Employee inspector;
 	public void start(Employee inspector) {
 		this.inspector=inspector;
+		primaryStage=LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				primaryStage=new Stage();
 				try{
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));	
 					Scene scene = new Scene(root);		
@@ -69,7 +69,14 @@ public Stage getPrimaryStage() {
 	}
 
 public void GoToHome(ActionEvent event) throws Exception {
-	this.start(inspector);
+	try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
+		lowerAnchorPane = loader.load();
+		splitpane.getItems().set(1, lowerAnchorPane);
+	} catch (IOException e) {		
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
@@ -78,12 +85,12 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start();
+	Submit.start(splitpane);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start();
+	Submit.start(splitpane);
 }
 //@FXML
 public void AboutICMAction(ActionEvent event) throws Exception {
@@ -92,13 +99,9 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 	about.start(splitpane);*/
 	
     try {
-    	//Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Chairman-Home.fxml"));	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Chairman-Home.fxml"));
-    	//System.out.println("sssss");
 		lowerAnchorPane = loader.load();
-		//lowerAnchorPane.getChildren().setAll(FXMLLoader.load("/Boundary/Chairman-Home.fxml"));
 		splitpane.getItems().set(1, lowerAnchorPane);
-		//content.getChildren().setAll(FXMLLoader.load("vista2.fxml"));
 	} catch (IOException e) {		
 		// TODO Auto-generated catch block
 		e.printStackTrace();

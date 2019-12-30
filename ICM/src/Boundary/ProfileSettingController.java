@@ -1,28 +1,25 @@
 package Boundary;
 
+import java.io.IOException;
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ProfileSettingController{
 public static Stage primaryStage;
-public void start() {
-	primaryStage=HomeController.primaryStage;
-	try{	
-		
-		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Profile setting.fxml"));
-		Scene scene = new Scene(root);		
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("ICM-ProfileSetting");
-		primaryStage.show();
-		primaryStage.setOnCloseRequest( event ->
-	    {
-	        System.out.println("EXIT ICM");
-	        System.exit(0);	
-	    });			
+private AnchorPane lowerAnchorPane;
+public void start(SplitPane splitpane) {
+	primaryStage=LoginController.primaryStage;
+	try{		
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Profile setting.fxml"));
+		lowerAnchorPane = loader.load();
+		splitpane.getItems().set(1, lowerAnchorPane);		
 	} catch(Exception e) {
 		e.printStackTrace();
 	}	
