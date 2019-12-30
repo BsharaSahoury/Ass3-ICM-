@@ -1,5 +1,7 @@
 package Boundary;
 
+import java.io.IOException;
+
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LecturerHomeController {
@@ -25,7 +29,10 @@ public class LecturerHomeController {
 	private Button AboutICMbtn;
 	@FXML
 	private ComboBox Usercombobtn;	
-
+	@FXML
+	private SplitPane splitpane ;
+	@FXML
+    private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private Employee lecturer;
 	public void start(Employee lecturer) {
@@ -56,23 +63,30 @@ public class LecturerHomeController {
 public Stage getPrimaryStage() {
 		return primaryStage;
 	}
-/*
+
 public void GoToHome(ActionEvent event) throws Exception {
-	this.start();
+	try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
+		lowerAnchorPane = loader.load();
+		splitpane.getItems().set(1, lowerAnchorPane);
+	} catch (IOException e) {		
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
-*/
+
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	//RequestWorkedOnController 
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start();
+	Submit.start(splitpane);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start();
+	Submit.start(splitpane);
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {

@@ -31,27 +31,4 @@ public void ApplyAndSaveAction(ActionEvent event) {
 public void BrowsAction(ActionEvent event) {
 	
 }
-
-public void GoToHome(ActionEvent event) throws Exception {
-	HomeController backhome=new HomeController();
-	backhome.start();
-}
-
-public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
-}
-
-public void RequestSubmissionAction(ActionEvent event) throws Exception {
-	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start();
-}
-
-public void ProfileSettingAction(ActionEvent event) throws Exception {
-
-}
-
-public void AboutICMAction(ActionEvent event) throws Exception {
-	AboutICMController about=new AboutICMController();
-	about.start();
-}
 }
