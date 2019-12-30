@@ -45,19 +45,18 @@ public static  Stage primaryStage;
 public void start(Stage primaryStage,ClientConsole cc)  {
 	this.cc=cc;
 	try{	
-
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/login.fxml"));
-
 			Scene scene =new Scene(root);
-			this.primaryStage.setScene(scene);
-			this.primaryStage.setResizable(false);
-			this.primaryStage.setTitle("ICM-Login");
-			this.primaryStage.show();
-			this.primaryStage.setOnCloseRequest( event ->
+			primaryStage.setScene(scene);
+		    primaryStage.setResizable(false);
+			primaryStage.setTitle("ICM-Login");
+			primaryStage.show();
+			primaryStage.setOnCloseRequest( event ->
 		    {
 		        System.out.println("EXIT ICM");
 		        System.exit(0);	
-		    });			
+		    });	
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	

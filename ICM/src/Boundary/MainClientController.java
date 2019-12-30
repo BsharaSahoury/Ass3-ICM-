@@ -1,4 +1,3 @@
-
 package Boundary;
 
 import java.awt.Button;
@@ -46,4 +45,3 @@ public class MainClientController {
 	}
 
 }
-

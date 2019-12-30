@@ -18,5 +18,4 @@ public class ClientObserver implements Observer {
 		
 	}
 
-	
 }
