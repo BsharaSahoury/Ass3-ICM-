@@ -30,7 +30,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -44,11 +44,13 @@ public class mysqlConnection {
    	}
 	public static User isInDB(Connection con,String username,String password) {
 		PreparedStatement stm=null;
+	
 		try {
 			stm=con.prepareStatement("SELECT user.username, user.password FROM user WHERE username=? AND password=?;");
 			stm.setString(1, username);
 			stm.setString(2, password);
 			ResultSet rs=stm.executeQuery();
+			
 			if(!rs.next()) return null;
 			stm=con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
 			stm.setString(1, username);
@@ -61,6 +63,7 @@ public class mysqlConnection {
 			stm.setString(1, username);
 			rs=stm.executeQuery();
 			Student student1=new Student(rs.getString(2),rs.getString(3));
+			
 			return student1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

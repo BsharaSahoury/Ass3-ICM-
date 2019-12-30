@@ -20,11 +20,14 @@ public class loginHandler implements Observer {
 		if(arg instanceof Object[]) {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
+	
 		if(args[1] instanceof String[]) {
 			String[] Message=(String[])args[1];
 			if(Message.length==3 && Message[0].equals("login")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
+				
 				User user=mysqlConnection.isInDB(con, Message[1], Message[2]);
+				
 				try {
 					System.out.println(user == null);
 					client.sendToClient(user);
