@@ -42,7 +42,6 @@ public class RequestsWorkedOnController {
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			String AllRequests="All Requests";
-			System.out.print("ssssssssss");
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
