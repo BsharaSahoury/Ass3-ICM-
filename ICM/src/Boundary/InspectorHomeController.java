@@ -3,6 +3,7 @@ package Boundary;
 import Client.MainForClient;
 import Entity.Employee;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +30,33 @@ public class InspectorHomeController {
 
 	public static Stage primaryStage;
 	private Employee inspector;
-	public void start(Employee inspector,Stage primaryStage) {
+	public void start(Employee inspector) {
 		this.inspector=inspector;
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				primaryStage=new Stage();
+				try{
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));			
+					Scene scene = new Scene(root);		
+					primaryStage.setScene(scene);
+					primaryStage.setResizable(false);
+					primaryStage.setTitle("ICM-Home");			
+					primaryStage.show();
+					primaryStage.setOnCloseRequest( event ->
+				    {
+				        System.out.println("EXIT ICM");
+				        System.exit(0);	
+				    });			
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		/*this.inspector=inspector;
 		this.primaryStage=primaryStage;
 		try{
 			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));			
@@ -46,7 +72,7 @@ public class InspectorHomeController {
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
-		}		
+		}*/		
 	}
 	
 public Stage getPrimaryStage() {

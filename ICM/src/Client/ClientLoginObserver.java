@@ -33,10 +33,7 @@ public class ClientLoginObserver extends Application implements Observer{
 			switch(employee1.getJob()) {
 			case "inspector":
 				InspectorHomeController inspector=new InspectorHomeController();
-				this.inspector=inspector;
-				this.employee1=employee1;
-				ClientLoginObserver.launch(MainForClient.args);
-				System.out.println(Thread.currentThread().toString());
+				inspector.start(employee1);
 				break;
 			case "evaluator":
 				EvaluatorHomeController evaluator=new EvaluatorHomeController();
