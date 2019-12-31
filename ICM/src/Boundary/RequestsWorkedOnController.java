@@ -34,11 +34,11 @@ public class RequestsWorkedOnController {
 	private TableView<Request> tableRequests;
 	private static ObservableList<Request> list;
 	//public static 
-	public void start(SplitPane splitpane) {
+	public void start(SplitPane splitpane,String path) {
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/allRequests.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			String AllRequests="All Requests";

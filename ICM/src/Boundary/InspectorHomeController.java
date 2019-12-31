@@ -30,87 +30,77 @@ public class InspectorHomeController {
 	@FXML
 	private Button AboutICMbtn;
 	@FXML
-	private ComboBox Usercombobtn;	
+	private ComboBox Usercombobtn;
 	@FXML
-	private SplitPane splitpane ;
+	private SplitPane splitpane;
 	@FXML
-    private AnchorPane lowerAnchorPane;
+	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private Employee inspector;
-    public static RequestsWorkedOnController AllRequests;
+	public static RequestsWorkedOnController AllRequests;
+
 	public void start(Employee inspector) {
-		this.inspector=inspector;
-		primaryStage=LoginController.primaryStage;
+		this.inspector = inspector;
+		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				try{
-					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));	
-					Scene scene = new Scene(root);		
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Inspector-Home.fxml"));
+					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
-					primaryStage.setTitle("ICM-Home");			
+					primaryStage.setTitle("ICM-Home");
 					primaryStage.show();
-					primaryStage.setOnCloseRequest( event ->
-				    {
-				        System.out.println("EXIT ICM");
-				        System.exit(0);	
-				    });			
-				} catch(Exception e) {
+					primaryStage.setOnCloseRequest(event -> {
+						System.out.println("EXIT ICM");
+						System.exit(0);
+					});
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			
+
 		});
 	}
-	
-public Stage getPrimaryStage() {
+
+	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
-public void GoToHome(ActionEvent event) throws Exception {
-	try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
-		lowerAnchorPane = loader.load();
-		splitpane.getItems().set(1, lowerAnchorPane);
-	} catch (IOException e) {		
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public void GoToHome(ActionEvent event) throws Exception {
+		HomeController home = new HomeController();
+		home.start(splitpane);
 	}
-}
 
-public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	
-	AllRequests=new RequestsWorkedOnController();
-	AllRequests.start(splitpane); 
+	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
-}
+		AllRequests = new RequestsWorkedOnController();
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
 
-public void RequestSubmissionAction(ActionEvent event) throws Exception {
-	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane);
-}
+	}
 
-public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(splitpane);
-}
+	public void RequestSubmissionAction(ActionEvent event) throws Exception {
+		RequestSubmissionController Submit = new RequestSubmissionController();
+		Submit.start(splitpane);
+	}
+
+	public void ProfileSettingAction(ActionEvent event) throws Exception {
+		ProfileSettingController Submit = new ProfileSettingController();
+		Submit.start(splitpane);
+	}
+
+	public void MyRequestsAction(ActionEvent event) throws Exception {
+		MyRequestsController Submit = new MyRequestsController();
+		Submit.start(splitpane);
+	}
+
 //@FXML
-public void AboutICMAction(ActionEvent event) throws Exception {
-	/*
-	AboutICMController about=new AboutICMController();
-	about.start(splitpane);*/
-	
-    try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Chairman-Home.fxml"));
-		lowerAnchorPane = loader.load();
-		splitpane.getItems().set(1, lowerAnchorPane);
-	} catch (IOException e) {		
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public void AboutICMAction(ActionEvent event) throws Exception {
+		AboutICMController about = new AboutICMController();
+		about.start(splitpane);
 	}
-		}   
 
 }
