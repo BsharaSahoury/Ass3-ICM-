@@ -29,8 +29,8 @@ public class ServerAllRequestsObserver implements Observer {
 			String Message=(String)args[1];
 			if(Message.equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				System.out.print("mmmmmmmm");
 				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
+				System.out.println(arr.get(0).getStatus());
 			try {
 				client.sendToClient(arr);
 			} catch (IOException e) {

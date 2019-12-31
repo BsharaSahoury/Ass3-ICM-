@@ -16,6 +16,15 @@
 
 <AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestsWorkedOnController">
    <children>
+      <TableView fx:id="tableRequests" layoutX="7.0" layoutY="142.0" prefHeight="367.0" prefWidth="719.0" stylesheets="@css1.css">
+         <columns>
+            <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="115.0" text="InitiatorName" />
+            <TableColumn fx:id="colStatus" prefWidth="109.0" text="Status" />
+            <TableColumn fx:id="colPriflig" prefWidth="206.0" text="Prifileged Information System" />
+            <TableColumn fx:id="colSubDate" prefWidth="125.0" text="SubmissionDate" />
+         </columns>
+      </TableView>
       <MenuButton layoutX="618.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
          <items>
             <MenuItem mnemonicParsing="false" text="Admin">
@@ -64,15 +73,6 @@
             <Image url="@../images/reload-icon-5.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableRequests" layoutX="-3.0" layoutY="142.0" prefHeight="367.0" prefWidth="729.0" stylesheets="@css1.css">
-         <columns>
-            <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="115.0" text="InitiatorName" />
-            <TableColumn fx:id="colStatus" prefWidth="109.0" text="Status" />
-            <TableColumn fx:id="colPriflig" prefWidth="206.0" text="Prifileged Information System" />
-            <TableColumn fx:id="colSubDate" prefWidth="125.0" text="SubmissionDate" />
-         </columns>
-      </TableView>
       <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
       <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Search" textFill="WHITE">
          <font>

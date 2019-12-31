@@ -19,7 +19,7 @@ public class ClientAllRequestsObserver implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		if(arg1 instanceof ArrayList<?>) {
-			System.out.println("ssxxxx");
+		
 		ArrayList<Request> arr=(ArrayList<Request>) arg1;
 		InspectorHomeController.AllRequests.fillTable(arr);
 		}

@@ -1,6 +1,7 @@
 package Boundary;
 
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +31,11 @@ public class RequestsWorkedOnController {
 	private TableColumn colPriflig;
 	@FXML
 	private TableColumn colSubDate;
-	@FXML
 	private TableView<Request> tableRequests;
 	private static ObservableList<Request> list;
 	//public static 
 	public void start(SplitPane splitpane,String path) {
+		
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
@@ -50,19 +51,22 @@ public class RequestsWorkedOnController {
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
-			System.out.println("xxxx");
+			
 			colID.setStyle("-fx-alignment: CENTER;");
 			colName.setStyle("-fx-alignment: CENTER;");
-			//colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
-			System.out.println("zzzzzzz");
+			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
 			
+			//colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+			//System.out.print("ss");
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
-			colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));
-			colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
-			colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
-			//tableRequests.setStyle("-fx-alignment: CENTER;");
-
-			tableRequests.setItems(list);		
+			//tableRequests.getColumns().addAll(colID);
+			//tableRequests.getItems().add(arr1.get(0));
+			//colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));
 			
+			//colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
+			//colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
+			//tableRequests.setStyle("-fx-alignment: CENTER;");
+           // colName.set
+			tableRequests.setItems(list);	
 		}
 }

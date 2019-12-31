@@ -108,27 +108,20 @@ public class mysqlConnection {
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				}	
 				Date date1=null;
-				if(!Initiatorname.equals(null)) {
-					
-						//date1=new SimpleDateFormat("yyyy/MM/dd").parse(rs.getString(6));
-						System.out.println("zzzzzz"+rs.getString(6));
-						s=new Request(rs.getString(7),Initiatorname,rs.getString(8),rs.getString(1),date1);
-					
-				}
+				if(!Initiatorname.equals(null)) 
+						s=new Request(rs.getString(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
 				arr.add(s);
 				stmt2=null;
 				s=null;
 				rs2.close();
 			}
 			System.out.println("w");
-			rs.close();
-				
-	 		
+			rs.close();	 		
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		return null;
+		return arr;
 	}
 	/*
 	//here we collect all the requests from the database and put it in an ArrayList<Request> and returns that array
