@@ -48,17 +48,21 @@ public class RequestsWorkedOnController {
 		}			
 	}
 	public void fillTable(ArrayList<Request> arr1) {
-		
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
+			System.out.println("xxxx");
 			colID.setStyle("-fx-alignment: CENTER;");
 			colName.setStyle("-fx-alignment: CENTER;");
-			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
+			//colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
+			System.out.println("zzzzzzz");
+			
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
 			colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));
 			colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
 			colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
 			//tableRequests.setStyle("-fx-alignment: CENTER;");
-			tableRequests.setItems(list);			
+
+			tableRequests.setItems(list);		
+			
 		}
 }

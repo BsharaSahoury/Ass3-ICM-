@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -20,7 +21,6 @@ public class ServerAllRequestsObserver implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Object[] args = null;
-		System.out.print("ssssssssss");
 		if(arg instanceof Object[]) {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
@@ -29,6 +29,7 @@ public class ServerAllRequestsObserver implements Observer {
 			String Message=(String)args[1];
 			if(Message.equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
+				System.out.print("mmmmmmmm");
 				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
 			try {
 				client.sendToClient(arr);

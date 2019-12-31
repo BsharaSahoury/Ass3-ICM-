@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import Client.ClientConsole;
 import Entity.Request;
 
-public class MyRequestsController {
+public class MyRequestsController implements Initilizable  {
 
 		public static Stage primaryStage;
 		private static ClientConsole cc;
@@ -31,7 +31,7 @@ public class MyRequestsController {
 		@FXML
 		private TableView<Request> tableRequests;
 		private static ObservableList<Request> list;
-		public void start(SplitPane splitpane) {
+		public void start(SplitPane splitpane)  {
 			primaryStage=LoginController.primaryStage;
 			this.cc=LoginController.cc;
 			try{	
