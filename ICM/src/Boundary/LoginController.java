@@ -56,7 +56,7 @@ public void start(Stage primaryStage,ClientConsole cc)  {
 	this.cc=cc;
 	this.primaryStage=primaryStage;
 	try{	
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Login.fxml"));
 			Scene scene =new Scene(root);
 			this.primaryStage.setScene(scene);
 			this.primaryStage.setResizable(false);

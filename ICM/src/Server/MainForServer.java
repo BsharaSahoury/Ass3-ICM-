@@ -20,6 +20,7 @@ public class MainForServer {
 	    ObservableServer sv = new ObservableServer(port);
 	    ServerObserver so=new ServerObserver(sv);
 	    loginHandler loginHandler=new loginHandler(sv);
+	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//
