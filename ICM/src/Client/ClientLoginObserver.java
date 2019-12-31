@@ -61,6 +61,11 @@ public class ClientLoginObserver implements Observer{
 				TesterHomeController tester=new TesterHomeController();
 				tester.start(employee1);
 				break;
+			case "Administrator":
+				AdministratorHomeController Administrator=new AdministratorHomeController();
+				tester.start(employee1);
+				break;
+				
 			}
 		}
 		else if(arg1 instanceof Student) {
