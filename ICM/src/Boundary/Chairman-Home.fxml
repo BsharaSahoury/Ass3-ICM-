@@ -79,12 +79,12 @@
          </children></AnchorPane>
       <AnchorPane layoutX="4.0" prefHeight="600.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+            <Button alignment="BASELINE_LEFT" layoutX="35.0" layoutY="118.0" mnemonicParsing="false" onAction="#GoToHome" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
