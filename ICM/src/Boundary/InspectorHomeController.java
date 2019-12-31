@@ -107,6 +107,6 @@ public class InspectorHomeController {
 public void LogOutAction(ActionEvent event) throws Exception{
 	LogOutController logOut= new LogOutController();
 	primaryStage.close();
-	logOut.start();
+	logOut.start(primaryStage);
 }
 }
