@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
@@ -41,7 +42,7 @@ private Button Loginbtn;
 @FXML
 private TextField Username;
 @FXML
-private TextField Password;
+private PasswordField Password;
 @FXML
 private CheckBox Remember;
 @FXML
@@ -80,8 +81,11 @@ public void start(Stage primaryStage,ClientConsole cc)  {
  */
 public void LoginAction(ActionEvent event) throws Exception{
 	error.setVisible(false);
+	System.out.println("1111111111");
+
 	String username=Username.getText();
 	String password=Password.getText();
+	System.out.println(password);
 	String[] loginMessage=new String[3];
 	loginMessage[0]="login";
 	loginMessage[1]=username;
