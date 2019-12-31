@@ -17,6 +17,7 @@ import Entity.User;
 
 public class mysqlConnection {
 	private static Connection conn = null;
+	private static int count=0;
 	//this method creates and returns a connection to the relevant schema in the database that we would like to work with
 	public static Connection makeAndReturnConnection()
 	{
@@ -30,7 +31,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -56,13 +57,13 @@ public class mysqlConnection {
 			stm.setString(1, username);
 			rs=stm.executeQuery();
 			if(rs.next()) {
-				Employee employee1=new Employee(rs.getString(2),rs.getString(3),rs.getString(8));
+				Employee employee1=new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(8));
 				return employee1;
 			}
 			stm=con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
 			stm.setString(1, username);
 			rs=stm.executeQuery();
-			Student student1=new Student(rs.getString(2),rs.getString(3));
+			Student student1=new Student(rs.getString(1),rs.getString(2),rs.getString(3));
 			
 			return student1;
 		} catch (SQLException e) {
@@ -127,5 +128,22 @@ public class mysqlConnection {
 		  			e.printStackTrace();
 		  		}		  	
 		}
-  	}	
+  	}
+	public static boolean insertRequestToDB(Connection con, Request request) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?);");
+			stm.setString(1, request.getPrivilegedInfoSys());
+			stm.setString(2, request.getExistingSituation());
+			stm.setString(3, request.getExplainRequest());
+			stm.setString(4, request.getReason());
+			stm.setString(5, request.getComment());
+			stm.setString(6, Integer.toString(count++));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}	
 }

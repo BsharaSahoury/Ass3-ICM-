@@ -21,6 +21,8 @@ private String privilegedInfoSys;
 private String reason;
 private String comment;
 private Date date;
+private User initiator;
+private MyFile myfile;
 
 /**
  * 
@@ -64,6 +66,22 @@ Date date, Phase currentPhase) {
 	this.currentPhase = currentPhase;
 }
 
+public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, Date time, User user,
+		MyFile msg) {
+	this.privilegedInfoSys=selectedItem;
+	this.existingSituation=existingSituation;
+	this.explainRequest=requestedChange;
+	this.comment=comment;
+	this.date=time;
+	this.initiator=user;
+	this.myfile=msg;
+}
+public User getInitiator() {
+	return initiator;
+}
+public MyFile getMyFile() {
+	return myfile;
+}
 public String getId() {
 	return id;
 }

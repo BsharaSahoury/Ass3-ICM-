@@ -20,10 +20,12 @@ public class ServerAllRequestsObserver implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		Object[] args = null;
+		System.out.print("ssssssssss");
 		if(arg instanceof Object[]) {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
 		if(args[1] instanceof String) {
+			
 			String Message=(String)args[1];
 			if(Message.equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
