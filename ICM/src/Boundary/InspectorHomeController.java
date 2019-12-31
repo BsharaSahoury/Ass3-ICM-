@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -33,6 +34,7 @@ public class InspectorHomeController {
 	private ComboBox Usercombobtn;
 	@FXML
 	private SplitPane splitpane;
+	private MenuItem logOut;
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
@@ -102,5 +104,9 @@ public class InspectorHomeController {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
 	}
-
+public void LogOutAction(ActionEvent event) throws Exception{
+	LogOutController logOut= new LogOutController();
+	primaryStage.close();
+	logOut.start();
+}
 }
