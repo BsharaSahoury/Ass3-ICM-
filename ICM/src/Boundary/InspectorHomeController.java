@@ -1,5 +1,6 @@
 package Boundary;
 
+import java.awt.Label;
 import java.io.IOException;
 
 import Client.ClientConsole;
@@ -34,7 +35,9 @@ public class InspectorHomeController {
 	private ComboBox Usercombobtn;
 	@FXML
 	private SplitPane splitpane;
+	@FXML
 	private MenuItem logOut;
+
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
@@ -78,7 +81,6 @@ public class InspectorHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-
 		AllRequests = new RequestsWorkedOnController();
 		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
 
@@ -104,9 +106,10 @@ public class InspectorHomeController {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
 	}
-public void LogOutAction(ActionEvent event) throws Exception{
-	LogOutController logOut= new LogOutController();
-	primaryStage.close();
-	logOut.start(primaryStage);
-}
+
+	public void LogOutAction(ActionEvent event) throws Exception {
+		LogOutController logOut = new LogOutController();
+		primaryStage.close();
+		logOut.start(primaryStage);
+	}
 }
