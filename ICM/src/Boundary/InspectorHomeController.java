@@ -100,8 +100,6 @@ public class InspectorHomeController {
 		MyRequestsController Submit = new MyRequestsController();
 		Submit.start(splitpane);
 	}
-
-//@FXML
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
