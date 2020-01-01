@@ -4,8 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -87,6 +85,7 @@
                   <Image url="@../images/required.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
             <MenuButton layoutX="548.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Role : Student">
@@ -125,6 +124,8 @@
                   </ImageView>
                </graphic>
             </Button>
+=======
+>>>>>>> fbcd9b164e4cb3a4fcb8970ab67073361e830ca1
             <Button fx:id="browse" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#attachFile" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
             <Label fx:id="fileName" layoutX="229.0" layoutY="446.0" prefHeight="26.0" prefWidth="206.0" text="l" />
             <ComboBox fx:id="chosenCombo" layoutX="229.0" layoutY="99.0" prefHeight="26.0" prefWidth="217.0" promptText="choose system" />

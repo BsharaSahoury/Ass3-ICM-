@@ -36,7 +36,7 @@ public class AdministratorHomeController {
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee Administrator;
+	private static Employee Administrator;
 	
 	public static RequestsWorkedOnController RequestsInWork;
 	
@@ -85,7 +85,7 @@ public class AdministratorHomeController {
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,Administrator);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {

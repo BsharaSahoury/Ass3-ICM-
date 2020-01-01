@@ -34,7 +34,7 @@ public class StudentHomeController {
 	@FXML
     private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Student student;
+	private static Student student;
 	public void start(Student student) {
 		this.student=student;
 		primaryStage=LoginController.primaryStage;
@@ -81,7 +81,7 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,student);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
@@ -91,7 +91,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
-	about.start();
+	about.start(splitpane);
 }
 
 }

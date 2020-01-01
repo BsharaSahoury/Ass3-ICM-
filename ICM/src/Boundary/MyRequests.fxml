@@ -27,11 +27,6 @@
          </font>
       </Label>
       <Label layoutX="121.0" layoutY="206.0" />
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="688.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/reload-icon-5.png" />
-         </image>
-      </ImageView>
       <TableView fx:id="tableRequests" layoutX="-3.0" layoutY="142.0" prefHeight="367.0" prefWidth="729.0" stylesheets="@css1.css">
          <columns>
             <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
@@ -41,31 +36,38 @@
             <TableColumn fx:id="colSubDate" prefWidth="125.0" text="SubmissionDate" />
          </columns>
       </TableView>
-      <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
-      <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Search" textFill="WHITE">
+      <TextField fx:id="searchID" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
+      <Button fx:id="searchbtn" layoutX="193.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
-      <ComboBox layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
+      <ComboBox fx:id="combo1" layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
       <Button layoutX="466.0" layoutY="534.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="193.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
+      <Button fx:id="groupbyBtn" layoutX="193.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="692.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
+      <Label layoutX="31.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
+      <Button layoutX="481.0" layoutY="57.0" mnemonicParsing="false" style="-fx-background-insets: 5541;" />
+      <Button layoutX="363.0" layoutY="70.0" mnemonicParsing="false" style="-fx-background-insets: 6526;" />
+      <ImageView fx:id="refresh" fitHeight="23.0" fitWidth="23.0" layoutX="685.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/reload-icon-5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="question" fitHeight="23.0" fitWidth="23.0" layoutX="689.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/q.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
-      <Label layoutX="31.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
    </children>
 </AnchorPane>

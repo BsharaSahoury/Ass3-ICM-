@@ -34,7 +34,7 @@ public class ChairmanHomeController {
 	@FXML
     private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee chairman;
+	private static Employee chairman;
 	public void start(Employee chairman) {
 		this.chairman=chairman;
 		primaryStage=LoginController.primaryStage;
@@ -81,7 +81,7 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,chairman);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {

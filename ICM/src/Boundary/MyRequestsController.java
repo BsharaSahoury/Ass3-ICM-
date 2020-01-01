@@ -1,20 +1,26 @@
 package Boundary;
-import javafx.collections.FXCollections;
+import javafx.collections.FXCollections;  
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import Client.ClientConsole;
 import Entity.Request;
-
-public class MyRequestsController implements Initilizable  {
-
+import javafx.fxml.*;
+public class MyRequestsController {
 		public static Stage primaryStage;
 		private static ClientConsole cc;
 		private AnchorPane lowerAnchorPane;
@@ -30,6 +36,20 @@ public class MyRequestsController implements Initilizable  {
 		private TableColumn colSubDate;
 		@FXML
 		private TableView<Request> tableRequests;
+		@FXML
+		private ComboBox combo1;
+		@FXML
+		private TextField searchID;
+		@FXML
+		private Button searchbtn;
+		@FXML
+        private Button groupbyBtn;
+		@FXML
+		private Button requestInfo;
+		@FXML
+		private Button refresh;
+		@FXML 
+		private Button question;
 		private static ObservableList<Request> list;
 		public void start(SplitPane splitpane)  {
 			primaryStage=LoginController.primaryStage;
@@ -37,7 +57,7 @@ public class MyRequestsController implements Initilizable  {
 			try{	
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
 				lowerAnchorPane = loader.load();
-				splitpane.getItems().set(1, lowerAnchorPane);
+				splitpane.getItems().set(1, lowerAnchorPane);		
 				String myRequests="my Requests";
 				cc.getClient().sendToServer(myRequests);
 
@@ -58,6 +78,4 @@ public class MyRequestsController implements Initilizable  {
 				//tableRequests.setStyle("-fx-alignment: CENTER;");
 				tableRequests.setItems(list);			
 			}*/
-	
-
 }

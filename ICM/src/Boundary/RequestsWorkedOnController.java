@@ -1,19 +1,23 @@
 package Boundary;
 
 import javafx.collections.FXCollections;
-
+import java.net.URL;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import javafx.util.Callback;
 import java.util.ArrayList;
-
+import javafx.scene.layout.Pane;
 import Client.ClientConsole;
 import Entity.Request;
 
@@ -22,7 +26,8 @@ public class RequestsWorkedOnController {
 	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
 	@FXML
-	private TableColumn colID;
+	private TableView<Request> tableRequests;	
+	@FXML private TableColumn<Request, String> colID;
 	@FXML
 	private TableColumn colName;
 	@FXML
@@ -31,14 +36,14 @@ public class RequestsWorkedOnController {
 	private TableColumn colPriflig;
 	@FXML
 	private TableColumn colSubDate;
-	private TableView<Request> tableRequests;
+	@FXML
+	private Button RequestInfo;
+	@FXML
+	private SplitPane splitpane;
 	private static ObservableList<Request> list;
 	//public static 
 	public void start(SplitPane splitpane,String path) {
-<<<<<<< HEAD
-=======
-		
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
+		this.splitpane=splitpane;
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
@@ -54,11 +59,10 @@ public class RequestsWorkedOnController {
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
-			
 			colID.setStyle("-fx-alignment: CENTER;");
 			colName.setStyle("-fx-alignment: CENTER;");
 			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
-			
+			System.out.print("xxxx");
 			//colID.setCellValueFactory(new PropertyValueFactory<>("id"));
 			//System.out.print("ss");
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
@@ -72,4 +76,14 @@ public class RequestsWorkedOnController {
            // colName.set
 			tableRequests.setItems(list);	
 		}
+	public void RequestInfoAction() {
+		RequestInfoController info = new RequestInfoController();
+		info.start(splitpane);
+	}
+	
+	public void RequestTreatmentAction() {
+		RequestTreatmentAction Treatment = new RequestTreatmentAction();
+		Treatment.start(splitpane);
+	}
+	
 }

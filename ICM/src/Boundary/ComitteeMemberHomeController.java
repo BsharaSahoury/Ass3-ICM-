@@ -34,7 +34,7 @@ public class ComitteeMemberHomeController {
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee comitteeMember;
+	private static Employee comitteeMember;
 	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
 
 	public void start(Employee comitteeMember) {
@@ -78,7 +78,7 @@ public class ComitteeMemberHomeController {
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,comitteeMember);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
@@ -95,13 +95,11 @@ public class ComitteeMemberHomeController {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
 	}
-<<<<<<< HEAD
-=======
+
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
 
 }
