@@ -136,7 +136,7 @@ public class mysqlConnection {
 		  		}		  	
 		}
   	}
-	public static boolean insertRequestToDB(Connection con, Request request) {
+	public static Request insertRequestToDB(Connection con, Request request) {
 		PreparedStatement stm=null;
 		Statement st=null;
 		try {
@@ -154,6 +154,7 @@ public class mysqlConnection {
 			stm.setString(5, request.getComment());
 			stm.setDate(6, request.getDate());
 			stm.setInt(7, count);
+			request.setId(count);
 			stm.setString(8,"active");
 			stm.setString(9, request.getInitiator().getUsername());
 			if(request.getMyFile()==null)
@@ -164,9 +165,9 @@ public class mysqlConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+		return request;
 	}
 	public static void insertRecruitNotificationToDB(Connection con, Request newRequest) {
 		PreparedStatement stm=null;
