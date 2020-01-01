@@ -37,6 +37,7 @@ public class serverSubmissionObserver implements Observer {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							mysqlConnection.insertRecruitNotificationToDB(con,newRequest);
 						}
 					}
 				}

@@ -36,18 +36,11 @@ public class InspectorHomeController {
 	@FXML
 	private SplitPane splitpane;
 	@FXML
-<<<<<<< HEAD
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private static Employee inspector;
-=======
 	private MenuItem logOut;
 
-	@FXML
-	private AnchorPane lowerAnchorPane;
-	public static Stage primaryStage;
-	private Employee inspector;
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
 	public static RequestsWorkedOnController AllRequests;
 
 	public void start(Employee inspector) {
@@ -87,10 +80,9 @@ public class InspectorHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-<<<<<<< HEAD
 
-=======
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
+
+
 		AllRequests = new RequestsWorkedOnController();
 		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
 
@@ -98,11 +90,10 @@ public class InspectorHomeController {
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-<<<<<<< HEAD
+
 		Submit.start(splitpane,inspector);
-=======
-		Submit.start(splitpane);
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
+
+
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
