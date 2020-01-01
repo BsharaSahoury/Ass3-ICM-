@@ -28,8 +28,6 @@ public class ComitteeMemberHomeController {
 	@FXML
 	private Button AboutICMbtn;
 	@FXML
-	private ComboBox Usercombobtn;
-	@FXML
 	private SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
@@ -100,5 +98,10 @@ public class ComitteeMemberHomeController {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
+	public void RequestInfoAction() {
+		RequestInfoController info = new RequestInfoController();
+		info.start(splitpane);
+	}
+	
 
 }
