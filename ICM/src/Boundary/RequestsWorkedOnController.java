@@ -77,12 +77,7 @@ public class RequestsWorkedOnController {
 			tableRequests.setItems(list);	
 		}
 	public void RequestInfoAction() {
-		try{		
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/RequestInfo.fxml"));
-			lowerAnchorPane = loader.load();
-			splitpane.getItems().set(1, lowerAnchorPane);		
-		} catch(Exception e) {
-			e.printStackTrace();
-		}	
+		RequestInfoController info = new RequestInfoController();
+		info.start(splitpane);
 	}
 }
