@@ -1,6 +1,8 @@
 package DBconnection;
 
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +33,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -106,8 +108,9 @@ public class mysqlConnection {
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				}	
 				Date date1=null;
-				if(!Initiatorname.equals(null)) 
-						s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
+				if(!Initiatorname.equals(null)) {
+					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
+				}				
 				arr.add(s);
 				stmt2=null;
 				s=null;
