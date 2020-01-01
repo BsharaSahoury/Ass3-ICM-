@@ -85,6 +85,47 @@
                   <Image url="@../images/required.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
+            <MenuButton layoutX="548.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Role : Student">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <Button alignment="BASELINE_LEFT" layoutX="442.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+=======
+>>>>>>> fbcd9b164e4cb3a4fcb8970ab67073361e830ca1
             <Button fx:id="browse" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#attachFile" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
             <Label fx:id="fileName" layoutX="229.0" layoutY="446.0" prefHeight="26.0" prefWidth="206.0" text="l" />
             <ComboBox fx:id="chosenCombo" layoutX="229.0" layoutY="99.0" prefHeight="26.0" prefWidth="217.0" promptText="choose system" />

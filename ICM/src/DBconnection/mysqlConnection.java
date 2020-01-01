@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-//import java.util.Date;
-
 import Entity.Employee;
 import Entity.Request;
 import Entity.Student;
@@ -33,7 +31,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -199,7 +197,7 @@ public class mysqlConnection {
 			st=con.createStatement();
 			ResultSet rs=st.executeQuery("SELECT MAX(request.id) FROM request;");
 			if(rs.next()) {
-				count=Integer.parseInt(rs.getString(1))+1;
+				count=rs.getInt(1)+1;
 			}
 			else count=0;
 			stm=con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?);");
@@ -209,7 +207,7 @@ public class mysqlConnection {
 			stm.setString(4, request.getReason());
 			stm.setString(5, request.getComment());
 			stm.setDate(6, request.getDate());
-			stm.setString(7, String.valueOf(count));
+			stm.setInt(7, count);
 			stm.setString(8,"active");
 			stm.setString(9, request.getInitiator().getUsername());
 			if(request.getMyFile()==null)
@@ -223,5 +221,29 @@ public class mysqlConnection {
 			return false;
 		}
 		return true;
+	}
+	public static void insertRecruitNotificationToDB(Connection con, Request newRequest) {
+		PreparedStatement stm=null;
+		Statement st=null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT MAX(notification.id) FROM notification;");
+			if(rs.next()) {
+				count=rs.getInt(1)+1;
+			}
+			else count=0;
+			stm=con.prepareStatement("INSERT INTO notification VALUES(?,?,?,?);");
+			stm.setInt(1, count);
+			stm.setString(2, "You've been recruited to evaluate request#"+ newRequest.getId());
+			stm.setDate(3, newRequest.getDate());
+			stm.setString(4, "automatic recruit");
+			stm.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}	
 }
