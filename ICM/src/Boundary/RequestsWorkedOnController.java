@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,29 +26,30 @@ public class RequestsWorkedOnController {
 	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
 	@FXML
-	private TableView<Request> tableRequests;
-	
+	private TableView<Request> tableRequests;	
 	@FXML private TableColumn<Request, String> colID;
 	@FXML
 	private TableColumn colName;
-	//@FXML
-	//private TableColumn colStatus;
-	//@FXML
-	//private TableColumn colPriflig;
-	//@FXML
-	//private TableColumn colSubDate;
-	private int x=1;
+	@FXML
+	private TableColumn colStatus;
+	@FXML
+	private TableColumn colPriflig;
+	@FXML
+	private TableColumn colSubDate;
+	@FXML
+	private Button RequestInfo;
+	@FXML
+	private SplitPane splitpane;
 	private static ObservableList<Request> list;
 	//public static 
 	public void start(SplitPane splitpane,String path) {
-		
+		this.splitpane=splitpane;
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
-			x=2;
 			String AllRequests="All Requests";
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
@@ -57,7 +59,6 @@ public class RequestsWorkedOnController {
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
-			System.out.println(x);
 			colID.setStyle("-fx-alignment: CENTER;");
 			colName.setStyle("-fx-alignment: CENTER;");
 			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
@@ -75,4 +76,13 @@ public class RequestsWorkedOnController {
            // colName.set
 			tableRequests.setItems(list);	
 		}
+	public void RequestInfoAction() {
+		try{		
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/RequestInfo.fxml"));
+			lowerAnchorPane = loader.load();
+			splitpane.getItems().set(1, lowerAnchorPane);		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 }

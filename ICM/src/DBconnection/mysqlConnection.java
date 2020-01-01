@@ -1,8 +1,7 @@
 package DBconnection;
 
 import java.sql.Connection;
-
-
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +10,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 
 import Entity.Employee;
 import Entity.Request;
@@ -20,6 +19,7 @@ import Entity.User;
 
 public class mysqlConnection {
 	private static Connection conn = null;
+	private static int count=0;
 	//this method creates and returns a connection to the relevant schema in the database that we would like to work with
 	public static Connection makeAndReturnConnection()
 	{
@@ -33,7 +33,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -59,13 +59,13 @@ public class mysqlConnection {
 			stm.setString(1, username);
 			rs=stm.executeQuery();
 			if(rs.next()) {
-				Employee employee1=new Employee(rs.getString(2),rs.getString(3),rs.getString(8));
+				Employee employee1=new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(8));
 				return employee1;
 			}
 			stm=con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
 			stm.setString(1, username);
 			rs=stm.executeQuery();
-			Student student1=new Student(rs.getString(2),rs.getString(3));
+			Student student1=new Student(rs.getString(1),rs.getString(2),rs.getString(3));
 			
 			return student1;
 		} catch (SQLException e) {
@@ -191,5 +191,37 @@ public class mysqlConnection {
 		  			e.printStackTrace();
 		  		}		  	
 		}
-  	}	
+  	}
+	public static boolean insertRequestToDB(Connection con, Request request) {
+		PreparedStatement stm=null;
+		Statement st=null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT MAX(request.id) FROM request;");
+			if(rs.next()) {
+				count=Integer.parseInt(rs.getString(1))+1;
+			}
+			else count=0;
+			stm=con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?);");
+			stm.setString(1, request.getPrivilegedInfoSys());
+			stm.setString(2, request.getExistingSituation());
+			stm.setString(3, request.getExplainRequest());
+			stm.setString(4, request.getReason());
+			stm.setString(5, request.getComment());
+			stm.setDate(6, request.getDate());
+			stm.setString(7, String.valueOf(count));
+			stm.setString(8,"active");
+			stm.setString(9, request.getInitiator().getUsername());
+			if(request.getMyFile()==null)
+				stm.setBytes(10, null);
+			else
+				stm.setBytes(10,request.getMyFile().getMybyterray());
+			stm.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}	
 }

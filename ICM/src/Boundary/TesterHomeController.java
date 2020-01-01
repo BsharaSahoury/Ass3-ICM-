@@ -34,7 +34,7 @@ public class TesterHomeController {
 	@FXML
     private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee tester;
+	private static Employee tester;
 	public void start(Employee tester) {
 		this.tester=tester;
 		primaryStage=LoginController.primaryStage;
@@ -82,7 +82,7 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,tester);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
@@ -92,7 +92,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
-	about.start();
+	about.start(splitpane);
 }
 
 }

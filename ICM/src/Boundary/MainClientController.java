@@ -13,6 +13,7 @@ import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
 import Client.ClientLoginObserver;
 import Client.ClientObserver;
+import Client.ClientSubmissionObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +36,7 @@ public class MainClientController {
 			ClientObserver co=new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
+			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

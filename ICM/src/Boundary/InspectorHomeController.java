@@ -1,5 +1,6 @@
 package Boundary;
 
+import java.awt.Label;
 import java.io.IOException;
 
 import Client.ClientConsole;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -36,7 +38,9 @@ public class InspectorHomeController {
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee inspector;
+	private static Employee inspector;
+	private MenuItem logOut;
+
 	public static RequestsWorkedOnController AllRequests;
 
 	public void start(Employee inspector) {
@@ -76,7 +80,6 @@ public class InspectorHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-
 		AllRequests = new RequestsWorkedOnController();
 		AllRequests.start(splitpane, "/Boundary/try.fxml");
 
@@ -84,7 +87,7 @@ public class InspectorHomeController {
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,inspector);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
@@ -103,4 +106,9 @@ public class InspectorHomeController {
 		about.start(splitpane);
 	}
 
+	public void LogOutAction(ActionEvent event) throws Exception {
+		LogOutController logOut = new LogOutController();
+		primaryStage.close();
+		logOut.start(primaryStage);
+	}
 }

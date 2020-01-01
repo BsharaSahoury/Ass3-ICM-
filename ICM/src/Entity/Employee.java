@@ -9,8 +9,8 @@ public class Employee extends User {
 	private String job;
 	private ArrayList<Role> roles = new ArrayList<Role>();
 	
-	public Employee(String firstName, String lastName, String job) {
-		super(firstName,lastName);
+	public Employee(String username,String firstName, String lastName, String job) {
+		super(username,firstName,lastName);
 		this.job=job;
 	}
 

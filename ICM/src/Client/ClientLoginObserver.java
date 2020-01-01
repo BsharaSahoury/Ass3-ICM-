@@ -3,6 +3,7 @@ package Client;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.AdministratorHomeController;
 import Boundary.ChairmanHomeController;
 import Boundary.ComitteeMemberHomeController;
 import Boundary.EvaluatorHomeController;
@@ -36,7 +37,6 @@ public class ClientLoginObserver implements Observer{
 			Employee employee1=(Employee)arg1;
 			switch(employee1.getJob()) {
 			case "inspector":
-				System.out.println("sss");
 				InspectorHomeController inspector=new InspectorHomeController();
 				inspector.start(employee1);
 				break;
@@ -63,8 +63,8 @@ public class ClientLoginObserver implements Observer{
 				tester.start(employee1);
 				break;
 			case "Administrator":
-				//AdministratorHomeController Administrator=new AdministratorHomeController();
-				//tester.start(employee1);
+				AdministratorHomeController Administrator=new AdministratorHomeController();
+				Administrator.start(employee1);
 				break;
 				
 			}
