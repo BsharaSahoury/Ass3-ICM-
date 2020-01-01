@@ -3,9 +3,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,9 +21,6 @@ import Client.ClientConsole;
 import Entity.Request;
 import javafx.fxml.*;
 public class MyRequestsController {
-
-public class MyRequestsController implements Initializable {
-
 		public static Stage primaryStage;
 		private static ClientConsole cc;
 		private AnchorPane lowerAnchorPane;
@@ -37,19 +37,19 @@ public class MyRequestsController implements Initializable {
 		@FXML
 		private TableView<Request> tableRequests;
 		@FXML
-		private combobox combo1;
+		private ComboBox combo1;
 		@FXML
 		private TextField searchID;
 		@FXML
-		private button searchbtn;
+		private Button searchbtn;
 		@FXML
-        private button groupbyBtn;
+        private Button groupbyBtn;
 		@FXML
-		private button requestInfo;
+		private Button requestInfo;
 		@FXML
-		private button refresh;
+		private Button refresh;
 		@FXML 
-		private button question;
+		private Button question;
 		private static ObservableList<Request> list;
 		public void start(SplitPane splitpane)  {
 			primaryStage=LoginController.primaryStage;
@@ -78,11 +78,4 @@ public class MyRequestsController implements Initializable {
 				//tableRequests.setStyle("-fx-alignment: CENTER;");
 				tableRequests.setItems(list);			
 			}*/
-		@Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-	
-
 }
