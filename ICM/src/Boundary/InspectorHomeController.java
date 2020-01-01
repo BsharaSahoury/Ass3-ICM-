@@ -81,7 +81,7 @@ public class InspectorHomeController {
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		AllRequests = new RequestsWorkedOnController();
-		AllRequests.start(splitpane, "/Boundary/try.fxml");
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
 
 	}
 

@@ -57,7 +57,7 @@ public class MyRequestsController {
 			try{	
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
 				lowerAnchorPane = loader.load();
-				splitpane.getItems().set(1, lowerAnchorPane);
+				splitpane.getItems().set(1, lowerAnchorPane);		
 				String myRequests="my Requests";
 				cc.getClient().sendToServer(myRequests);
 
