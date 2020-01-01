@@ -17,13 +17,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.StudentHomeController">
    <children>
       <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
             <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="242.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="118.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+                  <Button alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="118.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoToHome" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -60,7 +60,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="180.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="180.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -82,7 +82,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -104,7 +104,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="366.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -193,7 +193,7 @@
                         </ImageView>
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Log Out">
+                  <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -217,4 +217,4 @@
    <effect>
       <DropShadow />
    </effect>
-</fx:root>
+</AnchorPane>

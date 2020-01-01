@@ -88,10 +88,18 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
 	Submit.start(splitpane);
 }
+public void MyRequestsAction(ActionEvent event) throws Exception {
+	MyRequestsController Submit = new MyRequestsController();
+	Submit.start(splitpane);
+}
 
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
 	about.start(splitpane);
 }
-
+public void LogOutAction(ActionEvent event) throws Exception {
+	LogOutController logOut = new LogOutController();
+	primaryStage.close();
+	logOut.start(primaryStage);
+}
 }
