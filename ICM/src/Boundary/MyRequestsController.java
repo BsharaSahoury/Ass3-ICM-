@@ -1,5 +1,5 @@
 package Boundary;
-import javafx.collections.FXCollections;
+import javafx.collections.FXCollections;  
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +9,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import Client.ClientConsole;
 import Entity.Request;
-
+import javafx.fxml.*;
 public class MyRequestsController {
+
+public class MyRequestsController implements Initializable {
 
 		public static Stage primaryStage;
 		private static ClientConsole cc;
@@ -30,6 +36,20 @@ public class MyRequestsController {
 		private TableColumn colSubDate;
 		@FXML
 		private TableView<Request> tableRequests;
+		@FXML
+		private combobox combo1;
+		@FXML
+		private TextField searchID;
+		@FXML
+		private button searchbtn;
+		@FXML
+        private button groupbyBtn;
+		@FXML
+		private button requestInfo;
+		@FXML
+		private button refresh;
+		@FXML 
+		private button question;
 		private static ObservableList<Request> list;
 		public void start(SplitPane splitpane)  {
 			primaryStage=LoginController.primaryStage;
@@ -58,6 +78,11 @@ public class MyRequestsController {
 				//tableRequests.setStyle("-fx-alignment: CENTER;");
 				tableRequests.setItems(list);			
 			}*/
+		@Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+			// TODO Auto-generated method stub
+			
+		}
 	
 
 }
