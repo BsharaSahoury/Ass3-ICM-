@@ -71,7 +71,6 @@ public class ComitteeMemberHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		System.out.println("1111111111111");
 		RequestOnWorkCommitteMembers = new RequestsWorkedOnController();
 		RequestOnWorkCommitteMembers.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml");
 	}
