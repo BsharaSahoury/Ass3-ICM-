@@ -80,4 +80,10 @@ public class RequestsWorkedOnController {
 		RequestInfoController info = new RequestInfoController();
 		info.start(splitpane);
 	}
+	
+	public void RequestTreatmentAction() {
+		RequestTreatmentAction Treatment = new RequestTreatmentAction();
+		Treatment.start(splitpane);
+	}
+	
 }
