@@ -42,7 +42,7 @@ public class EvaluatorHomeController {
 			@Override
 			public void run() {
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Evaluator-Home.fxml"));			
+			Parent root = FXMLLoader.load(getClass().getResource("/NewBoundary/Evaluator-MainHome.fxml"));			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -93,5 +93,7 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
 	about.start(splitpane);
 }
-
+public void notifications(ActionEvent event) throws Exception {
+	
+}
 }

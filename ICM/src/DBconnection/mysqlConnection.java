@@ -125,10 +125,10 @@ public class mysqlConnection {
 	public static void UpdateUserInDB(Request r,Connection con) {
 		if (con != null) {	
 		  		try {
-		  		String id=r.getId();
+		  	//	String id=r.getId();
 		  		PreparedStatement stm= con.prepareStatement("UPDATE requirement SET status=? WHERE ID=?;");
 		  		stm.setString(1, r.getStatus());
-		  		stm.setString(2, id);
+		  	//	stm.setString(2, id);
 		  		stm.executeUpdate();
 		  		} 
 		  		catch (SQLException e) {
@@ -185,6 +185,16 @@ public class mysqlConnection {
 			stm.setDate(3, newRequest.getDate());
 			stm.setString(4, "automatic recruit");
 			stm.executeUpdate();
+			stm=con.prepareStatement("SELECT employee.username FROM employee WHERE support_system=?;");
+			stm.setString(1, newRequest.getPrivilegedInfoSys());
+			rs=stm.executeQuery();
+			if(rs.next()) {
+				String username=rs.getString(1);
+				stm=con.prepareStatement("INSERT INTO notificationforuser VALUES(?,?);");
+				stm.setInt(1, count);
+				stm.setString(2, username);
+				stm.executeUpdate();
+			}
 			
 			
 		} catch (SQLException e) {
