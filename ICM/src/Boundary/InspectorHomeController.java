@@ -2,10 +2,12 @@ package Boundary;
 
 import java.awt.Label;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Client.ClientConsole;
 import Client.MainForClient;
 import Entity.Employee;
+import Entity.Request;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -34,17 +36,18 @@ public class InspectorHomeController {
 	@FXML
 	private ComboBox Usercombobtn;
 	@FXML
-	private SplitPane splitpane;
+	public SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private static Employee inspector;
 	private MenuItem logOut;
-
 	public static AllRequestsController AllRequests;
-
+    private ArrayList<Request> arr;
+    public static InspectorHomeController s;
 	public void start(Employee inspector) {
 		this.inspector = inspector;
+		s=this;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
@@ -74,6 +77,9 @@ public class InspectorHomeController {
 		return primaryStage;
 	}
 
+	public void setarr(ArrayList<Request> arr){
+		this.arr=arr;
+	}
 	public void GoToHome(ActionEvent event) throws Exception {
 		HomeController home = new HomeController();
 		home.start(splitpane);
