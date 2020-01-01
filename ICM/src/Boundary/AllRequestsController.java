@@ -43,7 +43,7 @@ public class AllRequestsController implements Initializable {
 	@FXML
 	private Button RequestInfo;
 	@FXML
-	private SplitPane splitpane;
+	private static SplitPane splitpane;
 	@FXML
 	private ComboBox Groupby;
 	private static ObservableList<Request> list;
@@ -56,11 +56,12 @@ public class AllRequestsController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			
 			String AllRequests="All Requests";
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}			
+		}	
 	}
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
@@ -80,7 +81,7 @@ public class AllRequestsController implements Initializable {
 			//colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
 			//tableRequests.setStyle("-fx-alignment: CENTER;");
            // colName.set
-			tableRequests.setItems(list);	
+			tableRequests.setItems(list);
 		}
 	public void RequestInfoAction() {
 		RequestInfoController info = new RequestInfoController();
