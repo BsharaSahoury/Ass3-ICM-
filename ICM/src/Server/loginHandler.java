@@ -29,7 +29,6 @@ public class loginHandler implements Observer {
 				User user=mysqlConnection.isInDB(con, Message[1], Message[2]);
 				
 				try {
-					System.out.println(user == null);
 					client.sendToClient(user);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
