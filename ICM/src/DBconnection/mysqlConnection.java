@@ -31,7 +31,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -185,6 +185,16 @@ public class mysqlConnection {
 			stm.setDate(3, newRequest.getDate());
 			stm.setString(4, "automatic recruit");
 			stm.executeUpdate();
+			stm=con.prepareStatement("SELECT employee.username FROM employee WHERE support_system=?;");
+			stm.setString(1, newRequest.getPrivilegedInfoSys());
+			rs=stm.executeQuery();
+			if(rs.next()) {
+				String username=rs.getString(1);
+				stm=con.prepareStatement("INSERT INTO notificationforuser VALUES(?,?);");
+				stm.setInt(1, count);
+				stm.setString(2, username);
+				stm.executeUpdate();
+			}
 			
 			
 		} catch (SQLException e) {
