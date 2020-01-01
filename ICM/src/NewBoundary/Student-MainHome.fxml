@@ -23,13 +23,29 @@
          <items>
             <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
                <children>
+<<<<<<< HEAD:ICM/src/NewBoundary/Administrator-Home.fxml
+                  <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="My Requests" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="118.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="195.0" style="-fx-background-color: #9d1b34;" text="Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+=======
                   <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="242.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/NewBoundary/Student-MainHome.fxml
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
+<<<<<<< HEAD:ICM/src/NewBoundary/Administrator-Home.fxml
+                              <Image url="@../Images/PikPng.com_home-icon-png_1819710.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+=======
                               <Image url="@../Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
                            </image>
                            <effect>
@@ -42,6 +58,7 @@
                                  </light>
                               </Lighting>
                            </effect>
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/NewBoundary/Student-MainHome.fxml
                         </ImageView>
                      </graphic>
                   </Button>
@@ -123,6 +140,36 @@
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
+<<<<<<< HEAD:ICM/src/NewBoundary/Administrator-Home.fxml
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="9.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/PinClipart.com_clip-art-computer-programs_4057042.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="8.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/128x128.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/myRequests.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+=======
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/NewBoundary/Student-MainHome.fxml
                   </AnchorPane>
                   <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -150,8 +197,13 @@
                         <Image url="@../images/logo%20ICM.png" />
                      </image>
                   </ImageView>
+<<<<<<< HEAD:ICM/src/NewBoundary/Administrator-Home.fxml
+                  <Line endX="415.0" endY="-13.0" layoutX="301.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+                  <Label layoutX="44.0" layoutY="6.0" text="ICM">
+=======
                   <Line endX="421.0" endY="-14.000007629394531" layoutX="301.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
                   <Label layoutX="18.0" layoutY="6.0" text="ICM">
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/NewBoundary/Student-MainHome.fxml
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -176,7 +228,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
+<<<<<<< HEAD:ICM/src/NewBoundary/Administrator-Home.fxml
+                  <MenuButton layoutX="570.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #9d1b34;" text="AdminName" textFill="WHITE">
+=======
                   <MenuButton layoutX="571.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/NewBoundary/Student-MainHome.fxml
                      <items>
                         <MenuItem mnemonicParsing="false" text="Role : Student">
                            <graphic>

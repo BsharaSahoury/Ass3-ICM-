@@ -95,10 +95,13 @@ public class ComitteeMemberHomeController {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
 	}
+<<<<<<< HEAD
+=======
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
 
 }
