@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,11 +32,15 @@ public class RequestsWorkedOnController {
 	private TableColumn colPriflig;
 	@FXML
 	private TableColumn colSubDate;
+	@FXML
+	private Button RequestInfo;
+	@FXML
+	private SplitPane splitpane;
 	private TableView<Request> tableRequests;
 	private static ObservableList<Request> list;
 	//public static 
 	public void start(SplitPane splitpane,String path) {
-		
+		this.splitpane=splitpane;
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
@@ -69,4 +74,13 @@ public class RequestsWorkedOnController {
            // colName.set
 			tableRequests.setItems(list);	
 		}
+	public void RequestInfoAction() {
+		try{		
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/RequestInfo.fxml"));
+			lowerAnchorPane = loader.load();
+			splitpane.getItems().set(1, lowerAnchorPane);		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 }
