@@ -18,7 +18,7 @@
    <children>
       <TableView fx:id="tableRequests" layoutX="7.0" layoutY="142.0" prefHeight="367.0" prefWidth="719.0" stylesheets="@css1.css">
          <columns>
-            <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
+            <TableColumn  prefWidth="161.0" text="ID" fx:id="colID" />
             <TableColumn fx:id="colName" prefWidth="115.0" text="InitiatorName" />
             <TableColumn fx:id="colStatus" prefWidth="109.0" text="Status" />
             <TableColumn fx:id="colPriflig" prefWidth="206.0" text="Prifileged Information System" />

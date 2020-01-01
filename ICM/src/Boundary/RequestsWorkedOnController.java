@@ -1,7 +1,10 @@
 package Boundary;
 
 import javafx.collections.FXCollections;
-
+import java.net.URL;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +14,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import javafx.util.Callback;
 import java.util.ArrayList;
-
+import javafx.scene.layout.Pane;
 import Client.ClientConsole;
 import Entity.Request;
 
@@ -22,16 +25,18 @@ public class RequestsWorkedOnController {
 	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
 	@FXML
-	private TableColumn colID;
+	private TableView<Request> tableRequests;
+	
+	@FXML private TableColumn<Request, String> colID;
 	@FXML
 	private TableColumn colName;
-	@FXML
-	private TableColumn colStatus;
-	@FXML
-	private TableColumn colPriflig;
-	@FXML
-	private TableColumn colSubDate;
-	private TableView<Request> tableRequests;
+	//@FXML
+	//private TableColumn colStatus;
+	//@FXML
+	//private TableColumn colPriflig;
+	//@FXML
+	//private TableColumn colSubDate;
+	private int x=1;
 	private static ObservableList<Request> list;
 	//public static 
 	public void start(SplitPane splitpane,String path) {
@@ -42,6 +47,7 @@ public class RequestsWorkedOnController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			x=2;
 			String AllRequests="All Requests";
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
@@ -51,11 +57,11 @@ public class RequestsWorkedOnController {
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
 			list=FXCollections.observableArrayList(arr1);
-			
+			System.out.println(x);
 			colID.setStyle("-fx-alignment: CENTER;");
 			colName.setStyle("-fx-alignment: CENTER;");
 			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
-			
+			System.out.print("xxxx");
 			//colID.setCellValueFactory(new PropertyValueFactory<>("id"));
 			//System.out.print("ss");
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
