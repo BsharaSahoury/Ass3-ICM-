@@ -125,10 +125,10 @@ public class mysqlConnection {
 	public static void UpdateUserInDB(Request r,Connection con) {
 		if (con != null) {	
 		  		try {
-		  		String id=r.getId();
+		  	//	String id=r.getId();
 		  		PreparedStatement stm= con.prepareStatement("UPDATE requirement SET status=? WHERE ID=?;");
 		  		stm.setString(1, r.getStatus());
-		  		stm.setString(2, id);
+		  	//	stm.setString(2, id);
 		  		stm.executeUpdate();
 		  		} 
 		  		catch (SQLException e) {
