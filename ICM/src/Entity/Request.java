@@ -73,6 +73,7 @@ public Request(String selectedItem, String existingSituation, String requestedCh
 	this.existingSituation=existingSituation;
 	this.explainRequest=requestedChange;
 	this.comment=comment;
+	this.reason=requestReason;
 	this.date=time;
 	this.initiator=user;
 	this.myfile=msg;
