@@ -8,7 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,11 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.scene.layout.Pane;
 import Client.ClientConsole;
 import Entity.Request;
 
-public class RequestsWorkedOnController {
+public class RequestsWorkedOnController implements Initializable {
 	public static Stage primaryStage;
 	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
@@ -40,8 +44,10 @@ public class RequestsWorkedOnController {
 	private Button RequestInfo;
 	@FXML
 	private SplitPane splitpane;
+	@FXML
+	private ComboBox Groupby;
 	private static ObservableList<Request> list;
-	//public static 
+	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
 	public void start(SplitPane splitpane,String path) {
 		this.splitpane=splitpane;
 		primaryStage=LoginController.primaryStage;
@@ -82,8 +88,13 @@ public class RequestsWorkedOnController {
 	}
 	
 	public void RequestTreatmentAction() {
-		RequestTreatmentAction Treatment = new RequestTreatmentAction();
-		Treatment.start(splitpane);
+		//RequestTreatmentAction Treatment = new RequestTreatmentAction();
+		//Treatment.start(splitpane);
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		Groupby.setItems(statuslist);
 	}
 	
 }
