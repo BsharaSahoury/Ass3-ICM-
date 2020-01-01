@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane layoutX="7.0" layoutY="43.0" prefHeight="543.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
@@ -40,8 +39,8 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="287.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="1/1/2021" />
-                        <DatePicker layoutX="105.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="15/12/2020" />
+                        <DatePicker fx:id="DatePickerTo" layoutX="287.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="1/1/2021" />
+                        <DatePicker fx:id="DatePickerFrom" layoutX="105.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="15/12/2020" />
                         <Label contentDisplay="RIGHT" graphicTextGap="120.0" layoutX="247.0" layoutY="233.0" text="To">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -52,8 +51,8 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="105.0" layoutY="86.0" prefWidth="150.0" promptText="Evaluation" />
-                        <ComboBox layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
+                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" prefWidth="150.0" promptText="Evaluation" />
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
                      </children>
                   </AnchorPane>
                </content>
@@ -68,7 +67,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ComboBox prefWidth="150.0" promptText="Activate" />
+                              <ComboBox fx:id="Status" prefWidth="150.0" promptText="Activate" />
                            </graphic>
                         </Label>
                      </children>
@@ -77,12 +76,15 @@
             </Tab>
          </tabs>
       </TabPane>
-      <Label layoutX="56.0" layoutY="7.0" text="ICM-&gt;All Requests-&gt;Request treatment" />
-      <Button layoutX="12.0" layoutY="2.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" style="-fx-background-insets: 8888888888888;" />
-      <ImageView fitHeight="30.0" fitWidth="23.0" layoutX="16.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/back-arrow.png" />
-         </image>
-      </ImageView>
+      <Label layoutX="51.0" layoutY="8.0" text="ICM-&gt;All Requests-&gt;Request treatment" />
+      <Button layoutY="2.0" minWidth="18.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="18.0" style="-fx-background-insets: 8888888888888;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/back-arrow.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
