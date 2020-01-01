@@ -20,12 +20,8 @@ public class MainForServer {
 	    ObservableServer sv = new ObservableServer(port);
 	    ServerObserver so=new ServerObserver(sv);
 	    loginHandler loginHandler=new loginHandler(sv);
-
-
 	    serverSubmissionObserver sso=new serverSubmissionObserver(sv);
-
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
-
 
 	      try {
 		   sv.listen();

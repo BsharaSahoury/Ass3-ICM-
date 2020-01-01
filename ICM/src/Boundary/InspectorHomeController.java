@@ -41,7 +41,7 @@ public class InspectorHomeController {
 	private static Employee inspector;
 	private MenuItem logOut;
 
-	public static RequestsWorkedOnController AllRequests;
+	public static AllRequestsController AllRequests;
 
 	public void start(Employee inspector) {
 		this.inspector = inspector;
@@ -80,18 +80,14 @@ public class InspectorHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		AllRequests = new RequestsWorkedOnController();
+		AllRequests = new AllRequestsController();
 		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
 
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-
-
 		Submit.start(splitpane,inspector);
-
-
 		Submit.start(splitpane,inspector);
 	}
 
