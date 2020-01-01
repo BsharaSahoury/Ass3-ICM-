@@ -36,7 +36,7 @@ public class InspectorHomeController {
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee inspector;
+	private static Employee inspector;
 	public static RequestsWorkedOnController AllRequests;
 
 	public void start(Employee inspector) {

@@ -20,7 +20,7 @@ private String explainRequest;
 private String privilegedInfoSys; 
 private String reason;
 private String comment;
-private Date date;
+private java.sql.Date date;
 private User initiator;
 private MyFile myfile;
 
@@ -42,7 +42,7 @@ private MyFile myfile;
 
 private Phase currentPhase;
 
-public Request(String id, String initiatorName, String status,String privilegedInfoSys,Date date) {
+public Request(String id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
@@ -51,7 +51,7 @@ public Request(String id, String initiatorName, String status,String privilegedI
 }
 public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-Date date, Phase currentPhase) {
+java.sql.Date date, Phase currentPhase) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -66,7 +66,7 @@ Date date, Phase currentPhase) {
 	this.currentPhase = currentPhase;
 }
 
-public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, Date time, User user,
+public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, java.sql.Date time, User user,
 		MyFile msg) {
 	this.privilegedInfoSys=selectedItem;
 	this.existingSituation=existingSituation;
@@ -142,10 +142,10 @@ public String getComment() {
 public void setComment(String comment) {
 	this.comment = comment;
 }
-public Date getDate() {
+public java.sql.Date getDate() {
 	return date;
 }
-public void setDate(Date date) {
+public void setDate(java.sql.Date date) {
 	this.date = date;
 }
 public Phase getCurrentPhase() {

@@ -52,7 +52,7 @@ public class RequestSubmissionController implements Initializable {
 	CheckBox agree;
 	File fileToChoose;
 	
-	private User user;
+	private static User user;
 	ObservableList<String> list=FXCollections.observableArrayList("Moodle","Student information system","Lecturer information system","Employee information system","Library system","Computers in the classroom","Labs and computer farms","College official site");
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
@@ -94,9 +94,11 @@ public class RequestSubmissionController implements Initializable {
 	        alert.setHeaderText("ERROR");
 	        alert.setContentText("please fill all the fields need the red star");
 	        alert.showAndWait();
+	        return;
 		}
+		MyFile msg=null;
 		if(fileToChoose != null) {
-			MyFile msg=new MyFile();
+			msg=new MyFile();
 			try {
 				File newFile=fileToChoose;
 				byte[] mybytearray=new byte[(int)newFile.length()];
@@ -108,7 +110,8 @@ public class RequestSubmissionController implements Initializable {
 				System.out.println("we're fucked!");
 			}
 		}
-			Request request=new Request(chosenCombo.getSelectionModel().getSelectedItem(),existingSituation.getText(),requestedChange.getText(),requestReason.getText(),comment.getText(),java.util.Calendar.getInstance().getTime(),user,msg);
+		    long millis=System.currentTimeMillis();
+			Request request=new Request(chosenCombo.getSelectionModel().getSelectedItem(),existingSituation.getText(),requestedChange.getText(),requestReason.getText(),comment.getText(),new java.sql.Date(millis),user,msg);
 			Object[] message= {"submitRequest",request};
 			try {
 				LoginController.cc.getClient().sendToServer(message);

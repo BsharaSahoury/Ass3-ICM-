@@ -1,8 +1,7 @@
 package DBconnection;
 
 import java.sql.Connection;
-
-
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,19 +130,34 @@ public class mysqlConnection {
   	}
 	public static boolean insertRequestToDB(Connection con, Request request) {
 		PreparedStatement stm=null;
+		Statement st=null;
 		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT MAX(request.id) FROM request;");
+			if(rs.next()) {
+				count=Integer.parseInt(rs.getString(1))+1;
+			}
+			else count=0;
 			stm=con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?);");
 			stm.setString(1, request.getPrivilegedInfoSys());
 			stm.setString(2, request.getExistingSituation());
 			stm.setString(3, request.getExplainRequest());
 			stm.setString(4, request.getReason());
 			stm.setString(5, request.getComment());
-			stm.setString(6, Integer.toString(count++));
-			
+			stm.setDate(6, request.getDate());
+			stm.setString(7, String.valueOf(count));
+			stm.setString(8,"active");
+			stm.setString(9, request.getInitiator().getUsername());
+			if(request.getMyFile()==null)
+				stm.setBytes(10, null);
+			else
+				stm.setBytes(10,request.getMyFile().getMybyterray());
+			stm.executeUpdate();			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}	
 }
