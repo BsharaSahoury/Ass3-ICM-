@@ -2,6 +2,7 @@ package Entity;
 
 import java.io.Serializable;
 
+
 import java.util.Date;
 /**
  * 
@@ -21,7 +22,7 @@ private String explainRequest;
 private String privilegedInfoSys; 
 private String reason;
 private String comment;
-private java.sql.Date date;
+private Date date;
 private User initiator;
 private MyFile myfile;
 
@@ -43,7 +44,7 @@ private MyFile myfile;
 
 private Phase currentPhase;
 
-public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
+public Request(int id, String initiatorName, String status,String privilegedInfoSys,Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
@@ -143,10 +144,10 @@ public String getComment() {
 public void setComment(String comment) {
 	this.comment = comment;
 }
-public java.sql.Date getDate() {
+public Date getDate() {
 	return date;
 }
-public void setDate(java.sql.Date date) {
+public void setDate(Date date) {
 	this.date = date;
 }
 public Phase getCurrentPhase() {
@@ -158,5 +159,9 @@ public void setCurrentPhase(Phase currentPhase) {
 public static long getSerialversionuid() {
 	return serialVersionUID;
 }
-   
+@Override
+public String toString() {
+	return "Request [id=" + id + ", nameInitiator=" + initiatorName + ", status=" + status + ", privilegedInfoSys="
+			+ privilegedInfoSys + ", date=" + date +"]";
+}
 }

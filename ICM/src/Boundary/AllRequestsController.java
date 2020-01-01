@@ -2,6 +2,8 @@ package Boundary;
 
 import javafx.collections.FXCollections;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.scene.layout.Pane;
@@ -31,7 +34,8 @@ public class AllRequestsController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private TableView<Request> tableRequests;	
-	@FXML private TableColumn<Request, String> colID;
+	@FXML 
+	private TableColumn colID;
 	@FXML
 	private TableColumn colName;
 	@FXML
@@ -43,19 +47,21 @@ public class AllRequestsController implements Initializable {
 	@FXML
 	private Button RequestInfo;
 	@FXML
-	private SplitPane splitpane;
+	private static SplitPane splitpane;
 	@FXML
 	private ComboBox Groupby;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
 	public void start(SplitPane splitpane,String path) {
-		this.splitpane=splitpane;
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			this.splitpane=splitpane;	
+			System.out.println("wwwwwwss");
+
 			String AllRequests="All Requests";
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
@@ -64,20 +70,18 @@ public class AllRequestsController implements Initializable {
 	}
 	public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub
+		
+		System.out.println(arr1.get(0));
+
 			list=FXCollections.observableArrayList(arr1);
-			colID.setStyle("-fx-alignment: CENTER;");
+			colID.setStyle("-fx-alignment: CENTER;");			
 			colName.setStyle("-fx-alignment: CENTER;");
 			colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
-			System.out.print("xxxx");
-			//colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-			//System.out.print("ss");
+			System.out.print("mmmmmmm");
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
-			//tableRequests.getColumns().addAll(colID);
-			//tableRequests.getItems().add(arr1.get(0));
-			//colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));
-			
-			//colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
-			//colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
+			colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));		
+			colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
+			colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
 			//tableRequests.setStyle("-fx-alignment: CENTER;");
            // colName.set
 			tableRequests.setItems(list);	
@@ -88,13 +92,11 @@ public class AllRequestsController implements Initializable {
 	}
 	
 	public void RequestTreatmentAction() {
-		//RequestTreatmentAction Treatment = new RequestTreatmentAction();
-		//Treatment.start(splitpane);
+		RequestTreatmentAction Treatment = new RequestTreatmentAction();
+		Treatment.start(splitpane);
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		Groupby.setItems(statuslist);
-	}
-	
+	}	
 }
