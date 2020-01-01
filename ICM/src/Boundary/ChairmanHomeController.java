@@ -97,5 +97,9 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
 	about.start(splitpane);
 }
-
+public void LogOutAction(ActionEvent event) throws Exception {
+	LogOutController logOut = new LogOutController();
+	primaryStage.close();
+	logOut.start(primaryStage);
+}
 }
