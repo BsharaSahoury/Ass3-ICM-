@@ -11,7 +11,7 @@ import java.util.Date;
 public class Request implements Serializable{
 
 private static final long serialVersionUID = 1L;
-private String id;
+private int id;
 private String initiatorName;
 private String initiatorEmail;
 private String initiatorRole;
@@ -43,14 +43,14 @@ private MyFile myfile;
 
 private Phase currentPhase;
 
-public Request(String id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
+public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
 	this.privilegedInfoSys = privilegedInfoSys;
 	this.date = date;
 }
-public Request(String id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
+public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
 java.sql.Date date, Phase currentPhase) {
 	this.id = id;
@@ -83,10 +83,10 @@ public User getInitiator() {
 public MyFile getMyFile() {
 	return myfile;
 }
-public String getId() {
+public int getId() {
 	return id;
 }
-public void setId(String id) {
+public void setId(int id) {
 	this.id = id;
 }
 public String getInitiatorName() {

@@ -93,14 +93,12 @@ public class InspectorHomeController {
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-<<<<<<< HEAD
+
 
 		Submit.start(splitpane,inspector);
 
 
-=======
 		Submit.start(splitpane,inspector);
->>>>>>> fbcd9b164e4cb3a4fcb8970ab67073361e830ca1
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {

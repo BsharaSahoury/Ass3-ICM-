@@ -27,8 +27,8 @@ public class serverSubmissionObserver implements Observer {
 					if(keymessage.equals("submitRequest")) {
 						Request newRequest=(Request)arg3[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						boolean flag=mysqlConnection.insertRequestToDB(con,newRequest);
-						if(flag) {
+						newRequest=mysqlConnection.insertRequestToDB(con,newRequest);
+						if(newRequest != null) {
 							keymessage="sumbissionSucceeded";
 							Object[] message= {keymessage};
 							try {
