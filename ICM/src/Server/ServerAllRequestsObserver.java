@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -30,6 +31,7 @@ public class ServerAllRequestsObserver implements Observer {
 			if(Message.equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
 				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
+				System.out.println(arr.get(0).getStatus());
 			try {
 				client.sendToClient(arr);
 			} catch (IOException e) {

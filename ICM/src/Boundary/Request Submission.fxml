@@ -87,6 +87,7 @@
                   <Image url="@../images/required.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
             <MenuButton layoutX="548.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #9d1b34;" text="StudentName" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Role : Student">
@@ -128,6 +129,8 @@
             <Button fx:id="browse" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#attachFile" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
             <Label fx:id="fileName" layoutX="229.0" layoutY="446.0" prefHeight="26.0" prefWidth="206.0" text="l" />
             <ComboBox fx:id="chosenCombo" layoutX="229.0" layoutY="99.0" prefHeight="26.0" prefWidth="217.0" promptText="choose system" />
+=======
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
          </children></AnchorPane>
    </children>
    <effect>

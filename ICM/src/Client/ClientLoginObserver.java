@@ -3,6 +3,7 @@ package Client;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.AdministratorHomeController;
 import Boundary.ChairmanHomeController;
 import Boundary.ComitteeMemberHomeController;
 import Boundary.EvaluatorHomeController;
@@ -61,6 +62,11 @@ public class ClientLoginObserver implements Observer{
 				TesterHomeController tester=new TesterHomeController();
 				tester.start(employee1);
 				break;
+			case "Administrator":
+				AdministratorHomeController Administrator=new AdministratorHomeController();
+				Administrator.start(employee1);
+				break;
+				
 			}
 		}
 		else if(arg1 instanceof Student) {

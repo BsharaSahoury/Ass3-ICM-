@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<<<<<<< HEAD:ICM/src/Boundary/AboutICM_Final.fxml
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+=======
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/Boundary/AboutICM.fxml
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -12,51 +15,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AboutICMController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AboutICMController">
    <children>
+<<<<<<< HEAD:ICM/src/Boundary/AboutICM_Final.fxml
       <AnchorPane layoutX="185.0" layoutY="-2.0" prefHeight="600.0" prefWidth="728.0">
+=======
+      <AnchorPane layoutY="-2.0" prefHeight="600.0" prefWidth="728.0">
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/Boundary/AboutICM.fxml
          <children>
-            <MenuButton layoutX="607.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #9d1b34;" text="Sami" textFill="WHITE">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Ayman">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/585e4beacb11b227491c3399.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Inspector" />
-                <MenuItem mnemonicParsing="false" text="Log Out" />
-              </items>
-               <graphic>
-                  <ImageView fitHeight="15.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/585e4beacb11b227491c3399.png" />
-                     </image></ImageView>
-               </graphic>
-            </MenuButton>
-            <Label layoutX="517.0" layoutY="4.0" text="Notification">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/notification.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
             <Line endX="416.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
-            <Label layoutX="39.0" layoutY="6.0" text="ICM" textOverrun="CLIP">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="6.0" text="-&gt;" />
-            <Label layoutX="78.0" layoutY="6.0" text="About ICM" textOverrun="CLIP">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
             <Label layoutX="219.0" layoutY="7.0">
                <font>
                   <Font name="System Bold" size="12.0" />

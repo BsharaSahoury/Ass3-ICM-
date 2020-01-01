@@ -2,7 +2,10 @@ package Boundary;
 
 import java.io.IOException;
 
+import Client.ClientConsole;
+import Client.MainForClient;
 import Entity.Employee;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +18,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ComitteeMemberHomeController {
-
+public class AdministratorHomeController {
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -34,17 +36,20 @@ public class ComitteeMemberHomeController {
 	@FXML
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee comitteeMember;
-	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
-
-	public void start(Employee comitteeMember) {
-		this.comitteeMember = comitteeMember;
+	private Employee Administrator;
+	
+	public static RequestsWorkedOnController RequestsInWork;
+	
+	public void start(Employee Administrator) {
+		this.Administrator = Administrator;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
+
 			@Override
 			public void run() {
+				// TODO Auto-generated method stub
 				try {
-					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("/NewBoundary/Administrator-Home.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
@@ -58,6 +63,7 @@ public class ComitteeMemberHomeController {
 					e.printStackTrace();
 				}
 			}
+
 		});
 	}
 
@@ -71,9 +77,10 @@ public class ComitteeMemberHomeController {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		System.out.println("1111111111111");
-		RequestOnWorkCommitteMembers = new RequestsWorkedOnController();
-		RequestOnWorkCommitteMembers.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml");
+
+		RequestsInWork = new RequestsWorkedOnController();
+		RequestsInWork.start(splitpane, "/Boundary/MyRequests.fxml");
+
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -91,17 +98,10 @@ public class ComitteeMemberHomeController {
 		Submit.start(splitpane);
 	}
 
+//@FXML
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
 	}
-<<<<<<< HEAD
-=======
-	public void LogOutAction(ActionEvent event) throws Exception {
-		LogOutController logOut = new LogOutController();
-		primaryStage.close();
-		logOut.start(primaryStage);
-	}
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
 
 }

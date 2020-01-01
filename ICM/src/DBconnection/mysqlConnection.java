@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Entity.Employee;
 import Entity.Request;
@@ -30,7 +33,11 @@ public class mysqlConnection {
         	 }      
         try 
         {      
+<<<<<<< HEAD
             conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
+=======
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
+>>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -73,9 +80,58 @@ public class mysqlConnection {
 		
 
 	}
+	public static ArrayList<Request> getDataFromDB(Connection con){
+		
+		String Initiatorname=null;
+		ArrayList<Request> arr = new ArrayList<Request>();
+		Statement stmt1 = null;
+		PreparedStatement stmt2=null;
+		Request s=null;
+		try {
+			stmt1=con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		try {
+			
+			ResultSet rs=stmt1.executeQuery("SELECT R.* FROM icm.request R;");
+			while(rs.next())
+	 		{
+				System.out.println(rs.getString(1));
+				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
+				stmt2.setString(1, rs.getString(9));	
+				ResultSet rs2=stmt2.executeQuery();	
+				rs2.next();
+				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				if(Initiatorname.equals(null)) {
+					stmt2 = con.prepareStatement("SELECT E.* FROM student E WHERE username=?;");
+					stmt2.setString(1, rs.getString(9));
+					rs2=stmt2.executeQuery();	
+					rs2.next();
+					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				}	
+				Date date1=null;
+				if(!Initiatorname.equals(null)) 
+						s=new Request(rs.getString(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
+				arr.add(s);
+				stmt2=null;
+				s=null;
+				rs2.close();
+			}
+			System.out.println("w");
+			rs.close();	 		
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return arr;
+	}
+	/*
 	//here we collect all the requests from the database and put it in an ArrayList<Request> and returns that array
 		public static ArrayList<Request> getDataFromDB(Connection con)
 		{
+			System.out.print("xxxxxx");
 			String Initiatorname=null;
 			ArrayList<Request> arr = new ArrayList<Request>();
 			Statement stmt1 = null;
@@ -88,31 +144,43 @@ public class mysqlConnection {
 				e.printStackTrace();
 			}	
 			try {
-				ResultSet rs=stmt1.executeQuery("SELECT R.* FROM request R;");
+				
+				ResultSet rs=stmt1.executeQuery("SELECT R.* FROM icm.request R;");
+				//if(!rs.next()) return null;
+				
 				while(rs.next())
 		 		{
-					stmt2 = con.prepareStatement("SELECT E.* FROM employee E;Where username=?;");
+					rs.next();
+					
+					System.out.println(rs.getString(7));
+					//rs.next();
+					stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
 					stmt2.setString(1, rs.getString(9));	
 					ResultSet rs2=stmt2.executeQuery();	
+					rs2.next();
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 					if(Initiatorname.equals(null)) {
-						stmt2 = con.prepareStatement("SELECT E.* FROM student E;Where username=?;");
+						stmt2 = con.prepareStatement("SELECT E.* FROM student E WHERE username=?;");
 						stmt2.setString(1, rs.getString(9));
 						rs2=stmt2.executeQuery();	
+						rs2.next();
+						Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 					}	
-					s=new Request(rs.getString(7),rs2.getString(2)+" "+rs2.getString(3),rs.getString(8),rs.getString(1),rs.getDate(6));			
+					if(!Initiatorname.equals(null)) 
+						s=new Request(rs.getString(7),Initiatorname,rs.getString(8),rs.getString(1),date1);
 					arr.add(s);
 					stmt2=null;
 					s=null;
 					rs2.close();
 				}
+				System.out.println("w");
 				rs.close();
 			}catch (SQLException e) {
 			// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 			return arr;
-		}
+		}*/
 //this function make the update done by the client in the database
 	public static void UpdateUserInDB(Request r,Connection con) {
 		if (con != null) {	
