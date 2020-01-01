@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 
 import Entity.Employee;
 import Entity.Request;
@@ -33,11 +33,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-<<<<<<< HEAD
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
-=======
             conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 

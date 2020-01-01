@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<<<<<<< HEAD:ICM/src/Boundary/AboutICM_Final.fxml
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-=======
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/Boundary/AboutICM.fxml
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -17,11 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AboutICMController">
    <children>
-<<<<<<< HEAD:ICM/src/Boundary/AboutICM_Final.fxml
-      <AnchorPane layoutX="185.0" layoutY="-2.0" prefHeight="600.0" prefWidth="728.0">
-=======
+     
       <AnchorPane layoutY="-2.0" prefHeight="600.0" prefWidth="728.0">
->>>>>>> ea0791ce9d756d144cb7132ade7d0b16276bce37:ICM/src/Boundary/AboutICM.fxml
          <children>
             <Line endX="416.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
             <Label layoutX="219.0" layoutY="7.0">
@@ -259,6 +251,7 @@
                   </Lighting>
                </effect>
             </Label>
+            <Label layoutX="30.0" layoutY="7.0" text="ICM-&gt;AboutICM" />
          </children></AnchorPane>
    </children>
    <effect>

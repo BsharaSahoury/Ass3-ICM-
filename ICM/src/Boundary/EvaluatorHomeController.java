@@ -34,7 +34,7 @@ public class EvaluatorHomeController {
 	@FXML
     private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private Employee evaluator;
+	private static Employee evaluator;
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
 		primaryStage=LoginController.primaryStage;
@@ -81,7 +81,7 @@ public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,evaluator);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
@@ -91,7 +91,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
-	about.start();
+	about.start(splitpane);
 }
 
 }

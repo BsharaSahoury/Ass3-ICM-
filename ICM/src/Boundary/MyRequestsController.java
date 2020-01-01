@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import Client.ClientConsole;
 import Entity.Request;
 
-public class MyRequestsController implements Initilizable  {
+public class MyRequestsController {
 
 		public static Stage primaryStage;
 		private static ClientConsole cc;
