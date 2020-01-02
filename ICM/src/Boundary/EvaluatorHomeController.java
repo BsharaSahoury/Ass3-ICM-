@@ -16,7 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class EvaluatorHomeController {
-
+	
+	@FXML
+	private Button notification;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -42,7 +44,7 @@ public class EvaluatorHomeController {
 			@Override
 			public void run() {
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/NewBoundary/Evaluator-MainHome.fxml"));			
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Evaluator-Home.fxml"));			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -93,7 +95,8 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
 	about.start(splitpane);
 }
-public void notifications(ActionEvent event) throws Exception {
-	
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,evaluator);
 }
 }

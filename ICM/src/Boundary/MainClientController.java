@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
 import Client.ClientLoginObserver;
+import Client.ClientNotificationObserver;
 import Client.ClientObserver;
 import Client.ClientSubmissionObserver;
 import Client.MainForClient;
@@ -37,6 +38,7 @@ public class MainClientController {
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
+			ClientNotificationObserver cno=new ClientNotificationObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

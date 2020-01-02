@@ -81,8 +81,6 @@ public void start(Stage primaryStage,ClientConsole cc)  {
  */
 public void LoginAction(ActionEvent event) throws Exception{
 	error.setVisible(false);
-	System.out.println("1111111111");
-
 	String username=Username.getText();
 	String password=Password.getText();
 	System.out.println(password);
@@ -100,7 +98,6 @@ public void LoginAction(ActionEvent event) throws Exception{
  * @throws Exception
  */
 public void ForgetPassAction(ActionEvent event) throws Exception{
-	System.out.println("sssssss");
 	//open new window to get the password by enter the email address and then send link to reset the password
 }
 

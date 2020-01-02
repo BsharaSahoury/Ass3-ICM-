@@ -22,7 +22,7 @@ private String explainRequest;
 private String privilegedInfoSys; 
 private String reason;
 private String comment;
-private Date date;
+private java.sql.Date date;
 private User initiator;
 private MyFile myfile;
 
@@ -44,7 +44,7 @@ private MyFile myfile;
 
 private Phase currentPhase;
 
-public Request(int id, String initiatorName, String status,String privilegedInfoSys,Date date) {
+public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
@@ -145,10 +145,10 @@ public String getComment() {
 public void setComment(String comment) {
 	this.comment = comment;
 }
-public Date getDate() {
+public java.sql.Date getDate() {
 	return date;
 }
-public void setDate(Date date) {
+public void setDate(java.sql.Date date) {
 	this.date = date;
 }
 public Phase getCurrentPhase() {

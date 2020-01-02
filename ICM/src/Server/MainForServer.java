@@ -22,6 +22,7 @@ public class MainForServer {
 	    loginHandler loginHandler=new loginHandler(sv);
 	    serverSubmissionObserver sso=new serverSubmissionObserver(sv);
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
+	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
 
 	      try {
 		   sv.listen();
