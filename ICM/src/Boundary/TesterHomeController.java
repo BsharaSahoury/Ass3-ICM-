@@ -85,7 +85,7 @@ public class TesterHomeController {
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		Submit.start(splitpane, Tester);
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {

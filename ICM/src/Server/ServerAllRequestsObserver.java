@@ -31,9 +31,11 @@ public class ServerAllRequestsObserver implements Observer {
 			if(Message.equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
 				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
-				System.out.println(arr.get(0).getStatus());
+				Object[] send=new Object[2];
+				send[0]="All Requests";
+				send[1]=arr;
 			try {
-				client.sendToClient(arr);
+				client.sendToClient(send);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
