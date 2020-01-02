@@ -89,7 +89,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane);
+	Submit.start(splitpane, student);
 }
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();

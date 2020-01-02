@@ -78,14 +78,17 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
-}
+	RequestsWorkedOnController RequestOnWorkEvaluator = new RequestsWorkedOnController();
+	RequestOnWorkEvaluator.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml");}
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(splitpane,evaluator);
 }
-
+public void MyRequestsAction(ActionEvent event) throws Exception {
+	MyRequestsController Submit = new MyRequestsController();
+	Submit.start(splitpane,evaluator);
+}
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
 	Submit.start(splitpane);

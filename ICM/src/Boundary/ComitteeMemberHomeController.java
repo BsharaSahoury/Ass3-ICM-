@@ -91,7 +91,7 @@ public class ComitteeMemberHomeController implements Initializable {
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		Submit.start(splitpane, comitteeMember);
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {

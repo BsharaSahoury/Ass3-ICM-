@@ -95,7 +95,7 @@ public class AdministratorHomeController {
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		Submit.start(splitpane, Administrator);
 	}
 
 //@FXML
