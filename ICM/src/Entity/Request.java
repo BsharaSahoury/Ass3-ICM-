@@ -1,8 +1,8 @@
 package Entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
 /**
  * 
  * @author aimanouda
@@ -43,7 +43,7 @@ private MyFile myfile;
 
 private Phase currentPhase;
 
-public Request(int id, String initiatorName, String status,String privilegedInfoSys,Date date) {
+public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
@@ -147,7 +147,7 @@ public void setComment(String comment) {
 public Date getDate() {
 	return date;
 }
-public void setDate(Date date) {
+public void setDate(java.sql.Date date) {
 	this.date = date;
 }
 public Phase getCurrentPhase() {

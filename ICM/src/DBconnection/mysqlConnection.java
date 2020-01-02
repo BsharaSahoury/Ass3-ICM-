@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import Entity.Employee;
+import Entity.Notification;
 import Entity.Request;
 import Entity.Student;
 import Entity.User;
@@ -33,7 +34,8 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -205,5 +207,22 @@ public class mysqlConnection {
 			e.printStackTrace();
 		}
 		
+	}
+	public static ArrayList<Notification> getNotificationsForUser(Connection con, String username) {
+		PreparedStatement stm=null;
+		ArrayList<Notification> Nlist=new ArrayList<>();
+		try {
+			stm=con.prepareStatement("SELECT notification.* FROM notification,notificationforuser WHERE notification.id=notificationforuser.notification_id AND notificationforuser.username=?;");
+			stm.setString(1, username);
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				Nlist.add(new Notification(rs.getString(2),rs.getDate(3),rs.getString(4)));
+			}
+			return Nlist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}	
 }
