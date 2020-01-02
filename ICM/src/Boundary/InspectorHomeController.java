@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class InspectorHomeController {
 	@FXML
+	private Button notifications;
+	@FXML
 	private Button Homebtn;
 	@FXML
 	private Button RequestWorkedOnbtn;
@@ -115,5 +117,9 @@ public class InspectorHomeController {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
+	}
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,inspector);
 	}
 }

@@ -2,10 +2,13 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
+import Entity.Employee;
+import Entity.Notification;
 import Entity.Request;
 import Entity.User;
 import ocsf.server.ConnectionToClient;
@@ -37,7 +40,14 @@ public class serverSubmissionObserver implements Observer {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							mysqlConnection.insertRecruitNotificationToDB(con,newRequest);
+							Employee evaluator=mysqlConnection.getAutomaticRecruit(con,newRequest.getPrivilegedInfoSys());
+							String content="automatic recruit employee: "+evaluator.getFirstName()+" "+evaluator.getLastName()+"for request#"+newRequest.getId();
+							Date date=newRequest.getDate();
+							String type="recruitForInspector";
+							
+							Notification n1=new Notification(content,date,type);
+							n1=mysqlConnection.insertNotificationToDB(con, n1);
+							mysqlConnection.insertRecruitNotificationForInspectorToDB(con,n1);
 						}
 					}
 				}
