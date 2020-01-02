@@ -43,7 +43,9 @@ public class StudentHomeController {
 			@Override
 			public void run() {
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));			
+			System.out.println("ss");
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));
+		
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -87,7 +89,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane);
+	Submit.start(splitpane, student);
 }
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
