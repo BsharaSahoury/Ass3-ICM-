@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TesterHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -114,6 +115,9 @@ public class TesterHomeController implements Initializable {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(Tester.getFirstName()+Tester.getLastName());
 	}
-	
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,Tester);
+	}
 
 }
