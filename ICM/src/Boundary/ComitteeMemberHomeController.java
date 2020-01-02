@@ -37,6 +37,8 @@ public class ComitteeMemberHomeController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private MenuButton MBusername;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
 	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
@@ -112,7 +114,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//MBusername.setText(comitteeMember.getUsername());
-		
+		UserNameMenu.setText(comitteeMember.getFirstName()+comitteeMember.getLastName());
 	}
 	
 

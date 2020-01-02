@@ -1,6 +1,8 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Client.MainForClient;
@@ -10,15 +12,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AdministratorHomeController {
+public class AdministratorHomeController implements Initializable {
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -35,6 +39,8 @@ public class AdministratorHomeController {
 	private SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee Administrator;
 	
@@ -107,6 +113,12 @@ public class AdministratorHomeController {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		UserNameMenu.setText(Administrator.getFirstName()+Administrator.getLastName());
 	}
 
 }
