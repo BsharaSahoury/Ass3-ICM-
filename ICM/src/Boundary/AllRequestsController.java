@@ -55,7 +55,7 @@ public class AllRequestsController implements Initializable {
 	private ComboBox Groupby;
 	private FXMLLoader loader;
 	private TableView<Request> tabl;
-	private int x=5;
+	private static int chosen=-1;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
 	public void start(SplitPane splitpane,String path) {
@@ -87,10 +87,19 @@ public class AllRequestsController implements Initializable {
 		RequestInfoController Treatment = new RequestInfoController();
 		Treatment.start(splitpane);
 	}
+	public static int getselectedindex() {
+		return chosen;
+	}
 	
+	public static ObservableList<Request> getList(){
+		return list;
+	}
 	public void RequestTreatmentAction() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
 		RequestTreatmentAction Treatment = new RequestTreatmentAction();
 		Treatment.start(splitpane);
+		}
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

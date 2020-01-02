@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestTreatmentAction">
    <children>
       <TabPane layoutX="7.0" layoutY="43.0" prefHeight="543.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -51,7 +51,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" prefWidth="150.0" promptText="Evaluation" />
+                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" onAction="#ChangePhase" prefWidth="150.0" promptText="Evaluation" />
                         <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
                      </children>
                   </AnchorPane>
