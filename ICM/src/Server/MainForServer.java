@@ -23,7 +23,7 @@ public class MainForServer {
 	    serverSubmissionObserver sso=new serverSubmissionObserver(sv);
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
 	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
-
+        ServerMyRequestsObserver myrequest=new ServerMyRequestsObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//
