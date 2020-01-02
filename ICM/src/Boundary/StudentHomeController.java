@@ -43,7 +43,9 @@ public class StudentHomeController {
 			@Override
 			public void run() {
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));			
+			System.out.println("ss");
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Student-Home.fxml"));
+		
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
