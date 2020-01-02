@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import Client.ClientConsole;
 import Entity.Request;
 import javafx.fxml.*;
-public class MyRequestsController {
+public class MyRequestsController implements Initializable {
 		public static Stage primaryStage;
 		private static ClientConsole cc;
 		private AnchorPane lowerAnchorPane;
@@ -50,8 +50,12 @@ public class MyRequestsController {
 		private Button refresh;
 		@FXML 
 		private Button question;
+		@FXML
+		private static SplitPane splitpane;
+		ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
 		private static ObservableList<Request> list;
 		public void start(SplitPane splitpane)  {
+			this.splitpane=splitpane;
 			primaryStage=LoginController.primaryStage;
 			this.cc=LoginController.cc;
 			try{	
@@ -78,4 +82,13 @@ public class MyRequestsController {
 				//tableRequests.setStyle("-fx-alignment: CENTER;");
 				tableRequests.setItems(list);			
 			}*/
+		public void RequestInfoAction()
+		{
+			RequestInfoController myRequest = new RequestInfoController();
+			myRequest.start(splitpane);
+		}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		combo1.setItems(statuslist);
+	}
 }

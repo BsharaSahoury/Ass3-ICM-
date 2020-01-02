@@ -76,7 +76,8 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
+	RequestsWorkedOnController RequestOnWorkChairman = new RequestsWorkedOnController();
+	RequestOnWorkChairman.start(splitpane, "chairman"); 
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {

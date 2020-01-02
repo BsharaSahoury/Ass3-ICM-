@@ -44,6 +44,7 @@ public class RequestInfoController implements Initializable{
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/RequestInfo.fxml"));
 			lowerAnchorPane = loader.load();
+
 			splitpane.getItems().set(1, lowerAnchorPane);	
 
 		} catch(Exception e) {

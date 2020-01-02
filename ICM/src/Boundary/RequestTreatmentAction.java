@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
@@ -14,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import Entity.Request;
 import Entity.Phase;
 public class RequestTreatmentAction implements Initializable {
  public static Stage primaryStage;
@@ -29,11 +31,33 @@ public class RequestTreatmentAction implements Initializable {
  private DatePicker DatePickerFrom;
  @FXML
  private DatePicker DatePickerTo;
- private Phase s;
- ObservableList<Phase> phaseslist=FXCollections.observableArrayList(s);
+ @FXML
+ private ComboBox Status;
+ private int chosenindex;
+ private  Request chosenRequest;
+ ObservableList<Phase> phaseslist;
+ ObservableList<String> Statuslist;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ArrayList<Phase> Phases=new ArrayList<Phase>();
+		Phases.add(Phase.Evaluation);
+		Phases.add(Phase.Decision);
+		Phases.add(Phase.Performance);
+		Phases.add(Phase.Testing);
+		Phases.add(Phase.Closed);
+		phaseslist=FXCollections.observableArrayList(Phases);
+		ArrayList<String> Statuses=new ArrayList<String>();
+		Statuses.add("Active");
+		Statuses.add("Frozen");
+		Statuses.add("Closed");
+		Statuslist=FXCollections.observableArrayList(Statuses);
+		Status.setItems(Statuslist);
 		Phasee.setItems(phaseslist);
+    	chosenindex=AllRequestsController.getselectedindex();
+        chosenRequest=AllRequestsController.getList().get(chosenindex);   
+        Status.setValue(chosenRequest.getStatus());
+     //   PhaseAdministrator.setText(chosenRequest.get);
+		
 	}
 	public void start(SplitPane splitpane) {
 		this.splitpane=splitpane;
@@ -49,5 +73,9 @@ public class RequestTreatmentAction implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
+	}
+	
+	public void ChangePhase() {
+		//if()
 	}
 }

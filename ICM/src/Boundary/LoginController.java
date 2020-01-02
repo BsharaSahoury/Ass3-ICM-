@@ -83,7 +83,6 @@ public void LoginAction(ActionEvent event) throws Exception{
 	error.setVisible(false);
 	String username=Username.getText();
 	String password=Password.getText();
-	System.out.println(password);
 	String[] loginMessage=new String[3];
 	loginMessage[0]="login";
 	loginMessage[1]=username;

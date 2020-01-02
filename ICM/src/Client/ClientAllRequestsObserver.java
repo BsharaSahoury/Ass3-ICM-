@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.AllRequestsController;
 import Boundary.InspectorHomeController;
 import Entity.Request;
 import Entity.User;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 public class ClientAllRequestsObserver implements Observer{
@@ -18,8 +21,7 @@ public class ClientAllRequestsObserver implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		if(arg1 instanceof ArrayList<?>) {
-		
+		if(arg1 instanceof ArrayList<?>) {	
 		ArrayList<Request> arr=(ArrayList<Request>) arg1;
 		InspectorHomeController.AllRequests.fillTable(arr);
 		}

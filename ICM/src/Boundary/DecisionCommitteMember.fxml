@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -21,12 +22,12 @@
                </font>
             </Label>
             <Label layoutX="65.0" layoutY="6.0" text="-&gt;" />
-            <Label layoutX="78.0" layoutY="6.0" text="Requests that I work on" textOverrun="CLIP">
+            <Label layoutX="78.0" layoutY="6.0" prefHeight="17.0" prefWidth="145.0" text="Requests that I work on" textAlignment="CENTER" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="217.0" layoutY="6.0" text="-&gt;" />
+            <Label layoutX="216.0" layoutY="6.0" text="-&gt;" />
             <Label layoutX="42.0" layoutY="100.0" text="Request ID:" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -47,12 +48,12 @@
                   <Image url="@../images/kissclipart-icon-word-png-clipart-microsoft-word-computer-ico-11658691c56ae5d9.png" />
                </image>
             </ImageView>
-            <Label layoutX="251.0" layoutY="139.0" text="report_requestID.docx">
+            <Label layoutX="251.0" layoutY="139.0" text="report_requestID.docx" textOverrun="CLIP">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="179.0" text="decision of Control Commitee Members:" textOverrun="CLIP">
+            <Label layoutX="39.0" layoutY="220.0" text="Explain the decision:" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -67,47 +68,37 @@
                   <Image url="@../images/340.png" />
                </image>
             </ImageView>
-            <Label layoutX="233.0" layoutY="6.0" text="Make a decision" textOverrun="CLIP">
+            <Label layoutX="232.0" layoutY="6.0" text="Decision For Request" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="51.0" text="Approve or reject the commitee's decision" textFill="#9d1b34" textOverrun="CLIP">
+            <Label layoutX="40.0" layoutY="51.0" text="Decision For Request" textFill="#9d1b34" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="362.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/kissclipart-icon-word-png-clipart-microsoft-word-computer-ico-11658691c56ae5d9.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="408.0" layoutY="176.0" text="explainDecision_requestID.docx" textOverrun="CLIP">
+            <RadioButton layoutX="40.0" layoutY="183.0" mnemonicParsing="false" text="Approve request" textOverrun="CLIP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Label layoutX="38.0" layoutY="219.0" text="Explain decision of Chairman:" textOverrun="CLIP">
+            </RadioButton>
+            <RadioButton layoutX="193.0" layoutY="182.0" mnemonicParsing="false" text="Reject request">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Label layoutX="42.0" layoutY="530.0" text="Chairman's Decision:" textOverrun="CLIP">
+            </RadioButton>
+            <RadioButton layoutX="326.0" layoutY="181.0" mnemonicParsing="false" text="Ask for additional information">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Button layoutX="369.0" layoutY="523.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Approve request" textFill="WHITE">
+            </RadioButton>
+            <TextArea layoutX="216.0" layoutY="219.0" prefHeight="322.0" prefWidth="378.0" />
+            <Button layoutX="611.0" layoutY="546.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Send" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="553.0" layoutY="523.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Reject request" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <TextArea layoutX="279.0" layoutY="219.0" prefHeight="289.0" prefWidth="402.0" />
          </children></AnchorPane>
    </children>
    <effect>

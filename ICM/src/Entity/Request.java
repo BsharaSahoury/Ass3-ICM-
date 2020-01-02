@@ -1,8 +1,7 @@
 package Entity;
 
 import java.io.Serializable;
-
-
+import java.time.LocalDate;
 import java.util.Date;
 /**
  * 
@@ -53,7 +52,7 @@ public Request(int id, String initiatorName, String status,String privilegedInfo
 }
 public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-java.sql.Date date, Phase currentPhase) {
+Date date, Phase currentPhase) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -68,7 +67,7 @@ java.sql.Date date, Phase currentPhase) {
 	this.currentPhase = currentPhase;
 }
 
-public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, java.sql.Date time, User user,
+public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, Date time, User user,
 		MyFile msg) {
 	this.privilegedInfoSys=selectedItem;
 	this.existingSituation=existingSituation;

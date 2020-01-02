@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MyRequestsController">
    <children>
       <Line endX="426.99993896484375" endY="-12.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
       <Label layoutX="26.0" layoutY="6.0" text="ICM">
@@ -45,7 +45,7 @@
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
       <ComboBox fx:id="combo1" layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
-      <Button layoutX="466.0" layoutY="534.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
+      <Button fx:id="requestInfo" layoutX="466.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -59,12 +59,12 @@
       <Label layoutX="31.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
       <Button layoutX="481.0" layoutY="57.0" mnemonicParsing="false" style="-fx-background-insets: 5541;" />
       <Button layoutX="363.0" layoutY="70.0" mnemonicParsing="false" style="-fx-background-insets: 6526;" />
-      <ImageView fx:id="refresh" fitHeight="23.0" fitWidth="23.0" layoutX="685.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="685.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/reload-icon-5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="question" fitHeight="23.0" fitWidth="23.0" layoutX="689.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="689.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/q.jpg" />
          </image>

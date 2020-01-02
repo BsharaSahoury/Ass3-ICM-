@@ -47,7 +47,6 @@ public class ClientLoginObserver implements Observer{
 			case "comittee member":
 				
 				ComitteeMemberHomeController comitteeMember=new ComitteeMemberHomeController();
-				System.out.println("ssss");
 				comitteeMember.start(employee1);
 				break;
 			case "chairman":

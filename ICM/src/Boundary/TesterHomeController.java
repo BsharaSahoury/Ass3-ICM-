@@ -28,80 +28,80 @@ public class TesterHomeController {
 	@FXML
 	private Button AboutICMbtn;
 	@FXML
-	private ComboBox Usercombobtn;	
+	private SplitPane splitpane;
 	@FXML
-	private SplitPane splitpane ;
-	@FXML
-    private AnchorPane lowerAnchorPane;
+	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
-	private static Employee tester;
-	public void start(Employee tester) {
-		this.tester=tester;
-		primaryStage=LoginController.primaryStage;
-		Platform.runLater(new Runnable() {
+	private static Employee Tester;
+	public static RequestsWorkedOnController RequestOnWorkCommitteTester;
 
+	public void start(Employee Tester) {
+		this.Tester = Tester;
+		primaryStage = LoginController.primaryStage;
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Tester-Home.fxml"));			
-			Scene scene = new Scene(root);		
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("ICM-Home");			
-			primaryStage.show();
-			primaryStage.setOnCloseRequest( event ->
-		    {
-		        System.out.println("EXIT ICM");
-		        System.exit(0);	
-		    });			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}		
-	}
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Tester-Home.fxml"));
+					Scene scene = new Scene(root);
+					primaryStage.setScene(scene);
+					primaryStage.setResizable(false);
+					primaryStage.setTitle("ICM-Home");
+					primaryStage.show();
+					primaryStage.setOnCloseRequest(event -> {
+						System.out.println("EXIT ICM");
+						System.exit(0);
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		});
 	}
-	
-public Stage getPrimaryStage() {
+
+	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
-public void GoToHome(ActionEvent event) throws Exception {
-	try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
-		lowerAnchorPane = loader.load();
-		splitpane.getItems().set(1, lowerAnchorPane);
-	} catch (IOException e) {		
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public void GoToHome(ActionEvent event) throws Exception {
+		HomeController home = new HomeController();
+		home.start(splitpane);
 	}
-}
 
-public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
-}
+	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+		RequestOnWorkCommitteTester = new RequestsWorkedOnController();
+		RequestOnWorkCommitteTester.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml");
+	}
 
-public void RequestSubmissionAction(ActionEvent event) throws Exception {
-	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane,tester);
-}
+	public void RequestSubmissionAction(ActionEvent event) throws Exception {
+		RequestSubmissionController Submit = new RequestSubmissionController();
+		Submit.start(splitpane,Tester);
+	}
 
-public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(splitpane);
-}
-public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane);
-}
+	public void ProfileSettingAction(ActionEvent event) throws Exception {
+		ProfileSettingController Submit = new ProfileSettingController();
+		Submit.start(splitpane);
+	}
 
-public void AboutICMAction(ActionEvent event) throws Exception {
-	AboutICMController about=new AboutICMController();
-	about.start(splitpane);
-}
-public void LogOutAction(ActionEvent event) throws Exception {
-	LogOutController logOut = new LogOutController();
-	primaryStage.close();
-	logOut.start(primaryStage);
-}
+	public void MyRequestsAction(ActionEvent event) throws Exception {
+		MyRequestsController Submit = new MyRequestsController();
+		Submit.start(splitpane);
+	}
+
+	public void AboutICMAction(ActionEvent event) throws Exception {
+		AboutICMController about = new AboutICMController();
+		about.start(splitpane);
+	}
+
+	public void LogOutAction(ActionEvent event) throws Exception {
+		LogOutController logOut = new LogOutController();
+		primaryStage.close();
+		logOut.start(primaryStage);
+	}
+	public void RequestInfoAction() {
+		RequestInfoController info = new RequestInfoController();
+		info.start(splitpane);
+	}
+	
 
 }
