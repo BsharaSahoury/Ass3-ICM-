@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ComitteeMemberHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -117,5 +118,8 @@ public class ComitteeMemberHomeController implements Initializable {
 		UserNameMenu.setText(comitteeMember.getFirstName()+comitteeMember.getLastName());
 	}
 	
-
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,comitteeMember);
+	}
 }

@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class AdministratorHomeController implements Initializable {
 	@FXML
+	private Button notifications;
+	@FXML
 	private Button Homebtn;
 	@FXML
 	private Button RequestWorkedOnbtn;
@@ -119,6 +121,10 @@ public class AdministratorHomeController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(Administrator.getFirstName()+Administrator.getLastName());
+	}
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,Administrator);
 	}
 
 }
