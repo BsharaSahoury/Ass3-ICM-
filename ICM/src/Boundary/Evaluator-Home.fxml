@@ -23,7 +23,7 @@
          <items>
             <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-3.0" layoutY="309.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="198.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="118.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+                  <Button alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="118.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoToHome" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -60,7 +60,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="180.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Requests in work" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-7.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="Requests that I work on " textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -82,7 +82,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="242.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-3.0" layoutY="245.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -104,7 +104,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="366.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-7.0" layoutY="367.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -126,7 +126,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="428.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="428.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

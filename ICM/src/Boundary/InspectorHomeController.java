@@ -45,6 +45,7 @@ public class InspectorHomeController {
 	private static Employee inspector;
 	private MenuItem btlogOut;
 	public static AllRequestsController AllRequests;
+	public static MyRequestsController MyRequests;
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
 	public void start(Employee inspector) {
@@ -105,8 +106,8 @@ public class InspectorHomeController {
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane,inspector);
 	}
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();

@@ -15,10 +15,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Request;
+import Entity.User;
 import javafx.fxml.*;
 public class MyRequestsController implements Initializable {
 		public static Stage primaryStage;
@@ -54,34 +56,35 @@ public class MyRequestsController implements Initializable {
 		private static SplitPane splitpane;
 		ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
 		private static ObservableList<Request> list;
-		public void start(SplitPane splitpane)  {
+		private FXMLLoader loader;
+		public void start(SplitPane splitpane,User user)  {
 			this.splitpane=splitpane;
 			primaryStage=LoginController.primaryStage;
+			String[] myRequests=new String[2];
 			this.cc=LoginController.cc;
-			try{	
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
+			try{					
+				loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
 				lowerAnchorPane = loader.load();
 				splitpane.getItems().set(1, lowerAnchorPane);		
-				String myRequests="my Requests";
+				myRequests[0]="my Requests";
+				myRequests[1]=user.getUsername();
 				cc.getClient().sendToServer(myRequests);
-
 			} catch(Exception e) {
 				e.printStackTrace();
 			}			
 		}
-	/*	public void fillTable(ArrayList<Request> arr1) {
-				// TODO Auto-generated method stub
-				list=FXCollections.observableArrayList(arr1);
-				colID.setStyle("-fx-alignment: CENTER;");
-				colName.setStyle("-fx-alignment: CENTER;");
-				colID.setCellValueFactory(new PropertyValueFactory<Request,String>("id"));
-				colName.setCellValueFactory(new PropertyValueFactory<Request,String>("nameInitiator"));
-				colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));
-				colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
-				colSubDate.setCellValueFactory(new PropertyValueFactory<Request,String>("date"));
-				//tableRequests.setStyle("-fx-alignment: CENTER;");
-				tableRequests.setItems(list);			
-			}*/
+		public void setTableRequests(ArrayList<Request> arr1){
+			list=FXCollections.observableArrayList(arr1);				
+			System.out.print(arr1.get(0));
+			//tableRequests.setStyle("-fx-alignment: CENTER;");
+	       // colName.set
+			tableRequests.setItems(list);
+		}
+		public void fillTable(ArrayList<Request> arr1) {
+			// TODO Auto-generated method stub
+		loader.<MyRequestsController>getController().setTableRequests(arr1);
+			
+		}
 		public void RequestInfoAction()
 		{
 			RequestInfoController myRequest = new RequestInfoController();
@@ -89,6 +92,16 @@ public class MyRequestsController implements Initializable {
 		}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		combo1.setItems(statuslist);
-	}
+		    combo1.setItems(statuslist);
+			colID.setCellValueFactory(new PropertyValueFactory<Request,Integer>("id"));
+			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("initiatorName"));
+			colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));		
+			colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
+			colSubDate.setCellValueFactory(new PropertyValueFactory<Request,Date>("date"));
+			//this.tabl=tableRequests;
+			//ObservableList<Request> aa=FXCollections.observableArrayList();
+			//aa.add(new Request(1,"sss","xxx","Qqqq",LocalDate.of(1915, Month.SEPTEMBER, 1)));
+			//tableRequests.setItems(aa);
+		}
+	
 }

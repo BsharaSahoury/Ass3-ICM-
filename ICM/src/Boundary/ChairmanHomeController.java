@@ -77,7 +77,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestsWorkedOnController RequestOnWorkChairman = new RequestsWorkedOnController();
-	RequestOnWorkChairman.start(splitpane, "chairman"); 
+	RequestOnWorkChairman.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml"); 
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -91,7 +91,7 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane);
+	Submit.start(splitpane, chairman);
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {

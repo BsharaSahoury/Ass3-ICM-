@@ -1,8 +1,9 @@
 package Entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
+
 /**
  * 
  * @author aimanouda
@@ -21,7 +22,7 @@ private String explainRequest;
 private String privilegedInfoSys; 
 private String reason;
 private String comment;
-private java.sql.Date date;
+private Date date;
 private User initiator;
 private MyFile myfile;
 
@@ -144,7 +145,7 @@ public String getComment() {
 public void setComment(String comment) {
 	this.comment = comment;
 }
-public java.sql.Date getDate() {
+public Date getDate() {
 	return date;
 }
 public void setDate(java.sql.Date date) {

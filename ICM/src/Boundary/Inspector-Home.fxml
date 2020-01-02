@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.InspectorHomeController">
    <children>
-      <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
+      <SplitPane fx:id="splitpane" dividerPositions="0.21916630855178343" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;">
                <children>
@@ -204,7 +204,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
+            <MenuButton fx:id="UserNameMenu" layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Role : Inspector">
                      <graphic>
