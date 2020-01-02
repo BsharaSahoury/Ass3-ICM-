@@ -1,22 +1,27 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class LecturerHomeController {
-
+public class LecturerHomeController implements Initializable {
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -33,6 +38,8 @@ public class LecturerHomeController {
 	private SplitPane splitpane ;
 	@FXML
     private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee lecturer;
 	public void start(Employee lecturer) {
@@ -99,5 +106,13 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	primaryStage.close();
 	logOut.start(primaryStage);
 }
-
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	UserNameMenu.setText(lecturer.getFirstName()+lecturer.getLastName());
+}
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,lecturer);
+}
 }

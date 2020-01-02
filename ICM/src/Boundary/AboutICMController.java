@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 public class AboutICMController {
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
-	@FXML
-	Button notification;
+
 
 	public void start(SplitPane splitpane) {
 		primaryStage=LoginController.primaryStage;

@@ -2,7 +2,9 @@ package Boundary;
 
 import java.awt.Label;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Client.MainForClient;
@@ -13,16 +15,18 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InspectorHomeController {
+public class InspectorHomeController implements Initializable{
 	@FXML
 	private Button notifications;
 	@FXML
@@ -41,6 +45,8 @@ public class InspectorHomeController {
 	public SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee inspector;
 	private MenuItem btlogOut;
@@ -119,6 +125,12 @@ public class InspectorHomeController {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+    }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();
 		notific.start(splitpane,inspector);
