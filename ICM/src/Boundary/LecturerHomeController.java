@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LecturerHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -110,5 +111,8 @@ public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	UserNameMenu.setText(lecturer.getFirstName()+lecturer.getLastName());
 }
-
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,lecturer);
+}
 }
