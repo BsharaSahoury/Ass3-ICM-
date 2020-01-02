@@ -26,14 +26,15 @@ public class ServerMyRequestsObserver implements Observer {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
 		if(args[1] instanceof String[]) {
-			String[] Message=new String[2];
-		     //Message[0]=(String)args[1][0];
-			if(Message.equals("my Requests")) {
+			String[] Message=(String[])args[1];
+			if(Message.length==2 && Message[0].equals("my Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
-				System.out.println(arr.get(0).getStatus());
+				ArrayList<Request> arr=mysqlConnection.getmyRequestFromDB(con,Message[1]);
+				Object[] send=new Object[2];
+				send[0]="myRequests";
+				send[1]=arr;
 			try {
-				client.sendToClient(arr);
+				client.sendToClient(send);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

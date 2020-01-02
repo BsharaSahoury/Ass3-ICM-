@@ -96,14 +96,13 @@ public class mysqlConnection {
 			ResultSet rs=stmt1.executeQuery("SELECT R.* FROM icm.request R;");
 			while(rs.next())
 	 		{
-				System.out.println(rs.getString(1));
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
 				stmt2.setString(1, rs.getString(9));	
 				ResultSet rs2=stmt2.executeQuery();	
 				rs2.next();
 				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				if(Initiatorname.equals(null)) {
-					stmt2 = con.prepareStatement("SELECT E.* FROM student E WHERE username=?;");
+					stmt2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
 					stmt2.setString(1, rs.getString(9));
 					rs2=stmt2.executeQuery();	
 					rs2.next();
@@ -118,7 +117,48 @@ public class mysqlConnection {
 				s=null;
 				rs2.close();
 			}
-			System.out.println("w");
+			rs.close();	 		
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return arr;
+	}
+	
+	public static ArrayList<Request> getmyRequestFromDB(Connection con,String username) {
+
+		String Initiatorname=null;
+		ArrayList<Request> arr = new ArrayList<Request>();
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2=null;
+		Request s=null;
+		try {
+			
+			stmt1=con.prepareStatement("SELECT R.* FROM icm.request R WHERE initiator_username=?;");
+			stmt1.setString(1, username);
+			ResultSet rs=stmt1.executeQuery();
+			while(rs.next())
+	 		{
+				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
+				stmt2.setString(1, username);	
+				ResultSet rs2=stmt2.executeQuery();	
+				rs2.next();
+				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				if(Initiatorname.equals(null)) {
+					stmt2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
+					stmt2.setString(1, rs.getString(9));
+					rs2=stmt2.executeQuery();	
+					rs2.next();
+					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				}	
+				if(!Initiatorname.equals(null)) {
+					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
+				}				
+				arr.add(s);
+				stmt2=null;
+				s=null;
+				rs2.close();
+			}
 			rs.close();	 		
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
