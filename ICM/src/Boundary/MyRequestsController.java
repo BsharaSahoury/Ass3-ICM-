@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Request;
+import Entity.User;
 import javafx.fxml.*;
 public class MyRequestsController implements Initializable {
 		public static Stage primaryStage;
@@ -54,17 +55,20 @@ public class MyRequestsController implements Initializable {
 		private static SplitPane splitpane;
 		ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
 		private static ObservableList<Request> list;
-		public void start(SplitPane splitpane)  {
+		private FXMLLoader loader;
+		public void start(SplitPane splitpane,User user)  {
 			this.splitpane=splitpane;
 			primaryStage=LoginController.primaryStage;
+			String[] myRequests=new String[2];
 			this.cc=LoginController.cc;
 			try{	
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
+				
+				loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
 				lowerAnchorPane = loader.load();
 				splitpane.getItems().set(1, lowerAnchorPane);		
-				String myRequests="my Requests";
+				myRequests[0]="my Requests";
+				myRequests[1]=user.getUsername();
 				cc.getClient().sendToServer(myRequests);
-
 			} catch(Exception e) {
 				e.printStackTrace();
 			}			
