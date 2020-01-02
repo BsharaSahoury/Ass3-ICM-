@@ -215,7 +215,7 @@
                         </ImageView>
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
+                  <MenuItem fx:id="btlogOut" mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

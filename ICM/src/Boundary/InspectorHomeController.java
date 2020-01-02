@@ -41,7 +41,7 @@ public class InspectorHomeController {
 	private AnchorPane lowerAnchorPane;
 	public static Stage primaryStage;
 	private static Employee inspector;
-	private MenuItem logOut;
+	private MenuItem btlogOut;
 	public static AllRequestsController AllRequests;
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
