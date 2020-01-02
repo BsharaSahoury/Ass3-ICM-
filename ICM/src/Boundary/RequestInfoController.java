@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -38,14 +39,22 @@ public class RequestInfoController implements Initializable{
 	private Label lbComment;
 	@FXML
 	private static SplitPane splitpane;
-	public void start(SplitPane splitpane)  {
+	private static ClientConsole cc;
+
+	public void start(SplitPane splitpane, Request s) {
 		primaryStage=LoginController.primaryStage;
+		this.cc=LoginController.cc;
 		this.splitpane=splitpane;
+		String keymessage;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/RequestInfo.fxml"));
 			lowerAnchorPane = loader.load();
 
 			splitpane.getItems().set(1, lowerAnchorPane);	
+			keymessage="Request Info";
+			int x=s.getId();
+			Object[] message= {keymessage,x};
+			LoginController.cc.getClient().sendToServer(message);
 
 		} catch(Exception e) {
 			e.printStackTrace();
