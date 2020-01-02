@@ -1,21 +1,25 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ComitteeMemberHomeController {
+public class ComitteeMemberHomeController implements Initializable {
 
 	@FXML
 	private Button Homebtn;
@@ -31,6 +35,8 @@ public class ComitteeMemberHomeController {
 	private SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton MBusername;
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
 	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
@@ -46,7 +52,7 @@ public class ComitteeMemberHomeController {
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
-					primaryStage.setTitle("ICM-Home");
+					primaryStage.setTitle("ICM");
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
@@ -101,6 +107,12 @@ public class ComitteeMemberHomeController {
 	public void RequestInfoAction() {
 		RequestInfoController info = new RequestInfoController();
 		info.start(splitpane);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		//MBusername.setText(comitteeMember.getUsername());
+		
 	}
 	
 

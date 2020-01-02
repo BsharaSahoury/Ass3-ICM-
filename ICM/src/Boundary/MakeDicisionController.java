@@ -13,14 +13,21 @@ public class MakeDicisionController {
 	@FXML
 	private static SplitPane splitpane;
 
-	public void start(SplitPane splitpane) {
+	public void start(SplitPane splitpane, boolean flag) {
+		FXMLLoader loader;
 		primaryStage = LoginController.primaryStage;
 		this.splitpane = splitpane;
+		System.out.println(flag);
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/DecisionCommitteMember.fxml"));
+			if (flag == false)// committee member
+			{
+				loader = new FXMLLoader(getClass().getResource("/Boundary/DecisionCommitteMember.fxml"));
+			} else // chairman
+			{
+				loader = new FXMLLoader(getClass().getResource("Decision For request by Cairman_Final.fxml"));
+			}
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

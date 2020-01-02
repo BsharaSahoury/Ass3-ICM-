@@ -44,11 +44,18 @@ public class RequestsWorkedOnController implements Initializable {
 	private ComboBox Groupby;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
-
+    private static boolean flag=false;//if chairman flag=true
 	public void start(SplitPane splitpane, String path) {
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		try {
+			System.out.println(path);
+			if(path.equals("chairman"))
+			{
+				path="/Boundary/RequestWorkOnCommittemember.fxml";
+				flag=true;
+				
+			}
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
@@ -73,8 +80,10 @@ public class RequestsWorkedOnController implements Initializable {
 	}
 	public void MakeDecisionAction()
 	{
+		
 		MakeDicisionController dicision=new MakeDicisionController();
-		dicision.start(splitpane);
+		dicision.start(splitpane,flag);
+		flag=false;
 	}
 
 	public void InsertTestResultAction()

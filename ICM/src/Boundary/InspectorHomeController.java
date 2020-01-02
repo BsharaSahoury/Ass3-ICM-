@@ -59,7 +59,7 @@ public class InspectorHomeController {
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
-					primaryStage.setTitle("ICM-Home");
+					primaryStage.setTitle("ICM");
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");

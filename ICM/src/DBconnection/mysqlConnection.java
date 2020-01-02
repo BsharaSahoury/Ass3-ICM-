@@ -33,11 +33,7 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-<<<<<<< HEAD
             conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
-=======
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
->>>>>>> e390bf88a9700916ab50283860c1400f126e7a7f
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 

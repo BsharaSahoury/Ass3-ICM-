@@ -94,12 +94,12 @@
                </font>
             </RadioButton>
             <TextArea layoutX="216.0" layoutY="219.0" prefHeight="322.0" prefWidth="378.0" />
+            <Button layoutX="611.0" layoutY="546.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Send" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children></AnchorPane>
-      <Button layoutX="793.0" layoutY="547.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Send" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
    </children>
    <effect>
       <DropShadow />
