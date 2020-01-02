@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class StudentHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
