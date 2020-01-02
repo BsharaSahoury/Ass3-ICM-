@@ -264,5 +264,65 @@ public class mysqlConnection {
 			e.printStackTrace();
 		}
 		return null;
-	}	
+	}
+	public static Employee getAutomaticRecruit(Connection con, String privilegedInfoSys) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("SELECT employee.* FROM employee WHERE job='evaluator' AND support_system=?;");
+			stm.setString(1, privilegedInfoSys);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				return new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(8));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static Notification insertNotificationToDB(Connection con, Notification n1) {
+		PreparedStatement stm=null;
+		Statement st=null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT MAX(notification.id) FROM notification;");
+			if(rs.next()) {
+				count=rs.getInt(1)+1;
+			}
+			else count=0;
+			stm=con.prepareStatement("INSERT INTO notification VALUES(?,?,?,?);");
+			stm.setInt(1, count);
+			stm.setString(2,n1.getContent());
+			stm.setDate(3, n1.getDate());
+			stm.setString(4, n1.getType());
+			stm.executeUpdate();
+			n1.setId(count);
+			return n1;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return null;
+
+	}
+	public static void insertRecruitNotificationForInspectorToDB(Connection con, Notification n1) {
+		Statement st=null;
+		PreparedStatement stm=null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT employee.username FROM employee WHERE job='inspector';");
+			if(rs.next()) {
+				String username=rs.getString(1);
+				stm=con.prepareStatement("INSERT INTO notificationforuser VALUES(?,?);");
+				stm.setInt(1, n1.getId());
+				stm.setString(2, username);
+				stm.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

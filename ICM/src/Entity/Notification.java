@@ -15,6 +15,7 @@ public class Notification implements Serializable {
 	private Date date;
 	private String dateStr;
 	private String type;
+	private int id;
 	public Notification(String content, Date date, String type) {
 		this.content =content;
 		this.date = date;
@@ -36,6 +37,12 @@ public class Notification implements Serializable {
 	public String getDateStr() {
 		return dateStr;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public void setDateStr(String dateStr) {
 		this.dateStr = dateStr;
 	}
@@ -45,6 +52,8 @@ public class Notification implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	
 	
 
 }

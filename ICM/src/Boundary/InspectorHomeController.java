@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 
 public class InspectorHomeController implements Initializable{
 	@FXML
+	private Button notifications;
+	@FXML
 	private Button Homebtn;
 	@FXML
 	private Button RequestWorkedOnbtn;
@@ -128,5 +130,9 @@ public class InspectorHomeController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+    }
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,inspector);
 	}
 }
