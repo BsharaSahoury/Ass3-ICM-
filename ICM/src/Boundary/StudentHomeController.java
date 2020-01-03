@@ -42,6 +42,7 @@ public class StudentHomeController implements Initializable {
 	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Student student;
+	public static MyRequestsController MyRequests;
 	public void start(Student student) {
 		this.student=student;
 		primaryStage=LoginController.primaryStage;
@@ -95,8 +96,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	Submit.start(splitpane);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane, student);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane, student,"Student");
 }
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();

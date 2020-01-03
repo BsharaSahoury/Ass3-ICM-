@@ -2,6 +2,7 @@ package Boundary;
 
 import javafx.collections.FXCollections;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -61,15 +62,17 @@ public class AllRequestsController implements Initializable {
 	private static int chosen=-1;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
-	public void start(SplitPane splitpane,String path) {
+	public void start(SplitPane splitpane,String path,String job) {
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
+		String[] AllRequests=new String[2];
 		try{	
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();		
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane=splitpane;
-			String AllRequests="All Requests";
+			AllRequests[0]="All Requests";
+			AllRequests[1]=job;
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();

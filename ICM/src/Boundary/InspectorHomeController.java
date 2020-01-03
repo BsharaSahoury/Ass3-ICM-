@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.awt.Label;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -94,10 +95,9 @@ public class InspectorHomeController implements Initializable{
 		home.start(splitpane);
 	}
 
-	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+	public void AllRequestsAction(ActionEvent event) throws Exception {
 		AllRequests = new AllRequestsController();
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
-
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -113,7 +113,7 @@ public class InspectorHomeController implements Initializable{
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequests = new MyRequestsController();
-		MyRequests.start(splitpane,inspector);
+		MyRequests.start(splitpane,inspector,"Inspector");
 	}
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();

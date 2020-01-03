@@ -23,7 +23,7 @@
          <items>
             <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-3.0" layoutY="309.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="198.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-3.0" layoutY="309.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="198.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -204,7 +204,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
+            <MenuButton fx:id="UserNameMenu" layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Role : Evaluator">
                      <graphic>
