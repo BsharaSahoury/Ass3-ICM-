@@ -41,6 +41,8 @@ public class PerformanceLeaderHomeController implements Initializable {
 	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee performanceLeader;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 	public void start(Employee performanceLeader) {
 		this.performanceLeader=performanceLeader;
 		primaryStage=LoginController.primaryStage;
@@ -82,7 +84,8 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
+	RequestWorkON=new RequestsWorkedOnController();
+	//RequestWorkON.start(splitpane,"/Boundary/RequestWorkOnCommittemember.fxml\", user, job);
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -95,8 +98,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	Submit.start(splitpane);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane, performanceLeader);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane, performanceLeader,"Performance Leader");
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {

@@ -40,7 +40,8 @@ public class TesterHomeController implements Initializable {
 	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee Tester;
-	public static RequestsWorkedOnController RequestOnWorkCommitteTester;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 
 	public void start(Employee Tester) {
 		this.Tester = Tester;
@@ -76,8 +77,8 @@ public class TesterHomeController implements Initializable {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		RequestOnWorkCommitteTester = new RequestsWorkedOnController();
-		RequestOnWorkCommitteTester.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml");
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -91,8 +92,8 @@ public class TesterHomeController implements Initializable {
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane, Tester);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane, Tester,"Tester");
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {

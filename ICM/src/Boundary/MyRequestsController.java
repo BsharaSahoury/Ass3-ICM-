@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Employee;
 import Entity.Request;
 import Entity.User;
 import javafx.fxml.*;
@@ -60,10 +61,10 @@ public class MyRequestsController implements Initializable {
 		ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
 		private static ObservableList<Request> list;
 		private FXMLLoader loader;
-		public void start(SplitPane splitpane,User user)  {
+		public void start(SplitPane splitpane,User user,String job)  {
 			this.splitpane=splitpane;
 			primaryStage=LoginController.primaryStage;
-			String[] myRequests=new String[2];
+			String[] myRequests=new String[3];
 			this.cc=LoginController.cc;
 			try{					
 				loader = new FXMLLoader(getClass().getResource("/Boundary/MyRequests.fxml"));
@@ -71,17 +72,19 @@ public class MyRequestsController implements Initializable {
 				splitpane.getItems().set(1, lowerAnchorPane);		
 				myRequests[0]="my Requests";
 				myRequests[1]=user.getUsername();
+				myRequests[2]=job;
 				cc.getClient().sendToServer(myRequests);
 			} catch(Exception e) {
 				e.printStackTrace();
-			}			
+			}	
 		}
 		public void setTableRequests(ArrayList<Request> arr1){
+			if(!arr1.equals(null)) {
 			list=FXCollections.observableArrayList(arr1);				
-			System.out.print(arr1.get(0));
 			//tableRequests.setStyle("-fx-alignment: CENTER;");
 	       // colName.set
 			tableRequests.setItems(list);
+			}
 		}
 		public void fillTable(ArrayList<Request> arr1) {
 			// TODO Auto-generated method stub

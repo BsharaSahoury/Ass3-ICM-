@@ -11,7 +11,9 @@ import Boundary.ComitteeMemberHomeController;
 import Boundary.EvaluatorHomeController;
 import Boundary.InspectorHomeController;
 import Boundary.LecturerHomeController;
+import Boundary.NotificationsController;
 import Boundary.PerformanceLeaderHomeController;
+import Boundary.RequestsWorkedOnController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
 import Entity.Request;
@@ -21,8 +23,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
-public class ClientMyRequestsObserver implements Observer{
-	public ClientMyRequestsObserver(Observable client) {
+public class ClientRequestsWorkedOnObserver implements Observer{
+	public ClientRequestsWorkedOnObserver(Observable client) {
 		client.addObserver(this);
 	}
 
@@ -33,29 +35,21 @@ public class ClientMyRequestsObserver implements Observer{
 			Object[] send=(Object[]) arg1;
 			if(send[0] instanceof String) {
 				String message=(String) send[0];
-				if(message.equals("myRequests")) {
+				if(message.equals("Requests worked on")) {
 					if(send[1] instanceof ArrayList<?>) {					
 					ArrayList<Request> arr=(ArrayList<Request>)send[1];
 					if(send[2] instanceof String) {
 					String job=(String)send[2];
-					if(job.equals("Inspector"))
-					InspectorHomeController.MyRequests.fillTable(arr);
-					else if(job.equals("Evaluator"))
-					EvaluatorHomeController.MyRequests.fillTable(arr);	
+					if(job.equals("Evaluator")) 
+					EvaluatorHomeController.RequestWorkON.fillTable(arr);
 					else if(job.equals("Comittee Member"))
-					ComitteeMemberHomeController.MyRequests.fillTable(arr);	
-					else if(job.equals("Administrator"))
-					AdministratorHomeController.MyRequests.fillTable(arr);
-					else if(job.equals("Student"))
-					StudentHomeController.MyRequests.fillTable(arr);	
+					ComitteeMemberHomeController.RequestWorkON.fillTable(arr);		
 					else if(job.equals("Performance Leader"))
-					PerformanceLeaderHomeController.MyRequests.fillTable(arr);
+					PerformanceLeaderHomeController.RequestWorkON.fillTable(arr);
 					else if(job.equals("Tester"))
-					TesterHomeController.MyRequests.fillTable(arr);
+					TesterHomeController.RequestWorkON.fillTable(arr);
 					else if(job.equals("Chairman"))
-					ChairmanHomeController.MyRequests.fillTable(arr);
-					else if(job.equals("Lecturer"))
-					LecturerHomeController.MyRequests.fillTable(arr);
+					ChairmanHomeController.RequestWorkON.fillTable(arr);
 					}
 					}
 				}

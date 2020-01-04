@@ -42,6 +42,8 @@ public class EvaluatorHomeController implements Initializable {
 	@FXML
 	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 	private static Employee evaluator;
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
@@ -84,16 +86,16 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	RequestsWorkedOnController RequestOnWorkEvaluator = new RequestsWorkedOnController();
-	RequestOnWorkEvaluator.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml");}
+	RequestWorkON = new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator");}
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(splitpane,evaluator);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane,evaluator);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane,evaluator,"Evaluator");
 }
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
@@ -112,6 +114,6 @@ public void clickNotifications(ActionEvent event) throws Exception {
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
-	UserNameMenu.setText(evaluator.getFirstName()+evaluator.getLastName());
+	UserNameMenu.setText(evaluator.getFirstName()+" "+evaluator.getLastName());
 }
 }

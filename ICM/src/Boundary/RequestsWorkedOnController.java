@@ -1,10 +1,14 @@
 package Boundary;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Request;
+import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +21,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -47,27 +52,35 @@ public class RequestsWorkedOnController implements Initializable {
 	private static int chosen=-1;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
-	public void start(SplitPane splitpane, String path) {
+	private FXMLLoader loader;
+	public void start(SplitPane splitpane, String path,User user,String job) {
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
+		String [] RequestWorkedON=new String[3];
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
-			if (path.equals("/Boundary/RequestWorkOnCommittemember.fxml"))
-			{
-				String RequestsCommitteeMember = "Requests Committee Member";
-				cc.getClient().sendToServer(RequestsCommitteeMember);
-			}
-			if (path.equals("/Boundary/RequestsWorkOnTester.fxml"))
-			{
-				String RequestsTester = "Requests Tester";
-				cc.getClient().sendToServer(RequestsTester);
-			}
+			RequestWorkedON[0]="Requests worked on";
+			RequestWorkedON[1]=user.getUsername();
+			RequestWorkedON[2]=job;
+			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void setTableRequests(ArrayList<Request> arr1){
+		
+		System.out.println(arr1.get(0));
+		if(!arr1.equals(null)) {
+			System.out.println("sssss");
+		list=FXCollections.observableArrayList(arr1);				
+		tableRequests.setItems(list);
+		}
+	}
+	public void fillTable(ArrayList<Request> arr1) {
+	loader.<RequestsWorkedOnController>getController().setTableRequests(arr1);	
 	}
 	public void RequestInfoAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
@@ -102,6 +115,11 @@ public class RequestsWorkedOnController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Groupby.setItems(statuslist);
+		colID.setCellValueFactory(new PropertyValueFactory<Request,Integer>("id"));
+		colName.setCellValueFactory(new PropertyValueFactory<Request,String>("initiatorName"));
+		colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));		
+		colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
+		colSubDate.setCellValueFactory(new PropertyValueFactory<Request,Date>("date"));
 	}
 
 }

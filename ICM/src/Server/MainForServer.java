@@ -25,6 +25,7 @@ public class MainForServer {
 	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
         ServerMyRequestsObserver myrequest=new ServerMyRequestsObserver(sv);
         ServerRequestInfoObserver requestInfo =new ServerRequestInfoObserver(sv);
+        RequestsWorkedOnObserver RequestWorkOn=new RequestsWorkedOnObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//
