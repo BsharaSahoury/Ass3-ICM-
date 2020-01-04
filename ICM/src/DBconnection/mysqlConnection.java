@@ -366,6 +366,48 @@ public class mysqlConnection {
 			e.printStackTrace();
 		}
 		
+		
 	}
+	public static Request getRequestInfo(Connection con, int id) {
+		PreparedStatement stm1=null;
+		PreparedStatement stm2=null;
+		String Initiatorname=null;
+		String role =null;
+		Request r=null;
+			try {
+				stm1=con.prepareStatement("SELECT R.* FROM icm.request R WHERE id=?;");
+				stm1.setInt(1, id);
+				ResultSet rs=stm1.executeQuery();
+				
+				while(rs.next()) {
+					String username=rs.getString(9);
+					stm2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
+					stm2.setString(1, username);	
+					ResultSet rs2=stm2.executeQuery();	
+					rs2.next();
+					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+					role=rs2.getString(4);
+					if(Initiatorname.equals(null)) {
+						stm2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
+						stm2.setString(1, rs.getString(9));
+						rs2=stm2.executeQuery();	
+						rs2.next();
+						Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+						role="student";
+					}	
+					if(!Initiatorname.equals(null)) {
+						r=new Request(rs.getInt(7),Initiatorname,role,rs2.getString(8),rs.getString(8), rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), rs.getString(5), rs.getDate(6));
+					
+					}		
+					rs2.close();
+									}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return r;
+
+		
+		}
 	
 }

@@ -24,6 +24,7 @@ public class MainForServer {
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
 	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
         ServerMyRequestsObserver myrequest=new ServerMyRequestsObserver(sv);
+        ServerRequestInfoObserver requestInfo =new ServerRequestInfoObserver(sv);
         RequestsWorkedOnObserver RequestWorkOn=new RequestsWorkedOnObserver(sv);
 	      try {
 		   sv.listen();
