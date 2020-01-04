@@ -105,11 +105,6 @@ public class TesterHomeController implements Initializable {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
-	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

@@ -53,7 +53,7 @@ public Request(int id, String initiatorName, String status,String privilegedInfo
 }
 public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-Date date, Phase currentPhase) {
+java.sql.Date date, Phase currentPhase) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -78,6 +78,24 @@ public Request(String selectedItem, String existingSituation, String requestedCh
 	this.date=time;
 	this.initiator=user;
 	this.myfile=msg;
+}
+public Request() {
+	// TODO Auto-generated constructor stub
+}
+public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
+String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
+java.sql.Date date) {
+	this.id = id;
+	this.initiatorName = initiatorName;
+	this.initiatorEmail = initiatorEmail;
+	this.initiatorRole = initiatorRole;
+	this.status = status;
+	this.existingSituation = existingSituation;
+	this.explainRequest = explainRequest;
+	this.privilegedInfoSys = privilegedInfoSys;
+	this.reason = reason;
+	this.comment = comment;
+	this.date = date;
 }
 public User getInitiator() {
 	return initiator;

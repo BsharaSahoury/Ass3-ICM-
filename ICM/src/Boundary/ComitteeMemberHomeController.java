@@ -52,6 +52,7 @@ public class ComitteeMemberHomeController implements Initializable {
 			public void run() {
 				try {
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
+					System.out.println("111111111");
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
@@ -106,10 +107,6 @@ public class ComitteeMemberHomeController implements Initializable {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
-	}
-	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
 	}
 
 	@Override

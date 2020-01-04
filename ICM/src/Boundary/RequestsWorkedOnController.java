@@ -10,11 +10,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -42,6 +44,7 @@ public class RequestsWorkedOnController implements Initializable {
 	private Button MakeDecision; 
 	@FXML
 	private ComboBox Groupby;
+	private static int chosen=-1;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
 	public void start(SplitPane splitpane, String path) {
@@ -67,8 +70,22 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			Request s =tableRequests.getSelectionModel().getSelectedItem();
+			RequestInfoController requestifo = new RequestInfoController();
+	    	requestifo.start(splitpane,s);
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
+	public static int getselectedindex() {
+		return chosen;
 	}
 	public void MakeDecisionAction()
 	{
