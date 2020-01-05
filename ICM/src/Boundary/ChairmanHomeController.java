@@ -1,22 +1,27 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ChairmanHomeController {
-
+public class ChairmanHomeController implements Initializable {
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -33,8 +38,12 @@ public class ChairmanHomeController {
 	private SplitPane splitpane ;
 	@FXML
     private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee chairman;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 	public void start(Employee chairman) {
 		this.chairman=chairman;
 		primaryStage=LoginController.primaryStage;
@@ -76,8 +85,8 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	RequestsWorkedOnController RequestOnWorkChairman = new RequestsWorkedOnController();
-	RequestOnWorkChairman.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml"); 
+	RequestWorkON = new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml",chairman,"Chairman"); 
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -90,8 +99,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	Submit.start(splitpane);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane, chairman);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane, chairman,"Chairman");
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {
@@ -102,5 +111,15 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
 	logOut.start(primaryStage);
+}
+
+@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		UserNameMenu.setText(chairman.getFirstName()+chairman.getLastName());
+    }
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,chairman);
 }
 }

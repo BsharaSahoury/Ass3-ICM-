@@ -1,22 +1,27 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Student;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class StudentHomeController {
-
+public class StudentHomeController implements Initializable {
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -33,8 +38,11 @@ public class StudentHomeController {
 	private SplitPane splitpane ;
 	@FXML
     private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Student student;
+	public static MyRequestsController MyRequests;
 	public void start(Student student) {
 		this.student=student;
 		primaryStage=LoginController.primaryStage;
@@ -88,8 +96,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	Submit.start(splitpane);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane, student);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane, student,"Student");
 }
 public void AboutICMAction(ActionEvent event) throws Exception {
 	AboutICMController about=new AboutICMController();
@@ -99,6 +107,11 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
 	logOut.start(primaryStage);
+}
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	UserNameMenu.setText(student.getFirstName()+student.getLastName());
 }
 
 }

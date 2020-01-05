@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.AdministratorHomeController;
 import Boundary.AllRequestsController;
 import Boundary.InspectorHomeController;
 import Entity.Request;
@@ -27,7 +28,13 @@ public class ClientAllRequestsObserver implements Observer{
 				String message=(String) send[0];
 				if(message.equals("All Requests")&&send[1] instanceof ArrayList<?>) {
 					ArrayList<Request> arr=(ArrayList<Request>) send[1];
-					InspectorHomeController.AllRequests.fillTable(arr);
+					if(send[2] instanceof String) {
+						String job=(String)send[2];
+						if(job.equals("Inspector"))
+						InspectorHomeController.AllRequests.fillTable(arr);	
+						else if(job.equals("Administrator"))
+						AdministratorHomeController.AllRequests.fillTable(arr);	
+					}				
 				}
 			}
 		}

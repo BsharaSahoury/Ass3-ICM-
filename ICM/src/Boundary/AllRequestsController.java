@@ -2,6 +2,7 @@ package Boundary;
 
 import javafx.collections.FXCollections;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -15,11 +16,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -58,15 +62,17 @@ public class AllRequestsController implements Initializable {
 	private static int chosen=-1;
 	private static ObservableList<Request> list;
 	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
-	public void start(SplitPane splitpane,String path) {
+	public void start(SplitPane splitpane,String path,String job) {
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
+		String[] AllRequests=new String[2];
 		try{	
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();		
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane=splitpane;
-			String AllRequests="All Requests";
+			AllRequests[0]="All Requests";
+			AllRequests[1]=job;
 			cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -84,8 +90,19 @@ public class AllRequestsController implements Initializable {
 			
 		}
 	public void RequestInfoAction() {
-		RequestInfoController Treatment = new RequestInfoController();
-		Treatment.start(splitpane);
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			Request s =tableRequests.getSelectionModel().getSelectedItem();
+			RequestInfoController requestifo = new RequestInfoController();
+	    	requestifo.start(splitpane,s);
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
 	}
 	public static int getselectedindex() {
 		return chosen;
@@ -100,6 +117,13 @@ public class AllRequestsController implements Initializable {
 		RequestTreatmentAction Treatment = new RequestTreatmentAction();
 		Treatment.start(splitpane);
 		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

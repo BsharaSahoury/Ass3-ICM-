@@ -1,21 +1,25 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EvaluatorHomeController {
+public class EvaluatorHomeController implements Initializable {
 	
 	@FXML
 	private Button notification;
@@ -35,7 +39,11 @@ public class EvaluatorHomeController {
 	private SplitPane splitpane ;
 	@FXML
     private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 	private static Employee evaluator;
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
@@ -78,16 +86,16 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	RequestsWorkedOnController RequestOnWorkEvaluator = new RequestsWorkedOnController();
-	RequestOnWorkEvaluator.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml");}
+	RequestWorkON = new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator");}
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(splitpane,evaluator);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane,evaluator);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane,evaluator,"Evaluator");
 }
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
@@ -101,5 +109,11 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
 	notific.start(splitpane,evaluator);
+}
+
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	UserNameMenu.setText(evaluator.getFirstName()+" "+evaluator.getLastName());
 }
 }

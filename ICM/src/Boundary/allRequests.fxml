@@ -14,13 +14,13 @@
 
 <AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AllRequestsController">
    <children>
-      <TableView fx:id="tableRequests" layoutX="7.0" layoutY="142.0" prefHeight="367.0" prefWidth="719.0" stylesheets="@css1.css">
+      <TableView fx:id="tableRequests" layoutX="7.0" layoutY="142.0" prefHeight="367.0" prefWidth="697.0" stylesheets="@css1.css">
          <columns>
             <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
             <TableColumn fx:id="colName" prefWidth="115.0" text="InitiatorName" />
             <TableColumn fx:id="colStatus" prefWidth="109.0" text="Status" />
             <TableColumn fx:id="colPriflig" prefWidth="206.0" text="Prifileged Information System" />
-            <TableColumn fx:id="colSubDate" prefWidth="125.0" text="SubmissionDate" />
+            <TableColumn fx:id="colSubDate" prefWidth="104.0" text="SubmissionDate" />
          </columns>
       </TableView>
       <Label layoutX="121.0" layoutY="206.0" />

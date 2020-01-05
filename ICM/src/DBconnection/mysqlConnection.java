@@ -34,7 +34,11 @@ public class mysqlConnection {
         	 }      
         try 
         {      
+
             conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
+
+
+            
 
             System.out.println("SQL connection succeed");
             return conn;
@@ -125,19 +129,62 @@ public class mysqlConnection {
 		}		
 		return arr;
 	}
-	
+	public static ArrayList<Request> getRequestsWorkOn(Connection con,String username,String job) {
+		String Initiatorname=null;
+		ArrayList<Request> arr = new ArrayList<Request>();
+		ArrayList<Integer> arr2 = new ArrayList<Integer>();
+		PreparedStatement stmt1 = null;
+		PreparedStatement stmt2=null;
+		PreparedStatement stmt3=null;
+		Request s=null;
+		try {
+			stmt1=con.prepareStatement("SELECT DISTINCT R.request_id FROM icm.requestinphase R WHERE phase_administrator=?;");
+			stmt1.setString(1, username);	
+			ResultSet rs=stmt1.executeQuery();
+			while(rs.next())
+	 		{
+				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
+				stmt2.setString(1, username);	
+				ResultSet rs2=stmt2.executeQuery();	
+				rs2.next();
+				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				if(Initiatorname.equals(null)) {			
+					stmt2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
+					stmt2.setString(1, rs.getString(9));
+					rs2=stmt2.executeQuery();	
+					rs2.next();
+					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+				}	
+				stmt3 = con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+				stmt3.setInt(1, rs.getInt(1));	
+				ResultSet rs3=stmt3.executeQuery();	
+				rs3.next();
+				if(!rs3.equals(null)&&!Initiatorname.equals(null)) {
+					arr.add(new Request(rs3.getInt(7),Initiatorname,rs3.getString(8),rs3.getString(1),rs3.getDate(6)));
+				}
+				stmt2=null;
+				stmt3=null;
+				rs2.close();
+				rs3.close();
+	 		}
+			rs.close();	 
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return arr;
+	}
 	public static ArrayList<Request> getmyRequestFromDB(Connection con,String username) {
-
 		String Initiatorname=null;
 		ArrayList<Request> arr = new ArrayList<Request>();
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2=null;
 		Request s=null;
-		try {
-			
+		try {			
 			stmt1=con.prepareStatement("SELECT R.* FROM icm.request R WHERE initiator_username=?;");
 			stmt1.setString(1, username);
 			ResultSet rs=stmt1.executeQuery();
+			System.out.println("ssssxxxxcccvvvv");
 			while(rs.next())
 	 		{
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
@@ -154,8 +201,8 @@ public class mysqlConnection {
 				}	
 				if(!Initiatorname.equals(null)) {
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
+					arr.add(s);
 				}				
-				arr.add(s);
 				stmt2=null;
 				s=null;
 				rs2.close();
@@ -324,7 +371,9 @@ public class mysqlConnection {
 			e.printStackTrace();
 		}
 		
+		
 	}
+
 	public static Employee recruitAutomatically(Connection con, int id) {
 		Statement st=null;
 		PreparedStatement stm=null;
@@ -415,4 +464,47 @@ public class mysqlConnection {
 		
 	}
 
+
+	public static Request getRequestInfo(Connection con, int id) {
+		PreparedStatement stm1=null;
+		PreparedStatement stm2=null;
+		String Initiatorname=null;
+		String role =null;
+		Request r=null;
+			try {
+				stm1=con.prepareStatement("SELECT R.* FROM icm.request R WHERE id=?;");
+				stm1.setInt(1, id);
+				ResultSet rs=stm1.executeQuery();
+				
+				while(rs.next()) {
+					String username=rs.getString(9);
+					stm2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
+					stm2.setString(1, username);	
+					ResultSet rs2=stm2.executeQuery();	
+					rs2.next();
+					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+					role=rs2.getString(4);
+					if(Initiatorname.equals(null)) {
+						stm2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
+						stm2.setString(1, rs.getString(9));
+						rs2=stm2.executeQuery();	
+						rs2.next();
+						Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
+						role="student";
+					}	
+					if(!Initiatorname.equals(null)) {
+						r=new Request(rs.getInt(7),Initiatorname,role,rs2.getString(8),rs.getString(8), rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), rs.getString(5), rs.getDate(6));
+					
+					}		
+					rs2.close();
+									}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return r;
+
+		
+		}
+	
 }

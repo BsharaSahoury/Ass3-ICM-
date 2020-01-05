@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AdministratorHomeController">
    <children>
-      <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
+      <SplitPane fx:id="splitpane" dividerPositions="0.5, 0.5, 0.5, 0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="227.0" style="-fx-background-color: #9d1b34;">
                <children>
@@ -60,7 +60,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="RequestWorkedOnbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Requests" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="180.0" mnemonicParsing="false" onAction="#AllRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Requests" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -104,7 +104,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="ProfileSettingbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="366.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+                  <Button fx:id="ProfileSettingbtn" alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="428.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -126,7 +126,29 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="AboutICMbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="428.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
+                  <Button fx:id="RequestSubmissionbtn4" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="362.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/PinClipart.com_career-day-clipart_1587117.png" />
+                           </image>
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="BLACK" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="AboutICMbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="490.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -189,52 +211,118 @@
                         <Font name="Comic Sans MS Bold" size="36.0" />
                      </font>
                   </Label>
+                  <AnchorPane layoutX="-208.0" layoutY="-1.0" prefHeight="31.0" prefWidth="932.0">
+                     <children>
+                        <Button fx:id="notifications" alignment="BASELINE_LEFT" layoutX="662.0" layoutY="2.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <MenuButton fx:id="UserNameMenu" layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Role : Administrator">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MenuItem>
+                           </items>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/585e4beacb11b227491c3399.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuButton>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
-         </items>
-      </SplitPane>
-      <AnchorPane layoutY="-1.0" prefHeight="31.0" prefWidth="932.0">
-         <children>
-            <Button alignment="BASELINE_LEFT" layoutX="662.0" layoutY="2.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+            <Button fx:id="RequestSubmissionbtn1" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="BLACK" />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton layoutX="779.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="UserName" textFill="WHITE">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Role : Administrator">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuItem>
-               </items>
+            <Button fx:id="RequestSubmissionbtn2" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                      </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="BLACK" />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ImageView>
                </graphic>
-            </MenuButton>
-         </children>
-      </AnchorPane>
+            </Button>
+            <Button fx:id="RequestSubmissionbtn3" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                     </image>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="BLACK" />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </items>
+      </SplitPane>
    </children>
    <effect>
       <DropShadow />

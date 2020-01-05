@@ -1,21 +1,25 @@
 package Boundary;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PerformanceLeaderHomeController {
+public class PerformanceLeaderHomeController implements Initializable {
 
 	@FXML
 	private Button Homebtn;
@@ -33,8 +37,12 @@ public class PerformanceLeaderHomeController {
 	private SplitPane splitpane ;
 	@FXML
     private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee performanceLeader;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 	public void start(Employee performanceLeader) {
 		this.performanceLeader=performanceLeader;
 		primaryStage=LoginController.primaryStage;
@@ -76,7 +84,8 @@ public void GoToHome(ActionEvent event) throws Exception {
 }
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	//RequestWorkedOnController 
+	RequestWorkON=new RequestsWorkedOnController();
+	//RequestWorkON.start(splitpane,"/Boundary/RequestWorkOnCommittemember.fxml\", user, job);
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -89,8 +98,8 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 	Submit.start(splitpane);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequestsController Submit = new MyRequestsController();
-	Submit.start(splitpane, performanceLeader);
+	MyRequests = new MyRequestsController();
+	MyRequests.start(splitpane, performanceLeader,"Performance Leader");
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {
@@ -101,6 +110,11 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
 	logOut.start(primaryStage);
+}
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+	UserNameMenu.setText(performanceLeader.getFirstName()+performanceLeader.getLastName());
 }
 
 }

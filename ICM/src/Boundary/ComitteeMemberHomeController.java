@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ComitteeMemberHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -37,9 +38,12 @@ public class ComitteeMemberHomeController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private MenuButton MBusername;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
-	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 
 	public void start(Employee comitteeMember) {
 		this.comitteeMember = comitteeMember;
@@ -49,7 +53,9 @@ public class ComitteeMemberHomeController implements Initializable {
 			public void run() {
 				try {
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
+					System.out.println("111111111");
 					Scene scene = new Scene(root);
+					System.out.println("zzzz");
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
 					primaryStage.setTitle("ICM");
@@ -75,8 +81,8 @@ public class ComitteeMemberHomeController implements Initializable {
 	}
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		RequestOnWorkCommitteMembers = new RequestsWorkedOnController();
-		RequestOnWorkCommitteMembers.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml");
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -90,8 +96,8 @@ public class ComitteeMemberHomeController implements Initializable {
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane, comitteeMember);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane, comitteeMember,"Comittee Member");
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {
@@ -104,16 +110,14 @@ public class ComitteeMemberHomeController implements Initializable {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
-	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//MBusername.setText(comitteeMember.getUsername());
-		
+		UserNameMenu.setText(comitteeMember.getFirstName()+" "+comitteeMember.getLastName());
 	}
 	
-
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,comitteeMember);
+	}
 }

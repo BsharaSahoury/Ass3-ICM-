@@ -1,5 +1,4 @@
 package Server;
-
 import java.io.IOException;
 
 
@@ -13,8 +12,8 @@ import Entity.Request;
 import Entity.User;
 import ocsf.server.ConnectionToClient;
 
-public class ServerMyRequestsObserver implements Observer {
-	public ServerMyRequestsObserver(Observable server) {
+public class RequestsWorkedOnObserver implements Observer {
+	public RequestsWorkedOnObserver(Observable server) {
 		server.addObserver(this);
 	}
 
@@ -27,11 +26,11 @@ public class ServerMyRequestsObserver implements Observer {
 		ConnectionToClient client=(ConnectionToClient)args[0];
 		if(args[1] instanceof String[]) {
 			String[] Message=(String[])args[1];
-			if(Message.length==3 && Message[0].equals("my Requests")) {
+			if(Message.length==3 && Message[0].equals("Requests worked on")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				ArrayList<Request> arr=mysqlConnection.getmyRequestFromDB(con,Message[1]);
+				ArrayList<Request> arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
 				Object[] send=new Object[3];
-				send[0]="myRequests";
+				send[0]="Requests worked on";
 				send[1]=arr;
 				send[2]=Message[2];//here i send the job of the username
 			try {
@@ -45,4 +44,3 @@ public class ServerMyRequestsObserver implements Observer {
 		}
 	}
 }
-
