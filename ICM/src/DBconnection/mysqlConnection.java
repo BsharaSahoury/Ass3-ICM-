@@ -31,7 +31,12 @@ public class mysqlConnection {
         	 }      
         try 
         {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ayman1234567891");
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","hbk12345");
+
+
+            
+
             System.out.println("SQL connection succeed");
             return conn;
      	} catch (SQLException ex) 
@@ -374,6 +379,98 @@ public class mysqlConnection {
 			e.printStackTrace();
 		}		
 	}
+
+	public static Employee recruitAutomatically(Connection con, int id) {
+		Statement st=null;
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("SELECT request.Privileged_information_system FROM request WHERE id=?;");
+			stm.setInt(1, id);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				String privilegedSystem=rs.getString(1);
+				Employee evaluator=mysqlConnection.getAutomaticRecruit(con, privilegedSystem);
+				mysqlConnection.assignEvaluatorToRequest(con,evaluator,id);
+				return evaluator;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	public static boolean assignEvaluatorToRequest(Connection con, Employee evaluator, int id) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2,"evaluation");
+			stm.setInt(3,0);
+			stm.setDate(4,null);
+			stm.setDate(5, null);
+			stm.setString(6, evaluator.getUsername());
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	public static ArrayList<Employee> getEvaluators(Connection con) {
+		Statement st=null;
+		Employee evaluator;
+		ArrayList<Employee> list=new ArrayList<>();
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT employee.* FROM employee WHERE job='evaluator';");
+			while(rs.next()) {
+				evaluator=new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(8));
+				list.add(evaluator);
+			}
+			return list; 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static Employee getSpecificEmployee(Connection con, String fullname) {
+		PreparedStatement stm=null;
+		String[] name=new String[2];
+		name=fullname.split(" ");
+		try {
+			stm=con.prepareStatement("SELECT employee.* FROM employee WHERE first_name=? AND last_name=?;");
+			stm.setString(1, name[0]);
+			stm.setString(2, name[1]);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				return new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(8));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	public static void insertNotificationForUserToDB(Connection con, Notification n1, Employee employee) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("INSERT INTO notificationforuser VALUES(?,?);");
+			stm.setInt(1, n1.getId());
+			stm.setString(2, employee.getUsername());
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
 	public static Request getRequestInfo(Connection con, int id) {
 		PreparedStatement stm1=null;
 		PreparedStatement stm2=null;

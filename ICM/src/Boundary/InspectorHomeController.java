@@ -103,7 +103,6 @@ public class InspectorHomeController implements Initializable{
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		Submit.start(splitpane,inspector);
-		Submit.start(splitpane,inspector);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {

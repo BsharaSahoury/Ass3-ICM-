@@ -77,10 +77,12 @@ public class TesterHomeController implements Initializable {
 		home.start(splitpane);
 	}
 
+	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
 		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",Tester,"Tester");
-	}
+		}
+   
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();

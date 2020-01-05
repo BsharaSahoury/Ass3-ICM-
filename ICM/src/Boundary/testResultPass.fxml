@@ -46,7 +46,7 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <RadioButton fx:id="TestFaildRadioButton" layoutX="189.0" layoutY="201.0" mnemonicParsing="false" onAction="#radioselectFaild" text="Test failed" textFill="#9d1b34">
+            <RadioButton layoutX="189.0" layoutY="201.0" mnemonicParsing="false" onAction="#radioselectFaild" text="Test failed" textFill="#9d1b34">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -54,12 +54,12 @@
                   <ToggleGroup fx:id="TestResultGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="TestSuccessRadioButton" layoutX="359.0" layoutY="201.0" mnemonicParsing="false" text="Test passed" textFill="#9d1b34" toggleGroup="$TestResultGroup">
+            <RadioButton layoutX="359.0" layoutY="201.0" mnemonicParsing="false" selected="true" text="Test passed" textFill="#9d1b34" toggleGroup="$TestResultGroup">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </RadioButton>
-            <Button layoutX="569.0" layoutY="523.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Send" textFill="WHITE">
+            <Button fx:id="SendBtn" layoutX="569.0" layoutY="523.0" mnemonicParsing="false" onAction="#SendBtnSuccess" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Send" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

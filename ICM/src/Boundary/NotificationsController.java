@@ -18,8 +18,11 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import messages.AutomaticRecruitMessageController;
+import messages.RecruitMessageController;
 
 public class NotificationsController implements Initializable {
 	
@@ -36,6 +39,8 @@ public class NotificationsController implements Initializable {
 	public ObservableList<Notification> list;
 	
 	public static NotificationsController ctrl;
+	@FXML
+	public static SplitPane splitpane;
 
 	public void start(SplitPane splitpane,User user) {
 		this.user=user;
@@ -44,7 +49,8 @@ public class NotificationsController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/All-Notifications.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			splitpane.getItems().set(1, lowerAnchorPane);		
+			splitpane.getItems().set(1, lowerAnchorPane);
+			this.splitpane=splitpane;
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -67,6 +73,39 @@ public class NotificationsController implements Initializable {
 		table.setItems(list);
 		
 	}
+	@FXML
+	public void clickCell(MouseEvent e) {
+		Notification n2=table.getSelectionModel().getSelectedItem();
+		String content;
+		String[] b;
+		int id;
+		switch(n2.getType()){
+			case "recruitForInspector":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				id=Integer.valueOf(b[1]);
+				b=b[0].split(": ");
+				b=b[1].split(" for");
+				b=b[0].split(" ");
+				String fullname=b[0]+" "+b[1];
+				AutomaticRecruitMessageController armc=new AutomaticRecruitMessageController();
+				armc.start(splitpane,id,fullname);
+				break;
+			case "recruitNotificationForEvaluator":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				id=Integer.valueOf(b[1]);
+				RecruitMessageController rmc=new RecruitMessageController();
+				rmc.start(splitpane, id);
+				break;
+				
+		}
+
+		
+	}
+
 	
 	
 
