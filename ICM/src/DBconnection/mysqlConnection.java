@@ -1,6 +1,7 @@
 package DBconnection;
 
 import java.sql.Connection;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.sql.Date;
@@ -12,11 +13,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import Entity.Employee;
-import Entity.Notification;
-import Entity.Request;
-import Entity.Student;
-import Entity.User;
+import Entity.*;
 
 public class mysqlConnection {
 	private static Connection conn = null;
@@ -78,13 +75,15 @@ public class mysqlConnection {
 		
 
 	}
-	public static ArrayList<Request> getDataFromDB(Connection con){
+	public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		
 		String Initiatorname=null;
-		ArrayList<Request> arr = new ArrayList<Request>();
+		ArrayList<RequestPhase> arr = new ArrayList<RequestPhase>();
 		Statement stmt1 = null;
 		PreparedStatement stmt2=null;
+		PreparedStatement stmt3=null;
 		Request s=null;
+		RequestPhase result=null;
 		try {
 			stmt1=con.createStatement();
 		} catch (SQLException e) {
@@ -108,14 +107,27 @@ public class mysqlConnection {
 					rs2.next();
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				}	
+				
+				stmt3 = con.prepareStatement("SELECT E.phase,E.state FROM icm.requestinphase E WHERE request_id=? AND state=?;");
+				stmt3.setInt(1, rs.getInt(7));
+				stmt3.setString(2, "work");
+				ResultSet rs3=stmt3.executeQuery();	
+                if(rs3.next()) {     
 				Date date1=null;
 				if(!Initiatorname.equals(null)) {
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-				}				
-				arr.add(s);
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));	
+					
+					
+				}	
+				arr.add(result);
+                }
+                stmt3=null;
 				stmt2=null;
 				s=null;
+				result=null;
 				rs2.close();
+				rs3.close();
 			}
 			rs.close();	 		
 		}catch (SQLException e) {
@@ -179,7 +191,6 @@ public class mysqlConnection {
 			stmt1=con.prepareStatement("SELECT R.* FROM icm.request R WHERE initiator_username=?;");
 			stmt1.setString(1, username);
 			ResultSet rs=stmt1.executeQuery();
-			System.out.println("ssssxxxxcccvvvv");
 			while(rs.next())
 	 		{
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
@@ -282,14 +293,11 @@ public class mysqlConnection {
 				stm.setInt(1, count);
 				stm.setString(2, username);
 				stm.executeUpdate();
-			}
-			
-			
+			}		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	public static ArrayList<Notification> getNotificationsForUser(Connection con, String username) {
 		PreparedStatement stm=null;
@@ -364,9 +372,7 @@ public class mysqlConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 	public static Request getRequestInfo(Connection con, int id) {
 		PreparedStatement stm1=null;
@@ -405,9 +411,6 @@ public class mysqlConnection {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return r;
-
-		
+		return r;		
 		}
-	
 }

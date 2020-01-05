@@ -108,7 +108,7 @@ public class InspectorHomeController implements Initializable{
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,inspector);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {

@@ -92,7 +92,7 @@ Submit.start(splitpane,Administrator);
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 ProfileSettingController Submit = new ProfileSettingController();
-Submit.start(splitpane);
+Submit.start(splitpane,Administrator);
 }
 
 public void MyRequestsAction(ActionEvent event) throws Exception {

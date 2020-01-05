@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -78,7 +79,7 @@ public class TesterHomeController implements Initializable {
 
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
-		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml");
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",Tester,"Tester");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -88,7 +89,7 @@ public class TesterHomeController implements Initializable {
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,Tester);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {

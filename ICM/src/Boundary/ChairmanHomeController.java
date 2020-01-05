@@ -96,7 +96,7 @@ public void RequestSubmissionAction(ActionEvent event) throws Exception {
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,chairman);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
