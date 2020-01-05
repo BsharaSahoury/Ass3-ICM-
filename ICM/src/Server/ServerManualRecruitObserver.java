@@ -2,19 +2,16 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
 import Entity.Employee;
 import Entity.Notification;
-import Entity.Request;
-import Entity.User;
 import ocsf.server.ConnectionToClient;
 
-public class serverSubmissionObserver implements Observer {
-	public serverSubmissionObserver(Observable server) {
+public class ServerManualRecruitObserver implements Observer {
+	public ServerManualRecruitObserver(Observable server) {
 		server.addObserver(this);
 	}
 
@@ -27,29 +24,32 @@ public class serverSubmissionObserver implements Observer {
 				Object[] arg3=(Object[])arg2[1];
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
-					if(keymessage.equals("submitRequest")) {
-						Request newRequest=(Request)arg3[1];
+					if(keymessage.equals("manualR")) {
+						String fullname=(String)arg3[1];
+						int id=(int)arg3[2];
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						newRequest=mysqlConnection.insertRequestToDB(con,newRequest);
-						if(newRequest != null) {
-							keymessage="sumbissionSucceeded";
-							Object[] message= {keymessage};
+						Employee evaluator=mysqlConnection.getSpecificEmployee(con,fullname);
+						boolean flag=mysqlConnection.assignEvaluatorToRequest(con, evaluator, id);
+						if(flag) {
+							Object[] message= {"evaluatorRecruit"};
 							try {
 								client.sendToClient(message);
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							Employee evaluator=mysqlConnection.getAutomaticRecruit(con,newRequest.getPrivilegedInfoSys());
-							String content="automatic recruit employee: "+evaluator.getFirstName()+" "+evaluator.getLastName()+" for request#"+newRequest.getId();
-							Date date=newRequest.getDate();
-							String type="recruitForInspector";
-							
-							Notification n1=new Notification(content,date,type);
+							long millis=System.currentTimeMillis();
+							Notification n1=new Notification(
+									"You've been recruited to evaluate request#"+id,
+									new java.sql.Date(millis),
+									"recruitNotificationForEvaluator");
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
-							mysqlConnection.insertRecruitNotificationForInspectorToDB(con,n1);
+							mysqlConnection.insertNotificationForUserToDB(con, n1,evaluator);
 						}
+						
+						
 					}
+					
 				}
 			}
 		}

@@ -49,7 +49,7 @@ public class AdministratorHomeController {
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
-					Parent root = FXMLLoader.load(getClass().getResource("/NewBoundary/Administrator-Home.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Administrator-Home.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
