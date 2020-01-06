@@ -14,7 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import Entity.Employee;
 import Entity.Notification;
+import Entity.Phase;
 import Entity.Request;
+import Entity.RequestPhase;
+import Entity.State;
 import Entity.Student;
 import Entity.User;
 
@@ -33,7 +36,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -513,6 +516,39 @@ public class mysqlConnection {
 		}
 		return r;
 
+	}
+
+	public static RequestPhase getRequestTrack(Connection con, int id) {
+		PreparedStatement stmRP=null;
+		PreparedStatement stmR=null;
+		RequestPhase rp=null;
+		Request r=null;
+
+		try {
+			stmR=con.prepareStatement("SELECT R.* FROM icm.request R WHERE id=?;");
+			stmR.setInt(1, id);
+			ResultSet rs1 = stmR.executeQuery();
+			if(rs1.next()) {
+				r=new Request(rs1.getInt(7), rs1.getString(9),rs1.getString(8),rs1.getString(1),rs1.getDate(6));
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			stmRP=con.prepareStatement(" SELECT RP.* FROM icm.requestinphase RP where request_id=? and state='work';");
+			stmRP.setInt(1, id);
+			ResultSet rs2 = stmRP.executeQuery();
+			if(rs2.next())
+			{
+				rp=new RequestPhase(rs2.getDate(4), rs2.getDate(5), r,Enum.valueOf(Phase.class, rs2.getString(2)) , Enum.valueOf(State.class, rs2.getString(7)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rp;
 	}
 
 }
