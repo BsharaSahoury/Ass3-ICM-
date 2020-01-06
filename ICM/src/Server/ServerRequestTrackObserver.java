@@ -9,6 +9,7 @@ import java.util.Observer;
 import DBconnection.mysqlConnection;
 import ocsf.server.ConnectionToClient;
 import Entity.Request;
+import Entity.RequestPhase;
 
 public class ServerRequestTrackObserver implements Observer {
 	public ServerRequestTrackObserver(Observable server) {
@@ -26,10 +27,11 @@ public class ServerRequestTrackObserver implements Observer {
 				if (keymessage.equals("Track request")) {
 					int id = (int) arg3[1];
 					Connection con = mysqlConnection.makeAndReturnConnection();
-					Request r = mysqlConnection.getRequestTrack(con, id);
+					RequestPhase rp = mysqlConnection.getRequestTrack(con, id);
+					System.out.println(rp.toString());
 					Object[] send = new Object[2];
 					send[0] = "Track request";
-					send[1] = r;
+					send[1] = rp;
 					try {
 						client.sendToClient(send);
 					} catch (IOException e) {

@@ -31,6 +31,7 @@ public class MainForServer {
 
         ServerRequestInfoObserver requestInfo =new ServerRequestInfoObserver(sv);
         RequestsWorkedOnObserver RequestWorkOn=new RequestsWorkedOnObserver(sv);
+        ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
 
 	      try {
 		   sv.listen();
