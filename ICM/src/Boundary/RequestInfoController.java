@@ -11,6 +11,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -32,11 +33,11 @@ public class RequestInfoController implements Initializable {
 	@FXML
 	private TextField lbSystem;
 	@FXML
-	private TextField lbSituation;
+	private TextArea lbSituation;
 	@FXML
-	private TextField lbChange;
+	private TextArea lbChange;
 	@FXML
-	private TextField lbComment;
+	private TextArea lbComment;
 	@FXML
 	private TextField InitiatorName;
 	@FXML
@@ -73,7 +74,7 @@ public class RequestInfoController implements Initializable {
 	}
 
 	public void SetInfo(Request r) {
-		InitiatorName.setText(r.getInitiatorName());
+		/*InitiatorName.setText(r.getInitiatorName());
 		InitiatorRole.setText(r.getInitiatorRole());
 		Date.setText(r.getDate().toString());
 		Email.setText(r.getInitiatorEmail());
@@ -81,7 +82,7 @@ public class RequestInfoController implements Initializable {
 		lbId.setText(Integer.toString(r.getId()));
 		lbSituation.setText(r.getExistingSituation());
 		lbChange.setText(r.getExplainRequest());
-		lbComment.setText(r.getComment());
+		lbComment.setText(r.getComment());*/
 	}
 
 	@Override
