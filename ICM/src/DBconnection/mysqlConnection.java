@@ -203,7 +203,6 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stmt1 = con.prepareStatement("SELECT R.* FROM icm.request R WHERE initiator_username=?;");
 			stmt1.setString(1, username);
 			ResultSet rs = stmt1.executeQuery();
-			System.out.println("ssssxxxxcccvvvv");
 			while (rs.next()) {
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
 				stmt2.setString(1, username);
