@@ -137,10 +137,10 @@ public class AllRequestsController implements Initializable {
 		chosenRequest=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosenRequest!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			System.out.println("00000000000");
+			System.out.println(s.getR().getId());
 			RequestInfoController requestifo = new RequestInfoController();
 			System.out.println("00000000000");
-	    	//requestifo.start(splitpane,s);
+	    	requestifo.start(splitpane,s.getR());
 		}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);

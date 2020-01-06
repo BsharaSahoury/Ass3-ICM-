@@ -74,7 +74,7 @@ public class RequestInfoController implements Initializable {
 	}
 
 	public void SetInfo(Request r) {
-		/*InitiatorName.setText(r.getInitiatorName());
+		InitiatorName.setText(r.getInitiatorName());
 		InitiatorRole.setText(r.getInitiatorRole());
 		Date.setText(r.getDate().toString());
 		Email.setText(r.getInitiatorEmail());
@@ -82,7 +82,7 @@ public class RequestInfoController implements Initializable {
 		lbId.setText(Integer.toString(r.getId()));
 		lbSituation.setText(r.getExistingSituation());
 		lbChange.setText(r.getExplainRequest());
-		lbComment.setText(r.getComment());*/
+		lbComment.setText(r.getComment());
 	}
 
 	@Override

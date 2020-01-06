@@ -60,10 +60,8 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="lbId" layoutX="104.0" layoutY="13.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-insets: 8888;" />
+                        <TextField fx:id="lbId" layoutX="99.0" layoutY="1.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-insets: 8888;" />
                         <TextField fx:id="lbSystem" layoutX="223.0" layoutY="50.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-insets: 8888;" />
-                        <TextField fx:id="lbChange" layoutX="250.0" layoutY="150.0" prefHeight="1.0" prefWidth="422.0" style="-fx-background-insets: 8888;" />
-                        <TextField fx:id="lbComment" layoutX="92.0" layoutY="215.0" prefHeight="1.0" prefWidth="446.0" style="-fx-background-insets: 8888;" />
                         <TextArea fx:id="lbSituation" layoutX="35.0" layoutY="112.0" prefHeight="76.0" prefWidth="521.0" />
                         <TextArea fx:id="lbChange" layoutX="35.0" layoutY="215.0" prefHeight="76.0" prefWidth="521.0" />
                         <TextArea fx:id="lbComment" layoutX="35.0" layoutY="323.0" prefHeight="76.0" prefWidth="521.0" />
