@@ -31,7 +31,7 @@ public class ServerAllRequestsObserver implements Observer {
 			String[] Message=(String[])args[1];
 			if(Message[0].equals("All Requests")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				ArrayList<Request> arr=mysqlConnection.getDataFromDB(con);
+				ArrayList<RequestPhase> arr=mysqlConnection.getDataFromDB(con);
 				Object[] send=new Object[3];
 				send[0]="All Requests";
 				send[1]=arr;

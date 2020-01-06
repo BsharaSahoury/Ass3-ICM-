@@ -129,6 +129,7 @@ public class InspectorHomeController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+		//AboutICMbtn.setFocusTraversable(true);
     }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();

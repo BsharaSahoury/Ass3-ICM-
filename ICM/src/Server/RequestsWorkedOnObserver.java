@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import DBconnection.mysqlConnection;
 import Entity.Request;
+import Entity.RequestPhase;
 import Entity.User;
 import ocsf.server.ConnectionToClient;
 
@@ -28,7 +29,7 @@ public class RequestsWorkedOnObserver implements Observer {
 			String[] Message=(String[])args[1];
 			if(Message.length==3 && Message[0].equals("Requests worked on")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				ArrayList<Request> arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
+				ArrayList<RequestPhase> arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
 				Object[] send=new Object[3];
 				send[0]="Requests worked on";
 				send[1]=arr;
