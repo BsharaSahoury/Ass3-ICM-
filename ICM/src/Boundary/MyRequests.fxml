@@ -44,13 +44,13 @@
       </Button>
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
-      <ComboBox fx:id="combo1" layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
+      <ComboBox fx:id="Groupby" layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
       <Button fx:id="requestInfo" layoutX="466.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="groupbyBtn" layoutX="193.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
+      <Button fx:id="groupbyBtn" layoutX="193.0" layoutY="83.0" mnemonicParsing="false" onAction="#GroupbyAction" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

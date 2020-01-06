@@ -99,7 +99,7 @@ public class mysqlConnection {
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
 				stmt2.setString(1, rs.getString(9));	
 				ResultSet rs2=stmt2.executeQuery();	
-				rs2.next();
+				if(rs2.next())
 				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				if(Initiatorname.equals(null)) {
 					stmt2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
@@ -137,16 +137,16 @@ public class mysqlConnection {
 		}		
 		return arr;
 	}
-	public static ArrayList<Request> getRequestsWorkOn(Connection con,String username,String job) {
+	public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String username,String job) {
 		String Initiatorname=null;
-		ArrayList<Request> arr = new ArrayList<Request>();
-		ArrayList<Integer> arr2 = new ArrayList<Integer>();
+		ArrayList<RequestPhase> arr = new ArrayList<RequestPhase>();
 		PreparedStatement stmt1 = null;
 		PreparedStatement stmt2=null;
 		PreparedStatement stmt3=null;
 		Request s=null;
+		RequestPhase result=null;
 		try {
-			stmt1=con.prepareStatement("SELECT DISTINCT R.request_id FROM icm.requestinphase R WHERE phase_administrator=?;");
+			stmt1=con.prepareStatement("SELECT DISTINCT R.* FROM icm.requestinphase R WHERE phase_administrator=?;");
 			stmt1.setString(1, username);	
 			ResultSet rs=stmt1.executeQuery();
 			while(rs.next())
@@ -154,21 +154,25 @@ public class mysqlConnection {
 				stmt2 = con.prepareStatement("SELECT E.* FROM icm.employee E WHERE username=?;");
 				stmt2.setString(1, username);	
 				ResultSet rs2=stmt2.executeQuery();	
-				rs2.next();
+				if(rs2.next())
 				Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				if(Initiatorname.equals(null)) {			
 					stmt2 = con.prepareStatement("SELECT E.* FROM icm.student E WHERE username=?;");
-					stmt2.setString(1, rs.getString(9));
+					stmt2.setString(1, username);
 					rs2=stmt2.executeQuery();	
-					rs2.next();
+					if(rs2.next())
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				}	
+			
 				stmt3 = con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
 				stmt3.setInt(1, rs.getInt(1));	
 				ResultSet rs3=stmt3.executeQuery();	
-				rs3.next();
-				if(!rs3.equals(null)&&!Initiatorname.equals(null)) {
-					arr.add(new Request(rs3.getInt(7),Initiatorname,rs3.getString(8),rs3.getString(1),rs3.getDate(6)));
+				if(rs3.next()) {
+				if(!Initiatorname.equals(null)) {
+					s=new Request(rs3.getInt(7),Initiatorname,rs3.getString(8),rs3.getString(1),rs3.getDate(6));
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs.getString(2)),State.valueOf(rs.getString(7)));	
+					arr.add(result);
+				}
 				}
 				stmt2=null;
 				stmt3=null;
@@ -180,6 +184,7 @@ public class mysqlConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+		System.out.println(arr.get(0));
 		return arr;
 	}
 	public static ArrayList<Request> getmyRequestFromDB(Connection con,String username) {

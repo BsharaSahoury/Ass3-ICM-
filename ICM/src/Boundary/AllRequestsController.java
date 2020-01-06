@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 
 
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -69,7 +70,7 @@ public class AllRequestsController implements Initializable {
 	private static int chosengroupbytype=-1;
 	private static ObservableList<RequestPhase> list;
 	private static ArrayList<RequestPhase> arrofRequests;
-	private String job;
+	private static String job;
 	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed","All");
 	public void start(SplitPane splitpane,String path,String job) {
 		this.job=job;
@@ -115,19 +116,22 @@ public class AllRequestsController implements Initializable {
 				groupbystatus="closed";
 			else if(chosengroupbytype==3)
 				groupbystatus="All";
-			if(groupbystatus.equals("All")) {
+			if(groupbystatus.equals("All")&&job.equals("Inspector")) {
 				InspectorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arrofRequests));
+			}
+			else if(groupbystatus.equals("All")&&job.equals("Administrator")) {
+				AdministratorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arrofRequests));	
 			}
 			else {
 			for(int i=0;i<arrofRequests.size();i++) 
 				if((arrofRequests.get(i)).getStatus().equals(groupbystatus))
 					arr.add(arrofRequests.get(i));	
-			//if(job.equals("Inspector"))
+			if(job.equals("Inspector"))
 			InspectorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
-			}
-			//else
-			//AdministratorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));	
-		}		
+			else
+			AdministratorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));	
+			}		
+	}
 	}
 	public void RequestInfoAction(ActionEvent e) {
 		chosenRequest=tableRequests.getSelectionModel().getSelectedIndex();
