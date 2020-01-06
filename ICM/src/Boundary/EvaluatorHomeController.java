@@ -97,9 +97,10 @@ public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
 	MyRequests.start(splitpane,evaluator,"Evaluator");
 }
+
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(splitpane);
+	Submit.start(splitpane,evaluator);
 }
 
 public void AboutICMAction(ActionEvent event) throws Exception {

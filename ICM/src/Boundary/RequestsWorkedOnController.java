@@ -71,10 +71,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<Request> arr1){
-		
-		System.out.println(arr1.get(0));
 		if(!arr1.equals(null)) {
-			System.out.println("sssss");
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
 		}

@@ -1,9 +1,9 @@
 package Entity;
 
 public enum Phase {
-	Evaluation,
-	Decision,
-	Performance,
-	Testing,
-	Closed;
+	evaluation,
+	decision,
+	performance,
+	testing,
+	closed;
 }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import Entity.Employee;
 import Entity.Notification;
 import Entity.Request;
-import Entity.RequestPhase;
 import Entity.Student;
 import Entity.User;
 
@@ -23,8 +22,7 @@ public class mysqlConnection {
 	private static Connection conn = null;
 	private static int count = 0;
 
-	// this method creates and returns a connection to the relevant schema in the
-	// database that we would like to work with
+//this method creates and returns a connection to the relevant schema in the database that we would like to work with
 	public static Connection makeAndReturnConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -35,8 +33,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root",
-					"ahmed1234567891");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -76,7 +73,7 @@ public class mysqlConnection {
 				return student1;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -93,7 +90,7 @@ public class mysqlConnection {
 		try {
 			stmt1 = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -123,7 +120,7 @@ public class mysqlConnection {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return arr;
@@ -170,7 +167,7 @@ public class mysqlConnection {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return arr;
@@ -210,7 +207,7 @@ public class mysqlConnection {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return arr;
@@ -258,7 +255,7 @@ public class mysqlConnection {
 				stm.setBytes(10, request.getMyFile().getMybyterray());
 			stm.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -293,7 +290,7 @@ public class mysqlConnection {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -312,7 +309,7 @@ public class mysqlConnection {
 			}
 			return Nlist;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -328,7 +325,7 @@ public class mysqlConnection {
 				return new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -353,7 +350,7 @@ public class mysqlConnection {
 			n1.setId(count);
 			return n1;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -374,7 +371,7 @@ public class mysqlConnection {
 				stm.executeUpdate();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -394,7 +391,7 @@ public class mysqlConnection {
 				return evaluator;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -404,17 +401,18 @@ public class mysqlConnection {
 	public static boolean assignEvaluatorToRequest(Connection con, Employee evaluator, int id) {
 		PreparedStatement stm = null;
 		try {
-			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?);");
+			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, "evaluation");
 			stm.setInt(3, 0);
 			stm.setDate(4, null);
 			stm.setDate(5, null);
 			stm.setString(6, evaluator.getUsername());
+			stm.setString(7, "wait");
 			stm.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -434,7 +432,7 @@ public class mysqlConnection {
 			}
 			return list;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -453,7 +451,7 @@ public class mysqlConnection {
 				return new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -468,7 +466,7 @@ public class mysqlConnection {
 			stm.setString(2, employee.getUsername());
 			stm.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -510,16 +508,11 @@ public class mysqlConnection {
 				rs2.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return r;
 
 	}
 
-	public static Request getRequestTrack(Connection con, int id) {
-		PreparedStatement stm1=null;
-		RequestPhase r=null;
-	}
-	
 }

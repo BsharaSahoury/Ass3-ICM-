@@ -25,19 +25,19 @@
             <Label layoutX="255.0" layoutY="360.0" text="EmployeeName" />
             <Label layoutX="121.0" layoutY="206.0" />
             <Label layoutX="183.0" layoutY="413.0" text="Role : " textFill="#530101" />
-            <CheckBox layoutX="181.0" layoutY="440.0" mnemonicParsing="false" text="allow recieving messages through SMS" />
-            <CheckBox layoutX="181.0" layoutY="469.0" mnemonicParsing="false" text="allow recieving messages through Gmail" />
+            <CheckBox fx:id="allowrecSMS" layoutX="181.0" layoutY="440.0" mnemonicParsing="false" text="allow recieving messages through SMS" />
+            <CheckBox fx:id="allowrecGmail" layoutX="181.0" layoutY="469.0" mnemonicParsing="false" text="allow recieving messages through Gmail" />
             <Label layoutX="254.0" layoutY="413.0" text="EmployeeRole" />
             <Label layoutX="184.0" layoutY="500.0" text="Upload profile picture: " />
-            <TextField layoutX="313.0" layoutY="496.0" promptText="Destination" />
-            <Button layoutX="471.0" layoutY="496.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
-            <Button layoutX="436.0" layoutY="546.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Apply and save" textFill="#ffffff" />
+            <TextField fx:id="textfileddestination" layoutX="313.0" layoutY="496.0" promptText="Destination" />
+            <Button fx:id="browsbtn" layoutX="471.0" layoutY="496.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
+            <Button fx:id="applyandsavebtn" layoutX="436.0" layoutY="546.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Apply and save" textFill="#ffffff" />
             <Label layoutX="184.0" layoutY="168.0" text="ID : " textFill="#530101">
                <font>
                   <Font size="14.0" />
                </font></Label>
             <Label layoutX="256.0" layoutY="336.0" text="EmployeeID" />
-            <TextField layoutX="182.0" layoutY="190.0" prefHeight="30.0" prefWidth="279.0" promptText="EmployeeID" style="-fx-background-radius: 13; -fx-background-insets: 0.5;" text="208453118">
+            <TextField fx:id="textfield" layoutX="182.0" layoutY="190.0" prefHeight="30.0" prefWidth="279.0" promptText="EmployeeID" style="-fx-background-radius: 13; -fx-background-insets: 0.5;" text="208453118">
                <font>
                   <Font size="14.0" />
                </font>

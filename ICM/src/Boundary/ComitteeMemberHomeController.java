@@ -92,7 +92,7 @@ public class ComitteeMemberHomeController implements Initializable {
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,comitteeMember);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
