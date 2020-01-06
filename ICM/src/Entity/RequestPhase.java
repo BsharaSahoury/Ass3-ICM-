@@ -3,17 +3,18 @@ package Entity;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class RequestPhase  implements Serializable {
+public class RequestPhase  extends Request implements Serializable{
 /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 private Date startDate;
 private Date dueDate;
 private Request r;
 private Phase phase;
 private State phasestate;
 public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State phasestate) {
+	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate());
 	this.phase=phase;
 	this.r=r;
 	this.startDate = startDate;
