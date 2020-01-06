@@ -53,7 +53,7 @@ public class MyRequestsController implements Initializable {
 		@FXML
         private Button groupbyBtn;
 		@FXML
-		private Button requestInfo;
+		private Button TrackRequest;
 		@FXML
 		private Button refresh;
 		@FXML 
@@ -101,11 +101,11 @@ public class MyRequestsController implements Initializable {
 		loader.<MyRequestsController>getController().setTableRequests(arr1);
 			
 		}
-		public void RequestInfoAction() {
+		public void TrackRequestAction() {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();
 			if(chosen!=-1) {
 				Request s =tableRequests.getSelectionModel().getSelectedItem();
-				RequestInfoController requestifo = new RequestInfoController();
+				RequestTrackController requestifo = new RequestTrackController();
 		    	requestifo.start(splitpane,s);
 			}
 			else {

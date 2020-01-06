@@ -1,6 +1,8 @@
 package Entity;
 
-public enum Phase {
+import java.io.Serializable;
+
+public enum Phase implements Serializable {
 	evaluation,
 	decision,
 	performance,
