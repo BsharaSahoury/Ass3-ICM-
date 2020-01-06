@@ -397,13 +397,14 @@ public class mysqlConnection {
 	public static boolean assignEvaluatorToRequest(Connection con, Employee evaluator, int id) {
 		PreparedStatement stm=null;
 		try {
-			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?);");
+			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2,"evaluation");
 			stm.setInt(3,0);
 			stm.setDate(4,null);
 			stm.setDate(5, null);
 			stm.setString(6, evaluator.getUsername());
+			stm.setString(7,"wait");
 			stm.executeUpdate();
 			return true;
 		} catch (SQLException e) {

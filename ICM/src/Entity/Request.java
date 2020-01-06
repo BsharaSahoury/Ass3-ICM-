@@ -96,6 +96,7 @@ java.sql.Date date) {
 	this.reason = reason;
 	this.comment = comment;
 	this.date = date;
+	this.myfile=myfile;
 }
 public User getInitiator() {
 	return initiator;
