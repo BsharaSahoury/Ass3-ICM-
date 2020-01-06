@@ -1,6 +1,7 @@
 package Boundary;
 import javafx.collections.FXCollections;  
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -22,7 +23,9 @@ import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Employee;
+import Entity.Phase;
 import Entity.Request;
+import Entity.RequestPhase;
 import Entity.User;
 import javafx.fxml.*;
 public class MyRequestsController implements Initializable {
@@ -40,9 +43,9 @@ public class MyRequestsController implements Initializable {
 		@FXML
 		private TableColumn colSubDate;
 		@FXML
-		private TableView<Request> tableRequests;
+		private TableColumn colPhase;
 		@FXML
-		private ComboBox combo1;
+		private TableView<Request> tableRequests;
 		@FXML
 		private TextField searchID;
 		@FXML
@@ -50,19 +53,25 @@ public class MyRequestsController implements Initializable {
 		@FXML
         private Button groupbyBtn;
 		@FXML
-		private Button requestInfo;
+		private Button TrackRequest;
 		@FXML
 		private Button refresh;
 		@FXML 
 		private Button question;
 		@FXML
 		private static SplitPane splitpane;
+		@FXML
+		private ComboBox Groupby;
 		private static int chosen=-1;
-		ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed");
+		private static ArrayList<Request> arrofRequests;
+		ObservableList<String> statuslist = FXCollections.observableArrayList("Active","Frozen","Closed","All");
 		private static ObservableList<Request> list;
 		private FXMLLoader loader;
+		private static String job;
+		private static int chosengroupbytype=-1;
 		public void start(SplitPane splitpane,User user,String job)  {
 			this.splitpane=splitpane;
+			this.job=job;
 			primaryStage=LoginController.primaryStage;
 			String[] myRequests=new String[3];
 			this.cc=LoginController.cc;
@@ -87,15 +96,16 @@ public class MyRequestsController implements Initializable {
 			}
 		}
 		public void fillTable(ArrayList<Request> arr1) {
+		arrofRequests=arr1;	
 			// TODO Auto-generated method stub
 		loader.<MyRequestsController>getController().setTableRequests(arr1);
 			
 		}
-		public void RequestInfoAction() {
+		public void TrackRequestAction() {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();
 			if(chosen!=-1) {
 				Request s =tableRequests.getSelectionModel().getSelectedItem();
-				RequestInfoController requestifo = new RequestInfoController();
+				RequestTrackController requestifo = new RequestTrackController();
 		    	requestifo.start(splitpane,s);
 			}
 			else {
@@ -109,9 +119,61 @@ public class MyRequestsController implements Initializable {
 		public static int getselectedindex() {
 			return chosen;
 		}
+		
+		public void GroupbyAction(ActionEvent e) {
+			chosengroupbytype=Groupby.getSelectionModel().getSelectedIndex();
+			String groupbystatus=null;
+			ArrayList<Request> arr=new ArrayList<Request>();
+			if(chosengroupbytype!=-1) {
+				if(chosengroupbytype==0)
+					groupbystatus="active";
+				else if(chosengroupbytype==1)
+					groupbystatus="frozen";
+				else if(chosengroupbytype==2)
+					groupbystatus="closed";
+				else if(chosengroupbytype==3)
+					groupbystatus="All";
+				if(groupbystatus.equals("All")) {
+					arr=arrofRequests;
+				}else {
+					for(int i=0;i<arrofRequests.size();i++) 
+						if((arrofRequests.get(i)).getStatus().equals(groupbystatus))
+							arr.add(arrofRequests.get(i));	
+				}
+				if(!arr.equals(null)) {
+					switch(job) {
+					case "Inspector":
+						InspectorHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Evaluator":
+						EvaluatorHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Comittee Member":
+						ComitteeMemberHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Chairman":
+						ChairmanHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Lecturer":
+						LecturerHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Tester":
+						TesterHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Administrator":
+						AdministratorHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					case "Student":
+						StudentHomeController.MyRequests.loader.<MyRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+						break;
+					}
+				}	
+		}
+		}
+		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		    combo1.setItems(statuslist);
+		    Groupby.setItems(statuslist);
 			colID.setCellValueFactory(new PropertyValueFactory<Request,Integer>("id"));
 			colName.setCellValueFactory(new PropertyValueFactory<Request,String>("initiatorName"));
 			colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));		

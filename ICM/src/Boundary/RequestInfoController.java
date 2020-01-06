@@ -11,6 +11,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -32,11 +33,11 @@ public class RequestInfoController implements Initializable {
 	@FXML
 	private TextField lbSystem;
 	@FXML
-	private TextField lbSituation;
+	private TextArea lbSituation;
 	@FXML
-	private TextField lbChange;
+	private TextArea lbChange;
 	@FXML
-	private TextField lbComment;
+	private TextArea lbComment;
 	@FXML
 	private TextField InitiatorName;
 	@FXML

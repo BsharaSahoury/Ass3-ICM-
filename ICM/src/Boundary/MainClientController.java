@@ -20,6 +20,7 @@ import Client.ClientObserver;
 import Client.ClientRecruitEvaluatorObserver;
 
 import Client.ClientRequestInfoObserver;
+import Client.ClientRequestTrack;
 import Client.ClientRequestsWorkedOnObserver;
 
 import Client.ClientSubmissionObserver;
@@ -53,6 +54,7 @@ public class MainClientController {
 			ClientGetEvaluatorsObserver cgeo=new ClientGetEvaluatorsObserver(cc.getClient());
 			ClientRequestInfoObserver cri= new ClientRequestInfoObserver(cc.getClient());
 			ClientRequestsWorkedOnObserver ss=new ClientRequestsWorkedOnObserver(cc.getClient());
+			ClientRequestTrack rt=new ClientRequestTrack(cc.getClient());
 
 			cc.getClient().openConnection();
 			wrong.setVisible(false);

@@ -3,6 +3,8 @@ package Boundary;
 import javafx.collections.FXCollections;
 
 
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,14 +37,16 @@ import java.util.ResourceBundle;
 
 import javafx.scene.layout.Pane;
 import Client.ClientConsole;
+import Entity.Phase;
 import Entity.Request;
+import Entity.RequestPhase;
 
 public class AllRequestsController implements Initializable {
 	public static Stage primaryStage;
 	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
 	@FXML
-	private TableView<Request> tableRequests;	
+	private TableView<RequestPhase> tableRequests;	
 	@FXML 
 	private TableColumn colID;
 	@FXML
@@ -53,16 +58,22 @@ public class AllRequestsController implements Initializable {
 	@FXML
 	private TableColumn colSubDate;
 	@FXML
+	private TableColumn colPhase;
+	@FXML
 	private Button RequestInfo;
 	private static SplitPane splitpane;
 	@FXML
 	private ComboBox Groupby;
 	private FXMLLoader loader;
 	private TableView<Request> tabl;
-	private static int chosen=-1;
-	private static ObservableList<Request> list;
-	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed");
+	private static int chosenRequest=-1;
+	private static int chosengroupbytype=-1;
+	private static ObservableList<RequestPhase> list;
+	private static ArrayList<RequestPhase> arrofRequests;
+	private static String job;
+	ObservableList<String> statuslist=FXCollections.observableArrayList("Active","Frozen","Closed","All");
 	public void start(SplitPane splitpane,String path,String job) {
+		this.job=job;
 		primaryStage=LoginController.primaryStage;
 		this.cc=LoginController.cc;
 		String[] AllRequests=new String[2];
@@ -78,23 +89,58 @@ public class AllRequestsController implements Initializable {
 			e.printStackTrace();
 		}	
 	}
-	public void setTableRequests(ArrayList<Request> arr1){
-		list=FXCollections.observableArrayList(arr1);	
+	public void setTableRequests(ArrayList<RequestPhase> arr1){
+		list=FXCollections.observableArrayList(arr1);
 		//tableRequests.setStyle("-fx-alignment: CENTER;");
        // colName.set
 		tableRequests.setItems(list);
 	}
-	public void fillTable(ArrayList<Request> arr1) {
+	public void fillTable(ArrayList<RequestPhase> arr1) {
+		arrofRequests=arr1;
 			// TODO Auto-generated method stub
+		//ArrayList<RequestPhase> arr=new ArrayList<RequestPhase>();
+		//arr.add(new RequestPhase(null,null,arr1.get(0),Phase.Closed));
 		loader.<AllRequestsController>getController().setTableRequests(arr1);
 			
 		}
-	public void RequestInfoAction() {
-		chosen=tableRequests.getSelectionModel().getSelectedIndex();
-		if(chosen!=-1) {
-			Request s =tableRequests.getSelectionModel().getSelectedItem();
+	public void GroupbyAction(ActionEvent e) {
+		chosengroupbytype=Groupby.getSelectionModel().getSelectedIndex();
+		String groupbystatus=null;
+		ArrayList<RequestPhase> arr=new ArrayList<RequestPhase>();
+		if(chosengroupbytype!=-1) {
+			if(chosengroupbytype==0)
+				groupbystatus="active";
+			else if(chosengroupbytype==1)
+				groupbystatus="frozen";
+			else if(chosengroupbytype==2)
+				groupbystatus="closed";
+			else if(chosengroupbytype==3)
+				groupbystatus="All";
+			if(groupbystatus.equals("All")&&job.equals("Inspector")) {
+				InspectorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arrofRequests));
+			}
+			else if(groupbystatus.equals("All")&&job.equals("Administrator")) {
+				AdministratorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arrofRequests));	
+			}
+			else {
+			for(int i=0;i<arrofRequests.size();i++) 
+				if((arrofRequests.get(i)).getStatus().equals(groupbystatus))
+					arr.add(arrofRequests.get(i));	
+			if(job.equals("Inspector"))
+			InspectorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));
+			else
+			AdministratorHomeController.AllRequests.loader.<AllRequestsController>getController().tableRequests.setItems(FXCollections.observableArrayList(arr));	
+			}		
+	}
+	}
+	public void RequestInfoAction(ActionEvent e) {
+		chosenRequest=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosenRequest!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			System.out.println(s.getR().getId());
 			RequestInfoController requestifo = new RequestInfoController();
-	    	requestifo.start(splitpane,s);
+			System.out.println("00000000000");
+	    	requestifo.start(splitpane,s.getR());
 		}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);
@@ -105,15 +151,15 @@ public class AllRequestsController implements Initializable {
 	        }
 	}
 	public static int getselectedindex() {
-		return chosen;
+		return chosenRequest;
 	}
 	
-	public static ObservableList<Request> getList(){
+	public static ObservableList<RequestPhase> getList(){
 		return list;
 	}
-	public void RequestTreatmentAction() {
-		chosen=tableRequests.getSelectionModel().getSelectedIndex();
-		if(chosen!=-1) {
+	public void RequestTreatmentAction(ActionEvent e) {
+		chosenRequest=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosenRequest!=-1) {
 		RequestTreatmentAction Treatment = new RequestTreatmentAction();
 		Treatment.start(splitpane);
 		}
@@ -128,11 +174,12 @@ public class AllRequestsController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Groupby.setItems(statuslist);
-		colID.setCellValueFactory(new PropertyValueFactory<Request,Integer>("id"));
-		colName.setCellValueFactory(new PropertyValueFactory<Request,String>("initiatorName"));
-		colStatus.setCellValueFactory(new PropertyValueFactory<Request,String>("status"));		
-		colPriflig.setCellValueFactory(new PropertyValueFactory<Request,String>("privilegedInfoSys"));
-		colSubDate.setCellValueFactory(new PropertyValueFactory<Request,Date>("date"));
+		colID.setCellValueFactory(new PropertyValueFactory<RequestPhase,Integer>("id"));
+		colName.setCellValueFactory(new PropertyValueFactory<RequestPhase,String>("initiatorName"));
+		colStatus.setCellValueFactory(new PropertyValueFactory<RequestPhase,String>("status"));		
+		colPriflig.setCellValueFactory(new PropertyValueFactory<RequestPhase,String>("privilegedInfoSys"));
+		colSubDate.setCellValueFactory(new PropertyValueFactory<RequestPhase,Date>("date"));
+		colPhase.setCellValueFactory(new PropertyValueFactory<RequestPhase,Phase>("phase"));
 		//this.tabl=tableRequests;
 		//ObservableList<Request> aa=FXCollections.observableArrayList();
 		//aa.add(new Request(1,"sss","xxx","Qqqq",LocalDate.of(1915, Month.SEPTEMBER, 1)));

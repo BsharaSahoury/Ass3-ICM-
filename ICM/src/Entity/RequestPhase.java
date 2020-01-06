@@ -1,17 +1,25 @@
 package Entity;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.sql.Date;
 
-public class RequestPhase {
+public class RequestPhase  extends Request implements Serializable{
+/**
+	 * 
+	 */
+private static final long serialVersionUID = 1L;
 private Date startDate;
 private Date dueDate;
 private Request r;
 private Phase phase;
-public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase) {
+private State phasestate;
+public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State phasestate) {
+	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate());
 	this.phase=phase;
 	this.r=r;
 	this.startDate = startDate;
 	this.dueDate = dueDate;
+	this.phasestate=phasestate;
 }
 public Date getStartDate() {
 	return startDate;
@@ -37,6 +45,9 @@ public Phase getPhase() {
 public void setPhase(Phase phase) {
 	this.phase = phase;
 }
+public State getState() {
+	return phasestate;
+}
 public boolean Extension(Date newDueDate)
 {
 	if(newDueDate.compareTo(dueDate)<0) {
@@ -45,5 +56,9 @@ public boolean Extension(Date newDueDate)
 	}
 	setDueDate(newDueDate);
 	return true;
+}
+@Override
+public String toString() {
+	return "phase"+phase.toString()+"state"+phasestate;
 }
 }

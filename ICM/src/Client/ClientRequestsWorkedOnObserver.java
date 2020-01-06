@@ -17,6 +17,7 @@ import Boundary.RequestsWorkedOnController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
 import Entity.Request;
+import Entity.RequestPhase;
 import Entity.User;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -37,7 +38,7 @@ public class ClientRequestsWorkedOnObserver implements Observer{
 				String message=(String) send[0];
 				if(message.equals("Requests worked on")) {
 					if(send[1] instanceof ArrayList<?>) {					
-					ArrayList<Request> arr=(ArrayList<Request>)send[1];
+					ArrayList<RequestPhase> arr=(ArrayList<RequestPhase>)send[1];
 					if(send[2] instanceof String) {
 					String job=(String)send[2];
 					if(job.equals("Evaluator")) 
