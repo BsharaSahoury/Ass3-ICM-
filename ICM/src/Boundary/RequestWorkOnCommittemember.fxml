@@ -29,11 +29,12 @@
       <Label layoutX="121.0" layoutY="206.0" />
       <TableView fx:id="tableRequests" layoutX="-3.0" layoutY="142.0" prefHeight="367.0" prefWidth="729.0" stylesheets="@css1.css">
          <columns>
-            <TableColumn fx:id="colID" prefWidth="161.0" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="115.0" text="InitiatorName" />
-            <TableColumn fx:id="colStatus" prefWidth="109.0" text="Status" />
-            <TableColumn fx:id="colPriflig" prefWidth="206.0" text="Prifileged Information System" />
-            <TableColumn fx:id="colSubDate" prefWidth="125.0" text="SubmissionDate" />
+            <TableColumn fx:id="colID" prefWidth="137.0" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="109.0" text="InitiatorName" />
+            <TableColumn fx:id="colStatus" prefWidth="92.0" text="Status" />
+            <TableColumn fx:id="colPriflig" prefWidth="185.0" text="Prifileged Information System" />
+            <TableColumn fx:id="colSubDate" prefWidth="119.0" text="SubmissionDate" />
+            <TableColumn fx:id="colState" prefWidth="86.0" text="State" />
          </columns>
       </TableView>
       <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
@@ -44,7 +45,7 @@
       </Button>
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
-      <ComboBox fx:id="Groupby" layoutX="25.0" layoutY="83.0" prefWidth="150.0" />
+      <ComboBox fx:id="Groupby" layoutX="25.0" layoutY="83.0" prefWidth="150.0" promptText="State" />
       <Button fx:id="RequestInfo" layoutX="466.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -55,7 +56,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="193.0" layoutY="83.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
+      <Button layoutX="193.0" layoutY="83.0" mnemonicParsing="false" onAction="#GroupbyAction" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #9d1b34;" text="Group By" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
