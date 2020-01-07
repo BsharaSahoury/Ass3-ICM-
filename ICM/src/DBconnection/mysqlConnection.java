@@ -36,7 +36,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ayman1234567891");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -420,6 +420,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 	public static boolean assignEvaluatorToRequest(Connection con, Employee evaluator, int id) {
 		PreparedStatement stm = null;
 		try {
+
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, "evaluation");
