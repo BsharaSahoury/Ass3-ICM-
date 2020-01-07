@@ -577,10 +577,12 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			
 			try {
 				
-				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase;");
+				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=?;");
+				stm.setInt(1, id);
 				ResultSet rs = stm.executeQuery();	
 	            if(rs.next()) {
 	            	maxRepetion = rs.getInt(1);
+	            	System.out.println(rs.getInt(1));
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
 						+ " SET start_date = ?, due_date = ?,state='work' "
 						+ "WHERE (request_id = ? and phase='evaluation' and repetion=?);");

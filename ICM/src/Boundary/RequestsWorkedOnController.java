@@ -66,6 +66,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private static String job;
 	public static RequestsWorkedOnController ctrl1;
 	public static MakeDicisionController decision;
+	private static int id;
+	private static String system;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
 	public static  FXMLLoader loader;
 	private User user;
@@ -150,7 +152,7 @@ public class RequestsWorkedOnController implements Initializable {
 			if(s.getState().equals(State.wait))
 			{
 			SetDurationController setDuration = new SetDurationController();
-			setDuration.start(splitpane,s);
+			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
 			}
 			else {
 				 Alert alertWarning = new Alert(AlertType.WARNING);
@@ -184,6 +186,13 @@ public class RequestsWorkedOnController implements Initializable {
 	public static int getselectedindex() {
 		return chosen;
 	}
+	public static int getId()
+	{
+		return id;
+	}
+	public static String getSystem() {
+		return system;
+	}
 	public void MakeDecisionAction()
 	{		
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
@@ -199,6 +208,37 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.setContentText("please choose requset");
 	        alertWarning.showAndWait();
 	        }
+	}
+	public void EvaluationReportAction() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			id=s.getId();
+			System.out.println(s.getState().toString());
+			System.out.println(State.work.toString());
+			if(s.getState().toString().equals(State.work.toString()))
+			{
+			CreateEvaluationReportController requestifo = new CreateEvaluationReportController();
+	    	requestifo.start(splitpane,s.getId());
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.WARNING);
+			        alertWarning.setTitle("Warning Alert Title");
+			        alertWarning.setHeaderText("Warning!");
+			        alertWarning.setContentText("The Request should be in state work");
+			        alertWarning.showAndWait();
+			}
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
+	public static ObservableList<RequestPhase> getList(){
+		return list;
 	}
 
 	public void InsertTestResultAction()

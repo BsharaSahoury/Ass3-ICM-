@@ -33,14 +33,14 @@ public class SetDurationController implements Initializable {
 	private Button save;
 	private static Request r;
 
-	public void start(SplitPane splitpane, Request r) {
+	public void start(SplitPane splitpane, Request r,String path) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.r = r;
 
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Duration.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			duratin = loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
@@ -53,7 +53,7 @@ public class SetDurationController implements Initializable {
 		LocalDate start = startDate.getValue();
 		LocalDate due = dueDate.getValue();
 		LocalDate today = LocalDate.now();
-		if (start!=null && due!=null & due.compareTo(start) >= 0 && start.compareTo(today) > 0) {
+		if (start!=null && due!=null & due.compareTo(start) >= 0 && start.compareTo(today) >=0) {
 			try {
 				String keymessage = "save duration";
 				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
@@ -61,6 +61,7 @@ public class SetDurationController implements Initializable {
 				Object[] message = { keymessage, r.getId(), d };
 
 				LoginController.cc.getClient().sendToServer(message);
+				save.setDisable(true);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
