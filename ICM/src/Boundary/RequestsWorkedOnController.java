@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
@@ -128,6 +129,29 @@ public class RequestsWorkedOnController implements Initializable {
 				}
 			}		
 	      }
+	}
+	public void SetDuration() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			if(s.getState().equals(State.wait))
+			{
+			SetDurationController setDuration = new SetDurationController();
+			setDuration.start(splitpane,s);
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.WARNING);
+			        alertWarning.setContentText("you have add duration before");
+			        alertWarning.showAndWait();
+			}
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
 	}
 	public void RequestInfoAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();

@@ -567,4 +567,21 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		return rp;
 	}
 
+	public static void insertDate(Connection con, int id, String[] d) {
+		d[0] = d[0].replaceAll("(\\r|\\n)", "");
+        d[1] = d[1].replaceAll("(\\r|\\n)", "");
+			try {
+				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
+						+ " SET start_date = ?, due_date = ?,state='work' "
+						+ "WHERE (request_id = ? and phase='evaluation');");
+				stm1.setString(1, d[0]);
+				stm1.setString(2,d[1]);
+				stm1.setInt(3, id);
+				stm1.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+
 }
