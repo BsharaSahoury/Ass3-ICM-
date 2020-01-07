@@ -10,25 +10,22 @@ import java.util.Observer;
 import DBconnection.mysqlConnection;
 import Entity.Employee;
 import ocsf.server.ConnectionToClient;
-
-public class ServerGetEvaluatorsObserver implements Observer {
-	public ServerGetEvaluatorsObserver(Observable server) {
+public class ServerGetChairManObserver implements Observer {
+	public ServerGetChairManObserver(Observable server) {
 		server.addObserver(this);
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable arg0, Object arg) {
 		if(arg instanceof Object[]) {
 			Object[] arg1=(Object[])arg;
 			ConnectionToClient client=(ConnectionToClient)arg1[0];
-			if(arg1[1] instanceof Object[]) {
-				Object[] arg2=(Object[])arg1[1];
-				if(arg2[0] instanceof String) {
-					String keymessage=(String)arg2[0];
-					if(keymessage.equals("evaluators")) {
+			if(arg1[1] instanceof String) {
+					String keymessage=(String)arg1[1];
+					if(keymessage.equals("get ChairMan")) {
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						ArrayList<Employee> evaluators=mysqlConnection.getEvaluators(con);
-						Object[] msg= {keymessage,evaluators};
+						Employee chairman=mysqlConnection.getChairman(con);
+						Object[] msg= {keymessage,chairman};
 						try {
 							client.sendToClient(msg);
 						} catch (IOException e) {
@@ -42,4 +39,3 @@ public class ServerGetEvaluatorsObserver implements Observer {
 		
 	}
 
-}

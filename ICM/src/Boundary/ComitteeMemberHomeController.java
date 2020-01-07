@@ -44,7 +44,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	private static Employee comitteeMember;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
-
+    public static Employee Chairman;
 	public void start(Employee comitteeMember) {
 		this.comitteeMember = comitteeMember;
 		primaryStage = LoginController.primaryStage;
@@ -70,7 +70,9 @@ public class ComitteeMemberHomeController implements Initializable {
 			}
 		});
 	}
-
+ public static void setChairman(Employee user) {
+	 Chairman=user;
+ }
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
@@ -114,6 +116,13 @@ public class ComitteeMemberHomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		UserNameMenu.setText(comitteeMember.getFirstName()+" "+comitteeMember.getLastName());
+		String msg="get ChairMan";
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void clickNotifications(ActionEvent event) throws Exception {

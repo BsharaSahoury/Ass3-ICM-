@@ -28,11 +28,11 @@ public class MainForServer {
         ServerAutomaticRecruitObserver saro=new ServerAutomaticRecruitObserver(sv);
         ServerGetEvaluatorsObserver sgeo=new ServerGetEvaluatorsObserver(sv);
         ServerManualRecruitObserver smro=new ServerManualRecruitObserver(sv);
-
+        ServerGetChairManObserver chair=new ServerGetChairManObserver(sv);
         ServerRequestInfoObserver requestInfo =new ServerRequestInfoObserver(sv);
         RequestsWorkedOnObserver RequestWorkOn=new RequestsWorkedOnObserver(sv);
         ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
-
+        ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//
