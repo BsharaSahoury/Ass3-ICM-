@@ -163,18 +163,25 @@ public class RequestsWorkedOnController implements Initializable {
 	public void MakeDecisionAction()
 	{		
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
-		if(chosen!=-1) {
-			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
-			decision=new MakeDicisionController();
-			decision.start(splitpane,selected,user);
-		}
-		else {
-	        Alert alertWarning = new Alert(AlertType.WARNING);
+		if(chosen==-1) {
+			Alert alertWarning = new Alert(AlertType.WARNING);
 	        alertWarning.setTitle("Warning Alert Title");
 	        alertWarning.setHeaderText("Warning!");
 	        alertWarning.setContentText("please choose requset");
 	        alertWarning.showAndWait();
-	        }
+		}
+		else if(!tableRequests.getSelectionModel().getSelectedItem().getState().equals(State.work)) {
+			 Alert alertWarning = new Alert(AlertType.WARNING);
+		     alertWarning.setTitle("Warning Alert Title");
+		     alertWarning.setHeaderText("Warning!");
+		     alertWarning.setContentText("This Request is not on work");
+		     alertWarning.showAndWait();
+		}
+		else {
+			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
+			decision=new MakeDicisionController();
+			decision.start(splitpane,selected,user);
+		}
 	}
 
 	public void InsertTestResultAction()

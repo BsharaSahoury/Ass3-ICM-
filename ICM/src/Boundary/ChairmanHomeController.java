@@ -118,6 +118,7 @@ public void LogOutAction(ActionEvent event) throws Exception {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(chairman.getFirstName()+chairman.getLastName());
     }
+
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
 	notific.start(splitpane,chairman);

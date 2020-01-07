@@ -1,6 +1,7 @@
 package Server;
 import java.io.IOException;
 
+
 import java.sql.Connection;
 import java.util.Observable;
 import java.util.Observer;
@@ -39,11 +40,17 @@ public class ServerCommitteeDecisionObserver implements Observer{
 						}
 						else {
 							long millis=System.currentTimeMillis();
+							
 							String not="Comittee Members Decision is '"+Message[1]+"' for request id="+Message[3]+"\n"+"Explain the dection:"+Message[2];
-							System.out.println(not);
 							Notification decisionnot=new Notification(not,new java.sql.Date(millis),"Decision of Committee Member");
 							decisionnot=mysqlConnection.insertNotificationToDB(con,decisionnot);
 							mysqlConnection.insertNotificationForUserToDB(con,decisionnot,ChairManUsername);
+							try {
+								client.sendToClient("Committee Member Decision");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 					}
 					}
 				}

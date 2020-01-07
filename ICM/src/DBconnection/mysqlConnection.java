@@ -36,7 +36,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ayman1234567891");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -573,6 +573,15 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		RequestPhase rp=null;
 		Request r=null;
 		try {
+			try {
+		  		PreparedStatement stm= con.prepareStatement("UPDATE requestinphase SET state=? WHERE request_id=?;");
+		  		stm.setString(1, "over");
+		  		stm.setInt(2, id);
+		  		stm.executeUpdate();
+		  		} 
+		  		catch (SQLException e) {
+		  			e.printStackTrace();
+		  		}	
 			stmR=con.prepareStatement("SELECT R.phase_administrator FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
 			stmR.setInt(1, id);
 			stmR.setString(2, phase);
@@ -607,4 +616,52 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return null;
 	}
+    public static void addRequestToDB(Connection con,int id,String dec) {
+    	PreparedStatement stm = null;
+    	PreparedStatement stm2 = null;
+		try {
+			if(dec.equals("approve")) {
+			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2, "performance");
+			stm.setInt(3, 0);
+			stm.setString(4, null);
+			stm.setString(5, null);
+			stm.setString(6, null);
+			stm.setString(7, "wait");
+			stm.executeUpdate();
+			}
+			else if(dec.equals("reject")) {
+				stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+				stm.setInt(1, id);
+				stm.setString(2, "closing");
+				stm.setInt(3, 0);
+				stm.setString(4, null);
+				stm.setString(5, null);
+				stm.setString(6, null);
+				stm.setString(7, "wait");
+				stm.executeUpdate();
+			}
+			else {
+				stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
+				stm2.setInt(1, id);
+				stm2.setString(2, "decision");
+				ResultSet rs = stm2.executeQuery();	
+				if(rs.next()) {
+				stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+				stm.setInt(1, id);
+				stm.setString(2, "evaluation");
+				stm.setInt(3, rs.getInt(1)+1);
+				stm.setString(4, null);
+				stm.setString(5, null);
+				stm.setString(6, null);
+				stm.setString(7, "wait");
+				stm.executeUpdate();
+				}
+			}
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }

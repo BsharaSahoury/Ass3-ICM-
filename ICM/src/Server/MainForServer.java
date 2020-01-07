@@ -24,7 +24,7 @@ public class MainForServer {
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
 	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
         ServerMyRequestsObserver myrequest=new ServerMyRequestsObserver(sv);
-
+        ServerApproveDecsionCommitteeobserver approvedecision=new ServerApproveDecsionCommitteeobserver(sv);
         ServerAutomaticRecruitObserver saro=new ServerAutomaticRecruitObserver(sv);
         ServerGetEvaluatorsObserver sgeo=new ServerGetEvaluatorsObserver(sv);
         ServerManualRecruitObserver smro=new ServerManualRecruitObserver(sv);

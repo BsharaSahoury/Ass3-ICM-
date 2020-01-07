@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
+import messages.DecisionCommitteeMemberMessageController;
 import messages.RecruitMessageController;
 
 public class NotificationsController implements Initializable {
@@ -41,7 +42,9 @@ public class NotificationsController implements Initializable {
 	public static NotificationsController ctrl;
 	@FXML
 	public static SplitPane splitpane;
-
+    private static int IDRequestForDecision;
+    private static String CommittteDecision;
+    private static String ExplainDecision;
 	public void start(SplitPane splitpane,User user) {
 		this.user=user;
 		primaryStage=LoginController.primaryStage;
@@ -101,14 +104,31 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
-				
+			case "Decision of Committee Member":
+				content=n2.getContent();
+				ExplainDecision=content;
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				DecisionCommitteeMemberMessageController obj=new DecisionCommitteeMemberMessageController();
+				obj.start(splitpane);
+				break;
 		}
 		}
 
 		
 	}
-
-	
-	
-
+public static int getidofrequestforDecision() {
+	return IDRequestForDecision;
+}
+public static String getExplainDecisionofcommitteemember() {
+	return ExplainDecision;
+}
+public static String getDecisionofcommitteemember() {
+	return CommittteDecision;
+}
 }
