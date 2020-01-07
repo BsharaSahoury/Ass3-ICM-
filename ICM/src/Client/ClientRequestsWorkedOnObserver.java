@@ -49,7 +49,7 @@ public class ClientRequestsWorkedOnObserver implements Observer{
 					PerformanceLeaderHomeController.RequestWorkON.fillTable(arr);
 					else if(job.equals("Tester"))
 					TesterHomeController.RequestWorkON.fillTable(arr);
-					else if(job.equals("Chairman"))
+					else if(job.equals("Chairman")) 
 					ChairmanHomeController.RequestWorkON.fillTable(arr);
 					}
 					}

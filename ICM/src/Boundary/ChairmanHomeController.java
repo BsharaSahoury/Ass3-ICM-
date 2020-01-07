@@ -68,7 +68,7 @@ public class ChairmanHomeController implements Initializable {
 	}
 		});
 	}
-	
+
 public Stage getPrimaryStage() {
 		return primaryStage;
 	}

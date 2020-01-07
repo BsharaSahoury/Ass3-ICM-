@@ -79,6 +79,7 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		int id;
+		if(n2 != null) {
 		switch(n2.getType()){
 			case "recruitForInspector":
 				content=n2.getContent();
@@ -101,6 +102,7 @@ public class NotificationsController implements Initializable {
 				rmc.start(splitpane, id);
 				break;
 				
+		}
 		}
 
 		

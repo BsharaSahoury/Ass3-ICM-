@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
+import Client.ClientGetChairmanObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMyRequestsObserver;
@@ -49,7 +50,7 @@ public class MainClientController {
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
 			ClientNotificationObserver cno=new ClientNotificationObserver(cc.getClient());
 			ClientMyRequestsObserver ceo=new ClientMyRequestsObserver(cc.getClient());
-
+			ClientGetChairmanObserver chairman=new ClientGetChairmanObserver(cc.getClient());
 			ClientRecruitEvaluatorObserver creo=new ClientRecruitEvaluatorObserver(cc.getClient());
 			ClientGetEvaluatorsObserver cgeo=new ClientGetEvaluatorsObserver(cc.getClient());
 			ClientRequestInfoObserver cri= new ClientRequestInfoObserver(cc.getClient());
