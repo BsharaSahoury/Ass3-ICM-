@@ -581,5 +581,75 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return rp;
 	}
+	public static void insertDate(Connection con, int id, String[] d) {
+		
+		d[0] = d[0].replaceAll("(\\r|\\n)", "");
+        d[1] = d[1].replaceAll("(\\r|\\n)", "");
+        PreparedStatement stm = null;
+		Statement st = null;
+		int maxRepetion=0;
+			
+			try {
+				
+				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=?;");
+				stm.setInt(1, id);
+				ResultSet rs = stm.executeQuery();	
+	            if(rs.next()) {
+	            	maxRepetion = rs.getInt(1);
+	            	System.out.println(rs.getInt(1));
+				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
+						+ " SET start_date = ?, due_date = ?,state='work' "
+						+ "WHERE (request_id = ? and phase='evaluation' and repetion=?);");
+				stm1.setString(1, d[0]);
+				stm1.setString(2,d[1]);
+				stm1.setInt(3, id);
+				stm1.setInt(4, maxRepetion);
+				stm1.executeUpdate();
+	            }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
 
+    public static Employee FindEmployee(Connection con, int id,String phase) {
+		PreparedStatement stmR=null;
+		PreparedStatement stmt=null;
+		RequestPhase rp=null;
+		Request r=null;
+		try {
+			stmR=con.prepareStatement("SELECT R.phase_administrator FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
+			stmR.setInt(1, id);
+			stmR.setString(2, phase);
+			ResultSet rs = stmR.executeQuery();			
+            if(rs.next()) {
+            	stmt=con.prepareStatement("SELECT R.* FROM icm.employee R WHERE username=?;");
+            	stmt.setString(1, rs.getString(1));
+            	ResultSet rs2 = stmt.executeQuery();
+            	if(rs2.next()) {
+            		return new Employee(rs2.getString(1),rs2.getString(2),rs2.getString(3),rs2.getString(8));
+            	
+            	}
+            }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
+    public static Employee getChairman(Connection con) {
+		Statement st = null;
+		Employee Chairman=null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='chairman';");
+			if(rs.next())
+				Chairman = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
+			return Chairman;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

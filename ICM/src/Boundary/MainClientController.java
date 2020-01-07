@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
+import Client.ClientGetChairmanObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMyRequestsObserver;
@@ -22,7 +23,7 @@ import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRequestInfoObserver;
 import Client.ClientRequestTrack;
 import Client.ClientRequestsWorkedOnObserver;
-
+import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
@@ -49,13 +50,13 @@ public class MainClientController {
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
 			ClientNotificationObserver cno=new ClientNotificationObserver(cc.getClient());
 			ClientMyRequestsObserver ceo=new ClientMyRequestsObserver(cc.getClient());
-
+			ClientGetChairmanObserver chairman=new ClientGetChairmanObserver(cc.getClient());
 			ClientRecruitEvaluatorObserver creo=new ClientRecruitEvaluatorObserver(cc.getClient());
 			ClientGetEvaluatorsObserver cgeo=new ClientGetEvaluatorsObserver(cc.getClient());
 			ClientRequestInfoObserver cri= new ClientRequestInfoObserver(cc.getClient());
 			ClientRequestsWorkedOnObserver ss=new ClientRequestsWorkedOnObserver(cc.getClient());
 			ClientRequestTrack rt=new ClientRequestTrack(cc.getClient());
-
+			ClientSetDuratinObserver cd=new ClientSetDuratinObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

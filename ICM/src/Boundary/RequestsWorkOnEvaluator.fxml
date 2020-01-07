@@ -61,12 +61,12 @@
          </font>
       </Label>
       <Line endX="464.0" layoutX="264.0" layoutY="24.0" startX="-264.0" />
-      <Button fx:id="RequestInfo1" layoutX="382.0" layoutY="531.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set Duration" textFill="WHITE">
+      <Button fx:id="RequestInfo1" layoutX="382.0" layoutY="531.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set Duration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="RequestInfo2" layoutX="517.0" layoutY="531.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #9d1b34;" text="Create Evaluation Report" textFill="WHITE">
+      <Button layoutX="517.0" layoutY="531.0" mnemonicParsing="false" onAction="#EvaluationReportAction" prefHeight="43.0" prefWidth="170.0" style="-fx-background-color: #9d1b34;" text="Create Evaluation Report" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

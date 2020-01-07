@@ -105,8 +105,8 @@ public class MyRequestsController implements Initializable {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();
 			if(chosen!=-1) {
 				Request s =tableRequests.getSelectionModel().getSelectedItem();
-				RequestTrackController requestifo = new RequestTrackController();
-		    	requestifo.start(splitpane,s);
+				RequestTrackController requestTrack = new RequestTrackController();
+				requestTrack.start(splitpane,s);
 			}
 			else {
 		        Alert alertWarning = new Alert(AlertType.WARNING);

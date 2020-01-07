@@ -24,10 +24,7 @@ public class ClientRequestTrack implements Observer {
 				if (keymessage.equals("Track request")) {
 					if (arg2[1] instanceof RequestPhase) {
 						RequestPhase requestphase = (RequestPhase) arg2[1];
-						System.out.println("999999999999");
-						System.out.println(requestphase.getR().getId());
-					
-							
+						System.out.println(requestphase.getR().getId());		
 						RequestTrackController.RequestTrack.SetTrack(requestphase);
 					}
 

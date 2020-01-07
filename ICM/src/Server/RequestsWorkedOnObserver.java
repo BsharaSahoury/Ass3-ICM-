@@ -29,7 +29,13 @@ public class RequestsWorkedOnObserver implements Observer {
 			String[] Message=(String[])args[1];
 			if(Message.length==3 && Message[0].equals("Requests worked on")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
-				ArrayList<RequestPhase> arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
+				ArrayList<RequestPhase> arr;
+				if(Message[2].equals("Comittee Member")) {
+				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],"Chairman");
+				}
+				else {
+				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
+				}
 				Object[] send=new Object[3];
 				send[0]="Requests worked on";
 				send[1]=arr;

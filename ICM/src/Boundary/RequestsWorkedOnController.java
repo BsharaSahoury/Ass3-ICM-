@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Phase;
+import Entity.Employee;
 import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
@@ -27,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import messages.AutomaticRecruitMessageController;
 
 public class RequestsWorkedOnController implements Initializable {
 	public static Stage primaryStage;
@@ -61,21 +64,33 @@ public class RequestsWorkedOnController implements Initializable {
 	private static ObservableList<RequestPhase> list;
 	private static ArrayList<RequestPhase> arrofRequests;
 	private static String job;
+	public static RequestsWorkedOnController ctrl1;
+	public static MakeDicisionController decision;
+	private static int id;
+	private static String system;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
-	private FXMLLoader loader;
+	public static  FXMLLoader loader;
+	private User user;
 	public void start(SplitPane splitpane, String path,User user,String job) {
 		this.job=job;
+		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		String [] RequestWorkedON=new String[3];
 		try {
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
+			ctrl1=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
 			RequestWorkedON[0]="Requests worked on";
+			if(job.equals("Comittee Member")) {
+				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
+			}else {
 			RequestWorkedON[1]=user.getUsername();
+			}
 			RequestWorkedON[2]=job;
+			
 			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,6 +103,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void fillTable(ArrayList<RequestPhase> arr1) {
+	
 	arrofRequests=arr1;	
 	loader.<RequestsWorkedOnController>getController().setTableRequests(arr1);	
 	}
@@ -129,6 +145,29 @@ public class RequestsWorkedOnController implements Initializable {
 			}		
 	      }
 	}
+	public void SetDuration() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			if(s.getState().equals(State.wait))
+			{
+			SetDurationController setDuration = new SetDurationController();
+			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.WARNING);
+			        alertWarning.setContentText("you have add duration before");
+			        alertWarning.showAndWait();
+			}
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
 	public void RequestInfoAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
@@ -147,11 +186,59 @@ public class RequestsWorkedOnController implements Initializable {
 	public static int getselectedindex() {
 		return chosen;
 	}
-	public void MakeDecisionAction()
+	public static int getId()
 	{
-		
-		MakeDicisionController dicision=new MakeDicisionController();
-		dicision.start(splitpane);
+		return id;
+	}
+	public static String getSystem() {
+		return system;
+	}
+	public void MakeDecisionAction()
+	{		
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
+			decision=new MakeDicisionController();
+			decision.start(splitpane,selected,user);
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
+	public void EvaluationReportAction() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			id=s.getId();
+			System.out.println(s.getState().toString());
+			System.out.println(State.work.toString());
+			if(s.getState().toString().equals(State.work.toString()))
+			{
+			CreateEvaluationReportController requestifo = new CreateEvaluationReportController();
+	    	requestifo.start(splitpane,s.getId());
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.WARNING);
+			        alertWarning.setTitle("Warning Alert Title");
+			        alertWarning.setHeaderText("Warning!");
+			        alertWarning.setContentText("The Request should be in state work");
+			        alertWarning.showAndWait();
+			}
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
+	public static ObservableList<RequestPhase> getList(){
+		return list;
 	}
 
 	public void InsertTestResultAction()
