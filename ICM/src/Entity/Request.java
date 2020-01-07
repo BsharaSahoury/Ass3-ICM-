@@ -25,6 +25,7 @@ private String comment;
 private Date date;
 private User initiator;
 private MyFile myfile;
+private String filename;
 
 /**
  * 
@@ -69,7 +70,7 @@ java.sql.Date date, Phase currentPhase) {
 }
 
 public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, Date time, User user,
-		MyFile msg) {
+		MyFile msg,String filename) {
 	this.privilegedInfoSys=selectedItem;
 	this.existingSituation=existingSituation;
 	this.explainRequest=requestedChange;
@@ -78,13 +79,20 @@ public Request(String selectedItem, String existingSituation, String requestedCh
 	this.date=time;
 	this.initiator=user;
 	this.myfile=msg;
+	this.filename=filename;
+}
+public String getFilename() {
+	return filename;
+}
+public void setFilename(String filename) {
+	this.filename = filename;
 }
 public Request() {
 	// TODO Auto-generated constructor stub
 }
 public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-java.sql.Date date) {
+java.sql.Date date,MyFile file,String filename) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -96,7 +104,9 @@ java.sql.Date date) {
 	this.reason = reason;
 	this.comment = comment;
 	this.date = date;
-	this.myfile=myfile;
+	this.myfile=file;
+	this.filename=filename;
+	
 }
 public User getInitiator() {
 	return initiator;
