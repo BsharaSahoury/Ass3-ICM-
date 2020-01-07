@@ -643,21 +643,24 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				stm.executeUpdate();
 			}
 			else {
+				int Max=0;
 				stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
 				stm2.setInt(1, id);
-				stm2.setString(2, "decision");
+				stm2.setString(2, "evaluation");
 				ResultSet rs = stm2.executeQuery();	
-				if(rs.next()) {
+				while(rs.next()) {
+					if(rs.getInt(1)>Max)
+						Max=rs.getInt(1);
+				}
 				stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 				stm.setInt(1, id);
 				stm.setString(2, "evaluation");
-				stm.setInt(3, rs.getInt(1)+1);
+				stm.setInt(3, Max+1);
 				stm.setString(4, null);
 				stm.setString(5, null);
 				stm.setString(6, null);
 				stm.setString(7, "wait");
 				stm.executeUpdate();
-				}
 			}
 		} catch (SQLException e) {
 // TODO Auto-generated catch block
