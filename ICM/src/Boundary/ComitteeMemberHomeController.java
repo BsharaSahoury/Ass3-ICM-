@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,7 +53,6 @@ public class ComitteeMemberHomeController implements Initializable {
 			public void run() {
 				try {
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
-					System.out.println("111111111");
 					Scene scene = new Scene(root);
 					System.out.println("zzzz");
 					primaryStage.setScene(scene);
@@ -81,7 +80,16 @@ public class ComitteeMemberHomeController implements Initializable {
 		HomeController home = new HomeController();
 		home.start(splitpane);
 	}
-
+     
+	
+	public void RequestForTestOnAction(ActionEvent event) throws Exception {
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member");
+		}
+   
+	
+	
+	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
 		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member");

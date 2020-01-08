@@ -1,22 +1,47 @@
 package Entity;
 
-public class EvaluationReport {
+import java.io.Serializable;
+
+public class EvaluationReport implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String location;
 private String description;
 private String expectedResult;
 private String constraints;
 private String risks;
-private String estimatedPerfomanceDuration;
-
+private int estimatedPerfomanceDuration;
+private int requestID;
+private int id;
 public EvaluationReport(String location, String description, String expectedResult, String constraints, String risks,
-		String estimatedPerfomanceDuration) {
+		int estimatedPerfomanceDuration ,int requestID) {
 	this.location = location;
 	this.description = description;
 	this.expectedResult = expectedResult;
 	this.constraints = constraints;
 	this.risks = risks;
 	this.estimatedPerfomanceDuration = estimatedPerfomanceDuration;
+	this.requestID=requestID;
 }
+
+public int getRequestID() {
+	return requestID;
+}
+
+public void setRequestID(int requestID) {
+	this.requestID = requestID;
+}
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
 public String getLocation() {
 	return location;
 }
@@ -47,11 +72,12 @@ public String getRisks() {
 public void setRisks(String risks) {
 	this.risks = risks;
 }
-public String getEstimatedPerfomanceDuration() {
+public int getEstimatedPerfomanceDuration() {
 	return estimatedPerfomanceDuration;
 }
-public void setEstimatedPerfomanceDuration(String estimatedPerfomanceDuration) {
+public void setEstimatedPerfomanceDuration(int estimatedPerfomanceDuration) {
 	this.estimatedPerfomanceDuration = estimatedPerfomanceDuration;
 }
+
 
 }

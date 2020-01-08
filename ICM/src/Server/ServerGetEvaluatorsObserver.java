@@ -27,8 +27,19 @@ public class ServerGetEvaluatorsObserver implements Observer {
 					String keymessage=(String)arg2[0];
 					if(keymessage.equals("evaluators")) {
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						ArrayList<Employee> evaluators=mysqlConnection.getEvaluators(con);
+						ArrayList<Employee> evaluators=mysqlConnection.getEmployees(con,"evaluator");
 						Object[] msg= {keymessage,evaluators};
+						try {
+							client.sendToClient(msg);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					else if(keymessage.equals("Performance leaders")) {
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"performer");
+						Object[] msg= {keymessage,performers};
 						try {
 							client.sendToClient(msg);
 						} catch (IOException e) {

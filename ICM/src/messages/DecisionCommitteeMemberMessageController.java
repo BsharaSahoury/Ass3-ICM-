@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
-import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,55 +22,63 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AutomaticRecruitMessageController implements Initializable {
+public class DecisionCommitteeMemberMessageController implements Initializable {
 	@FXML
-	Label requestLabel;
-	@FXML
-	Label evaluatorLabel;
+	Label DecisionLable;
 	@FXML
 	Button approve;
-	@FXML
-	Button other;
-	@FXML
-	ComboBox<String> combo;
-	
-	public static AutomaticRecruitMessageController ctrl;
+	public static DecisionCommitteeMemberMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
-	private int requestID;
-	private String fullname;
-	private ObservableList<String> list;
-	public void start(SplitPane splitpane,int id, String fullname) {
+	private int notificationID;
+	private String CommitteeDecision;
+	public static int flag=-1;
+	private static String notdetails;
+	public void start(SplitPane splitpane) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/automaticRecruit-message.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/CommitteeMemberDecision-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
+			Object[] message= {"get explain notification",notificationID};
+			try {
+				LoginController.cc.getClient().sendToServer(message);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}				
 			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
-			ctrl.requestLabel.setVisible(false);
-			ctrl.requestLabel.setText("New request with id #"+id+" has been submitted recently,");
-			ctrl.requestLabel.setVisible(true);
-			ctrl.evaluatorLabel.setVisible(false);
-			ctrl.evaluatorLabel.setText("Evaluator "+fullname+" will be recruited automatically to evaluate the request.would you like to approve?");
-			ctrl.evaluatorLabel.setVisible(true);
-			ctrl.requestID=id;
-			this.fullname=fullname;
-			
+			this.splitpane=splitpane;			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
 	}
-	public void approveAction(ActionEvent e) {
-		Object[] message= {"automatic",requestID};
+	public static void setdetails(String details) {
+		ctrl.notdetails=details;
+		System.out.println("ssxxx");
+		System.out.println(ctrl.notdetails);
+		ctrl.DecisionLable.setText(ctrl.notdetails);
+	}
+	public void approveAction(ActionEvent e) {	
+		if(flag==-1) {
+			flag=0;
+		Object[] message= {"approve committee decision",notificationID,CommitteeDecision,notdetails};
 		try {
 			LoginController.cc.getClient().sendToServer(message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
+		}else {	
+			 Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Already Approve");
+			 alertSuccess.setContentText("You already approved this decision");
+			 alertSuccess.show();
+		}
 	}
+	/*
 	public void chooseOtherAction(ActionEvent e) {
 		String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
@@ -89,34 +96,10 @@ public class AutomaticRecruitMessageController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
-		
-	}
-	
-	
-	
-	
-	
+	}*/
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Object[] msg= {"evaluators"};
-		try {
-			LoginController.cc.getClient().sendToServer(msg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		notificationID=NotificationsController.getidofrequestforDecision();
+		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
 	}
-	
-	
-	
-	
-	public void fillCombo(ArrayList<String> names) {
-		list=FXCollections.observableArrayList(names);
-		combo.setItems(list);
-	}
-	
-	
-
 }

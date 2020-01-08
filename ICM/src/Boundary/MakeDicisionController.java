@@ -1,7 +1,9 @@
 package Boundary;
 
 import java.io.IOException;
+
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
@@ -17,6 +19,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -35,7 +39,10 @@ public class MakeDicisionController implements Initializable {
     private RadioButton AdditionalInfo;
     @FXML
     private TextArea ExplainDectxt;
+    @FXML
+    private Button Sendbtn;
     private RequestPhase selected;
+    public static int flag=-1;
 	public void start(SplitPane splitpane,RequestPhase selected,User user) {
 		primaryStage = LoginController.primaryStage;
 		this.selected=selected;
@@ -55,6 +62,8 @@ public class MakeDicisionController implements Initializable {
 	}
 	
 	public void SendToChairMan(ActionEvent e) { 
+		if(flag==-1) {
+			flag=0;
 		if(!Approve.isSelected()&&!Reject.isSelected()&&!AdditionalInfo.isSelected()) {
 			 Alert alertWarning = new Alert(AlertType.WARNING);
 		     alertWarning.setTitle("Warning Alert Title");
@@ -87,8 +96,16 @@ public class MakeDicisionController implements Initializable {
 				e1.printStackTrace();
 			}
 		}
+		}
+	
+		else {	
+			 Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Already Sent");
+			 alertSuccess.setContentText("The decision for this request is already sent to chairman");
+			 alertSuccess.show();
+		}
 	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

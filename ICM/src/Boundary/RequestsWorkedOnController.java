@@ -179,6 +179,7 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+	
 	public void RequestInfoAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
@@ -194,6 +195,7 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+
 	public void approveFinishAction(ActionEvent e) {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
@@ -221,7 +223,24 @@ public class RequestsWorkedOnController implements Initializable {
 						e1.printStackTrace();
 					}
 		        }
+			}
+		}
+	}
 				
+	
+   public void InsertTestResultAction() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			if(s.getState().equals(State.work))
+			{
+				TestResultController setTestResult = new TestResultController();
+				setTestResult.start(splitpane,s);
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.ERROR);
+			        alertWarning.setContentText("The request state must be work");
+			        alertWarning.showAndWait();
 			}
 		}
 		else {
@@ -231,9 +250,15 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.setContentText("please choose requset");
 	        alertWarning.showAndWait();
 	        }
-		
-		
 	}
+
+			
+   
+
+	
+	
+	
+
 	public static int getselectedindex() {
 		return chosen;
 	}
@@ -247,18 +272,25 @@ public class RequestsWorkedOnController implements Initializable {
 	public void MakeDecisionAction()
 	{		
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
-		if(chosen!=-1) {
-			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
-			decision=new MakeDicisionController();
-			decision.start(splitpane,selected,user);
-		}
-		else {
-	        Alert alertWarning = new Alert(AlertType.WARNING);
+		if(chosen==-1) {
+			Alert alertWarning = new Alert(AlertType.WARNING);
 	        alertWarning.setTitle("Warning Alert Title");
 	        alertWarning.setHeaderText("Warning!");
 	        alertWarning.setContentText("please choose requset");
 	        alertWarning.showAndWait();
-	        }
+		}
+		else if(!tableRequests.getSelectionModel().getSelectedItem().getState().equals(State.work)) {
+			 Alert alertWarning = new Alert(AlertType.WARNING);
+		     alertWarning.setTitle("Warning Alert Title");
+		     alertWarning.setHeaderText("Warning!");
+		     alertWarning.setContentText("This Request is not on work");
+		     alertWarning.showAndWait();
+		}
+		else {
+			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
+			decision=new MakeDicisionController();
+			decision.start(splitpane,selected,user);
+		}
 	}
 	public void EvaluationReportAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
@@ -292,11 +324,7 @@ public class RequestsWorkedOnController implements Initializable {
 		return list;
 	}
 
-	public void InsertTestResultAction()
-	{
-		TestResultController result = new TestResultController();
-		result.start(splitpane);
-	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Groupby.setItems(statuslist);

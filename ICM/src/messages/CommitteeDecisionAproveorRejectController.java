@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
-import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,55 +22,60 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AutomaticRecruitMessageController implements Initializable {
+public class CommitteeDecisionAproveorRejectController implements Initializable {
 	@FXML
-	Label requestLabel;
-	@FXML
-	Label evaluatorLabel;
+	Label DecisionLable;
 	@FXML
 	Button approve;
 	@FXML
-	Button other;
-	@FXML
 	ComboBox<String> combo;
-	
-	public static AutomaticRecruitMessageController ctrl;
+	private ObservableList<String> list;
+	public static CommitteeDecisionAproveorRejectController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
 	private int requestID;
-	private String fullname;
-	private ObservableList<String> list;
-	public void start(SplitPane splitpane,int id, String fullname) {
+	private String CommitteeDecision;
+	 public static int flag=-1;
+	public void start(SplitPane splitpane,String path) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/automaticRecruit-message.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
-			ctrl.requestLabel.setVisible(false);
-			ctrl.requestLabel.setText("New request with id #"+id+" has been submitted recently,");
-			ctrl.requestLabel.setVisible(true);
-			ctrl.evaluatorLabel.setVisible(false);
-			ctrl.evaluatorLabel.setText("Evaluator "+fullname+" will be recruited automatically to evaluate the request.would you like to approve?");
-			ctrl.evaluatorLabel.setVisible(true);
-			ctrl.requestID=id;
-			this.fullname=fullname;
-			
+			this.splitpane=splitpane;			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
 	}
-	public void approveAction(ActionEvent e) {
-		Object[] message= {"automatic",requestID};
-		try {
+	public void RecruitAction(ActionEvent e) {	
+		String fullname=combo.getSelectionModel().getSelectedItem();
+		if(fullname==null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("TEST");
+	        alert.setHeaderText("ERROR");
+	        alert.setContentText("please choose an performer");
+	        alert.showAndWait();
+		}
+		else if(flag==-1) {
+		flag=0;
+		Object[] message= {"Add performance phase request",requestID,CommitteeDecision,NotificationsController.getExplainDecisionofcommitteemember()};
+		/*try {
 			LoginController.cc.getClient().sendToServer(message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}	
+		}	*/
+		}else {	
+			 Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Already Approve");
+			 alertSuccess.setContentText("You already recruited an performer");
+			 alertSuccess.showAndWait();
+		}
 	}
+	/*
 	public void chooseOtherAction(ActionEvent e) {
 		String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
@@ -89,34 +93,24 @@ public class AutomaticRecruitMessageController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
-		
-	}
-	
-	
-	
-	
-	
+	}*/
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Object[] msg= {"evaluators"};
+		requestID=NotificationsController.getidofrequestforDecision();
+		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
+		DecisionLable.setText(NotificationsController.getExplainDecisionofcommitteemember());	
+		Object[] msg= {"Performance leaders"};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
-	
-	
-	
-	
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
 		combo.setItems(list);
+		
 	}
-	
-	
-
 }
+
