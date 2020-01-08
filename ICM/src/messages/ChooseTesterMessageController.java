@@ -1,5 +1,6 @@
 package messages;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -51,7 +52,13 @@ public class ChooseTesterMessageController implements Initializable {
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		Object[] msg= {"comittee members",getClass().getName()};
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 	}
 	public void recruitAction(ActionEvent e) {
