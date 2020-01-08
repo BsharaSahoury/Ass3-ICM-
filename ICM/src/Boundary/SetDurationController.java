@@ -64,7 +64,7 @@ public class SetDurationController implements Initializable {
 			try {
 				String keymessage = "save duration";
 				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
-
+System.out.println(r.getId());
 				Object[] message = { keymessage, r.getId(), d, phase};
 
 				LoginController.cc.getClient().sendToServer(message);
@@ -84,7 +84,8 @@ public class SetDurationController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		if (!RequestsWorkedOnController.getRP().getState().equals(State.wait)) {
+		if(RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null)
+ {
 			save.setDisable(true);
 			dueDate.setValue(RequestsWorkedOnController.getRP().getDueDate().toLocalDate());
 			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
