@@ -5,30 +5,45 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.EvaluationReport;
 import Entity.Request;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class CreateEvaluationReportController implements Initializable{
+public class CreateEvaluationReportController implements Initializable {
 	@FXML
 	private TextField lbId;
 	@FXML
-	private TextField Location;
+	private TextArea Location;
+	@FXML
+	private TextArea DescriptionOfChange;
+	@FXML
+	private TextArea ExpectedResult;
+	@FXML
+	private TextArea constraints;
+	@FXML
+	private TextArea Risks;
+	@FXML
+	private TextField duration;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	private static ClientConsole cc;
-	 private int chosenindex;
-	 private Request chosenRequest;
+	private int chosenindex;
+	private Request chosenRequest;
+	private static int id;
 	public static CreateEvaluationReportController evaluationReport;
-	
-	
+
 	public void start(SplitPane splitpane, int id) {
 		try {
+			this.id = id;
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Evaluator-EvaluationReport.fxml"));
 			lowerAnchorPane = loader.load();
 			evaluationReport = loader.getController();
@@ -39,12 +54,52 @@ public class CreateEvaluationReportController implements Initializable{
 		}
 	}
 
+	public void sendReport() {
+		boolean flag0 = Location.getText().equals("");
+		boolean flag1 = DescriptionOfChange.getText().equals("");
+		boolean flag2 = ExpectedResult.getText().equals("");
+		boolean flag3 = constraints.getText().equals("");
+		boolean flag4 = Risks.getText().equals("");
+		boolean flag5 = duration.getText().equals("");
+
+		if (flag0 || flag1 || flag2 || flag3 || flag4 || flag5) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NULL");
+			alert.setHeaderText("ERROR");
+			alert.setContentText("please fill all the fields need the red star");
+			alert.showAndWait();
+			return;
+		}
+		 try 
+	        { 
+	            // checking valid integer using parseInt() method 
+	            Integer.parseInt(duration.getText()); 
+	        }  
+	        catch (NumberFormatException e)  
+	        { 
+	        	Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Error Input");
+				alert.setHeaderText("ERROR");
+				alert.setContentText("please a number in duratin");
+				alert.showAndWait();
+				return;	        } 
+		EvaluationReport er = new EvaluationReport(Location.getText(), DescriptionOfChange.getText(),
+				ExpectedResult.getText(), constraints.getText(), Risks.getText(), Integer.valueOf(duration.getText()),
+				id);
+		Object[] message = { "send the report", er };
+		try {
+			LoginController.cc.getClient().sendToServer(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		chosenindex=RequestsWorkedOnController.getselectedindex();
-        chosenRequest=RequestsWorkedOnController.getList().get(chosenindex);   
-		lbId.setText(Integer.toString(chosenRequest.getId())); 
-		Location.setText(chosenRequest.getPrivilegedInfoSys());
+		chosenindex = RequestsWorkedOnController.getselectedindex();
+		chosenRequest = RequestsWorkedOnController.getList().get(chosenindex);
+		lbId.setText(Integer.toString(chosenRequest.getId()));
 	}
 
 }

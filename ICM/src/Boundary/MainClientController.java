@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientConsole;
+import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
@@ -57,6 +58,7 @@ public class MainClientController {
 			ClientRequestsWorkedOnObserver ss=new ClientRequestsWorkedOnObserver(cc.getClient());
 			ClientRequestTrack rt=new ClientRequestTrack(cc.getClient());
 			ClientSetDuratinObserver cd=new ClientSetDuratinObserver(cc.getClient());
+			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

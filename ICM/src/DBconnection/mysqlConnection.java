@@ -12,7 +12,10 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import Entity.Employee;
+import Entity.EvaluationReport;
 import Entity.Notification;
 import Entity.Phase;
 import Entity.Request;
@@ -24,6 +27,7 @@ import Entity.User;
 public class mysqlConnection {
 	private static Connection conn = null;
 	private static int count = 0;
+	private static int numOfReport=0;
 
 //this method creates and returns a connection to the relevant schema in the database that we would like to work with
 	public static Connection makeAndReturnConnection() {
@@ -637,5 +641,60 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void insertReport(Connection con, EvaluationReport er) {
+		PreparedStatement stm1 = null;
+		Statement st = null;
+		int maxRepetion = 0;
+		try {
+			PreparedStatement stm = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=?;");
+			stm.setInt(1, er.getRequestID());
+			ResultSet rs1 = stm.executeQuery();
+			if (rs1.next()) {
+				maxRepetion = rs1.getInt(1);
+			}
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT MAX(evaluationreport.number) FROM evaluationreport;");
+			if (rs.next()) {
+				numOfReport = rs.getInt(1) + 1;
+			} else
+				numOfReport = 0;
+			stm1 = con.prepareStatement("INSERT INTO icm.evaluationreport VALUES(?,?,?,?,?,?,?,?);");
+			stm1.setInt(1, numOfReport);
+			er.setId(numOfReport);
+			stm1.setString(2, er.getLocation());
+			stm1.setString(3, er.getDescription());
+			stm1.setString(4, er.getExpectedResult());
+			stm1.setString(5, er.getConstraints());
+			stm1.setString(6, er.getRisks());
+			stm1.setInt(7, er.getEstimatedPerfomanceDuration());
+			stm1.setInt(8, er.getRequestID());
+			stm1.executeUpdate();
+			PreparedStatement stm2 = con.prepareStatement(
+					"UPDATE icm.requestinphase SET state='over' WHERE request_id = ? and phase='evaluation' and repetion=?;");
+			stm2.setInt(1, er.getRequestID());
+			stm2.setInt(2, maxRepetion);
+			stm2.executeUpdate();
+			long millis = System.currentTimeMillis();
+			Date Startdate = new java.sql.Date(millis);
+			long week = Startdate.getTime() + (int) (1000 * 60 * 60 * 24 * 7);
+			Date dueDate = new java.sql.Date(week);
+			PreparedStatement stm3 = con.prepareStatement("INSERT INTO icm.requestinphase  VALUES(?,?,?,?,?,?,?) ");
+			stm3.setInt(1, er.getRequestID());
+			stm3.setString(2, "decision");
+			stm3.setInt(3, maxRepetion);
+			stm3.setDate(4, Startdate);
+			stm3.setDate(5, dueDate);
+			Employee chairman = mysqlConnection.getChairman(con);
+			stm3.setString(6, chairman.getUsername());
+			stm3.setString(7, "work");
+			stm3.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
