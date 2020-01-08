@@ -16,6 +16,7 @@ import java.util.Calendar;
 
 import Entity.Employee;
 import Entity.EvaluationReport;
+import Entity.MyFile;
 import Entity.Notification;
 import Entity.Phase;
 import Entity.Request;
@@ -40,7 +41,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed123456789");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -261,7 +262,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				count = rs.getInt(1) + 1;
 			} else
 				count = 0;
-			stm = con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?);");
+			stm = con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?,?);");
 			stm.setString(1, request.getPrivilegedInfoSys());
 			stm.setString(2, request.getExistingSituation());
 			stm.setString(3, request.getExplainRequest());
@@ -272,10 +273,14 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			request.setId(count);
 			stm.setString(8, "active");
 			stm.setString(9, request.getInitiator().getUsername());
-			if (request.getMyFile() == null)
+			if (request.getMyFile() == null) {
 				stm.setBytes(10, null);
-			else
+				stm.setString(11,null);
+			}
+			else {
 				stm.setBytes(10, request.getMyFile().getMybyterray());
+				stm.setString(11,request.getFilename());
+			}
 			stm.executeUpdate();
 		} catch (SQLException e) {
 // TODO Auto-generated catch block
@@ -524,9 +529,18 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 					role = "student";
 				}
 				if (!Initiatorname.equals(null)) {
+					if(rs.getBytes(10)==null) {
 					r = new Request(rs.getInt(7), Initiatorname, role, rs2.getString(8), rs.getString(8),
 							rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), rs.getString(5),
-							rs.getDate(6));
+							rs.getDate(6), new MyFile(),null);
+					}
+					else {
+						MyFile myfile=new MyFile();
+						myfile.setMybytearray(rs.getBytes(10));
+						r = new Request(rs.getInt(7), Initiatorname, role, rs2.getString(8), rs.getString(8),
+								rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), rs.getString(5),
+								rs.getDate(6),myfile,rs.getString(11));
+					}
 
 				}
 				rs2.close();
