@@ -38,6 +38,7 @@ public class MainForServer {
         ServerTestSuccessObserver stso=new ServerTestSuccessObserver(sv);
         ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
         ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
+		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 
 	      try {
 		   sv.listen();
