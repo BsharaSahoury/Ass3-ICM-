@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
+import messages.ChooseTesterMessageController;
 import messages.RecruitMessageController;
 
 public class NotificationsController implements Initializable {
@@ -101,6 +102,17 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+			case "choose tester":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				b=b[1].split(" is");
+				id=Integer.valueOf(b[0]);
+				ChooseTesterMessageController ctmc=new ChooseTesterMessageController();
+				ctmc.start(splitpane, id);
+				break;
+				
+				
 				
 		}
 		}

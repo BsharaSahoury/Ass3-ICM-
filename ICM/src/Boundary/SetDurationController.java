@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Phase;
 import Entity.Request;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +33,14 @@ public class SetDurationController implements Initializable {
 	@FXML
 	private Button save;
 	private static Request r;
+	private static Phase phase;
 
-	public void start(SplitPane splitpane, Request r,String path) {
+	public void start(SplitPane splitpane, Request r,String path, Phase phase) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.r = r;
+		this.phase=phase;
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -58,7 +61,7 @@ public class SetDurationController implements Initializable {
 				String keymessage = "save duration";
 				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
 
-				Object[] message = { keymessage, r.getId(), d };
+				Object[] message = { keymessage, r.getId(), d, phase};
 
 				LoginController.cc.getClient().sendToServer(message);
 				save.setDisable(true);

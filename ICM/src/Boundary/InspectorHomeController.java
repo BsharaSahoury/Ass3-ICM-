@@ -128,6 +128,8 @@ public class InspectorHomeController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		System.out.println(UserNameMenu==null);
+
 		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
 		//AboutICMbtn.setFocusTraversable(true);
     }

@@ -11,6 +11,7 @@ import Boundary.InspectorHomeController;
 import Boundary.LecturerHomeController;
 import Boundary.LoginController;
 import Boundary.MainClientController;
+import Boundary.PerformanceLeaderHomeController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
 import Entity.Employee;
@@ -52,6 +53,10 @@ public class ClientLoginObserver implements Observer{
 			case "chairman":
 				ChairmanHomeController chairman=new ChairmanHomeController();
 				chairman.start(employee1);
+				break;
+			case "performer":
+				PerformanceLeaderHomeController performer=new PerformanceLeaderHomeController();
+				performer.start(employee1);
 				break;
 			case "lecturer":
 				LecturerHomeController lecturer=new LecturerHomeController();
