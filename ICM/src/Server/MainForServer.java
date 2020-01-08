@@ -24,7 +24,7 @@ public class MainForServer {
 	    ServerAllRequestsObserver serverallrequestobserver=new ServerAllRequestsObserver(sv);
 	    ServerNotificationsObserver sno=new ServerNotificationsObserver(sv);
         ServerMyRequestsObserver myrequest=new ServerMyRequestsObserver(sv);
-
+        ServerApproveDecsionCommitteeobserver approvedecision=new ServerApproveDecsionCommitteeobserver(sv);
         ServerAutomaticRecruitObserver saro=new ServerAutomaticRecruitObserver(sv);
         ServerGetEvaluatorsObserver sgeo=new ServerGetEvaluatorsObserver(sv);
         ServerManualRecruitObserver smro=new ServerManualRecruitObserver(sv);
@@ -36,6 +36,9 @@ public class MainForServer {
         ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
         ServerTestFailedObserver stfo=new ServerTestFailedObserver(sv);
         ServerTestSuccessObserver stso=new ServerTestSuccessObserver(sv);
+        ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
+        ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
+
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//

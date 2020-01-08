@@ -29,15 +29,15 @@
       <Label layoutX="121.0" layoutY="206.0" />
       <TableView fx:id="tableRequests" layoutX="-3.0" layoutY="142.0" prefHeight="367.0" prefWidth="729.0" stylesheets="@css1.css">
          <columns>
-            <TableColumn fx:id="colID" prefWidth="113.0" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="107.0" text="InitiatorName" />
-            <TableColumn fx:id="colStatus" prefWidth="124.0" text="Status" />
-            <TableColumn fx:id="colPriflig" prefWidth="187.0" text="Prifileged Information System" />
-            <TableColumn fx:id="colSubDate" prefWidth="114.0" text="SubmissionDate" />
-            <TableColumn fx:id="colState" prefWidth="82.0" text="State" />
+            <TableColumn fx:id="colID" prefWidth="137.0" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="109.0" text="InitiatorName" />
+            <TableColumn fx:id="colStatus" prefWidth="92.0" text="Status" />
+            <TableColumn fx:id="colPriflig" prefWidth="185.0" text="Prifileged Information System" />
+            <TableColumn fx:id="colSubDate" prefWidth="119.0" text="SubmissionDate" />
+            <TableColumn fx:id="colState" prefWidth="86.0" text="State" />
          </columns>
       </TableView>
-      <TextField layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
+      <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
       <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -46,7 +46,7 @@
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
       <ComboBox fx:id="Groupby" layoutX="25.0" layoutY="83.0" prefWidth="150.0" promptText="State" />
-      <Button fx:id="RequestInfo" layoutX="466.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="212.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Track" textFill="WHITE">
+      <Button fx:id="MakeDecision" layoutX="549.0" layoutY="534.0" mnemonicParsing="false" onAction="#MakeDecisionAction" prefHeight="43.0" prefWidth="166.0" style="-fx-background-color: #9d1b34;" text="Approve finishing&#10;perfomance phase" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -74,6 +74,17 @@
                </image>
             </ImageView>
          </graphic>
+      </Button>
+      <Button fx:id="RequestInfo" layoutX="306.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button mnemonicParsing="false" text="Button" />
+      <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set duration" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

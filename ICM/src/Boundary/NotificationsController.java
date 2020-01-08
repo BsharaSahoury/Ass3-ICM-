@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -25,6 +25,11 @@ import messages.AutomaticRecruitMessageController;
 import messages.FailedTestMessageController;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
+import messages.CommitteeDecisionAproveorRejectController;
+import messages.DecisionCommitteeMemberMessageController;
+import messages.RecruitMessageController;
+import messages.newRequestforcommitte;
+
 
 public class NotificationsController implements Initializable {
 	
@@ -43,7 +48,9 @@ public class NotificationsController implements Initializable {
 	public static NotificationsController ctrl;
 	@FXML
 	public static SplitPane splitpane;
-
+    private static int IDRequestForDecision;
+    private static String CommittteDecision;
+    private static String ExplainDecision;
 	public void start(SplitPane splitpane,User user) {
 		this.user=user;
 		primaryStage=LoginController.primaryStage;
@@ -103,6 +110,7 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+
 			case "fail message sent to Inspector":
 				
 				content=n2.getContent();
@@ -123,13 +131,51 @@ public class NotificationsController implements Initializable {
 				SuccessTestMessageController stmc=new SuccessTestMessageController();
 				stmc.start(splitpane,id2);
 				break;		
+
+			case "Decision of Committee Member":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");			
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				System.out.println(IDRequestForDecision);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				DecisionCommitteeMemberMessageController obj=new DecisionCommitteeMemberMessageController();
+				obj.start(splitpane);
+				break;
+			case "Chairman Approved Comittee Members Decision is approve":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				CommitteeDecisionAproveorRejectController obj2=new CommitteeDecisionAproveorRejectController();
+				obj2.start(splitpane,"/messages/RecruitPerformanceLeader.fxml");
+				break;
+
+			case "new request for committe":
+				content=n2.getContent();
+			    String numberOnly= content.replaceAll("[^0-9]", "");
+			    id=Integer.valueOf(numberOnly);
+			    newRequestforcommitte r=new newRequestforcommitte();
+			    r.start(splitpane, id);
+				break;
+			
+
 		}
 		}
 
 		
 	}
-
-	
-	
-
+public static int getidofrequestforDecision() {
+	return IDRequestForDecision;
+}
+public static String getDecisionofcommitteemember() {
+	return CommittteDecision;
+}
 }
