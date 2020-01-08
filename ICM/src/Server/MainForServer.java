@@ -33,6 +33,7 @@ public class MainForServer {
         RequestsWorkedOnObserver RequestWorkOn=new RequestsWorkedOnObserver(sv);
         ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
         ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
+        ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//

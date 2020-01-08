@@ -10,6 +10,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
+import Client.ClientChairmanApproveObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientGetChairmanObserver;
@@ -17,6 +18,7 @@ import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
+import Client.ClientNotificationdetailsObserver;
 import Client.ClientObserver;
 
 import Client.ClientRecruitEvaluatorObserver;
@@ -59,6 +61,8 @@ public class MainClientController {
 			ClientRequestTrack rt=new ClientRequestTrack(cc.getClient());
 			ClientDecisionCommitteMemberObserver qq=new ClientDecisionCommitteMemberObserver(cc.getClient());
 			ClientDecisionCommitteMemberObserver xx=new ClientDecisionCommitteMemberObserver(cc.getClient());
+			ClientChairmanApproveObserver m=new ClientChairmanApproveObserver(cc.getClient());
+			ClientNotificationdetailsObserver n=new ClientNotificationdetailsObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

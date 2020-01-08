@@ -22,60 +22,57 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DecisionCommitteeMemberMessageController implements Initializable {
+public class CommitteeDecisionAproveorRejectController implements Initializable {
 	@FXML
 	Label DecisionLable;
 	@FXML
 	Button approve;
-	public static DecisionCommitteeMemberMessageController ctrl;
+	@FXML
+	ComboBox<String> combo;
+	private ObservableList<String> list;
+	public static CommitteeDecisionAproveorRejectController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
-	private int notificationID;
+	private int requestID;
 	private String CommitteeDecision;
-	public static int flag=-1;
-	private static String notdetails;
-	public void start(SplitPane splitpane) {
+	 public static int flag=-1;
+	public void start(SplitPane splitpane,String path) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/CommitteeMemberDecision-message.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			Object[] message= {"get explain notification",notificationID};
-			try {
-				LoginController.cc.getClient().sendToServer(message);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}				
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane=splitpane;			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
 	}
-	public static void setdetails(String details) {
-		ctrl.notdetails=details;
-		System.out.println("ssxxx");
-		System.out.println(ctrl.notdetails);
-		ctrl.DecisionLable.setText(ctrl.notdetails);
-	}
-	public void approveAction(ActionEvent e) {	
-		if(flag==-1) {
-			flag=0;
-		Object[] message= {"approve committee decision",notificationID,CommitteeDecision,notdetails};
-		try {
+	public void RecruitAction(ActionEvent e) {	
+		String fullname=combo.getSelectionModel().getSelectedItem();
+		if(fullname==null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("TEST");
+	        alert.setHeaderText("ERROR");
+	        alert.setContentText("please choose an performer");
+	        alert.showAndWait();
+		}
+		else if(flag==-1) {
+		flag=0;
+		Object[] message= {"Add performance phase request",requestID,CommitteeDecision,NotificationsController.getExplainDecisionofcommitteemember()};
+		/*try {
 			LoginController.cc.getClient().sendToServer(message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}	
+		}	*/
 		}else {	
 			 Alert alertSuccess = new Alert(AlertType.WARNING);
 			 alertSuccess.setTitle("Warning");
 			 alertSuccess.setHeaderText("Already Approve");
-			 alertSuccess.setContentText("You already approved this decision");
-			 alertSuccess.show();
+			 alertSuccess.setContentText("You already recruited an performer");
+			 alertSuccess.showAndWait();
 		}
 	}
 	/*
@@ -99,7 +96,21 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 	}*/
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		notificationID=NotificationsController.getidofrequestforDecision();
+		requestID=NotificationsController.getidofrequestforDecision();
 		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
+		DecisionLable.setText(NotificationsController.getExplainDecisionofcommitteemember());	
+		Object[] msg= {"Performance leaders"};
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void fillCombo(ArrayList<String> names) {
+		list=FXCollections.observableArrayList(names);
+		combo.setItems(list);
+		
 	}
 }
+

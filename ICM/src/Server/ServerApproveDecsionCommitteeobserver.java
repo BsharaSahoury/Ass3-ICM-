@@ -1,10 +1,13 @@
 package Server;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
+import Entity.Employee;
+import Entity.Notification;
 import ocsf.server.ConnectionToClient;
 
 public class ServerApproveDecsionCommitteeobserver implements Observer {
@@ -23,10 +26,25 @@ public class ServerApproveDecsionCommitteeobserver implements Observer {
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
 					if(keymessage.equals("approve committee decision")) {
+						System.out.println("mmmmmm");
 						int id=(int)arg3[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						String dec=(String)arg3[2];
 						mysqlConnection.addRequestToDB(con,id,dec);
+						String Explaindec=(String)arg3[3];
+						long millis=System.currentTimeMillis();
+						
+						String not="Chairman Approved Comittee Members Decision is '"+dec+"' for request id="+id+"\n"+"Explain the dection:"+Explaindec;
+						Notification decisionnot=new Notification(not,new java.sql.Date(millis),"Chairman Approved Comittee Members Decision is "+dec);
+						decisionnot=mysqlConnection.insertNotificationToDB(con,decisionnot);
+						Employee Inspector=mysqlConnection.getInspector(con);
+						mysqlConnection.insertNotificationForUserToDB(con,decisionnot,Inspector);
+						try {
+							client.sendToClient("Chairman approve successul");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}

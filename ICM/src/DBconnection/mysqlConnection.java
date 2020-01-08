@@ -439,16 +439,17 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 
 	}
 
-	public static ArrayList<Employee> getEvaluators(Connection con) {
-		Statement st = null;
-		Employee evaluator;
+	public static ArrayList<Employee> getEmployees(Connection con,String job) {
+		Employee employee;
 		ArrayList<Employee> list = new ArrayList<>();
+		PreparedStatement st = null;
 		try {
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='evaluator';");
+            st=con.prepareStatement("SELECT employee.* FROM employee WHERE job=?;");
+            st.setString(1, job);
+			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				evaluator = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
-				list.add(evaluator);
+				employee = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
+				list.add(employee);
 			}
 			return list;
 		} catch (SQLException e) {
@@ -616,15 +617,39 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return null;
 	}
+    public static Employee getInspector(Connection con) {
+    	Statement st = null;
+		Employee Inspector=null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='inspector';");
+			if(rs.next())
+				Inspector = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
+			return Inspector;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
     public static void addRequestToDB(Connection con,int id,String dec) {
     	PreparedStatement stm = null;
     	PreparedStatement stm2 = null;
 		try {
 			if(dec.equals("approve")) {
+			int Max=0;
+			stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
+			stm2.setInt(1, id);
+			stm2.setString(2, "performance");
+			ResultSet rs = stm2.executeQuery();	
+			while(rs.next()) {
+				if(rs.getInt(1)>Max)
+					Max=rs.getInt(1)+1;
+			}
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, "performance");
-			stm.setInt(3, 0);
+			stm.setInt(3, Max);
 			stm.setString(4, null);
 			stm.setString(5, null);
 			stm.setString(6, null);
@@ -639,7 +664,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				stm.setString(4, null);
 				stm.setString(5, null);
 				stm.setString(6, null);
-				stm.setString(7, "wait");
+				stm.setString(7, "work");
 				stm.executeUpdate();
 			}
 			else {
@@ -666,5 +691,35 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    public static void insertNotificationDetailsToDB(Connection con, Notification n1,String details) {
+		PreparedStatement stm = null;
+		try {
+			stm = con.prepareStatement("INSERT INTO notificationdetails VALUES(?,?);");
+			stm.setInt(1, n1.getId());
+			stm.setString(2, details);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    public static String getnotificationdetails(Connection con,int id) {
+    	PreparedStatement stm = null;
+		try {
+			System.out.println(id);
+			stm = con.prepareStatement("SELECT R.Details FROM icm.notificationdetails R WHERE notification_id=?;");
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+		    if(rs.next()) {
+		    	System.out.println(rs.getString(1));
+		    	return rs.getString(1);
+		    	
+		    }
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
     }
 }

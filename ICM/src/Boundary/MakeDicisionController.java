@@ -106,14 +106,6 @@ public class MakeDicisionController implements Initializable {
 			 alertSuccess.show();
 		}
 	}
-
-	public void showdecisionsendtochairman() {
-		 Alert alertSuccess = new Alert(AlertType.INFORMATION);
-		 alertSuccess.setTitle("Success");
-		 alertSuccess.setHeaderText("Success");
-		 alertSuccess.setContentText("Decision sent to chairman to approve the decision");
-		 alertSuccess.show();
-	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

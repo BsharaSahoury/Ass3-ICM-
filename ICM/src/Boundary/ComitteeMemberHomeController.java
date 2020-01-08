@@ -53,7 +53,6 @@ public class ComitteeMemberHomeController implements Initializable {
 			public void run() {
 				try {
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
-					System.out.println("111111111");
 					Scene scene = new Scene(root);
 					System.out.println("zzzz");
 					primaryStage.setScene(scene);

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.image.Image?>
@@ -50,7 +49,4 @@
                </effect></TextField>
          </children></AnchorPane>
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>

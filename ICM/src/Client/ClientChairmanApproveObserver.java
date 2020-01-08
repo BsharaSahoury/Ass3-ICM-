@@ -7,8 +7,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class ClientDecisionCommitteMemberObserver implements Observer{
-	public ClientDecisionCommitteMemberObserver(Observable client) {
+public class ClientChairmanApproveObserver implements Observer{
+	public ClientChairmanApproveObserver(Observable client) {
 		client.addObserver(this);
 }
 
@@ -17,18 +17,19 @@ public class ClientDecisionCommitteMemberObserver implements Observer{
 		// TODO Auto-generated method stub
 		if(arg1 instanceof String) {
 			String arg=(String)arg1;
-			if(arg.equals("Committee Member Decision")) {
+			if(arg.equals("Chairman approve successul")) {
 				Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 				 Alert alertSuccess = new Alert(AlertType.INFORMATION);
 				 alertSuccess.setTitle("Success");
 				 alertSuccess.setHeaderText("Success");
-				 alertSuccess.setContentText("Decision sent to chairman to approve the decision");
-				 alertSuccess.showAndWait();
+				 alertSuccess.setContentText("Your approve save In DB");
+				 alertSuccess.show();
 					}		
 				});
 			}
 		}
 	}
 }
+

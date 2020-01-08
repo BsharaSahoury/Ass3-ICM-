@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
+import messages.CommitteeDecisionAproveorRejectController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.RecruitMessageController;
 
@@ -106,7 +107,19 @@ public class NotificationsController implements Initializable {
 				break;
 			case "Decision of Committee Member":
 				content=n2.getContent();
-				ExplainDecision=content;
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");			
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				System.out.println(IDRequestForDecision);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				DecisionCommitteeMemberMessageController obj=new DecisionCommitteeMemberMessageController();
+				obj.start(splitpane);
+				break;
+			case "Chairman Approved Comittee Members Decision is approve":
+				content=n2.getContent();
 				b=new String[2];
 				b=content.split("id=");
 				b=b[1].split("\n");
@@ -114,8 +127,8 @@ public class NotificationsController implements Initializable {
 				b=content.split("is '");
 				b=b[1].split("' for");
 				CommittteDecision=b[0];
-				DecisionCommitteeMemberMessageController obj=new DecisionCommitteeMemberMessageController();
-				obj.start(splitpane);
+				CommitteeDecisionAproveorRejectController obj2=new CommitteeDecisionAproveorRejectController();
+				obj2.start(splitpane,"/messages/RecruitPerformanceLeader.fxml");
 				break;
 		}
 		}
@@ -124,9 +137,6 @@ public class NotificationsController implements Initializable {
 	}
 public static int getidofrequestforDecision() {
 	return IDRequestForDecision;
-}
-public static String getExplainDecisionofcommitteemember() {
-	return ExplainDecision;
 }
 public static String getDecisionofcommitteemember() {
 	return CommittteDecision;

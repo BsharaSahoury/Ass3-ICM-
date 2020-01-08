@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import Entity.Employee;
 import messages.AutomaticRecruitMessageController;
+import messages.CommitteeDecisionAproveorRejectController;
 
 public class ClientGetEvaluatorsObserver implements Observer {
 	public ClientGetEvaluatorsObserver(Observable server) {
@@ -26,6 +27,16 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							names.add(f1.getFirstName()+" "+f1.getLastName());
 						}
 						AutomaticRecruitMessageController.ctrl.fillCombo(names);
+					}
+				}
+				else if(keymessage.equals("Performance leaders")) {
+					if(arg1[1] instanceof ArrayList<?>) {
+						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
+						ArrayList<String> names=new ArrayList<>();
+						for(Employee f1 : Elist) {
+							names.add(f1.getFirstName()+" "+f1.getLastName());
+						}
+						CommitteeDecisionAproveorRejectController.ctrl.fillCombo(names);
 					}
 				}
 			}
