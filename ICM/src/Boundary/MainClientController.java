@@ -13,6 +13,7 @@ import Client.ClientAllRequestsObserver;
 import Client.ClientChairmanApproveObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
+import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
@@ -26,7 +27,7 @@ import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRequestInfoObserver;
 import Client.ClientRequestTrack;
 import Client.ClientRequestsWorkedOnObserver;
-
+import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
@@ -63,6 +64,8 @@ public class MainClientController {
 			ClientDecisionCommitteMemberObserver xx=new ClientDecisionCommitteMemberObserver(cc.getClient());
 			ClientChairmanApproveObserver m=new ClientChairmanApproveObserver(cc.getClient());
 			ClientNotificationdetailsObserver n=new ClientNotificationdetailsObserver(cc.getClient());
+			ClientSetDuratinObserver cd=new ClientSetDuratinObserver(cc.getClient());
+			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

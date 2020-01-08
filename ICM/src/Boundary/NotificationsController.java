@@ -25,6 +25,7 @@ import messages.AutomaticRecruitMessageController;
 import messages.CommitteeDecisionAproveorRejectController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.RecruitMessageController;
+import messages.newRequestforcommitte;
 
 public class NotificationsController implements Initializable {
 	
@@ -105,6 +106,7 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+
 			case "Decision of Committee Member":
 				content=n2.getContent();
 				b=new String[2];
@@ -130,6 +132,15 @@ public class NotificationsController implements Initializable {
 				CommitteeDecisionAproveorRejectController obj2=new CommitteeDecisionAproveorRejectController();
 				obj2.start(splitpane,"/messages/RecruitPerformanceLeader.fxml");
 				break;
+
+			case "new request for committe":
+				content=n2.getContent();
+			    String numberOnly= content.replaceAll("[^0-9]", "");
+			    id=Integer.valueOf(numberOnly);
+			    newRequestforcommitte r=new newRequestforcommitte();
+			    r.start(splitpane, id);
+				break;
+			
 		}
 		}
 
