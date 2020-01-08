@@ -40,7 +40,7 @@ public class FailedTestMessageController implements Initializable {
 	private int requestID;
 	private ObservableList<String> list;
 	public void start(SplitPane splitpane,int id) {
-		
+		this.requestID=id;
 		primaryStage=LoginController.primaryStage;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/FaildTest-message.fxml"));
@@ -87,7 +87,7 @@ public class FailedTestMessageController implements Initializable {
 	        alert.showAndWait();
 	        return;
 		}
-		Object[] msg= {"manualI",fullname,requestID};
+		Object[] msg= {"Performance leaders"};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e1) {
