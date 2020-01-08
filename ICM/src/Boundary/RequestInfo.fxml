@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestInfoController">
    <children>
-      <TabPane layoutX="3.0" layoutY="32.0" prefHeight="560.0" prefWidth="722.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="3.0" layoutY="32.0" prefHeight="560.0" prefWidth="722.0" stylesheets="@tabs.css" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Request Info">
                <content>

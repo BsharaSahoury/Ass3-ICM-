@@ -15,6 +15,7 @@ import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
 import Entity.State;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -76,6 +77,7 @@ public class RequestsWorkedOnController implements Initializable {
 	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
 	public static  FXMLLoader loader;
 	private User user;
+	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job) {
 		this.job=job;
 		this.user=user;
@@ -154,6 +156,12 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			String keymessage = "get duration";
+			Object[] message = { keymessage, s.getId(),s.getPhase()};
+			try {
+				LoginController.cc.getClient().sendToServer(message);
+			} catch (IOException e) {
+				e.printStackTrace();
 			if(s.getState().equals(State.wait))
 			{
 			SetDurationController setDuration = new SetDurationController();
@@ -171,13 +179,17 @@ public class RequestsWorkedOnController implements Initializable {
 			        alertWarning.showAndWait();
 			}
 		}
-		else {
-	        Alert alertWarning = new Alert(AlertType.WARNING);
-	        alertWarning.setTitle("Warning Alert Title");
-	        alertWarning.setHeaderText("Warning!");
-	        alertWarning.setContentText("please choose requset");
-	        alertWarning.showAndWait();
-	        }
+	}
+	}
+		public void SetDurationHelp(RequestPhase s) {
+			this.rp=s;
+			SetDurationController setDuration = new SetDurationController();
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
+				}
+			});
 	}
 	
 	public void RequestInfoAction() {
@@ -296,7 +308,6 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			id=s.getId();
 			System.out.println(s.getState().toString());
 			System.out.println(State.work.toString());
 			if(s.getState().toString().equals(State.work.toString()))
@@ -323,7 +334,10 @@ public class RequestsWorkedOnController implements Initializable {
 	public static ObservableList<RequestPhase> getList(){
 		return list;
 	}
-
+	
+public static RequestPhase getRP() {
+	return rp;
+}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

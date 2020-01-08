@@ -32,7 +32,7 @@ public class SuccessTestMessageController implements Initializable {
 	@FXML
 	ComboBox<String> combo;
 	
-	public static FailedTestMessageController ctrl;
+	public static SuccessTestMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
@@ -41,14 +41,17 @@ public class SuccessTestMessageController implements Initializable {
 	public void start(SplitPane splitpane,int id) {
 		primaryStage=LoginController.primaryStage;
 		try{	
+			System.out.println("okay2");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/SuccessTest-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane=splitpane;
+			System.out.println("okay3");
 			ctrl.requestLabel.setVisible(false);
 			ctrl.requestLabel.setText("Request with id #"+id+", Test Passed!");
 			ctrl.requestLabel.setVisible(true);
+			System.out.println("okayfinal");
 			
 		} catch(Exception e) {
 			e.printStackTrace();

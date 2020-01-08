@@ -138,7 +138,6 @@ public class NotificationsController implements Initializable {
 				int id1=Integer.valueOf(b2[0]);
 				FailedTestMessageController ftmc=new FailedTestMessageController();
 				ftmc.start(splitpane,id1);
-				
 				break;
 			case "success message sent to Inspector":
 				content=n2.getContent();
@@ -146,8 +145,10 @@ public class NotificationsController implements Initializable {
 				b3=content.split("#");
 				b3=b3[1].split("passed");
 				int id2=Integer.valueOf(b3[0]);
+				System.out.println("okay0");
 				SuccessTestMessageController stmc=new SuccessTestMessageController();
 				stmc.start(splitpane,id2);
+				System.out.println("okay1");
 				break;		
 
 			case "Decision of Committee Member":

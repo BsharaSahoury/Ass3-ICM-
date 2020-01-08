@@ -20,22 +20,20 @@ public class ClientSetDuratinObserver implements Observer {
 			if (arg2[0] instanceof String) {
 				String keymessage = (String) arg2[0];
 				if (keymessage.equals("duration")) {
-					if(arg2[1] instanceof String[] ) {
+					if (arg2[1] instanceof String[]) {
 						Platform.runLater(new Runnable() {
 
 							@Override
 							public void run() {
 								Alert alert = new Alert(AlertType.INFORMATION);
-						        alert.setTitle("SAVE");
-						        alert.setHeaderText("Success");
-						        alert.setContentText("saved successfully");
-						        alert.showAndWait();
+								alert.setTitle("SAVE");
+								alert.setHeaderText("Success");
+								alert.setContentText("saved successfully");
+								alert.showAndWait();
 							}
-							
+
 						});
-					
-						
-						
+
 					}
 				}
 			}

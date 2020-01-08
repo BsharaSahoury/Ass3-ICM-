@@ -21,6 +21,13 @@ public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State pha
 	this.dueDate = dueDate;
 	this.phasestate=phasestate;
 }
+public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate) {
+	super();
+	this.phase=phase;
+	this.startDate = startDate;
+	this.dueDate = dueDate;
+	this.phasestate=phasestate;
+}
 public Date getStartDate() {
 	return startDate;
 }

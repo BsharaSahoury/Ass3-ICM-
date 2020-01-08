@@ -41,7 +41,9 @@ public class mysqlConnection {
 		}
 		try {
 
+
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
+
 
 
 			System.out.println("SQL connection succeed");
@@ -941,5 +943,39 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 
 
 
+	}
+
+	public static RequestPhase getRequestPhase(Connection con, int id, String p) {
+		RequestPhase rp = null;
+		PreparedStatement stm1 =null;
+		PreparedStatement stm =null;
+		int maxRepetion = 0;
+		try {
+			stm = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? and phase=?;");
+			stm.setInt(1, id);
+			stm.setString(2, p);
+			ResultSet rs1 = stm.executeQuery();
+			if (rs1.next()) {
+				maxRepetion = rs1.getInt(1);
+			}
+			stm1 = con.prepareStatement(
+					"SELECT  requestinphase.* FROM icm.requestinphase where request_id=? and phase=? and repetion=?;");
+			stm1.setInt(1, id);
+			stm1.setString(2, p);
+			stm1.setInt(3, maxRepetion);
+			ResultSet rs2 = stm1.executeQuery();
+			if (rs2.next()) {
+	
+				rp = new RequestPhase(rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
+						Enum.valueOf(State.class, rs2.getString(7)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return rp;
 	}
 }
