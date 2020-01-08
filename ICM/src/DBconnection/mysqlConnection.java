@@ -587,7 +587,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return rp;
 	}
-	public static void insertDate(Connection con, int id, String[] d) {
+	public static void insertDate(Connection con, int id, String[] d, Phase p) {
 		
 		d[0] = d[0].replaceAll("(\\r|\\n)", "");
         d[1] = d[1].replaceAll("(\\r|\\n)", "");
@@ -597,19 +597,21 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			
 			try {
 				
-				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=?;");
+				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 				stm.setInt(1, id);
+				stm.setString(2, p.toString());
 				ResultSet rs = stm.executeQuery();	
 	            if(rs.next()) {
 	            	maxRepetion = rs.getInt(1);
 	            	System.out.println(rs.getInt(1));
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
-						+ " SET start_date = ?, due_date = ?,state='work' "
-						+ "WHERE (request_id = ? and phase='evaluation' and repetion=?);");
+						+ " SET start_date = ?, due_date = ?,state='wait' "
+						+ "WHERE (request_id = ? and phase=? and repetion=?);");
 				stm1.setString(1, d[0]);
 				stm1.setString(2,d[1]);
 				stm1.setInt(3, id);
-				stm1.setInt(4, maxRepetion);
+				stm1.setString(4, p.toString());
+				stm1.setInt(5, maxRepetion);
 				stm1.executeUpdate();
 	            }
 			} catch (SQLException e) {
@@ -668,6 +670,28 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		return null;
 	}
 
+
+	public static void updatePerfomanceFinishedInDB(Connection con, int id) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE request_id=?;");
+			stm.setInt(1, id);
+			stm.executeUpdate();
+			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2, "testing");
+			stm.setInt(3, 0);
+			stm.setDate(4, null);
+			stm.setDate(5, null);
+			stm.setDate(6, null);
+			stm.setString(7, "wait");
+			stm.executeUpdate();
+		}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
 
 	public static void updateDBdueToFailTest(Connection con, int requestId) {
 		PreparedStatement stm=null;
@@ -907,10 +931,12 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm3.setString(7, "work");
 			stm3.executeUpdate();
 
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 
 

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
 import Entity.State;
@@ -34,14 +35,17 @@ public class SetDurationController implements Initializable {
 	private DatePicker dueDate;
 	@FXML
 	private Button save;
-	private static RequestPhase r;
 
-	public void start(SplitPane splitpane, RequestPhase r, String path) {
-		System.out.println("000000000");
+	private static Request r;
+	private static Phase phase;
+
+	public void start(SplitPane splitpane, Request r,String path, Phase phase) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.r = r;
+		this.phase=phase;
+
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
@@ -61,7 +65,7 @@ public class SetDurationController implements Initializable {
 				String keymessage = "save duration";
 				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
 
-				Object[] message = { keymessage, r.getId(), d };
+				Object[] message = { keymessage, r.getId(), d, phase};
 
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e) {
@@ -80,7 +84,7 @@ public class SetDurationController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		if (!r.getState().equals(State.wait)) {
+		if (!RequestsWorkedOnController.getRP().getState().equals(State.wait)) {
 			save.setDisable(true);
 			dueDate.setValue(RequestsWorkedOnController.getRP().getDueDate().toLocalDate());
 			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());

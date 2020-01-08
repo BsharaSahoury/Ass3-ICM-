@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
+import Entity.Phase;
 import Entity.RequestPhase;
 import ocsf.server.ConnectionToClient;
 
@@ -24,8 +25,9 @@ public class ServerSetDuratinObserver  implements Observer {
 				if (keymessage.equals("save duration")) {
 					int id=(int) arg3[1];
 					String d[] = (String[]) arg3[2];
+					Phase p=(Phase)arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
-					mysqlConnection.insertDate(con,id,d);
+					mysqlConnection.insertDate(con,id,d,p);
 					Object[] send = new Object[2];
 					send[0] = "duration";
 					send[1] = d;
