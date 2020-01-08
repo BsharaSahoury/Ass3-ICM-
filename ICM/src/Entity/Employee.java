@@ -31,6 +31,12 @@ public class Employee extends User {
 		this.roles = roles;
 	}
 
+	public Employee(String username,String firstName,String lastName) {
+		super(username,null,null);
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

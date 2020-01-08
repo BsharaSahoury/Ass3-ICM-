@@ -31,11 +31,16 @@
                </font>
             </Label>
             <Label fx:id="requestLabel" layoutX="52.0" layoutY="105.0" prefHeight="18.0" prefWidth="347.0" text="New request with the id #  has been submitted recently," />
-            <Button fx:id="other" layoutX="512.0" layoutY="264.0" mnemonicParsing="false" onAction="#chooseOtherAction" prefHeight="18.0" prefWidth="62.0" style="-fx-background-color: #9d1b34;" text="Recruit" textFill="WHITE" />
-            <Button fx:id="approve" layoutX="152.0" layoutY="211.0" mnemonicParsing="false" onAction="#approveAction" style="-fx-background-color: #9d1b34;" text="Approve" textFill="WHITE" />
+            <Button fx:id="other" layoutX="558.0" layoutY="238.0" mnemonicParsing="false" onAction="#chooseOtherAction" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #9d1b34;" text="Recruit" textFill="WHITE" />
+            <Button fx:id="approve" layoutX="61.0" layoutY="183.0" mnemonicParsing="false" onAction="#approveAction" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: #9d1b34;" text="Approve" textFill="WHITE" />
             <Label fx:id="evaluatorLabel" layoutX="52.0" layoutY="133.0" text="Evaluator ??? will be recruited automatically to evaluate the request. would you like to approve?" />
-            <Label layoutX="288.0" layoutY="215.0" text="you can choose other evaluator:" />
-            <ComboBox fx:id="combo" layoutX="468.0" layoutY="211.0" prefWidth="150.0" />
+            <Label layoutX="362.0" layoutY="190.0" text="You can choose other evaluator:" />
+            <ComboBox fx:id="combo" layoutX="543.0" layoutY="186.0" prefWidth="150.0" />
+            <Label layoutX="304.0" layoutY="183.0" text="OR" textFill="#3c0505">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
    </children>
    <effect>

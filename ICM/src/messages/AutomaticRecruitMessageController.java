@@ -34,6 +34,7 @@ public class AutomaticRecruitMessageController implements Initializable {
 	Button other;
 	@FXML
 	ComboBox<String> combo;
+	
 	public static AutomaticRecruitMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
@@ -92,6 +93,11 @@ public class AutomaticRecruitMessageController implements Initializable {
 		
 		
 	}
+	
+	
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Object[] msg= {"evaluators"};
@@ -102,10 +108,13 @@ public class AutomaticRecruitMessageController implements Initializable {
 			e.printStackTrace();
 		}		
 	}
+	
+	
+	
+	
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
 		combo.setItems(list);
-		
 	}
 	
 	

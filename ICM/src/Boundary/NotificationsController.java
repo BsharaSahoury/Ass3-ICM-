@@ -22,7 +22,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
+import messages.FailedTestMessageController;
 import messages.RecruitMessageController;
+import messages.SuccessTestMessageController;
 
 public class NotificationsController implements Initializable {
 	
@@ -101,7 +103,26 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+			case "fail message sent to Inspector":
 				
+				content=n2.getContent();
+				String[] b2=new String[2];
+				b2=content.split("#");
+				b2=b2[1].split("failed");
+				int id1=Integer.valueOf(b2[0]);
+				FailedTestMessageController ftmc=new FailedTestMessageController();
+				ftmc.start(splitpane,id1);
+				
+				break;
+			case "success message sent to Inspector":
+				content=n2.getContent();
+				String[] b3=new String[2];
+				b3=content.split("#");
+				b3=b3[1].split("passed");
+				int id2=Integer.valueOf(b3[0]);
+				SuccessTestMessageController stmc=new SuccessTestMessageController();
+				stmc.start(splitpane,id2);
+				break;		
 		}
 		}
 

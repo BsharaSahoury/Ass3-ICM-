@@ -34,6 +34,8 @@ public class MainForServer {
         ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
         ServerSetDuratinObserver duration=new ServerSetDuratinObserver(sv);
         ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
+        ServerTestFailedObserver stfo=new ServerTestFailedObserver(sv);
+        ServerTestSuccessObserver stso=new ServerTestSuccessObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//

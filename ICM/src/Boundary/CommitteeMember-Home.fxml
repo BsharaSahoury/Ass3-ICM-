@@ -19,11 +19,33 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ComitteeMemberHomeController">
    <children>
-      <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
+      <SplitPane fx:id="splitpane" dividerPositions="0.21916630855178343" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
             <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+                  <Button fx:id="RequestWorkedOnbtn1" alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestForTestOnAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Requests For testing" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/myRequests.png" />
+                           </image>
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#010101" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="346.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -60,7 +82,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="RequestWorkedOnbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="180.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Requests in work" textAlignment="RIGHT" textFill="WHITE">
+                  <Button fx:id="RequestWorkedOnbtn" alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="236.0" mnemonicParsing="false" onAction="#RequestWorkedOnAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Requests that i work on" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -82,7 +104,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="242.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="288.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -104,7 +126,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="366.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="406.0" mnemonicParsing="false" onAction="#ProfileSettingAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Profile Setting" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -126,7 +148,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="428.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-5.0" layoutY="463.0" mnemonicParsing="false" onAction="#AboutICMAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  About ICM" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -236,7 +258,4 @@
          </children>
       </AnchorPane>
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>
