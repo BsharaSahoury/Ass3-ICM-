@@ -22,7 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class CommitteeDecisionAproveorRejectController implements Initializable {
+public class CommitteeDecisionAproveorRejectController implements Initializable, NeedEmployees {
 	@FXML
 	Label DecisionLable;
 	@FXML
@@ -99,7 +99,7 @@ public class CommitteeDecisionAproveorRejectController implements Initializable 
 		requestID=NotificationsController.getidofrequestforDecision();
 		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
 		DecisionLable.setText(NotificationsController.getExplainDecisionofcommitteemember());	
-		Object[] msg= {"Performance leaders"};
+		Object[] msg= {"Performance leaders",getClass().getName()};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e) {
@@ -107,6 +107,7 @@ public class CommitteeDecisionAproveorRejectController implements Initializable 
 			e.printStackTrace();
 		}
 	}
+	
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
 		combo.setItems(list);

@@ -25,10 +25,11 @@ public class ServerGetEvaluatorsObserver implements Observer {
 				Object[] arg2=(Object[])arg1[1];
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
+					String classname=(String)arg2[1];
 					if(keymessage.equals("evaluators")) {
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						ArrayList<Employee> evaluators=mysqlConnection.getEmployees(con,"evaluator");
-						Object[] msg= {keymessage,evaluators};
+						Object[] msg= {"employees",evaluators,classname};
 						try {
 							client.sendToClient(msg);
 						} catch (IOException e) {
@@ -39,7 +40,18 @@ public class ServerGetEvaluatorsObserver implements Observer {
 					else if(keymessage.equals("Performance leaders")) {
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"performer");
-						Object[] msg= {keymessage,performers};
+						Object[] msg= {"employees",performers,classname};
+						try {
+							client.sendToClient(msg);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					else if(keymessage.equals("comittee members")) {
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						ArrayList<Employee> comitteMembers=mysqlConnection.getEmployees(con, "comittee member");
+						Object[] msg= {"employees",comitteMembers,classname};
 						try {
 							client.sendToClient(msg);
 						} catch (IOException e) {
