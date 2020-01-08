@@ -22,7 +22,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
+
+import messages.ChooseTesterMessageController;
+
 import messages.FailedTestMessageController;
+
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.CommitteeDecisionAproveorRejectController;
@@ -111,7 +115,21 @@ public class NotificationsController implements Initializable {
 				rmc.start(splitpane, id);
 				break;
 
+			case "choose tester":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				b=b[1].split(" is");
+				id=Integer.valueOf(b[0]);
+				ChooseTesterMessageController ctmc=new ChooseTesterMessageController();
+				ctmc.start(splitpane, id);
+				break;
+				
+				
+
+
 			case "fail message sent to Inspector":
+
 				
 				content=n2.getContent();
 				String[] b2=new String[2];

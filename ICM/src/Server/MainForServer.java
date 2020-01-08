@@ -34,10 +34,13 @@ public class MainForServer {
         ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
         ServerSetDuratinObserver duration=new ServerSetDuratinObserver(sv);
         ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
+
+        ServerApprovePerformanceObserver sapo=new ServerApprovePerformanceObserver(sv);
         ServerTestFailedObserver stfo=new ServerTestFailedObserver(sv);
         ServerTestSuccessObserver stso=new ServerTestSuccessObserver(sv);
         ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
         ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
+
 
 	      try {
 		   sv.listen();

@@ -1,9 +1,11 @@
 package Boundary;
 
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
@@ -21,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -59,6 +62,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private Button MakeDecision; 
 	@FXML
 	private ComboBox Groupby;
+	@FXML
+	private Button approveFinish;
 	private static int chosengroupbytype=-1;
 	private static int chosen=-1;
 	private static ObservableList<RequestPhase> list;
@@ -152,7 +157,13 @@ public class RequestsWorkedOnController implements Initializable {
 			if(s.getState().equals(State.wait))
 			{
 			SetDurationController setDuration = new SetDurationController();
-			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
+			if(job.equals("Evaluator")) {
+				setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml",s.getPhase());
+			}
+			else {
+				
+				setDuration.start(splitpane,s ,"/Boundary/Duration.fxml",s.getPhase());
+			}
 			}
 			else {
 				 Alert alertWarning = new Alert(AlertType.WARNING);
@@ -184,6 +195,38 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+
+	public void approveFinishAction(ActionEvent e) {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase r=tableRequests.getSelectionModel().getSelectedItem();
+			if(!r.getState().toString().equals("work")) {
+				Alert alertWarning = new Alert(AlertType.WARNING);
+		        alertWarning.setTitle("Warning Alert Title");
+		        alertWarning.setHeaderText("Warning!");
+		        alertWarning.setContentText("the request is not at performance phase!!");
+		        alertWarning.showAndWait();
+			}
+			else {
+				Alert alertWarning = new Alert(AlertType.CONFIRMATION);
+		        alertWarning.setTitle("Warning Alert Title");
+		        alertWarning.setHeaderText("confirm!");
+		        alertWarning.setContentText("are you sure that you've finished working on this request?");
+		        Optional<ButtonType> result=alertWarning.showAndWait();
+		        ButtonType button=result.orElse(ButtonType.CANCEL);
+		        if(button==ButtonType.OK) {
+		        	Object[] msg= {"performance done",r.getId()};
+					try {
+						LoginController.cc.getClient().sendToServer(msg);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        }
+			}
+		}
+	}
+				
 	
    public void InsertTestResultAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
@@ -208,11 +251,14 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+
+			
    
 
 	
 	
 	
+
 	public static int getselectedindex() {
 		return chosen;
 	}
