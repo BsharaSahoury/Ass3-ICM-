@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
 import messages.RecruitMessageController;
+import messages.newRequestforcommitte;
 
 public class NotificationsController implements Initializable {
 	
@@ -101,6 +102,14 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+			case "new request for committe":
+				content=n2.getContent();
+			    String numberOnly= content.replaceAll("[^0-9]", "");
+			    id=Integer.valueOf(numberOnly);
+			    newRequestforcommitte r=new newRequestforcommitte();
+			    r.start(splitpane, id);
+				break;
+			
 				
 		}
 		}

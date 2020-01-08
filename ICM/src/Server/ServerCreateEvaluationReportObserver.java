@@ -43,7 +43,7 @@ public class ServerCreateEvaluationReportObserver implements Observer {
 					long millis=System.currentTimeMillis();
 					String notifcation="you have new Request: request id:"+" "+er.getRequestID()+" start work";
 					System.out.println(notifcation);
-					Notification not=new Notification(notifcation,new java.sql.Date(millis),"Decision of Committee Member");
+					Notification not=new Notification(notifcation,new java.sql.Date(millis),"new request for committe");
 					not=mysqlConnection.insertNotificationToDB(con,not);
 					mysqlConnection.insertNotificationForUserToDB(con,not,chairman);
 				}
