@@ -156,38 +156,37 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			id=s.getId();
+
 			String keymessage = "get duration";
 			Object[] message = { keymessage, s.getId(),s.getPhase()};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e) {
-				e.printStackTrace();
-			if(s.getState().equals(State.wait))
-			{
-			SetDurationController setDuration = new SetDurationController();
-			if(job.equals("Evaluator")) {
-				setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml",s.getPhase());
-			}
-			else {
-				
-				setDuration.start(splitpane,s ,"/Boundary/Duration.fxml",s.getPhase());
-			}
-			}
-			else {
-				 Alert alertWarning = new Alert(AlertType.WARNING);
-			        alertWarning.setContentText("you have add duration before");
-			        alertWarning.showAndWait();
-			}
-		}
+				e.printStackTrace();}
+		
 	}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
 	}
 		public void SetDurationHelp(RequestPhase s) {
 			this.rp=s;
+			rp.setId(id);
 			SetDurationController setDuration = new SetDurationController();
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
+					if(job.equals("Evaluator")) {
+		            	setDuration.start(splitpane,rp,"/Boundary/DuratinEvaluator.fxml",rp.getPhase());
+					}
+					else {
+						setDuration.start(splitpane,rp ,"/Boundary/Duration.fxml",rp.getPhase());
+					}
 				}
 			});
 	}

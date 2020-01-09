@@ -619,11 +619,14 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-			
+		System.out.println(id);
+			System.out.println(d[0]);
+			System.out.println(p);
 			try {
 				
 				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 				stm.setInt(1, id);
+				
 				stm.setString(2, p.toString());
 				ResultSet rs = stm.executeQuery();	
 	            if(rs.next()) {
