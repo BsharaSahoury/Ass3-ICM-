@@ -56,6 +56,19 @@ public class ClientRecruitEvaluatorObserver implements Observer{
 						
 					});	
 				}
+				else if(keymessage.equals("testerRecruit")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("TEST");
+					        alert.setHeaderText("Success");
+					        alert.setContentText("tester has been recruited successfully");
+					        alert.showAndWait();
+						}
+						
+					});	
+				}
 			}
 		}
 		
