@@ -42,15 +42,15 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/CommitteeMemberDecision-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			Object[] message= {"get explain notification",ctrl.notificationID,"Chairman to approve the decision"};
+			Object[] message= {"get explain notification",ctrl.notificationID,"Chairman to approve the decision"};	
+			splitpane.getItems().set(1, lowerAnchorPane);
+			this.splitpane=splitpane;
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}				
-			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
+			}		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -59,7 +59,8 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void approveAction(ActionEvent e) {	
+	public void approveAction(ActionEvent e) {
+		System.out.println("q");
 		if(flag==-1) {
 			flag=0;
 		Object[] message= {"approve committee decision",requestID,CommitteeDecision,ctrl.notdetails};

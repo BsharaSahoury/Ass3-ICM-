@@ -2,6 +2,7 @@ package Server;
 
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Observable;
 import java.util.Observer;
@@ -34,8 +35,8 @@ public class ServerTestSuccessObserver implements Observer {
 								"test for request#" + requestId + "passed, request moved to close phase",
 								new java.sql.Date(millis), "success message sent to Inspector");
 						n = mysqlConnection.insertNotificationToDB(con, n);
-						Employee inspector = mysqlConnection.getInspector(con);
-						mysqlConnection.insertNotificationForUserToDB(con, n, inspector);
+						ArrayList<Employee> inspector = mysqlConnection.getEmployees(con, "inspector");
+						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));
 
 					}
 				}

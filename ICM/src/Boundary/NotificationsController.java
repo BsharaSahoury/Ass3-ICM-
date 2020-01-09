@@ -131,13 +131,7 @@ public class NotificationsController implements Initializable {
 				ChooseTesterMessageController ctmc=new ChooseTesterMessageController();
 				ctmc.start(splitpane, id);
 				break;
-				
-				
-
-
-			case "fail message sent to Inspector":
-
-				
+			case "fail message sent to Inspector":				
 				content=n2.getContent();
 				String[] b2=new String[2];
 				b2=content.split("#");
@@ -157,7 +151,6 @@ public class NotificationsController implements Initializable {
 				stmc.start(splitpane,id2);
 				System.out.println("okay1");
 				break;		
-
 			case "Decision of Committee Member":
 				content=n2.getContent();
 				b=new String[2];

@@ -52,7 +52,7 @@ public class CommitteeDecisionAskForaddInfoController implements Initializable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}	
-			Object[] msg= {"evaluatorsagain"};
+			Object[] msg= {"evaluatorsagain",getClass().getName()};
 			try {
 				LoginController.cc.getClient().sendToServer(msg);
 			} catch (IOException e) {

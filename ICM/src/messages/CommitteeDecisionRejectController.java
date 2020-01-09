@@ -45,15 +45,15 @@ public class CommitteeDecisionRejectController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			Object[] message= {"get explain notification",ctrl.notificationID,"inspector to close the request"};
+			Object[] message= {"get explain notification",ctrl.notificationID,"inspector to close the request"};	
+			splitpane.getItems().set(1, lowerAnchorPane);
+			this.splitpane=splitpane;	
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}	
-			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;			
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
