@@ -1,9 +1,11 @@
 package Boundary;
 
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
@@ -13,6 +15,7 @@ import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
 import Entity.State;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -59,6 +63,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private Button MakeDecision; 
 	@FXML
 	private ComboBox Groupby;
+	@FXML
+	private Button approveFinish;
 	private static int chosengroupbytype=-1;
 	private static int chosen=-1;
 	private static ObservableList<RequestPhase> list;
@@ -71,6 +77,7 @@ public class RequestsWorkedOnController implements Initializable {
 	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
 	public static  FXMLLoader loader;
 	private User user;
+	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job) {
 		this.job=job;
 		this.user=user;
@@ -149,17 +156,16 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			if(s.getState().equals(State.wait))
-			{
-			SetDurationController setDuration = new SetDurationController();
-			setDuration.start(splitpane,s,"/Boundary/DuratinEvaluator.fxml");
-			}
-			else {
-				 Alert alertWarning = new Alert(AlertType.WARNING);
-			        alertWarning.setContentText("you have add duration before");
-			        alertWarning.showAndWait();
-			}
-		}
+			id=s.getId();
+
+			String keymessage = "get duration";
+			Object[] message = { keymessage, s.getId(),s.getPhase()};
+			try {
+				LoginController.cc.getClient().sendToServer(message);
+			} catch (IOException e) {
+				e.printStackTrace();}
+		
+	}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);
 	        alertWarning.setTitle("Warning Alert Title");
@@ -168,6 +174,23 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+		public void SetDurationHelp(RequestPhase s) {
+			this.rp=s;
+			rp.setId(id);
+			SetDurationController setDuration = new SetDurationController();
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					if(job.equals("Evaluator")) {
+		            	setDuration.start(splitpane,rp,"/Boundary/DuratinEvaluator.fxml",rp.getPhase());
+					}
+					else {
+						setDuration.start(splitpane,rp ,"/Boundary/Duration.fxml",rp.getPhase());
+					}
+				}
+			});
+	}
+	
 	public void RequestInfoAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
@@ -183,6 +206,70 @@ public class RequestsWorkedOnController implements Initializable {
 	        alertWarning.showAndWait();
 	        }
 	}
+
+	public void approveFinishAction(ActionEvent e) {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase r=tableRequests.getSelectionModel().getSelectedItem();
+			if(!r.getState().toString().equals("work")) {
+				Alert alertWarning = new Alert(AlertType.WARNING);
+		        alertWarning.setTitle("Warning Alert Title");
+		        alertWarning.setHeaderText("Warning!");
+		        alertWarning.setContentText("the request is not at performance phase!!");
+		        alertWarning.showAndWait();
+			}
+			else {
+				Alert alertWarning = new Alert(AlertType.CONFIRMATION);
+		        alertWarning.setTitle("Warning Alert Title");
+		        alertWarning.setHeaderText("confirm!");
+		        alertWarning.setContentText("are you sure that you've finished working on this request?");
+		        Optional<ButtonType> result=alertWarning.showAndWait();
+		        ButtonType button=result.orElse(ButtonType.CANCEL);
+		        if(button==ButtonType.OK) {
+		        	Object[] msg= {"performance done",r.getId()};
+					try {
+						LoginController.cc.getClient().sendToServer(msg);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        }
+			}
+		}
+	}
+				
+	
+   public void InsertTestResultAction() {
+		chosen=tableRequests.getSelectionModel().getSelectedIndex();
+		if(chosen!=-1) {
+			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
+			if(s.getState().equals(State.work))
+			{
+				TestResultController setTestResult = new TestResultController();
+				setTestResult.start(splitpane,s);
+			}
+			else {
+				 Alert alertWarning = new Alert(AlertType.ERROR);
+			        alertWarning.setContentText("The request state must be work");
+			        alertWarning.showAndWait();
+			}
+		}
+		else {
+	        Alert alertWarning = new Alert(AlertType.WARNING);
+	        alertWarning.setTitle("Warning Alert Title");
+	        alertWarning.setHeaderText("Warning!");
+	        alertWarning.setContentText("please choose requset");
+	        alertWarning.showAndWait();
+	        }
+	}
+
+			
+   
+
+	
+	
+	
+
 	public static int getselectedindex() {
 		return chosen;
 	}
@@ -220,7 +307,6 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			id=s.getId();
 			System.out.println(s.getState().toString());
 			System.out.println(State.work.toString());
 			if(s.getState().toString().equals(State.work.toString()))
@@ -247,12 +333,11 @@ public class RequestsWorkedOnController implements Initializable {
 	public static ObservableList<RequestPhase> getList(){
 		return list;
 	}
-
-	public void InsertTestResultAction()
-	{
-		TestResultController result = new TestResultController();
-		result.start(splitpane);
-	}
+	
+public static RequestPhase getRP() {
+	return rp;
+}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Groupby.setItems(statuslist);

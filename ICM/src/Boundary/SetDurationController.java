@@ -3,10 +3,14 @@ package Boundary;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Entity.Phase;
 import Entity.Request;
+import Entity.RequestPhase;
+import Entity.State;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,13 +35,16 @@ public class SetDurationController implements Initializable {
 	private DatePicker dueDate;
 	@FXML
 	private Button save;
-	private static Request r;
 
-	public void start(SplitPane splitpane, Request r,String path) {
+	private static Request r;
+	private static Phase phase;
+
+	public void start(SplitPane splitpane, Request r,String path, Phase phase) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.r = r;
+		this.phase=phase;
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -53,15 +60,14 @@ public class SetDurationController implements Initializable {
 		LocalDate start = startDate.getValue();
 		LocalDate due = dueDate.getValue();
 		LocalDate today = LocalDate.now();
-		if (start!=null && due!=null & due.compareTo(start) >= 0 && start.compareTo(today) >=0) {
+		if (start != null && due != null & due.compareTo(start) >= 0 && start.compareTo(today) >= 0) {
 			try {
 				String keymessage = "save duration";
 				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
-
-				Object[] message = { keymessage, r.getId(), d };
+System.out.println(r.getId());
+				Object[] message = { keymessage, r.getId(), d, phase};
 
 				LoginController.cc.getClient().sendToServer(message);
-				save.setDisable(true);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,8 +83,13 @@ public class SetDurationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
+		if(RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null)
+ {
+			save.setDisable(true);
+			dueDate.setValue(RequestsWorkedOnController.getRP().getDueDate().toLocalDate());
+			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
+		}
 	}
 
 }

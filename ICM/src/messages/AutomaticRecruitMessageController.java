@@ -1,6 +1,7 @@
 package messages;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -24,6 +25,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class AutomaticRecruitMessageController implements Initializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@FXML
 	Label requestLabel;
 	@FXML
@@ -34,6 +39,7 @@ public class AutomaticRecruitMessageController implements Initializable {
 	Button other;
 	@FXML
 	ComboBox<String> combo;
+	
 	public static AutomaticRecruitMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
@@ -92,9 +98,14 @@ public class AutomaticRecruitMessageController implements Initializable {
 		
 		
 	}
+	
+	
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Object[] msg= {"evaluators"};
+		Object[] msg= {"evaluators",getClass().getName()};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e) {
@@ -102,10 +113,12 @@ public class AutomaticRecruitMessageController implements Initializable {
 			e.printStackTrace();
 		}		
 	}
+	
+	
+	
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
 		combo.setItems(list);
-		
 	}
 	
 	

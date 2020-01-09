@@ -85,7 +85,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
-	//RequestWorkON.start(splitpane,"/Boundary/RequestWorkOnCommittemember.fxml\", user, job);
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader");
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {

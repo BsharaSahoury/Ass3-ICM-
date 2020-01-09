@@ -1,6 +1,7 @@
 package Boundary;
 
-import java.io.IOException;
+
+import java.io.IOException; 
 
 import java.net.URL;
 import java.sql.Date;
@@ -26,10 +27,18 @@ import messages.AutomaticRecruitMessageController;
 import messages.CommitteeDecisionApproveController;
 import messages.CommitteeDecisionAskForaddInfoController;
 import messages.CommitteeDecisionRejectController;
+
+import messages.ChooseTesterMessageController;
+
+import messages.FailedTestMessageController;
+
+import messages.RecruitMessageController;
+import messages.SuccessTestMessageController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
 import messages.newRequestforcommitte;
+
 
 public class NotificationsController implements Initializable {
 	
@@ -112,6 +121,42 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc=new RecruitMessageController();
 				rmc.start(splitpane, id);
 				break;
+
+			case "choose tester":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				b=b[1].split(" is");
+				id=Integer.valueOf(b[0]);
+				ChooseTesterMessageController ctmc=new ChooseTesterMessageController();
+				ctmc.start(splitpane, id);
+				break;
+				
+				
+
+
+			case "fail message sent to Inspector":
+
+				
+				content=n2.getContent();
+				String[] b2=new String[2];
+				b2=content.split("#");
+				b2=b2[1].split("failed");
+				int id1=Integer.valueOf(b2[0]);
+				FailedTestMessageController ftmc=new FailedTestMessageController();
+				ftmc.start(splitpane,id1);
+				break;
+			case "success message sent to Inspector":
+				content=n2.getContent();
+				String[] b3=new String[2];
+				b3=content.split("#");
+				b3=b3[1].split("passed");
+				int id2=Integer.valueOf(b3[0]);
+				System.out.println("okay0");
+				SuccessTestMessageController stmc=new SuccessTestMessageController();
+				stmc.start(splitpane,id2);
+				System.out.println("okay1");
+				break;		
 
 			case "Decision of Committee Member":
 				content=n2.getContent();

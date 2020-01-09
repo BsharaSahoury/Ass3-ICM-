@@ -41,7 +41,10 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ayman1234567891");
+
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
+
+
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -597,29 +600,34 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return rp;
 	}
-	public static void insertDate(Connection con, int id, String[] d) {
+	public static void insertDate(Connection con, int id, String[] d, Phase p) {
 		
 		d[0] = d[0].replaceAll("(\\r|\\n)", "");
         d[1] = d[1].replaceAll("(\\r|\\n)", "");
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-			
+		System.out.println(id);
+			System.out.println(d[0]);
+			System.out.println(p);
 			try {
 				
-				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=?;");
+				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 				stm.setInt(1, id);
+				
+				stm.setString(2, p.toString());
 				ResultSet rs = stm.executeQuery();	
 	            if(rs.next()) {
 	            	maxRepetion = rs.getInt(1);
 	            	System.out.println(rs.getInt(1));
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
-						+ " SET start_date = ?, due_date = ?,state='work' "
-						+ "WHERE (request_id = ? and phase='evaluation' and repetion=?);");
+						+ " SET start_date = ?, due_date = ?,state='wait' "
+						+ "WHERE (request_id = ? and phase=? and repetion=?);");
 				stm1.setString(1, d[0]);
 				stm1.setString(2,d[1]);
 				stm1.setInt(3, id);
-				stm1.setInt(4, maxRepetion);
+				stm1.setString(4, p.toString());
+				stm1.setInt(5, maxRepetion);
 				stm1.executeUpdate();
 	            }
 			} catch (SQLException e) {
@@ -676,6 +684,109 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void updatePerfomanceFinishedInDB(Connection con, int id) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE request_id=?;");
+			stm.setInt(1, id);
+			stm.executeUpdate();
+			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2, "testing");
+			stm.setInt(3, 0);
+			stm.setDate(4, null);
+			stm.setDate(5, null);
+			stm.setDate(6, null);
+			stm.setString(7, "wait");
+			stm.executeUpdate();
+		}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
+	public static void updateDBdueToFailTest(Connection con, int requestId) {
+		PreparedStatement stm=null;
+		int maxRepetion;
+		try {
+			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='testing' AND request_id=?;");
+			stm.setInt(1, requestId);
+			stm.executeUpdate();
+			stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase WHERE request_id=? AND phase='performance';");
+			stm.setInt(1,requestId);
+			ResultSet rs = stm.executeQuery();	
+            if(rs.next()) {
+            	maxRepetion = rs.getInt(1)+1;
+            }
+            maxRepetion=0;
+            stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+            stm.setInt(1, requestId);
+            stm.setString(2, "performance");
+            stm.setInt(3,maxRepetion);
+            stm.setDate(4,null);
+            stm.setDate(5,null);
+            stm.setString(6, null);
+            stm.setString(7,"wait");
+            stm.executeUpdate();
+            
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void sendFailDetailsToInspector(Connection con, Notification n) {
+		Statement st=null;
+		Employee inspector = null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT username,first_name,last_name FROM employee WHERE job='inspector';");
+			if(rs.next()) {
+				inspector=new Employee(rs.getString(1),rs.getString(2),rs.getString(3));
+			}
+			mysqlConnection.insertNotificationForUserToDB(con, n, inspector);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void updateDBdueToSuccessTest(Connection con, int requestId) {
+		
+		PreparedStatement stm=null;
+		int maxRepetion;
+		try {
+			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='testing' AND request_id=?;");
+			stm.setInt(1, requestId);
+			stm.executeUpdate();
+			
+	    /*  stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase WHERE request_id=? AND phase='performance';");
+			ResultSet rs = stm.executeQuery();	
+            if(rs.next()) {
+            	maxRepetion = rs.getInt(1);
+            }
+            maxRepetion=0;
+            stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+            stm.setInt(1, requestId);
+            stm.setString(2, "performance");
+            stm.setInt(3,maxRepetion);
+            stm.setDate(4,null);
+            stm.setDate(5,null);
+            stm.setString(6, null);
+            stm.setString(7,"wait");*/
+            stm.executeUpdate();
+            
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
     public static void addRequestToDB(Connection con,int id,String dec) {
@@ -813,10 +924,50 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm3.setString(6, chairman.getUsername());
 			stm3.setString(7, "work");
 			stm3.executeUpdate();
+
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
+
+
+
+	}
+
+	public static RequestPhase getRequestPhase(Connection con, int id, String p) {
+		RequestPhase rp = null;
+		PreparedStatement stm1 =null;
+		PreparedStatement stm =null;
+		int maxRepetion = 0;
+		try {
+			stm = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? and phase=?;");
+			stm.setInt(1, id);
+			stm.setString(2, p);
+			ResultSet rs1 = stm.executeQuery();
+			if (rs1.next()) {
+				maxRepetion = rs1.getInt(1);
+			}
+			stm1 = con.prepareStatement(
+					"SELECT  requestinphase.* FROM icm.requestinphase where request_id=? and phase=? and repetion=?;");
+			stm1.setInt(1, id);
+			stm1.setString(2, p);
+			stm1.setInt(3, maxRepetion);
+			ResultSet rs2 = stm1.executeQuery();
+			if (rs2.next()) {
+	
+				rp = new RequestPhase(rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
+						Enum.valueOf(State.class, rs2.getString(7)));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return rp;
 	}
 }

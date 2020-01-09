@@ -2,6 +2,7 @@ package Client;
 
 import java.util.ArrayList;
 
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,6 +11,10 @@ import javafx.application.Platform;
 import messages.AutomaticRecruitMessageController;
 import messages.CommitteeDecisionApproveController;
 import messages.CommitteeDecisionAskForaddInfoController;
+import messages.CommitteeDecisionRejectController;
+import messages.ChooseTesterMessageController;
+import messages.DecisionCommitteeMemberMessageController;
+
 
 public class ClientGetEvaluatorsObserver implements Observer {
 	public ClientGetEvaluatorsObserver(Observable server) {
@@ -22,7 +27,8 @@ public class ClientGetEvaluatorsObserver implements Observer {
 			Object[] arg1=(Object[])arg;
 			if(arg1[0] instanceof String) {
 				String keymessage=(String)arg1[0];
-				if(keymessage.equals("evaluators")) {
+				if(keymessage.equals("employees")) {
+					String classname=(String)arg1[2];
 					if(arg1[1] instanceof ArrayList<?>) {
 						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
 						ArrayList<String> names=new ArrayList<>();
@@ -30,15 +36,26 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							names.add(f1.getFirstName()+" "+f1.getLastName());
 						}
 						Platform.runLater(new Runnable() {
-
-							@Override
-							public void run() {
-						AutomaticRecruitMessageController.ctrl.fillCombo(names);
-							}
+						@Override
+						public void run() {	
+						switch(classname) {
+						case "messages.AutomaticRecruitMessageController":
+							AutomaticRecruitMessageController.ctrl.fillCombo(names);
+							break;
+						case "messages.CommitteeDecisionAproveorRejectController":
+							CommitteeDecisionApproveController.ctrl.fillCombo(names);
+							break;
+						case "messages.CommitteeDecisionAskForaddInfoController":
+							CommitteeDecisionAskForaddInfoController.ctrl.fillCombo(names);
+							break;
+						case "messages.ChooseTesterMessageController":
+							ChooseTesterMessageController.ctrl.fillCombo(names);
+							break;
+						}
+						}
 						});
-					}
-				}
-				else if(keymessage.equals("Performance leaders")) {
+					}				
+				/*else if(keymessage.equals("Performance leaders")) {
 					if(arg1[1] instanceof ArrayList<?>) {
 						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
 						ArrayList<String> names=new ArrayList<>();
@@ -69,10 +86,10 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							}
 						});
 					}
-				}
+				}*/
 			}
 		}
-		
+	
 	}
-
+	}
 }

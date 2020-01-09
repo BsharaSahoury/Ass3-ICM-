@@ -54,6 +54,10 @@ public class ClientLoginObserver implements Observer{
 				ChairmanHomeController chairman=new ChairmanHomeController();
 				chairman.start(employee1);
 				break;
+			case "performer":
+				PerformanceLeaderHomeController performer=new PerformanceLeaderHomeController();
+				performer.start(employee1);
+				break;
 			case "lecturer":
 				LecturerHomeController lecturer=new LecturerHomeController();
 				lecturer.start(employee1);

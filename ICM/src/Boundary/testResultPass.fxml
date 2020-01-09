@@ -59,7 +59,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </RadioButton>
-            <Button fx:id="SendBtn" layoutX="569.0" layoutY="523.0" mnemonicParsing="false" onAction="#SendBtnSuccess" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Send" textFill="WHITE">
+            <Button fx:id="SendBtn1" layoutX="475.0" layoutY="499.0" mnemonicParsing="false" onAction="#SuccessSendBtn" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Send to Inspector" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

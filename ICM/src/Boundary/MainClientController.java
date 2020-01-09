@@ -10,11 +10,15 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
+
+import Client.ClientApprovePerformanceObserver;
+
 import Client.ClientChairmanApproveObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
+import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMyRequestsObserver;
@@ -65,7 +69,9 @@ public class MainClientController {
 			ClientChairmanApproveObserver m=new ClientChairmanApproveObserver(cc.getClient());
 			ClientNotificationdetailsObserver n=new ClientNotificationdetailsObserver(cc.getClient());
 			ClientSetDuratinObserver cd=new ClientSetDuratinObserver(cc.getClient());
+			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
 			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
+			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
