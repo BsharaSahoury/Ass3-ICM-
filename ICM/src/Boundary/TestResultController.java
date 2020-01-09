@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedInputStream; 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -120,7 +120,7 @@ public class TestResultController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+ 
 	}
 
 	public void radioselectSuccess(ActionEvent event) {

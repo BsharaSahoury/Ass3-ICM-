@@ -66,6 +66,10 @@ public class FailedTestMessageController implements Initializable {
 			alert.setHeaderText("ERROR");
 			alert.setContentText("please choose an Performer!");
 			alert.showAndWait();
+			Alert alertWarning = new Alert(AlertType.CONFIRMATION);
+			alertWarning.setHeaderText("SUCCESS!");
+			alertWarning.setContentText("Perform recruit has been sent to Selected Performer!");
+			alertWarning.showAndWait();
 			return;
 		}
 		//System.out.println("okaycomboSelected");
