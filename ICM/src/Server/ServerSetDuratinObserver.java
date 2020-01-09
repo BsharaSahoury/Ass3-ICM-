@@ -32,7 +32,6 @@ public class ServerSetDuratinObserver  implements Observer {
 					send[0] = "duration";
 					if(b==false)
 					{
-						System.out.println("0000000000000000000000");
 						send[1]=false;
 					}
 					else
