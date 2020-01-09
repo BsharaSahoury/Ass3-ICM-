@@ -13,6 +13,7 @@ private Date dueDate;
 private Request r;
 private Phase phase;
 private State phasestate;
+private int repetion;
 public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State phasestate) {
 	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate());
 	this.phase=phase;
@@ -20,6 +21,18 @@ public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State pha
 	this.startDate = startDate;
 	this.dueDate = dueDate;
 	this.phasestate=phasestate;
+}
+public RequestPhase(int id,Phase phase,int repetion) {
+	super(id);
+	this.phase=phase;
+	this.repetion=repetion;
+	
+}
+public int getRepetion() {
+	return repetion;
+}
+public void setRepetion(int repetion) {
+	this.repetion = repetion;
 }
 public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate) {
 	super();

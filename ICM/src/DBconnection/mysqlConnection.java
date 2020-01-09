@@ -978,4 +978,114 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return rp;
 	}
+
+	public static void getToWork(Connection con, Date today) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE requestinphase SET state='work' WHERE state='wait' AND start_date=?;");
+			stm.setDate(1, today);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static ArrayList<RequestPhase> detectExceptions(Connection con, Date today) {
+		PreparedStatement stm=null;
+		PreparedStatement stm1=null;
+		ArrayList<RequestPhase> list=new ArrayList<>();
+		try {
+			stm=con.prepareStatement("SELECT request_id,phase,repetion FROM requestinphase WHERE state='work' AND due_date>?;");
+			stm.setDate(1, today);
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				stm1=con.prepareStatement("SELECT request_id FROM exception WHERE request_id=? AND phase=? AND repetion=?");
+				stm1.setInt(1, rs.getInt(1));
+				stm1.setString(2, rs.getString(2));
+				stm1.setInt(3, rs.getInt(3));
+				ResultSet rs1=stm1.executeQuery();
+				if(rs1.next()) {
+				stm=con.prepareStatement("INSERT INTO exception (date,phase,request_id,repetion) VALUES(?,?,?,?);");
+				stm.setDate(1, today);
+				stm.setString(2, rs.getString(2));
+				stm.setInt(3, rs.getInt(1));
+				stm.setInt(4, rs.getInt(3));
+				stm.executeUpdate();
+				RequestPhase rp=new RequestPhase(rs.getInt(1),Enum.valueOf(Phase.class,rs.getString(2)),rs.getInt(3));
+				list.add(rp);
+				}
+				
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	public static Employee getAdmin(Connection con) {
+		Statement st = null;
+		Employee admin=null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='administrator';");
+			if(rs.next())
+				admin = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
+			return admin;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	public static Employee getPhaseAdministrator(Connection con, int id, Phase phase, int repetion) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("SELECT employee.* FROM employee E,requestinphase P WHERE E.username=P.phase_administrator AND P.request_id=? AND P.phase=? AND P.repetion=?;");
+			stm.setInt(1, id);
+			stm.setString(2, phase.toString());
+			stm.setInt(3, repetion);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				Employee em=new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
+				return em;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static ArrayList<RequestPhase> findWhatNeedsDocument(Connection con, Date today) {
+		PreparedStatement stm=null;
+		PreparedStatement stm1=null;
+		ArrayList<RequestPhase> list=new ArrayList<>();
+		try {
+			stm=con.prepareStatement("SELECT X.request_id,X.phase,X.repetion,X.date FROM exception X,requestinphase P WHERE X.request_id=P.request_id AND X.phase=P.phase AND X.repetion=P.repetion AND P.state='over';");
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				RequestPhase rp=new RequestPhase(rs.getInt(1),Enum.valueOf(Phase.class, rs.getString(2)),rs.getInt(3));
+				list.add(rp);
+				stm1=con.prepareStatement("UPDATE exception SET overdue=? WHERE request_id=? AND phase=? AND repetion=?;");
+				int overdue=(int)((today.getTime()-rs.getDate(4).getTime())/(24 * 60 * 60 * 1000));
+				stm1.setInt(1, overdue);
+				stm1.setInt(2, rs.getInt(1));
+				stm1.setString(3, rs.getString(2));
+				stm1.setInt(4, rs.getInt(3));
+				stm1.executeUpdate();
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

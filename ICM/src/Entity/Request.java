@@ -44,6 +44,9 @@ private String filename;
  */
 
 private Phase currentPhase;
+public Request(int id) {
+	this.id=id;
+}
 
 public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
