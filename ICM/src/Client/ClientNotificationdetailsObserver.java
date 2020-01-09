@@ -2,7 +2,6 @@ package Client;
 
 import java.util.ArrayList;
 
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,32 +20,32 @@ public class ClientNotificationdetailsObserver implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		if(arg1 instanceof Object[]) {
-			Object[] arg2=(Object[])arg1;
-			if(arg2[0] instanceof String) {
-				String keymessage=(String)arg2[0];
-				if(keymessage.equals("notification details")) {
-					if(arg2[1] instanceof String) {
-					String details=(String)arg2[1];	
-					String job=(String)arg2[2];
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							if(job.equals("Chairman to approve the decision"))
-								DecisionCommitteeMemberMessageController.ctrl.setdetails(details);
-							else if(job.equals("inspector to recruit performance"))
-								CommitteeDecisionApproveController.ctrl.setdetails(details);
-							else if(job.equals("inspector to recruit evaluator"))
-								CommitteeDecisionAskForaddInfoController.ctrl.setdetails(details);
-							else if(job.equals("inspector to close the request"))
-								CommitteeDecisionRejectController.ctrl.setdetails(details);
-						}
-					});
+		if (arg1 instanceof Object[]) {
+			Object[] arg2 = (Object[]) arg1;
+			if (arg2[0] instanceof String) {
+				String keymessage = (String) arg2[0];
+				if (keymessage.equals("notification details")) {
+					if (arg2[1] instanceof String) {
+						String details = (String) arg2[1];
+						String job = (String) arg2[2];
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								if (job.equals("Chairman to approve the decision"))
+									DecisionCommitteeMemberMessageController.ctrl.setdetails(details);
+								else if (job.equals("inspector to recruit performance"))
+									CommitteeDecisionApproveController.ctrl.setdetails(details);
+								else if (job.equals("inspector to recruit evaluator"))
+									CommitteeDecisionAskForaddInfoController.ctrl.setdetails(details);
+								else if (job.equals("inspector to close the request"))
+									CommitteeDecisionRejectController.ctrl.setdetails(details);
+							}
+						});
 					}
-					
+
 				}
 			}
-		
+
 		}
 	}
 }

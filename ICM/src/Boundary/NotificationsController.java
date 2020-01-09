@@ -204,23 +204,7 @@ public class NotificationsController implements Initializable {
 			    newRequestforcommitte r=new newRequestforcommitte();
 			    r.start(splitpane, id);
 				break;
-			case "recruitNotificationForPerformance":
-				content=n2.getContent();
-				b=new String[2];
-				b=content.split("#");
-				id=Integer.valueOf(b[1]);
-				RecruitPerformanceMessageController rmp=new RecruitPerformanceMessageController();
-				rmp.start(splitpane, id);
-				break;		
-			case "recruitNotificationForPerformer":
-				content=n2.getContent();
-				String[] b4=new String[2];
-				b4=content.split("#");
-				b4=b4[1].split("passed");
-				int id3=Integer.valueOf(b4[0]);
-				RecruitMessageController rmcp=new RecruitMessageController();
-				rmcp.start(splitpane,id3);
-				break;	
+			
 		}
 		}
 
