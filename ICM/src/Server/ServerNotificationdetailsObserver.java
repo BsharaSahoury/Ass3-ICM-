@@ -25,11 +25,11 @@ public class ServerNotificationdetailsObserver implements Observer {
 				String keymessage=(String)arg3[0];
 				if(keymessage.equals("get explain notification")) {
 					int notid=(int)arg3[1];
+					String job=(String)arg3[2];
 					Connection con=mysqlConnection.makeAndReturnConnection();
 					String details=mysqlConnection.getnotificationdetails(con,notid);
-					System.out.println(details);
 					keymessage="notification details";
-					Object[] message= {keymessage,details};
+					Object[] message= {keymessage,details,job};
 					try {
 						client.sendToClient(message);
 					} catch (IOException e) {

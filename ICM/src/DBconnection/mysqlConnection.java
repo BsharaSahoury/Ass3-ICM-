@@ -40,12 +40,7 @@ public class mysqlConnection {
 			System.out.println("Driver definition failed");
 		}
 		try {
-
-
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
-
-
-
 			System.out.println("SQL connection succeed");
 			return conn;
 		} catch (SQLException ex) {/* handle any errors */
@@ -336,7 +331,9 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm.setString(1, username);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
-				Nlist.add(new Notification(rs.getString(2), rs.getDate(3), rs.getString(4)));
+				Notification n=new Notification(rs.getString(2), rs.getDate(3), rs.getString(4));
+				n.setId(rs.getInt(1));
+				Nlist.add(n);
 			}
 			return Nlist;
 		} catch (SQLException e) {
@@ -418,7 +415,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			if (rs.next()) {
 				String privilegedSystem = rs.getString(1);
 				Employee evaluator = mysqlConnection.getAutomaticRecruit(con, privilegedSystem);
-				mysqlConnection.assignEvaluatorToRequest(con, evaluator, id);
+				mysqlConnection.assignEmployeeToPhaseRequest(con, evaluator, id,"evaluation");
 				return evaluator;
 			}
 		} catch (SQLException e) {
@@ -429,17 +426,26 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 
 	}
 
-	public static boolean assignEvaluatorToRequest(Connection con, Employee evaluator, int id) {
+	public static boolean assignEmployeeToPhaseRequest(Connection con, Employee employee, int id,String phase) {
 		PreparedStatement stm = null;
+		PreparedStatement stm2 = null;
 		try {
-
+			int Max=0;
+			stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
+			stm2.setInt(1, id);
+			stm2.setString(2, phase);
+			ResultSet rs = stm2.executeQuery();	
+			while(rs.next()) {
+				if(rs.getInt(1)>=Max)
+					Max=rs.getInt(1)+1;
+			}
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
-			stm.setString(2, "evaluation");
-			stm.setInt(3, 0);
+			stm.setString(2, phase);
+			stm.setInt(3, Max);
 			stm.setDate(4, null);
 			stm.setDate(5, null);
-			stm.setString(6, evaluator.getUsername());
+			stm.setString(6, employee.getUsername());
 			stm.setString(7, "wait");
 			stm.executeUpdate();
 			return true;
@@ -698,7 +704,6 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		return null;
 	}
 
-
 	public static void updatePerfomanceFinishedInDB(Connection con, int id) {
 		PreparedStatement stm=null;
 		try {
@@ -802,23 +807,6 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		
 	}
 
-
-
-    public static Employee getInspector(Connection con) {
-    	Statement st = null;
-		Employee Inspector=null;
-		try {
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='inspector';");
-			if(rs.next())
-				Inspector = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
-			return Inspector;
-		} catch (SQLException e) {
-// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-    }
     public static void addRequestToDB(Connection con,int id,String dec) {
     	PreparedStatement stm = null;
     	PreparedStatement stm2 = null;
@@ -830,7 +818,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm2.setString(2, "performance");
 			ResultSet rs = stm2.executeQuery();	
 			while(rs.next()) {
-				if(rs.getInt(1)>Max)
+				if(rs.getInt(1)>=Max)
 					Max=rs.getInt(1)+1;
 			}
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
@@ -851,7 +839,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				stm.setString(4, null);
 				stm.setString(5, null);
 				stm.setString(6, null);
-				stm.setString(7, "work");
+				stm.setString(7, "wait");
 				stm.executeUpdate();
 			}
 			else {
@@ -861,7 +849,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				stm2.setString(2, "evaluation");
 				ResultSet rs = stm2.executeQuery();	
 				while(rs.next()) {
-					if(rs.getInt(1)>Max)
+					if(rs.getInt(1)>=Max)
 						Max=rs.getInt(1);
 				}
 				stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
@@ -894,15 +882,11 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
     public static String getnotificationdetails(Connection con,int id) {
     	PreparedStatement stm = null;
 		try {
-			System.out.println(id);
 			stm = con.prepareStatement("SELECT R.Details FROM icm.notificationdetails R WHERE notification_id=?;");
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
-		    if(rs.next()) {
-		    	System.out.println(rs.getString(1));
+		    if(rs.next()) 
 		    	return rs.getString(1);
-		    	
-		    }
 		} catch (SQLException e) {
 // TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,6 @@
 package messages;
 
-import Boundary.LoginController; 
+import Boundary.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -8,18 +8,18 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class RecruitMessageController {
+public class RecruitPerformanceMessageController {
 	@FXML
 	Label label1;
 	@FXML
-	public static RecruitMessageController ctrl;
+	public static RecruitPerformanceMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
 	public void start(SplitPane splitpane,int id) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/recruit-message.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/RecruitPerformer-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
@@ -32,4 +32,5 @@ public class RecruitMessageController {
 			e.printStackTrace();
 		}			
 	}
+
 }

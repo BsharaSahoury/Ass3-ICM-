@@ -70,7 +70,6 @@ public class ClientLoginObserver implements Observer{
 				AdministratorHomeController Administrator=new AdministratorHomeController();
 				Administrator.start(employee1);
 				break;
-				
 			}
 		}
 		else if(arg1 instanceof Student) {
