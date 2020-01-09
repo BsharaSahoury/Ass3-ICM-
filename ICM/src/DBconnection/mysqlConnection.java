@@ -644,7 +644,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 	            	maxRepetion = rs.getInt(1);
 	            	System.out.println(rs.getInt(1));
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
-						+ " SET start_date = ?, due_date = ?,state='wait' "
+						+ " SET start_date = ?, due_date = ?,state='waitingForApprove' "
 						+ "WHERE (request_id = ? and phase=? and repetion=?);");
 				stm1.setString(1, d[0]);
 				stm1.setString(2,d[1]);
@@ -986,7 +986,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			if (rs2.next()) {
 	
 				rp = new RequestPhase(rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
-						Enum.valueOf(State.class, rs2.getString(7)));
+						Enum.valueOf(State.class, rs2.getString(7)),rs2.getString(6));
 			}
 
 		} catch (SQLException e) {

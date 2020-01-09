@@ -28,7 +28,7 @@ public class ClientSetDuratinObserver implements Observer {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("SAVE");
 								alert.setHeaderText("Success");
-								alert.setContentText("saved successfully");
+								alert.setContentText("We sent the duratin to inspector,plese wait for aprove");
 								alert.showAndWait();
 							}
 

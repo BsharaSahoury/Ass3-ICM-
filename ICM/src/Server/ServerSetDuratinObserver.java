@@ -2,10 +2,13 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
+import Entity.Employee;
+import Entity.Notification;
 import Entity.Phase;
 import Entity.RequestPhase;
 import ocsf.server.ConnectionToClient;
@@ -34,8 +37,15 @@ public class ServerSetDuratinObserver  implements Observer {
 					{
 						send[1]=false;
 					}
-					else
-					    send[1] = d;
+					else {
+						ArrayList<Employee> inspector=mysqlConnection.getEmployees(con, "inspector");
+						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, "evaluation");
+						long millis=System.currentTimeMillis();
+						Notification n=new Notification("You have duratin from the evaluator "+rp.getEmployee()+" from "+ rp.getStartDate()+" to  " + rp.getDueDate()+" you can approve or choose another duartion",new java.sql.Date(millis),"Duratin of evaluator");
+						n=mysqlConnection.insertNotificationToDB(con, n);
+						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));
+					    send[1] = d;		    
+					}
 					try {
 						client.sendToClient(send);
 					} catch (IOException e) {
