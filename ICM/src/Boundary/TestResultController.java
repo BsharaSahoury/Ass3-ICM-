@@ -87,7 +87,10 @@ public class TestResultController implements Initializable {
 				String d = FailureDetails.getText().toString();
 				Object[] message = { keymessage, r.getId(), d };
 				LoginController.cc.getClient().sendToServer(message);
-
+				Alert alertWarning = new Alert(AlertType.CONFIRMATION);
+				alertWarning.setHeaderText("SUCCESS!");
+				alertWarning.setContentText("Failure test result has been sent to Inspector");
+				alertWarning.showAndWait();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
