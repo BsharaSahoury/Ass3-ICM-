@@ -40,7 +40,7 @@ public class mysqlConnection {
 			System.out.println("Driver definition failed");
 		}
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "Xd0509144223");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
 			System.out.println("SQL connection succeed");
 			return conn;
 		} catch (SQLException ex) {/* handle any errors */
@@ -624,16 +624,16 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return rp;
 	}
-	public static void insertDate(Connection con, int id, String[] d, Phase p) {
+	public static boolean insertDate(Connection con, int id, String[] d, Phase p) {
 		
 		d[0] = d[0].replaceAll("(\\r|\\n)", "");
         d[1] = d[1].replaceAll("(\\r|\\n)", "");
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-		System.out.println(id);
-			System.out.println(d[0]);
-			System.out.println(p);
+		System.out.println("2)the id is :"+id);
+		if(getState(con, id).equals("frozen"))
+			return false;
 			try {
 				
 				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
@@ -657,6 +657,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			return true;
 		}
 	
 
@@ -1105,5 +1106,38 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static Employee getInspector(Connection con) {
+		Statement st = null;
+		Employee admin=null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='Inspector';");
+			if(rs.next())
+				admin = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
+			return admin;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static String getState(Connection con,int id) {
+		PreparedStatement st=null;
+		String s=null;
+		try {
+			st=con.prepareStatement("SELECT * FROM icm.request Where id=?;");
+			st.setInt(1, id);
+			ResultSet rs=st.executeQuery();
+			if(rs.next())
+				s=rs.getString(8);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		System.out.println("the id is :"+ id);
+		System.out.println(s);
+		return s;
 	}
 }

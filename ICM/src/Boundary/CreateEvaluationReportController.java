@@ -15,6 +15,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -33,6 +34,8 @@ public class CreateEvaluationReportController implements Initializable {
 	private TextArea Risks;
 	@FXML
 	private TextField duration;
+	@FXML
+	private Button save;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	private static ClientConsole cc;
@@ -89,9 +92,11 @@ public class CreateEvaluationReportController implements Initializable {
 		Object[] message = { "send the report", er };
 		try {
 			LoginController.cc.getClient().sendToServer(message);
+			save.setDisable(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 
 	}
 

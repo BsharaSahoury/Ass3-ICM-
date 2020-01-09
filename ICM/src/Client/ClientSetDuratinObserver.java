@@ -34,6 +34,20 @@ public class ClientSetDuratinObserver implements Observer {
 
 						});
 
+					} else {
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("SAVE");
+								alert.setHeaderText("failed");
+								alert.setContentText("this request is frozen!");
+								alert.showAndWait();
+							}
+
+						});
+
 					}
 				}
 			}
