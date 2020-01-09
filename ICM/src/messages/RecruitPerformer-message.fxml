@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="messages.RecruitMessageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="messages.RecruitPerformanceMessageController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="728.0">
          <children>
@@ -32,7 +32,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="49.0" layoutY="150.0" text="Please go to 'Requests that I work on' section to set durations for your phase.">
+            <Label layoutX="50.0" layoutY="150.0" text="Please go to 'Requests that I work on' section to set durations for your phase.">
                <font>
                   <Font size="13.0" />
                </font>

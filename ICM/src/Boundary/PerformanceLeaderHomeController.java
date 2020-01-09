@@ -111,10 +111,17 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	primaryStage.close();
 	logOut.start(primaryStage);
 }
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,performanceLeader);
+}
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	UserNameMenu.setText(performanceLeader.getFirstName()+performanceLeader.getLastName());
 }
-
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,performanceLeader);
+}
 }

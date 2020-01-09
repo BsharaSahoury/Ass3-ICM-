@@ -87,7 +87,7 @@ public class AutomaticRecruitMessageController implements Initializable {
 	        alert.showAndWait();
 	        return;
 		}
-		Object[] msg= {"manualR",fullname,requestID};
+		Object[] msg= {"manualEvaluator",fullname,requestID};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e1) {

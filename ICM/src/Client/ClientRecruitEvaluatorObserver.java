@@ -20,7 +20,6 @@ public class ClientRecruitEvaluatorObserver implements Observer{
 				String keymessage=(String)arg2[0];
 				if(keymessage.equals("evaluatorRecruit")) {
 					Platform.runLater(new Runnable() {
-
 						@Override
 						public void run() {
 							Alert alert = new Alert(AlertType.INFORMATION);
@@ -31,6 +30,44 @@ public class ClientRecruitEvaluatorObserver implements Observer{
 						}
 						
 					});
+				}
+				else if(keymessage.equals("performerRecruit")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("TEST");
+					        alert.setHeaderText("Success");
+					        alert.setContentText("Performer has been recruited successfully");
+					        alert.showAndWait();
+						}				
+					});
+				}
+				else if(keymessage.equals("evaluatorRecruitAgain")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("TEST");
+					        alert.setHeaderText("Success");
+					        alert.setContentText("evaluator has been recruited successfully");
+					        alert.showAndWait();
+						}
+						
+					});	
+				}
+				else if(keymessage.equals("testerRecruit")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("TEST");
+					        alert.setHeaderText("Success");
+					        alert.setContentText("tester has been recruited successfully");
+					        alert.showAndWait();
+						}
+						
+					});	
 				}
 			}
 		}

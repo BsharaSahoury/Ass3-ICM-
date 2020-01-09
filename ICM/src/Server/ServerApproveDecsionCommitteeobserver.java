@@ -2,6 +2,7 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,19 +27,21 @@ public class ServerApproveDecsionCommitteeobserver implements Observer {
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
 					if(keymessage.equals("approve committee decision")) {
-						System.out.println("mmmmmm");
 						int id=(int)arg3[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						String dec=(String)arg3[2];
 						mysqlConnection.addRequestToDB(con,id,dec);
+						System.out.println("1");
 						String Explaindec=(String)arg3[3];
-						long millis=System.currentTimeMillis();
-						
-						String not="Chairman Approved Comittee Members Decision is '"+dec+"' for request id="+id+"\n"+"Explain the dection:"+Explaindec;
+						long millis=System.currentTimeMillis();					
+						String not="Chairman Approved Comittee Members Decision is '"+dec+"' for request id="+id+"\n";
 						Notification decisionnot=new Notification(not,new java.sql.Date(millis),"Chairman Approved Comittee Members Decision is "+dec);
 						decisionnot=mysqlConnection.insertNotificationToDB(con,decisionnot);
-						Employee Inspector=mysqlConnection.getInspector(con);
-						mysqlConnection.insertNotificationForUserToDB(con,decisionnot,Inspector);
+						ArrayList<Employee> Inspector=mysqlConnection.getEmployees(con, "inspector");
+						mysqlConnection.insertNotificationForUserToDB(con,decisionnot,Inspector.get(0));
+						String[] b=new String[2];
+						b=Explaindec.split("\n");
+						mysqlConnection.insertNotificationDetailsToDB(con, decisionnot, not+"\n"+b[1]);
 						try {
 							client.sendToClient("Chairman approve successul");
 						} catch (IOException e) {

@@ -27,6 +27,9 @@ public class ServerSetDuratinObserver  implements Observer {
 					String d[] = (String[]) arg3[2];
 					Phase p=(Phase)arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
+					System.out.println(id);
+					System.out.println(d);
+					System.out.println(p);
 					mysqlConnection.insertDate(con,id,d,p);
 					Object[] send = new Object[2];
 					send[0] = "duration";

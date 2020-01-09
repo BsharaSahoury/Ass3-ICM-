@@ -40,7 +40,7 @@ public class MainForServer {
         ServerRequestTrackObserver requestTrack= new ServerRequestTrackObserver(sv);
         ServerSetDuratinObserver duration=new ServerSetDuratinObserver(sv);
         ServerCommitteeDecisionObserver CommitteeDecision=new ServerCommitteeDecisionObserver(sv);
-
+        ServerChoosedPerformerObserver scpo= new ServerChoosedPerformerObserver(sv); 
         ServerApprovePerformanceObserver sapo=new ServerApprovePerformanceObserver(sv);
         ServerTestFailedObserver stfo=new ServerTestFailedObserver(sv);
         ServerTestSuccessObserver stso=new ServerTestSuccessObserver(sv);

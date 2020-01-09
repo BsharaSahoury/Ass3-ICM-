@@ -26,7 +26,6 @@ public class ServerGetDurationObserver implements Observer {
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("get duration")) {
-					System.out.println("555555555");
 					int id = (int) arg3[1];
 					Phase phase = (Phase) arg3[2];
 					Connection con = mysqlConnection.makeAndReturnConnection();
