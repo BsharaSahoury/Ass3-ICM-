@@ -20,7 +20,7 @@ public class ClientNotificationdetailsObserver implements Observer {
 			if(arg2[0] instanceof String) {
 				String keymessage=(String)arg2[0];
 				if(keymessage.equals("notification details")) {
-					System.out.println("ssxxx");
+					
 					if(arg2[1] instanceof String) {
 					String details=(String)arg2[1];					
 					DecisionCommitteeMemberMessageController.ctrl.setdetails(details);

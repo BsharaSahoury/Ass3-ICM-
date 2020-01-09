@@ -54,7 +54,7 @@
                   <ToggleGroup fx:id="TestResultGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="TestSuccessRadioButton" layoutX="359.0" layoutY="201.0" mnemonicParsing="false" text="Test passed" textFill="#9d1b34" toggleGroup="$TestResultGroup">
+            <RadioButton layoutX="359.0" layoutY="201.0" mnemonicParsing="false" onAction="#radioselectSuccess" text="Test passed" textFill="#9d1b34" toggleGroup="$TestResultGroup">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

@@ -125,12 +125,7 @@ public class NotificationsController implements Initializable {
 				ctmc.start(splitpane, id);
 				break;
 				
-				
-
-
-			case "fail message sent to Inspector":
-
-				
+			case "fail message sent to Inspector":	
 				content=n2.getContent();
 				String[] b2=new String[2];
 				b2=content.split("#");
@@ -184,15 +179,15 @@ public class NotificationsController implements Initializable {
 				break;
 			
 			case "recruitNotificationForPerformer":
+				System.out.println("Notification Controller OKAY!!");
 				content=n2.getContent();
-				String[] b4=new String[2];
-				b4=content.split("#");
-				b4=b4[1].split("passed");
-				int id3=Integer.valueOf(b4[0]);
-				RecruitMessageController rmcp=new RecruitMessageController();
-				rmcp.start(splitpane,id3);
-				break;	
-
+				b=new String[2];
+				b=content.split("#");
+				System.out.println("Notification Controller OKAY!");
+				id=Integer.valueOf(b[1]);
+				RecruitMessageController rmc2=new RecruitMessageController();
+				rmc2.start(splitpane, id);
+				break;
 		}
 		}
 

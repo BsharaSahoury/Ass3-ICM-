@@ -455,11 +455,17 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 	public static boolean assignPerformerToRequest(Connection con, Employee Performer, int id) {
 		PreparedStatement stm = null;
 		try {
-
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, "performance");
-			stm.setInt(3, 0);
+			Statement st = null;
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT MAX(request.id) FROM request;");
+			if (rs.next()) {
+				count = rs.getInt(1) + 1;
+			} else
+				count = 0;
+			stm.setInt(3, count);
 			stm.setDate(4, null);
 			stm.setDate(5, null);
 			stm.setString(6, Performer.getUsername());
@@ -734,7 +740,9 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
             if(rs.next()) {
             	maxRepetion = rs.getInt(1)+1;
             }
-            maxRepetion=0;
+            else {
+            	    maxRepetion=0;
+            }
             stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
             stm.setInt(1, requestId);
             stm.setString(2, "performance");

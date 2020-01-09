@@ -44,9 +44,6 @@ public class TestResultController implements Initializable {
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	private static SplitPane splitpane;
-	// private String RadioSelect;
-	// private static ClientConsole cc;
-	// public static RequestInfoController Requestinfo;
 	private static Request r;
 	private static ClientConsole cc;
 
@@ -65,99 +62,42 @@ public class TestResultController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-     
-	
+
 	public void SuccessSendBtn() {
-		// LocalDate start = startDate.getValue();
-		// LocalDate due = dueDate.getValue();
-		// LocalDate today = LocalDate.now();
-		//String FaildDetails = FailureDetails.getText().trim();
-
-	//	if (!FaildDetails.equals("")) {
-			try {
-
-				String keymessage = "send Passed test result";
-				//String d = FailureDetails.getText().toString();
-
-				Object[] message = { keymessage, r.getId(), null};
-
-				LoginController.cc.getClient().sendToServer(message);
-			} catch (IOException e) {
-				Alert alertWarning = new Alert(AlertType.ERROR);
-				alertWarning.setHeaderText("Error!");
-				alertWarning.setContentText("IO Error");
-				alertWarning.showAndWait();
-			}
-
-			/*} else {
-			Alert alertWarning = new Alert(AlertType.WARNING);
-			alertWarning.setHeaderText("Warning!");
-			alertWarning.setContentText("Please check the dates correctly");
+		try {
+			String keymessage = "send Passed test result";
+			Object[] message = { keymessage, r.getId(), null };
+			LoginController.cc.getClient().sendToServer(message);
+			Alert alertWarning = new Alert(AlertType.CONFIRMATION);
+			alertWarning.setHeaderText("SUCCESS!");
+			alertWarning.setContentText("Passed test result has been sent to Inspector");
 			alertWarning.showAndWait();
-		}*/
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 	}
-	
-	
-	
-	
-	
-	
-	/*public void SuccessSendBtn() {
-		// LocalDate start = startDate.getValue();
-		// LocalDate due = dueDate.getValue();
-		// LocalDate today = LocalDate.now();
-		if (start != null && due != null & due.compareTo(start) >= 0 && start.compareTo(today) > 0) {
-			try {
-				String keymessage = "save duration";
-				String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
-
-				Object[] message = { keymessage, r.getId(), d };
-
-				LoginController.cc.getClient().sendToServer(message);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} else {
-			Alert alertWarning = new Alert(AlertType.WARNING);
-			alertWarning.setHeaderText("Warning!");
-			alertWarning.setContentText("Please check the dates correctly");
-			alertWarning.showAndWait();
-		}
-
-	}*/
 
 	public void FaildSendBtn() {
-		// LocalDate start = startDate.getValue();
-		// LocalDate due = dueDate.getValue();
-		// LocalDate today = LocalDate.now();
 		String FaildDetails = FailureDetails.getText().trim();
-
 		if (!FaildDetails.equals("")) {
 			try {
-
 				String keymessage = "send Failure test result";
 				String d = FailureDetails.getText().toString();
-
 				Object[] message = { keymessage, r.getId(), d };
-
 				LoginController.cc.getClient().sendToServer(message);
-			} catch (IOException e) {
-				Alert alertWarning = new Alert(AlertType.ERROR);
-				alertWarning.setHeaderText("Error!");
-				alertWarning.setContentText("Please type failure details");
-				alertWarning.showAndWait();
-			}
 
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);
 			alertWarning.setHeaderText("Warning!");
 			alertWarning.setContentText("Please check the dates correctly");
 			alertWarning.showAndWait();
 		}
-
 	}
 
 	@Override
@@ -166,31 +106,6 @@ public class TestResultController implements Initializable {
 
 	}
 
-	/*
-	 * public void start(SplitPane splitpane, Request s) { primaryStage =
-	 * LoginController.primaryStage; this.cc = LoginController.cc; this.splitpane =
-	 * splitpane; String keymessage; try { FXMLLoader loader = new
-	 * FXMLLoader(getClass().getResource("/Boundary/Testresults.fxml"));
-	 * lowerAnchorPane = loader.load(); Requestinfo = loader.getController();
-	 * splitpane.getItems().set(1, lowerAnchorPane); keymessage = "Request Info";
-	 * int id = s.getId(); Object[] message = { keymessage, id };
-	 * LoginController.cc.getClient().sendToServer(message);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } }
-	 */
-
-	/*
-	 * public void start(SplitPane splitpane) { primaryStage =
-	 * LoginController.primaryStage; this.splitpane = splitpane; try { FXMLLoader
-	 * loader = new
-	 * FXMLLoader(getClass().getResource("/Boundary/Testresults.fxml"));
-	 * lowerAnchorPane = loader.load();
-	 * 
-	 * splitpane.getItems().set(1, lowerAnchorPane);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } }
-	 */
-
 	public void radioselectFaild(ActionEvent event) {
 
 		try {
@@ -198,7 +113,6 @@ public class TestResultController implements Initializable {
 			lowerAnchorPane = loader.load();
 
 			splitpane.getItems().set(1, lowerAnchorPane);
-			// RadioSelect ="Failure";
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -211,62 +125,10 @@ public class TestResultController implements Initializable {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/TestResultPass.fxml"));
 			lowerAnchorPane = loader.load();
-
 			splitpane.getItems().set(1, lowerAnchorPane);
-			// RadioSelect = "Success";
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	public void SendBtn(ActionEvent e) {
-		// System.out.println("xdxdxd");
-		// if (RadioSelect.equals(Failure)) {
-		// System.out.println("xd");
-		boolean NoFailureDetails = FailureDetails.getText().equals("");
-		if (NoFailureDetails) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Send Test Result Failure");
-			alert.setHeaderText("No Failure Details");
-			alert.setContentText("please fill Failure Details field");
-			alert.showAndWait();
-			return;
-		}
-		// }
-
-		/*
-		 * if (RadioSelect.equals(Success)) {
-		 * 
-		 * }
-		 */
-	}
-
-	public void SendBtnSuccess(ActionEvent e) {
-		// System.out.println("xdxdxd");
-		// if (RadioSelect.equals(Failure)) {
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Send Test Result Success");
-		alert.setHeaderText("Send Success");
-		alert.setContentText("Test passed , the request will move to next phase -__-");
-		alert.showAndWait();
-		return;
-
-		// }
-
-		/*
-		 * if (RadioSelect.equals(Success)) {
-		 * 
-		 * }
-		 */
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
