@@ -47,6 +47,17 @@ public class ServerGetEvaluatorsObserver implements Observer {
 							e.printStackTrace();
 						}
 					}
+					else if(keymessage.equals(("evaluatorsagain"))){
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						ArrayList<Employee> evaluators=mysqlConnection.getEmployees(con,"evaluator");
+						Object[] msg= {keymessage,evaluators};
+						try {
+							client.sendToClient(msg);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				}
 			}
 		}

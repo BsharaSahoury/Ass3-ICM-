@@ -1,12 +1,15 @@
 package Client;
 
 import java.util.ArrayList;
+
 import java.util.Observable;
 import java.util.Observer;
 
 import Entity.Employee;
+import javafx.application.Platform;
 import messages.AutomaticRecruitMessageController;
-import messages.CommitteeDecisionAproveorRejectController;
+import messages.CommitteeDecisionApproveController;
+import messages.CommitteeDecisionAskForaddInfoController;
 
 public class ClientGetEvaluatorsObserver implements Observer {
 	public ClientGetEvaluatorsObserver(Observable server) {
@@ -26,7 +29,13 @@ public class ClientGetEvaluatorsObserver implements Observer {
 						for(Employee f1 : Elist) {
 							names.add(f1.getFirstName()+" "+f1.getLastName());
 						}
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
 						AutomaticRecruitMessageController.ctrl.fillCombo(names);
+							}
+						});
 					}
 				}
 				else if(keymessage.equals("Performance leaders")) {
@@ -36,7 +45,29 @@ public class ClientGetEvaluatorsObserver implements Observer {
 						for(Employee f1 : Elist) {
 							names.add(f1.getFirstName()+" "+f1.getLastName());
 						}
-						CommitteeDecisionAproveorRejectController.ctrl.fillCombo(names);
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+						CommitteeDecisionApproveController.ctrl.fillCombo(names);
+							}
+						});
+					}
+				}
+				else if(keymessage.equals("evaluatorsagain")) {
+					if(arg1[1] instanceof ArrayList<?>) {
+						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
+						ArrayList<String> names=new ArrayList<>();
+						for(Employee f1 : Elist) {
+							names.add(f1.getFirstName()+" "+f1.getLastName());
+						}
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+						CommitteeDecisionAskForaddInfoController.ctrl.fillCombo(names);
+							}
+						});
 					}
 				}
 			}

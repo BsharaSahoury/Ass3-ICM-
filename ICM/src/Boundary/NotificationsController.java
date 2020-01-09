@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,9 +23,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import messages.AutomaticRecruitMessageController;
-import messages.CommitteeDecisionAproveorRejectController;
+import messages.CommitteeDecisionApproveController;
+import messages.CommitteeDecisionAskForaddInfoController;
+import messages.CommitteeDecisionRejectController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.RecruitMessageController;
+import messages.RecruitPerformanceMessageController;
 import messages.newRequestforcommitte;
 
 public class NotificationsController implements Initializable {
@@ -47,6 +51,7 @@ public class NotificationsController implements Initializable {
     private static int IDRequestForDecision;
     private static String CommittteDecision;
     private static String ExplainDecision;
+    private static int idnotification;
 	public void start(SplitPane splitpane,User user) {
 		this.user=user;
 		primaryStage=LoginController.primaryStage;
@@ -80,11 +85,12 @@ public class NotificationsController implements Initializable {
 	}
 	@FXML
 	public void clickCell(MouseEvent e) {
-		Notification n2=table.getSelectionModel().getSelectedItem();
+		Notification n2=table.getSelectionModel().getSelectedItem();	
 		String content;
 		String[] b;
 		int id;
 		if(n2 != null) {
+			idnotification=n2.getId();
 		switch(n2.getType()){
 			case "recruitForInspector":
 				content=n2.getContent();
@@ -113,7 +119,6 @@ public class NotificationsController implements Initializable {
 				b=content.split("id=");
 				b=b[1].split("\n");			
 				IDRequestForDecision=Integer.valueOf(b[0]);
-				System.out.println(IDRequestForDecision);
 				b=content.split("is '");
 				b=b[1].split("' for");
 				CommittteDecision=b[0];
@@ -129,10 +134,33 @@ public class NotificationsController implements Initializable {
 				b=content.split("is '");
 				b=b[1].split("' for");
 				CommittteDecision=b[0];
-				CommitteeDecisionAproveorRejectController obj2=new CommitteeDecisionAproveorRejectController();
+				CommitteeDecisionApproveController obj2=new CommitteeDecisionApproveController();
 				obj2.start(splitpane,"/messages/RecruitPerformanceLeader.fxml");
 				break;
-
+			case "Chairman Approved Comittee Members Decision is ask for additional Information":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				CommitteeDecisionAskForaddInfoController obj3=new CommitteeDecisionAskForaddInfoController();
+				obj3.start(splitpane,"/messages/RecruitEvaluator.fxml");
+				break;
+			case "Chairman Approved Comittee Members Decision is reject":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("id=");
+				b=b[1].split("\n");
+				IDRequestForDecision=Integer.valueOf(b[0]);
+				b=content.split("is '");
+				b=b[1].split("' for");
+				CommittteDecision=b[0];
+				CommitteeDecisionRejectController obj4=new CommitteeDecisionRejectController();
+				obj4.start(splitpane,"/messages/RejectTheRequest-message.fxml");
+				break;
 			case "new request for committe":
 				content=n2.getContent();
 			    String numberOnly= content.replaceAll("[^0-9]", "");
@@ -140,7 +168,14 @@ public class NotificationsController implements Initializable {
 			    newRequestforcommitte r=new newRequestforcommitte();
 			    r.start(splitpane, id);
 				break;
-			
+			case "recruitNotificationForPerformance":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				id=Integer.valueOf(b[1]);
+				RecruitPerformanceMessageController rmp=new RecruitPerformanceMessageController();
+				rmp.start(splitpane, id);
+				break;
 		}
 		}
 
@@ -151,5 +186,8 @@ public static int getidofrequestforDecision() {
 }
 public static String getDecisionofcommitteemember() {
 	return CommittteDecision;
+}
+public static int getidnotification() {
+	return idnotification;
 }
 }

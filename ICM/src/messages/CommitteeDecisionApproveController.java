@@ -22,35 +22,45 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class DecisionCommitteeMemberMessageController implements Initializable {
+public class CommitteeDecisionApproveController implements Initializable {
 	@FXML
 	Label DecisionLable;
 	@FXML
 	Button approve;
-	public static DecisionCommitteeMemberMessageController ctrl;
+	@FXML
+	ComboBox<String> combo;
+	private ObservableList<String> list;
+	public static CommitteeDecisionApproveController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
-	private int notificationID;
 	private int requestID;
 	private String CommitteeDecision;
-	public static int flag=-1;
-	private static String notdetails;
-	public void start(SplitPane splitpane) {
+	 public static int flag=-1;
+	 private static String notdetails;
+	 private static int notificationID;
+	public void start(SplitPane splitpane,String path) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/CommitteeMemberDecision-message.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			Object[] message= {"get explain notification",ctrl.notificationID,"Chairman to approve the decision"};
+			Object[] message= {"get explain notification",ctrl.notificationID,"inspector to recruit performance"};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}				
+			}	
+			Object[] msg= {"Performance leaders"};
+			try {
+				LoginController.cc.getClient().sendToServer(msg);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
+			this.splitpane=splitpane;			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -59,47 +69,46 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void approveAction(ActionEvent e) {	
-		if(flag==-1) {
-			flag=0;
-		Object[] message= {"approve committee decision",requestID,CommitteeDecision,ctrl.notdetails};
-		try {
-			LoginController.cc.getClient().sendToServer(message);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}	
-		}else {	
-			 Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Already Approve");
-			 alertSuccess.setContentText("You already approved this decision");
-			 alertSuccess.show();
-		}
-	}
-	/*
-	public void chooseOtherAction(ActionEvent e) {
+	public void RecruitAction(ActionEvent e) {	
 		String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("TEST");
 	        alert.setHeaderText("ERROR");
-	        alert.setContentText("please choose an evaluator");
+	        alert.setContentText("please choose an performer");
 	        alert.showAndWait();
-	        return;
 		}
-		Object[] msg= {"manualR",fullname,requestID};
-		try {
-			LoginController.cc.getClient().sendToServer(msg);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		else if(flag==-1) {
+			flag=0;
+				Object[] msg= {"manualPerformer",fullname,requestID};
+				try {
+					LoginController.cc.getClient().sendToServer(msg);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}		
+			}
+			else {	
+			 Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Already Approve");
+			 alertSuccess.setContentText("You already recruited an performer");
+			 alertSuccess.showAndWait();
 		}
-	}*/
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		notificationID=NotificationsController.getidnotification();
+		requestID=NotificationsController.getidofrequestforDecision();
 		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
 		requestID=NotificationsController.getidofrequestforDecision();
+		notificationID=NotificationsController.getidnotification();
+	//	DecisionLable.setText(NotificationsController.getExplainDecisionofcommitteemember());	
+	}
+	public void fillCombo(ArrayList<String> names) {
+		list=FXCollections.observableArrayList(names);
+		combo.setItems(list);
+		
 	}
 }
+
+
