@@ -12,10 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,7 +34,7 @@ public class ChooseTesterMessageController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
 	private ObservableList<String> list;
-	private int requestID;
+	private static int requestID;
 	public void start(SplitPane splitpane,int id) {
 		primaryStage=LoginController.primaryStage;
 		this.requestID=id;
@@ -50,6 +52,7 @@ public class ChooseTesterMessageController implements Initializable {
 			e.printStackTrace();
 		}			
 	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Object[] msg= {"comittee members",getClass().getName()};
@@ -62,7 +65,23 @@ public class ChooseTesterMessageController implements Initializable {
 		
 	}
 	public void recruitAction(ActionEvent e) {
-		
+		String fullname=combo.getSelectionModel().getSelectedItem();
+		if(fullname==null) {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("TEST");
+	        alert.setHeaderText("ERROR");
+	        alert.setContentText("please choose an tester");
+	        alert.showAndWait();
+	        return;
+		}
+		System.out.println(requestID+ "              00000000000");
+		Object[] msg= {"manualTester",fullname,requestID};
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
