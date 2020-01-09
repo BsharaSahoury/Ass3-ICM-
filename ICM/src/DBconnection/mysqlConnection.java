@@ -40,7 +40,9 @@ public class mysqlConnection {
 			System.out.println("Driver definition failed");
 		}
 		try {
+
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ayman1234567891");
+
 			System.out.println("SQL connection succeed");
 			return conn;
 		} catch (SQLException ex) {/* handle any errors */
@@ -446,6 +448,29 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm.setDate(4, null);
 			stm.setDate(5, null);
 			stm.setString(6, employee.getUsername());
+			stm.setString(7, "wait");
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	
+	
+	public static boolean assignPerformerToRequest(Connection con, Employee Performer, int id) {
+		PreparedStatement stm = null;
+		try {
+
+			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2, "performance");
+			stm.setInt(3, 0);
+			stm.setDate(4, null);
+			stm.setDate(5, null);
+			stm.setString(6, Performer.getUsername());
 			stm.setString(7, "wait");
 			stm.executeUpdate();
 			return true;

@@ -78,7 +78,7 @@ public class FailedTestMessageController implements Initializable {
 	
 	
 	public void RecruitAction(ActionEvent e) {
-		String fullname=combo.getSelectionModel().getSelectedItem();
+	/*	String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("TEST");
@@ -93,20 +93,51 @@ public class FailedTestMessageController implements Initializable {
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}*/
+		String fullname=combo.getSelectionModel().getSelectedItem();
+		if(fullname==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Select Performance Leader");
+	        alert.setHeaderText("ERROR");
+	        alert.setContentText("please choose an Performer!");
+	        alert.showAndWait();
+	        return;
+		}
+		Object[] msg= {"Performer confirmation for step",fullname,requestID};
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
+/*	try {
+
+				String keymessage = "send Passed test result";
+				//String d = FailureDetails.getText().toString();
+
+				Object[] message = { keymessage, r.getId(), null};
+
+				LoginController.cc.getClient().sendToServer(message);
+			} catch (IOException e) {
+				Alert alertWarning = new Alert(AlertType.ERROR);
+				alertWarning.setHeaderText("Error!");
+				alertWarning.setContentText("IO Error");
+				alertWarning.showAndWait();
+			}*/
 		
 		
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Object[] msg= {"Inspectors"};
+		Object[] msg= {"Performance leaders",getClass().getName()};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}	
+		
 	}
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);

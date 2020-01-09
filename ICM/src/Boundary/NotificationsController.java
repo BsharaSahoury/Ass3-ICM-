@@ -146,10 +146,8 @@ public class NotificationsController implements Initializable {
 				b3=content.split("#");
 				b3=b3[1].split("passed");
 				int id2=Integer.valueOf(b3[0]);
-				System.out.println("okay0");
 				SuccessTestMessageController stmc=new SuccessTestMessageController();
 				stmc.start(splitpane,id2);
-				System.out.println("okay1");
 				break;		
 			case "Decision of Committee Member":
 				content=n2.getContent();
@@ -213,7 +211,16 @@ public class NotificationsController implements Initializable {
 				id=Integer.valueOf(b[1]);
 				RecruitPerformanceMessageController rmp=new RecruitPerformanceMessageController();
 				rmp.start(splitpane, id);
-				break;
+				break;		
+			case "recruitNotificationForPerformer":
+				content=n2.getContent();
+				String[] b4=new String[2];
+				b4=content.split("#");
+				b4=b4[1].split("passed");
+				int id3=Integer.valueOf(b4[0]);
+				RecruitMessageController rmcp=new RecruitMessageController();
+				rmcp.start(splitpane,id3);
+				break;	
 		}
 		}
 

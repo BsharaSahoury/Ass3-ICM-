@@ -41,7 +41,7 @@ public class SuccessTestMessageController implements Initializable {
 	public void start(SplitPane splitpane,int id) {
 		primaryStage=LoginController.primaryStage;
 		try{	
-			System.out.println("okay2");
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/SuccessTest-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();

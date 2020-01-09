@@ -2,7 +2,6 @@ package Client;
 
 import java.util.ArrayList;
 
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +13,7 @@ import messages.CommitteeDecisionAskForaddInfoController;
 import messages.CommitteeDecisionRejectController;
 import messages.ChooseTesterMessageController;
 import messages.DecisionCommitteeMemberMessageController;
+import messages.FailedTestMessageController;
 
 
 public class ClientGetEvaluatorsObserver implements Observer {
@@ -50,6 +50,9 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							break;
 						case "messages.ChooseTesterMessageController":
 							ChooseTesterMessageController.ctrl.fillCombo(names);
+							break;
+						case "messages.FailedTestMessageController":
+							FailedTestMessageController.ctrl.fillCombo(names);
 							break;
 						}
 						}
