@@ -631,7 +631,6 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-		System.out.println("2)the id is :"+id);
 		if(getState(con, id).equals("frozen"))
 			return false;
 			try {
@@ -1136,8 +1135,6 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		System.out.println("the id is :"+ id);
-		System.out.println(s);
 		return s;
 	}
 }
