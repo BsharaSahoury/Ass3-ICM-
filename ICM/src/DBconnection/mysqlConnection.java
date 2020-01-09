@@ -42,7 +42,7 @@ public class mysqlConnection {
 		try {
 
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "Xd0509144223");
 
 
 
@@ -440,6 +440,29 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm.setDate(4, null);
 			stm.setDate(5, null);
 			stm.setString(6, evaluator.getUsername());
+			stm.setString(7, "wait");
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	
+	
+	public static boolean assignPerformerToRequest(Connection con, Employee Performer, int id) {
+		PreparedStatement stm = null;
+		try {
+
+			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
+			stm.setInt(1, id);
+			stm.setString(2, "performance");
+			stm.setInt(3, 0);
+			stm.setDate(4, null);
+			stm.setDate(5, null);
+			stm.setString(6, Performer.getUsername());
 			stm.setString(7, "wait");
 			stm.executeUpdate();
 			return true;
