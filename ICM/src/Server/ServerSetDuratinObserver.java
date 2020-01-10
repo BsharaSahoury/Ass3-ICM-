@@ -13,10 +13,11 @@ import Entity.Phase;
 import Entity.RequestPhase;
 import ocsf.server.ConnectionToClient;
 
-public class ServerSetDuratinObserver  implements Observer {
+public class ServerSetDuratinObserver implements Observer {
 	public ServerSetDuratinObserver(Observable server) {
 		server.addObserver(this);
 	}
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof Object[]) {
@@ -26,25 +27,26 @@ public class ServerSetDuratinObserver  implements Observer {
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("save duration")) {
-					int id=(int) arg3[1];
+					int id = (int) arg3[1];
 					String d[] = (String[]) arg3[2];
-					Phase p=(Phase)arg3[3];
+					Phase p = (Phase) arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
-					boolean b=mysqlConnection.insertDate(con,id,d,p);
+					boolean b = mysqlConnection.insertDate(con, id, d, p);
 					Object[] send = new Object[2];
 					send[0] = "duration";
-					if(b==false)
-					{
-						send[1]=false;
-					}
-					else {
-						ArrayList<Employee> inspector=mysqlConnection.getEmployees(con, "inspector");
+					if (b == false) {
+						send[1] = false;
+					} else {
+						ArrayList<Employee> inspector = mysqlConnection.getEmployees(con, "inspector");
 						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, "evaluation");
-						long millis=System.currentTimeMillis();
-						Notification n=new Notification("You have duratin from the evaluator "+rp.getEmployee()+" from "+ rp.getStartDate()+" to  " + rp.getDueDate()+" you can approve or choose another duartion",new java.sql.Date(millis),"Duratin of evaluator");
-						n=mysqlConnection.insertNotificationToDB(con, n);
+						long millis = System.currentTimeMillis();
+						Notification n = new Notification(
+								"You have duratin from the evaluator " + rp.getEmployee() + " from " + rp.getStartDate()
+										+ " to  " + rp.getDueDate() ,
+								new java.sql.Date(millis), "Duratin of evaluator");
+						n = mysqlConnection.insertNotificationToDB(con, n);
 						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));
-					    send[1] = d;		    
+						send[1] = d;
 					}
 					try {
 						client.sendToClient(send);
