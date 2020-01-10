@@ -963,7 +963,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 
 	}
 
-	public static RequestPhase getRequestPhase(Connection con, int id, String p) {
+	public static RequestPhase getRequestPhase(Connection con, int id, String phase) {
 		RequestPhase rp = null;
 		PreparedStatement stm1 =null;
 		PreparedStatement stm =null;
@@ -972,7 +972,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm = con.prepareStatement(
 					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? and phase=?;");
 			stm.setInt(1, id);
-			stm.setString(2, p);
+			stm.setString(2, phase);
 			ResultSet rs1 = stm.executeQuery();
 			if (rs1.next()) {
 				maxRepetion = rs1.getInt(1);
@@ -980,12 +980,12 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			stm1 = con.prepareStatement(
 					"SELECT  requestinphase.* FROM icm.requestinphase where request_id=? and phase=? and repetion=?;");
 			stm1.setInt(1, id);
-			stm1.setString(2, p);
+			stm1.setString(2, phase);
 			stm1.setInt(3, maxRepetion);
 			ResultSet rs2 = stm1.executeQuery();
 			if (rs2.next()) {
 	
-				rp = new RequestPhase(id,rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
+				rp = new RequestPhase(id,rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, phase),
 						Enum.valueOf(State.class, rs2.getString(7)),rs2.getString(6));
 			}
 

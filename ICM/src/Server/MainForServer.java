@@ -49,6 +49,7 @@ public class MainForServer {
 		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 		//ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 		ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
+		ServerCheckAprproveDurationObserver check=new ServerCheckAprproveDurationObserver(sv);
 
 
 	      try {

@@ -36,6 +36,7 @@
             <Label layoutX="83.0" layoutY="262.0" text="from" />
             <Label layoutX="312.0" layoutY="262.0" text="to" />
             <Label layoutX="48.0" layoutY="173.0" text="you can approve or choose another duartion" />
+            <Label fx:id="note" layoutX="240.0" layoutY="473.0" textFill="RED" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

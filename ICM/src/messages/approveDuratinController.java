@@ -7,7 +7,9 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Boundary.RequestsWorkedOnController;
 import Entity.Phase;
+import Entity.RequestPhase;
 import Entity.State;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +33,8 @@ public class approveDuratinController implements Initializable {
 	DatePicker due;
 	@FXML
 	Button approve;
+	@FXML
+	private Label note;
 	@FXML
 	public static approveDuratinController ctrl;
 	public static Stage primaryStage;
@@ -83,6 +88,23 @@ public class approveDuratinController implements Initializable {
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	
+		String keymessage ="checkAprproveDuration";
+		Object[] message = { keymessage, id, Phase.evaluation.toString()};
+		try {
+			LoginController.cc.getClient().sendToServer(message);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public void checkApprove(RequestPhase rp) {
+		if(rp.getState().equals(State.work))
+		{
+			note.setDisable(false);
+			note.setText("you already approved duration");
+			note.setDisable(true);
+			approve.setDisable(true);
+		}
 	}
 }
