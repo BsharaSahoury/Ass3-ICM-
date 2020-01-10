@@ -2,18 +2,22 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
+import Entity.Employee;
+import Entity.Notification;
 import Entity.Phase;
 import Entity.RequestPhase;
 import ocsf.server.ConnectionToClient;
 
-public class ServerSetDuratinObserver  implements Observer {
+public class ServerSetDuratinObserver implements Observer {
 	public ServerSetDuratinObserver(Observable server) {
 		server.addObserver(this);
 	}
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof Object[]) {
@@ -23,17 +27,27 @@ public class ServerSetDuratinObserver  implements Observer {
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("save duration")) {
-					int id=(int) arg3[1];
+					int id = (int) arg3[1];
 					String d[] = (String[]) arg3[2];
-					Phase p=(Phase)arg3[3];
+					Phase p = (Phase) arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
-					System.out.println(id);
-					System.out.println(d);
-					System.out.println(p);
-					mysqlConnection.insertDate(con,id,d,p);
+					boolean b = mysqlConnection.insertDate(con, id, d, p);
 					Object[] send = new Object[2];
 					send[0] = "duration";
-					send[1] = d;
+					if (b == false) {
+						send[1] = false;
+					} else {
+						ArrayList<Employee> inspector = mysqlConnection.getEmployees(con, "inspector");
+						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, "evaluation");
+						long millis = System.currentTimeMillis();
+						Notification n = new Notification(
+								"You have duratin from the evaluator " + rp.getEmployee() + " from " + rp.getStartDate()
+										+ " to  " + rp.getDueDate() ,
+								new java.sql.Date(millis), "Duratin of evaluator");
+						n = mysqlConnection.insertNotificationToDB(con, n);
+						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));
+						send[1] = d;
+					}
 					try {
 						client.sendToClient(send);
 					} catch (IOException e) {

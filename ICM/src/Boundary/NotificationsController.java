@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import Entity.Employee;
 import Entity.Notification;
+import Entity.Phase;
 import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,8 @@ import messages.FailedTestMessageController;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.DecisionCommitteeMemberMessageController;
+import messages.ExceptionDocumentController;
+import messages.ExceptionMessageController;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
 import messages.newRequestforcommitte;
@@ -207,6 +210,34 @@ public class NotificationsController implements Initializable {
 				newRequestforcommitte r = new newRequestforcommitte();
 				r.start(splitpane, id);
 				break;
+
+			case "Exception message":
+				content=n2.getContent();
+				b=new String[2];
+				b=content.split("#");
+				b=b[1].split(":");
+				id=Integer.valueOf(b[0]);
+				b=b[1].split("is over");
+				b=b[0].split("phase ");
+				String phase=b[1];
+				ExceptionMessageController emc=new ExceptionMessageController();
+				emc.start(splitpane,id,phase);
+			case "Exception document":
+				content=n2.getContent();
+				b=new String[2];
+				numberOnly=content.replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				b=content.split("is over");
+				b=b[0].split("phase ");
+				phase=b[1];
+				ExceptionDocumentController edc=new ExceptionDocumentController();
+				edc.start(splitpane,id,phase);
+				
+				
+				
+				
+			
+
 
 			case "recruitNotificationForPerformer":
 				System.out.println("Notification Controller OKAY!!");

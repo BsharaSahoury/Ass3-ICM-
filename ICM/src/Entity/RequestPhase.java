@@ -13,6 +13,8 @@ private Date dueDate;
 private Request r;
 private Phase phase;
 private State phasestate;
+private int repetion;
+private String employee;
 public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State phasestate) {
 	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate());
 	this.phase=phase;
@@ -21,13 +23,40 @@ public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State pha
 	this.dueDate = dueDate;
 	this.phasestate=phasestate;
 }
-public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate) {
+public RequestPhase(int id,Phase phase,int repetion ) {
+	super(id);
+	this.phase=phase;
+	this.repetion=repetion;
+	
+}
+public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate,String employee) {
 	super();
 	this.phase=phase;
 	this.startDate = startDate;
 	this.dueDate = dueDate;
 	this.phasestate=phasestate;
+	this.employee=employee;
 }
+
+public State getPhasestate() {
+	return phasestate;
+}
+public void setPhasestate(State phasestate) {
+	this.phasestate = phasestate;
+}
+public String getEmployee() {
+	return employee;
+}
+public void setEmployee(String employee) {
+	this.employee = employee;
+}
+public int getRepetion() {
+	return repetion;
+}
+public void setRepetion(int repetion) {
+	this.repetion = repetion;
+}
+
 public Date getStartDate() {
 	return startDate;
 }

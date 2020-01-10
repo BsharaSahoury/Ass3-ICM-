@@ -1,13 +1,19 @@
 package Server;
 
 import java.io.IOException;
+import java.sql.Connection;
 
+import DBconnection.mysqlConnection;
 import ocsf.server.ObservableServer;
 
 public class MainForServer {
+	public static Connection con;
+
 
 	  public static void main(String[] args) 
 	  {
+        con=mysqlConnection.makeAndReturnConnection();
+
 	    int port = 0; //Port to listen ons
 	    try
 	    {    
@@ -41,6 +47,7 @@ public class MainForServer {
         ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
         ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
 		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
+		ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 
 
 	      try {
