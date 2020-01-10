@@ -47,7 +47,7 @@ public class MainForServer {
         ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
         ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
 		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
-		ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
+		//ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 
 
 	      try {
