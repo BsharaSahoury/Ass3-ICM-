@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="messages.CommitteeDecisionAskForaddInfoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="messages.approveDuratinController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="728.0">
          <children>
@@ -29,13 +29,13 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="DecisionLable" layoutX="59.0" layoutY="113.0" prefHeight="53.0" prefWidth="477.0" />
-            <Button fx:id="other" layoutX="312.0" layoutY="409.0" mnemonicParsing="false" onAction="#RecruitAction" prefHeight="18.0" prefWidth="62.0" style="-fx-background-color: #9d1b34;" text="approve" textFill="WHITE" />
-            <DatePicker layoutX="124.0" layoutY="258.0" />
-            <DatePicker layoutX="343.0" layoutY="258.0" />
+            <Label fx:id="label" layoutX="48.0" layoutY="120.0" prefHeight="53.0" prefWidth="477.0" />
+            <Button layoutX="312.0" layoutY="409.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="62.0" style="-fx-background-color: #9d1b34;" text="approve" textFill="WHITE" />
+            <DatePicker fx:id="start" layoutX="124.0" layoutY="258.0" />
+            <DatePicker fx:id="due" layoutX="343.0" layoutY="258.0" />
             <Label layoutX="83.0" layoutY="262.0" text="from" />
             <Label layoutX="312.0" layoutY="262.0" text="to" />
-            <Label layoutX="52.0" layoutY="168.0" text="you can approve or choose another duartion" />
+            <Label layoutX="48.0" layoutY="173.0" text="you can approve or choose another duartion" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

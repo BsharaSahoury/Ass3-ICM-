@@ -41,8 +41,9 @@ public class ServerSetDuratinObserver implements Observer {
 						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, "evaluation");
 						long millis = System.currentTimeMillis();
 						Notification n = new Notification(
-								"You have duratin from the evaluator " + rp.getEmployee() + " from " + rp.getStartDate()
-										+ " to  " + rp.getDueDate() ,
+								"You have duratin from the evaluator " + rp.getEmployee() + " from: " + rp.getStartDate()
+										+ " to: " + rp.getDueDate() + System.lineSeparator()
+										+ ",with the request number " + rp.getId(),
 								new java.sql.Date(millis), "Duratin of evaluator");
 						n = mysqlConnection.insertNotificationToDB(con, n);
 						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));

@@ -34,6 +34,7 @@ import messages.FailedTestMessageController;
 
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
+import messages.approveDuratinController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
@@ -222,6 +223,8 @@ public class NotificationsController implements Initializable {
 				String phase=b[1];
 				ExceptionMessageController emc=new ExceptionMessageController();
 				emc.start(splitpane,id,phase);
+				break;
+
 			case "Exception document":
 				content=n2.getContent();
 				b=new String[2];
@@ -232,12 +235,7 @@ public class NotificationsController implements Initializable {
 				phase=b[1];
 				ExceptionDocumentController edc=new ExceptionDocumentController();
 				edc.start(splitpane,id,phase);
-				
-				
-				
-				
-			
-
+				break;
 
 			case "recruitNotificationForPerformer":
 				System.out.println("Notification Controller OKAY!!");
@@ -249,6 +247,19 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc2 = new RecruitMessageController();
 				rmc2.start(splitpane, id);
 				break;
+			case "Duratin of evaluator":
+				content = n2.getContent();
+				b = new String[2];
+				b=content.split("from: ");
+				b=b[1].split(" to: ");
+				String start=b[0];
+				b=b[1].split(",");
+				String due=b[0];
+				due = due.replaceAll("(\\r|\\n)", "");
+				start = start.replaceAll("(\\r|\\n)", "");
+				approveDuratinController ad=new approveDuratinController();
+				ad.start(splitpane, content,start,due);
+				
 			}
 
 		}

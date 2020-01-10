@@ -97,7 +97,9 @@ public class SetDurationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		note.setDisable(true);
 		if(RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
+			note.setDisable(false);
 			note.setText("this duratin wating for Inapector approve");
 			save.setDisable(true);
 		}
