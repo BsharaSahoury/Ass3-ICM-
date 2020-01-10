@@ -1,17 +1,23 @@
 package messages;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Entity.Phase;
+import Entity.State;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -23,12 +29,15 @@ public class approveDuratinController implements Initializable {
 	@FXML
 	DatePicker due;
 	@FXML
+	Button approve;
+	@FXML
 	public static approveDuratinController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
-	
-	public void start(SplitPane splitpane,String content, String start, String due) {
+	public static int id;
+	public void start(SplitPane splitpane,String content, String start, String due, int id) {
+		this.id=id;
 		primaryStage=LoginController.primaryStage;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/approveDuration.fxml"));
@@ -46,6 +55,31 @@ public class approveDuratinController implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
+	}
+	public void approveAction(){
+		LocalDate startDate = start.getValue();
+		LocalDate dueDate = due.getValue();
+		LocalDate today = LocalDate.now();
+		if (startDate != null && dueDate != null & dueDate.compareTo(startDate) >= 0 && startDate.compareTo(today) >= 0) {
+			String keymessage ="ispector duration";
+			String d[] = { startDate.toString(), dueDate.toString() };
+			Object[] message = { keymessage, id, d,Phase.evaluation,State.work};
+
+			try {
+				LoginController.cc.getClient().sendToServer(message);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			approve.setDisable(true);
+
+		}
+		 else {
+				Alert alertWarning = new Alert(AlertType.WARNING);
+				alertWarning.setHeaderText("Warning!");
+				alertWarning.setContentText("Please check the dates correctly");
+				alertWarning.showAndWait();
+		 }
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

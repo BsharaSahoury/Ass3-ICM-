@@ -10,7 +10,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
-
+import Client.ClientApproveDuratinObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
@@ -72,6 +72,7 @@ public class MainClientController {
 			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
 			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
+			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

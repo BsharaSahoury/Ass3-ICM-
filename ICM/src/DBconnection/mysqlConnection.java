@@ -40,7 +40,7 @@ public class mysqlConnection {
 			System.out.println("Driver definition failed");
 		}
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "Xd0509144223");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
 			System.out.println("SQL connection succeed");
 			return conn;
 		} catch (SQLException ex) {/* handle any errors */
@@ -631,7 +631,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-		if(getState(con, id).equals("frozen"))
+		if(getStatus(con, id).equals("frozen"))
 			return false;
 			try {
 				
@@ -985,7 +985,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			ResultSet rs2 = stm1.executeQuery();
 			if (rs2.next()) {
 	
-				rp = new RequestPhase(rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
+				rp = new RequestPhase(id,rs2.getDate(4), rs2.getDate(5), Enum.valueOf(Phase.class, p),
 						Enum.valueOf(State.class, rs2.getString(7)),rs2.getString(6));
 			}
 
@@ -1122,7 +1122,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		}
 		return null;
 	}
-	public static String getState(Connection con,int id) {
+	public static String getStatus(Connection con,int id) {
 		PreparedStatement st=null;
 		String s=null;
 		try {
@@ -1136,5 +1136,33 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			e.printStackTrace();
 		}		
 		return s;
+	}
+	public static void changeState(Connection con,int id,Phase phase,State state) {
+		RequestPhase rp = null;
+		PreparedStatement stm1 =null;
+		PreparedStatement stm =null;
+		int maxRepetion = 0;
+		try {
+			stm = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? and phase=?;");
+			stm.setInt(1, id);
+			stm.setString(2, phase.toString());
+			ResultSet rs1 = stm.executeQuery();
+			if (rs1.next()) {
+				maxRepetion = rs1.getInt(1);
+			}
+			stm1 = con.prepareStatement(
+					"Update  icm.requestinphase SET state=? where request_id=? and phase=? and repetion=?;");
+			stm1.setString(1, state.toString());
+			stm1.setInt(2, id);
+			stm1.setString(3, phase.toString());
+			stm1.setInt(4, maxRepetion);
+			stm1.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}	
 	}
 }

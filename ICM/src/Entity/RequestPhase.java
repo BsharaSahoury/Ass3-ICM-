@@ -29,8 +29,8 @@ public RequestPhase(int id,Phase phase,int repetion ) {
 	this.repetion=repetion;
 	
 }
-public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate,String employee) {
-	super();
+public RequestPhase(int id,Date startDate, Date dueDate,Phase phase,State phasestate,String employee) {
+	super(id);
 	this.phase=phase;
 	this.startDate = startDate;
 	this.dueDate = dueDate;

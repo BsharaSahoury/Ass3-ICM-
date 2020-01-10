@@ -255,10 +255,13 @@ public class NotificationsController implements Initializable {
 				String start=b[0];
 				b=b[1].split(",");
 				String due=b[0];
+				numberOnly=b[1].replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				System.out.println(id+"            3333333333");
 				due = due.replaceAll("(\\r|\\n)", "");
 				start = start.replaceAll("(\\r|\\n)", "");
 				approveDuratinController ad=new approveDuratinController();
-				ad.start(splitpane, content,start,due);
+				ad.start(splitpane, content,start,due,id);
 				
 			}
 
