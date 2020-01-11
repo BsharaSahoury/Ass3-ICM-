@@ -55,6 +55,7 @@ Platform.runLater(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 try {
+	System.out.println("Hi baby");
 Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
 Scene scene = new Scene(root);
 primaryStage.setScene(scene);
