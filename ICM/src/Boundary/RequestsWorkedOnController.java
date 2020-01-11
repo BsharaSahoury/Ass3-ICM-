@@ -185,7 +185,7 @@ public class RequestsWorkedOnController implements Initializable {
 		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 					else {
-						setDuration.start(splitpane,rp ,"/Boundary/Duration.fxml",rp.getPhase());
+						setDuration.start(splitpane,rp ,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 				}
 			});

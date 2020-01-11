@@ -31,7 +31,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="176.0" layoutY="82.0" text="Set Duratin for this phase: ">
+                        <Label layoutX="176.0" layoutY="82.0" text="Set Duratin for the Evaluation phase: ">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

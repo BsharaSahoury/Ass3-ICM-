@@ -99,11 +99,11 @@ public class approveDuratinController implements Initializable {
 
 	}
 	public void checkApprove(RequestPhase rp) {
-		if(rp.getState().equals(State.work))
+		if(rp.getState().equals(State.work)||rp.getState().equals(State.wait))
 		{
-			note.setDisable(false);
+			note.setVisible(false);
 			note.setText("you already approved duration");
-			note.setDisable(true);
+			note.setVisible(true);
 			approve.setDisable(true);
 		}
 	}
