@@ -68,7 +68,7 @@ public class approveDuratinController implements Initializable {
 		if (startDate != null && dueDate != null & dueDate.compareTo(startDate) >= 0 && startDate.compareTo(today) >= 0) {
 			String keymessage ="ispector duration";
 			String d[] = { startDate.toString(), dueDate.toString() };
-			Object[] message = { keymessage, id, d,Phase.evaluation,State.work};
+			Object[] message = { keymessage, id, d,Phase.evaluation,State.wait};
 
 			try {
 				LoginController.cc.getClient().sendToServer(message);
