@@ -48,6 +48,7 @@ public class MainForServer {
         ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
 		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 		ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
+		ServerDocumentExceptionObserver sdeo=new ServerDocumentExceptionObserver(sv);
 
 
 	      try {

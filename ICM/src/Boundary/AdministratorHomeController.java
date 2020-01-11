@@ -114,6 +114,10 @@ logOut.start(primaryStage);
 public void initialize(URL location, ResourceBundle resources) {
 	UserNameMenu.setText(Administrator.getFirstName()+" "+Administrator.getLastName());
 }
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,Administrator);
+}
 }
 
 /*

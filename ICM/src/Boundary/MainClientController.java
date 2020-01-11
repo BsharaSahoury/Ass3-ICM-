@@ -16,11 +16,13 @@ import Client.ClientApprovePerformanceObserver;
 import Client.ClientChairmanApproveObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
+import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientLoginObserver;
+import Client.ClientMapObserver;
 import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
@@ -72,6 +74,13 @@ public class MainClientController {
 			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
 			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
+			ClientDocumentExceptionObserver cdeo=new ClientDocumentExceptionObserver(cc.getClient());
+			ClientMapObserver cmo=new ClientMapObserver(cc.getClient());
+			
+			
+			
+			
+			
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

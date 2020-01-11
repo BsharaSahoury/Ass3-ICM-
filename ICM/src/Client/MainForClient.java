@@ -18,7 +18,6 @@ public class MainForClient extends Application {
 
 	public static void main(String[] args) {
 		MainForClient.args=args;
-		System.out.println(args.toString());
 		MainForClient.launch(args);
 		// TODO Auto-generated method stub
 

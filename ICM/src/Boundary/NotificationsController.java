@@ -39,6 +39,7 @@ import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
+import messages.ReminderMessageController;
 import messages.newRequestforcommitte;
 
 public class NotificationsController implements Initializable {
@@ -213,32 +214,33 @@ public class NotificationsController implements Initializable {
 
 			case "Exception message":
 				content=n2.getContent();
+				numberOnly=content.replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
 				b=new String[2];
-				b=content.split("#");
-				b=b[1].split(":");
-				id=Integer.valueOf(b[0]);
-				b=b[1].split("is over");
-				b=b[0].split("phase ");
-				String phase=b[1];
+				b=content.split("in phase ");
+				b=b[1].split(" ");
+				String phase=b[0];
 				ExceptionMessageController emc=new ExceptionMessageController();
-				emc.start(splitpane,id,phase);
+				emc.start(splitpane, id, phase);
+				break;
 			case "Exception document":
 				content=n2.getContent();
 				b=new String[2];
-				numberOnly=content.replaceAll("[^0-9]", "");
-				id=Integer.valueOf(numberOnly);
-				b=content.split("is over");
-				b=b[0].split("phase ");
-				phase=b[1];
+				String[] a=new String[2];
+				String[] c=new String[2];
+				b=content.split("#");
+				b=b[1].split(":");
+				id=Integer.valueOf(b[0]);
+				content=n2.getContent();
+				b=content.split("phase ");
+				b=b[1].split(" with");
+				phase=b[0];
+				b=content.split("repetion ");
+				b=b[1].split(" is");
+				int repetion=Integer.valueOf(b[0]);
 				ExceptionDocumentController edc=new ExceptionDocumentController();
-				edc.start(splitpane,id,phase);
-				
-				
-				
-				
-			
-
-
+				edc.start(splitpane,id,phase,repetion);
+				break;
 			case "recruitNotificationForPerformer":
 				System.out.println("Notification Controller OKAY!!");
 				content = n2.getContent();
@@ -249,6 +251,16 @@ public class NotificationsController implements Initializable {
 				RecruitMessageController rmc2 = new RecruitMessageController();
 				rmc2.start(splitpane, id);
 				break;
+			case "reminder to finish work":
+				content=n2.getContent();
+				numberOnly=content.replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				b=content.split(": ");
+				System.out.println(b[1]);
+				b=b[1].split("!");
+				phase=b[0];
+				ReminderMessageController rmc8=new ReminderMessageController();
+				rmc8.start(splitpane,id,phase);
 			}
 
 		}

@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import Entity.Employee;
 import Entity.EvaluationReport;
@@ -40,7 +42,7 @@ public class mysqlConnection {
 			System.out.println("Driver definition failed");
 		}
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "Xd0509144223");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
 			System.out.println("SQL connection succeed");
 			return conn;
 		} catch (SQLException ex) {/* handle any errors */
@@ -1015,16 +1017,16 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		PreparedStatement stm1=null;
 		ArrayList<RequestPhase> list=new ArrayList<>();
 		try {
-			stm=con.prepareStatement("SELECT request_id,phase,repetion FROM requestinphase WHERE state='work' AND due_date>?;");
+			stm=con.prepareStatement("SELECT request_id,phase,repetion FROM requestinphase WHERE state='work' AND due_date<?;");
 			stm.setDate(1, today);
 			ResultSet rs=stm.executeQuery();
 			while(rs.next()) {
 				stm1=con.prepareStatement("SELECT request_id FROM exception WHERE request_id=? AND phase=? AND repetion=?");
 				stm1.setInt(1, rs.getInt(1));
-				stm1.setString(2, rs.getString(2));
+				stm1.setString(2, rs.getString(2)); 
 				stm1.setInt(3, rs.getInt(3));
 				ResultSet rs1=stm1.executeQuery();
-				if(rs1.next()) {
+				if(!rs1.next()) {
 				stm=con.prepareStatement("INSERT INTO exception (date,phase,request_id,repetion) VALUES(?,?,?,?);");
 				stm.setDate(1, today);
 				stm.setString(2, rs.getString(2));
@@ -1065,7 +1067,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 	public static Employee getPhaseAdministrator(Connection con, int id, Phase phase, int repetion) {
 		PreparedStatement stm=null;
 		try {
-			stm=con.prepareStatement("SELECT employee.* FROM employee E,requestinphase P WHERE E.username=P.phase_administrator AND P.request_id=? AND P.phase=? AND P.repetion=?;");
+			stm=con.prepareStatement("SELECT E.* FROM employee E,requestinphase P WHERE E.username=P.phase_administrator AND P.request_id=? AND P.phase=? AND P.repetion=?;");
 			stm.setInt(1, id);
 			stm.setString(2, phase.toString());
 			stm.setInt(3, repetion);
@@ -1086,7 +1088,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		PreparedStatement stm1=null;
 		ArrayList<RequestPhase> list=new ArrayList<>();
 		try {
-			stm=con.prepareStatement("SELECT X.request_id,X.phase,X.repetion,X.date FROM exception X,requestinphase P WHERE X.request_id=P.request_id AND X.phase=P.phase AND X.repetion=P.repetion AND P.state='over';");
+			stm=con.prepareStatement("SELECT X.request_id,X.phase,X.repetion,X.date FROM exception X,requestinphase P WHERE X.request_id=P.request_id AND X.phase=P.phase AND X.repetion=P.repetion AND X.overdue='-1' AND P.state='over';");
 			ResultSet rs=stm.executeQuery();
 			while(rs.next()) {
 				RequestPhase rp=new RequestPhase(rs.getInt(1),Enum.valueOf(Phase.class, rs.getString(2)),rs.getInt(3));
@@ -1100,6 +1102,93 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				stm1.executeUpdate();
 			}
 			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static Employee getInspector(Connection con) {
+		Statement st = null;
+		Employee admin=null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT employee.* FROM employee WHERE job='inspector';");
+			if(rs.next())
+				admin = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));	
+			return admin;
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	public static void addDocumentToException(Connection con, int id, String phase, int repetion, String document) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE exception SET documentation=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm.setString(1, document);
+			stm.setInt(2, id);
+			stm.setString(3, phase);
+			stm.setInt(4, repetion);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static ArrayList<RequestPhase> whoNeedsReminding(Connection con, Date today) {
+		PreparedStatement stm=null;
+		PreparedStatement stm1=null;
+		ArrayList<RequestPhase> list=new ArrayList<>();
+		try {
+			stm=con.prepareStatement("SELECT request_id,phase,repetion,phase_administrator FROM requestinphase WHERE due_date=?;");
+			LocalDate tommorrow1=today.toLocalDate().plusDays(1);
+			Date tommorrow=Date.valueOf(tommorrow1);
+			stm.setDate(1, tommorrow);
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				stm1=con.prepareStatement("SELECT reminder.* FROM reminder WHERE request_id=? AND phase=? AND repetion=?;");
+				stm1.setInt(1, rs.getInt(1));
+				stm1.setString(2, rs.getString(2));
+				stm1.setInt(3, rs.getInt(3));
+				ResultSet rs1=stm1.executeQuery();
+				if(!rs1.next()) {
+					stm1=con.prepareStatement("INSERT INTO reminder VALUES(?,?,?);");
+					stm1.setInt(1, rs.getInt(1));
+					stm1.setString(2, rs.getString(2));
+					stm1.setInt(3, rs.getInt(3));
+					stm1.executeUpdate();
+					RequestPhase rp=new RequestPhase(rs.getInt(1),Enum.valueOf(Phase.class, rs.getString(2)),rs.getInt(3));
+					list.add(rp);
+				}
+			}
+			
+			return list;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static Map<Integer, String> getMap(Connection con) {
+		PreparedStatement stm=null;
+		Map<Integer,String> map=new HashMap<>();
+		try {
+			stm=con.prepareStatement("SELECT id,status FROM request;");
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getInt(1), rs.getString(2));
+			}
+			return map;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
