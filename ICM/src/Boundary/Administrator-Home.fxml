@@ -23,7 +23,7 @@
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="227.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Employees" textFill="WHITE">
+                  <Button fx:id="allEmployees" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#AllEmployeesAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Employees" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

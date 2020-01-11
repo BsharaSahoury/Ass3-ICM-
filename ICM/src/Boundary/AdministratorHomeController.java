@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class AdministratorHomeController implements Initializable {
 @FXML
+Button allEmployees;
+@FXML
 private Button Homebtn;
 @FXML
 private Button RequestWorkedOnbtn;
@@ -73,6 +75,9 @@ e.printStackTrace();
 
 public Stage getPrimaryStage() {
 return primaryStage;
+}
+public void AllEmployeesAction(ActionEvent e) {
+	
 }
 
 public void GoToHome(ActionEvent event) throws Exception {
