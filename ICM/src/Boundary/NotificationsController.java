@@ -34,6 +34,7 @@ import messages.FailedTestMessageController;
 
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
+import messages.approveDuratinController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
@@ -221,8 +222,11 @@ public class NotificationsController implements Initializable {
 				b=b[1].split(" ");
 				String phase=b[0];
 				ExceptionMessageController emc=new ExceptionMessageController();
+
 				emc.start(splitpane, id, phase);
 				break;
+
+
 			case "Exception document":
 				content=n2.getContent();
 				b=new String[2];
@@ -239,8 +243,11 @@ public class NotificationsController implements Initializable {
 				b=b[1].split(" is");
 				int repetion=Integer.valueOf(b[0]);
 				ExceptionDocumentController edc=new ExceptionDocumentController();
+
 				edc.start(splitpane,id,phase,repetion);
 				break;
+
+
 			case "recruitNotificationForPerformer":
 				System.out.println("Notification Controller OKAY!!");
 				content = n2.getContent();
@@ -261,6 +268,24 @@ public class NotificationsController implements Initializable {
 				phase=b[0];
 				ReminderMessageController rmc8=new ReminderMessageController();
 				rmc8.start(splitpane,id,phase);
+				break;
+			case "Duratin of evaluator":
+				content = n2.getContent();
+				b = new String[2];
+				b=content.split("from: ");
+				b=b[1].split(" to: ");
+				String start=b[0];
+				b=b[1].split(",");
+				String due=b[0];
+				numberOnly=b[1].replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				System.out.println(id+"            3333333333");
+				due = due.replaceAll("(\\r|\\n)", "");
+				start = start.replaceAll("(\\r|\\n)", "");
+				approveDuratinController ad=new approveDuratinController();
+				ad.start(splitpane, content,start,due,id);
+				break;
+				
 			}
 
 		}

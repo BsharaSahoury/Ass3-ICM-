@@ -8,8 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import ocsf.client.ObservableClient;
 
-public class ClientSetDuratinObserver implements Observer {
-	public ClientSetDuratinObserver(ObservableClient client) {
+public class ClientApproveDuratinObserver implements Observer {
+	public ClientApproveDuratinObserver(ObservableClient client) {
 		client.addObserver(this);
 	}
 
@@ -19,7 +19,7 @@ public class ClientSetDuratinObserver implements Observer {
 			Object[] arg2 = (Object[]) arg1;
 			if (arg2[0] instanceof String) {
 				String keymessage = (String) arg2[0];
-				if (keymessage.equals("duration")) {
+				if (keymessage.equals("approvedDuration")) {
 					if (arg2[1] instanceof String[]) {
 						Platform.runLater(new Runnable() {
 
@@ -28,7 +28,7 @@ public class ClientSetDuratinObserver implements Observer {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("SAVE");
 								alert.setHeaderText("Success");
-								alert.setContentText("We sent the duratin to inspector,plese wait for aprove");
+								alert.setContentText("successful saved");
 								alert.showAndWait();
 							}
 

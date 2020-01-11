@@ -19,7 +19,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -37,6 +39,8 @@ public class SetDurationController implements Initializable {
 	private DatePicker dueDate;
 	@FXML
 	private Button save;
+	@FXML
+	private Label note;
 
 	private static Request r;
 	private static Phase phase;
@@ -94,7 +98,12 @@ public class SetDurationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		if(RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
+			note.setDisable(false);
+			note.setText("this duratin wating for Inapector approve");
+			note.setDisable(true);
+			save.setDisable(true);
+		}
 		if(RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null)
  {
 			save.setDisable(true);

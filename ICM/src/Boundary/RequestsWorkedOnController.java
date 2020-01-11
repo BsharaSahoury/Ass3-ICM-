@@ -182,7 +182,7 @@ public class RequestsWorkedOnController implements Initializable {
 				@Override
 				public void run() {
 					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,rp,"/Boundary/DuratinEvaluator.fxml",rp.getPhase());
+		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 					else {
 						setDuration.start(splitpane,rp ,"/Boundary/Duration.fxml",rp.getPhase());

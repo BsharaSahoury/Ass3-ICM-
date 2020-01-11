@@ -98,7 +98,7 @@
                </font>
             </Label>
             <TextField fx:id="lbId" editable="false" layoutX="142.0" layoutY="83.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-insets: 5555;" />
-            <Button layoutX="545.0" layoutY="539.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 20px;" text="Send Report" />
+            <Button fx:id="save" layoutX="545.0" layoutY="539.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 20px;" text="Send Report" />
             <TextArea fx:id="DescriptionOfChange" layoutX="208.0" layoutY="191.0" prefHeight="60.0" prefWidth="448.0" />
             <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="16.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
