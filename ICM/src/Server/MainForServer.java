@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 
 import DBconnection.mysqlConnection;
@@ -49,7 +50,7 @@ public class MainForServer {
 		ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 		ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 		ServerGetInitiatorObserver init=new ServerGetInitiatorObserver(sv);
-		ServerInitiatorapprovetherejectObserver mm=new ServerInitiatorapprovetherejectObserver(sv);
+		ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
 	      try {
 		   sv.listen();
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//

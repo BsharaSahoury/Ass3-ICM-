@@ -36,13 +36,17 @@ public class RejectMessageInitiatorController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
+			System.out.println("nnn");
+			if(!CommitteeDecision.equals("passed")) {
+				System.out.println("ee");
 			Object[] message= {"get explain notification",ctrl.notificationID,"Initiator to approve the reject message"};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}				
+			}		
+			}
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane=splitpane;
 		} catch(Exception e) {
@@ -54,8 +58,7 @@ public class RejectMessageInitiatorController implements Initializable {
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
 	public void approveAction(ActionEvent e) {	
-		if(flag==-1) {
-			flag=0;
+		
 		Object[] message= {"initiator approved the decision of the request",requestID,CommitteeDecision};
 		try {
 			LoginController.cc.getClient().sendToServer(message);
@@ -63,18 +66,14 @@ public class RejectMessageInitiatorController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
-		}else {	
-			 Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Already Approve");
-			 alertSuccess.setContentText("You already approved this decision");
-			 alertSuccess.show();
-		}
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		notificationID=NotificationsController.getidnotification();
+		
 		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
+		if(!CommitteeDecision.equals("passed"))
+		notificationID=NotificationsController.getidnotification();	
 		requestID=NotificationsController.getidofrequestforDecision();
+		System.out.println(requestID);
 	}
 }

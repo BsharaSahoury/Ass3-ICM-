@@ -810,9 +810,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
     public static void addRequestToDB(Connection con,int id,String dec) {
@@ -1170,6 +1168,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(initiator.getUsername());
 		return initiator;
 	}
 	public static Boolean changestatus(Connection con,int id,String newstatus) {

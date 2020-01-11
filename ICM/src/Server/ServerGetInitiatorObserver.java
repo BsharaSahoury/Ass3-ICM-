@@ -49,10 +49,32 @@ public class ServerGetInitiatorObserver implements Observer {
 						}
 						}
 					}
+					else if(keymessage.equals("Send to initiator that request approved")) {
+						int id=(int)arg2[1];
+						System.out.println(id);
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						User initiator=mysqlConnection.getInitiatorUser(con, id);
+						if(!initiator.equals(null)) {
+							
+							String decision=(String)arg2[2];
+							long millis=System.currentTimeMillis();
+							Notification n1=new Notification(
+									"Youre request #"+id+"has been approved",
+									new java.sql.Date(millis),
+									"Request test passed and wait for intitiator approve to close");
+							n1=mysqlConnection.insertNotificationToDB(con, n1);
+							mysqlConnection.insertNotificationForUserToDB(con, n1,initiator);
+							try {
+								client.sendToClient("Message send to initiator to approve the decision");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							}	
+								}
+						}
+					}
 				
 			}
-		}
-	}
-	}
-	
+		}	
 }

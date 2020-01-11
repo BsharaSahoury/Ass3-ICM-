@@ -69,13 +69,13 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
-		}else {	
+		}/*else {	
 			 Alert alertSuccess = new Alert(AlertType.WARNING);
 			 alertSuccess.setTitle("Warning");
 			 alertSuccess.setHeaderText("Already Approve");
 			 alertSuccess.setContentText("You already approved this decision");
 			 alertSuccess.show();
-		}
+		}*/
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

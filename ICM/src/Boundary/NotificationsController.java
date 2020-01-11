@@ -31,7 +31,7 @@ import messages.CommitteeDecisionRejectController;
 import messages.ChooseTesterMessageController;
 
 import messages.FailedTestMessageController;
-
+import messages.Passedmessagecontroller;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.DecisionCommitteeMemberMessageController;
@@ -152,9 +152,9 @@ public class NotificationsController implements Initializable {
 				String[] b3 = new String[2];
 				b3 = content.split("#");
 				b3 = b3[1].split("passed");
-				int id2 = Integer.valueOf(b3[0]);
+				IDRequestForDecision = Integer.valueOf(b3[0]);
 				SuccessTestMessageController stmc = new SuccessTestMessageController();
-				stmc.start(splitpane, id2);
+				stmc.start(splitpane,IDRequestForDecision);
 				break;
 			case "Decision of Committee Member":
 				content = n2.getContent();
@@ -253,10 +253,17 @@ public class NotificationsController implements Initializable {
 				RejectMessageInitiatorController obj5 = new RejectMessageInitiatorController();
 				obj5.start(splitpane, "/messages/Rejectmessageinitiator.fxml");
 				break;
+			case "Request test passed and wait for intitiator approve to close":
+				content = n2.getContent();
+				b = new String[2];
+				b = content.split("#");
+				b = b[1].split("has");
+				IDRequestForDecision = Integer.valueOf(b[0]);
+				CommittteDecision="passed";
+				Passedmessagecontroller obj6 = new Passedmessagecontroller();
+				obj6.start(splitpane, "/messages/approvemessageinitiator.fxml");
+				break;
 			}
-			//case "Committee reject the request and wait for initiator approve":
-				
-				//break;
 		}
 	}
 
