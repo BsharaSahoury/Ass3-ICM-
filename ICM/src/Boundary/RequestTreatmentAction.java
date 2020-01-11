@@ -1,6 +1,7 @@
 package Boundary;
 
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -40,11 +41,11 @@ public class RequestTreatmentAction implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ArrayList<Phase> Phases=new ArrayList<Phase>();
-		Phases.add(Phase.Evaluation);
-		Phases.add(Phase.Decision);
-		Phases.add(Phase.Performance);
-		Phases.add(Phase.Testing);
-		Phases.add(Phase.Closed);
+		Phases.add(Phase.evaluation);
+		Phases.add(Phase.decision);
+		Phases.add(Phase.performance);
+		Phases.add(Phase.testing);
+		Phases.add(Phase.closed);
 		phaseslist=FXCollections.observableArrayList(Phases);
 		ArrayList<String> Statuses=new ArrayList<String>();
 		Statuses.add("Active");
@@ -67,7 +68,6 @@ public class RequestTreatmentAction implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Update.fxml"));		
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
-			System.out.println("zzxzx");
 			//String AllRequests="All Requests";
 			//cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {

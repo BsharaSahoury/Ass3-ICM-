@@ -43,7 +43,7 @@ public class mysqlConnection {
 		}
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "hbk12345");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ayman1234567891");
 
 			System.out.println("SQL connection succeed");
 			return conn;
@@ -91,7 +91,7 @@ public class mysqlConnection {
 	}
 
 public static ArrayList<RequestPhase> getDataFromDB(Connection con){
-		
+	   String[] phases = {"closing","testing","performance","decision","evaluation"};
 		String Initiatorname=null;
 		ArrayList<RequestPhase> arr = new ArrayList<RequestPhase>();
 		Statement stmt1 = null;
@@ -99,14 +99,14 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 		PreparedStatement stmt3=null;
 		Request s=null;
 		RequestPhase result=null;
+		int i=0;
 		try {
 			stmt1=con.createStatement();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		try {
-			
+		try {		
 			ResultSet rs=stmt1.executeQuery("SELECT R.* FROM icm.request R;");
 			while(rs.next())
 	 		{
@@ -122,31 +122,37 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 					rs2.next();
 					Initiatorname=rs2.getString(2)+" "+rs2.getString(3);
 				}	
-				
-				stmt3 = con.prepareStatement("SELECT E.phase,E.state FROM icm.requestinphase E WHERE request_id=? AND state=?;");
-				stmt3.setInt(1, rs.getInt(7));
-				stmt3.setString(2, "work");
-				ResultSet rs3=stmt3.executeQuery();	
-                if(rs3.next()) {     
-				Date date1=null;
 				if(!Initiatorname.equals(null)) {
+				rs2.close();				
+			do {
+				stmt3 = con.prepareStatement("SELECT E.phase,E.state FROM icm.requestinphase E WHERE request_id=? AND phase=?;");
+				stmt3.setInt(1, rs.getInt(7));
+				stmt3.setString(2, phases[i]);
+				ResultSet rs3=stmt3.executeQuery();			
+				i++;
+				if(rs3.next()) {
+					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
 					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));					
-				}	
+					rs3.close();
+				}	       
+			}while(i!=-1&&i!=5);	
+			    if(!result.equals(null))
 				arr.add(result);
-                }
-                stmt3=null;
+				}	
 				stmt2=null;
+				stmt3=null;
 				s=null;
 				result=null;
-				rs2.close();
-				rs3.close();
-			}
-			rs.close();	 		
-		}catch (SQLException e) {
+				i=0;
+				Initiatorname=null;
+                }
+				rs.close();	
+			}			 		
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}	
 		return arr;
 	}
 
