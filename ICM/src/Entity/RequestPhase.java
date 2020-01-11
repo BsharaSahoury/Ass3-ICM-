@@ -1,3 +1,4 @@
+
 package Entity;
 
 import java.io.Serializable;
@@ -29,8 +30,8 @@ public RequestPhase(int id,Phase phase,int repetion ) {
 	this.repetion=repetion;
 	
 }
-public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate,String employee) {
-	super();
+public RequestPhase(int id,Date startDate, Date dueDate,Phase phase,State phasestate,String employee) {
+	super(id);
 	this.phase=phase;
 	this.startDate = startDate;
 	this.dueDate = dueDate;
@@ -56,6 +57,15 @@ public int getRepetion() {
 public void setRepetion(int repetion) {
 	this.repetion = repetion;
 }
+
+public RequestPhase(Date startDate, Date dueDate,Phase phase,State phasestate) {
+	super();
+	this.phase=phase;
+	this.startDate = startDate;
+	this.dueDate = dueDate;
+	this.phasestate=phasestate;
+}
+
 
 public Date getStartDate() {
 	return startDate;
@@ -98,3 +108,4 @@ public String toString() {
 	return "phase"+phase.toString()+"state"+phasestate;
 }
 }
+

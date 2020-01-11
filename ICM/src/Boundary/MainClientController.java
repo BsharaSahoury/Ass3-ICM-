@@ -3,8 +3,6 @@ package Boundary;
 import java.awt.Button;
 
 
-
-
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Observable;
@@ -12,18 +10,21 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
-
+import Client.ClientApproveDuratinObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
+import Client.ClientCheckApproveDuratinObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
+import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLoginObserver;
+import Client.ClientMapObserver;
 import Client.ClientMessageSentToInitiatorObserver;
 import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
@@ -73,10 +74,13 @@ public class MainClientController {
 			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
 			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
-			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());
-			ClientInitiatorapprovedrequestdecisionObserver qqw=new ClientInitiatorapprovedrequestdecisionObserver(cc.getClient());
 			ClientMessageSentToInitiatorObserver ee=new ClientMessageSentToInitiatorObserver(cc.getClient());
-
+			ClientDocumentExceptionObserver cdeo=new ClientDocumentExceptionObserver(cc.getClient());
+			ClientMapObserver cmo=new ClientMapObserver(cc.getClient());
+			ClientInitiatorapprovedrequestdecisionObserver qqw=new ClientInitiatorapprovedrequestdecisionObserver(cc.getClient());
+			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
+			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
+			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
@@ -85,12 +89,7 @@ public class MainClientController {
 			wrong.setVisible(true);
 			ip.clear();
 			System.out.println("connection failed");
-		}
-
-	
-		
+		}		
 	}
-
-
 }
 
