@@ -1283,5 +1283,32 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		System.out.println(initiator.getUsername());
 		return initiator;
 	}
+	public static void changeState(Connection con,int id,Phase phase,State state) {
+		RequestPhase rp = null;
+		PreparedStatement stm1 =null;
+		PreparedStatement stm =null;
+		int maxRepetion = 0;
+		try {
+			stm = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? and phase=?;");
+			stm.setInt(1, id);
+			stm.setString(2, phase.toString());
+			ResultSet rs1 = stm.executeQuery();
+			if (rs1.next()) {
+				maxRepetion = rs1.getInt(1);
+			}
+			stm1 = con.prepareStatement(
+					"Update  icm.requestinphase SET state=? where request_id=? and phase=? and repetion=?;");
+			stm1.setString(1, state.toString());
+			stm1.setInt(2, id);
+			stm1.setString(3, phase.toString());
+			stm1.setInt(4, maxRepetion);
+			stm1.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
 }
 
