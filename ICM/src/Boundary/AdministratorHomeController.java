@@ -55,7 +55,7 @@ Platform.runLater(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 try {
-Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Administrator-Home.fxml"));
+Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
 Scene scene = new Scene(root);
 primaryStage.setScene(scene);
 primaryStage.setResizable(false);
