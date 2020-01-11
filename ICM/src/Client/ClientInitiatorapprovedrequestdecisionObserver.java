@@ -29,11 +29,28 @@ public class ClientInitiatorapprovedrequestdecisionObserver implements Observer 
 							alert.setHeaderText("Success");
 							alert.setContentText("Your approved saved successfully");
 							alert.showAndWait();
+							System.out.println("S");
+							System.out.println("S");
+							System.out.println("S");
+							System.out.println("S");System.out.println("S");
+							System.out.println("S");
+							System.out.println("S");
+						}
+					});
+				}/*
+				else if(keymessage.equals("already approved and finished")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.WARNING);
+							alert.setTitle("Already");
+							alert.setContentText("You Already approved the decision");
+							alert.showAndWait();
 						}
 
 					});
-				}
-			}System.out.println("Ss");
+				}*/
+			}
 
 		}
 	}
