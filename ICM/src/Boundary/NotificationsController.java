@@ -109,9 +109,6 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		int id;
-		//
-		
-		//
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {

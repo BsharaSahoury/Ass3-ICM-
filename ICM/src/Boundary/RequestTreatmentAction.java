@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import org.omg.PortableServer.POAManagerPackage.State;
+
 import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entity.Request;
@@ -33,7 +37,11 @@ public class RequestTreatmentAction implements Initializable {
  @FXML
  private DatePicker DatePickerTo;
  @FXML
- private ComboBox Status;
+ private RadioButton activeradio;
+ @FXML
+ private RadioButton Frozenradio;
+ @FXML
+ private TextArea Explaintxt;
  private int chosenindex;
  private  Request chosenRequest;
  ObservableList<Phase> phaseslist;
@@ -45,17 +53,19 @@ public class RequestTreatmentAction implements Initializable {
 		Phases.add(Phase.decision);
 		Phases.add(Phase.performance);
 		Phases.add(Phase.testing);
-		Phases.add(Phase.closed);
+		Phases.add(Phase.closing);
 		phaseslist=FXCollections.observableArrayList(Phases);
 		ArrayList<String> Statuses=new ArrayList<String>();
-		Statuses.add("Active");
 		Statuses.add("Frozen");
-		Statuses.add("Closed");
 		Statuslist=FXCollections.observableArrayList(Statuses);
-		Status.setItems(Statuslist);
 		Phasee.setItems(phaseslist);
     	chosenindex=AllRequestsController.getselectedindex();
-        chosenRequest=AllRequestsController.getList().get(chosenindex);   
+        chosenRequest=AllRequestsController.getList().get(chosenindex);  
+        if(chosenRequest.getStatus().equals(State._ACTIVE)) {
+        	
+        }else if() {
+        	
+        }
         Status.setValue(chosenRequest.getStatus());
      //   PhaseAdministrator.setText(chosenRequest.get);
 		
@@ -74,7 +84,15 @@ public class RequestTreatmentAction implements Initializable {
 			e.printStackTrace();
 		}			
 	}
-	
+	public void ApplyAction() {
+		
+	}
+	public void changeFrozen() {
+		
+	}
+	public void cantactive() {
+		
+	}
 	public void ChangePhase() {
 		//if()
 	}

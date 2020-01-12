@@ -26,34 +26,40 @@ import Entity.RequestPhase;
 import Entity.State;
 import Entity.Student;
 import Entity.User;
+import Server.MainForServer;
 
 public class mysqlConnection {
-	private static Connection conn = null;
 	private static int count = 0;
 	private static int numOfReport=0;
-
-//this method creates and returns a connection to the relevant schema in the database that we would like to work with
-	public static Connection makeAndReturnConnection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			System.out.println("Driver definition succeed");
-		} catch (Exception ex) {
-			/* handle the error */
-			System.out.println("Driver definition failed");
-		}
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST", "root", "ahmed1234567891");
-
-			System.out.println("SQL connection succeed");
-			return conn;
-		} catch (SQLException ex) {/* handle any errors */
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		return null;
-
-	}
+	private static String DB_PASSWORD;
+	private static String DB_USERNAME;
+	//this method creates and returns a connection to the relevant schema in the database that we would like to work with
+		public static Connection makeAndReturnConnection()
+		{
+			try 
+			{
+	            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+	            System.out.println("Driver definition succeed");
+	        } catch (Exception ex) {
+	        	/* handle the error*/
+	        	 System.out.println("Driver definition failed");
+	        	 }      
+	        try 
+	        {  
+	        	DB_USERNAME = Server.ServerController.get_DB_UserName();
+	    		DB_PASSWORD = Server.ServerController.get_DB_Password();
+	            MainForServer.set_Connection(DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST",DB_USERNAME,DB_PASSWORD));
+	            System.out.println("SQL connection succeed");
+	            return MainForServer.get_Connection();
+	     	} catch (SQLException ex) 
+	     	    {/* handle any errors*/
+	            System.out.println("SQLException: " + ex.getMessage());
+	            System.out.println("SQLState: " + ex.getSQLState());
+	            System.out.println("VendorError: " + ex.getErrorCode());
+	            }
+	        return null;
+	        
+	   	}
 
 	public static User isInDB(Connection con, String username, String password) {
 		PreparedStatement stm = null;
