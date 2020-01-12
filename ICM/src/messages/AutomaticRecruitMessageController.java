@@ -1,3 +1,4 @@
+
 package messages;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Client.ClientConsole;
 import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,6 +71,10 @@ public class AutomaticRecruitMessageController implements Initializable {
 		}			
 	}
 	public void approveAction(ActionEvent e) {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		Object[] message= {"automatic",requestID};
 		try {
 			LoginController.cc.getClient().sendToServer(message);
@@ -124,3 +130,4 @@ public class AutomaticRecruitMessageController implements Initializable {
 	
 
 }
+

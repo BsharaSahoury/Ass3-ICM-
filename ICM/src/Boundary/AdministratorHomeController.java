@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 public class AdministratorHomeController implements Initializable {
 @FXML
+Button allEmployees;
+@FXML
 private Button Homebtn;
 @FXML
 private Button RequestWorkedOnbtn;
@@ -53,7 +55,8 @@ Platform.runLater(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 try {
-Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Administrator-Home.fxml"));
+	System.out.println("Hi baby");
+Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
 Scene scene = new Scene(root);
 primaryStage.setScene(scene);
 primaryStage.setResizable(false);
@@ -73,6 +76,9 @@ e.printStackTrace();
 
 public Stage getPrimaryStage() {
 return primaryStage;
+}
+public void AllEmployeesAction(ActionEvent e) {
+	
 }
 
 public void GoToHome(ActionEvent event) throws Exception {
@@ -113,6 +119,10 @@ logOut.start(primaryStage);
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	UserNameMenu.setText(Administrator.getFirstName()+" "+Administrator.getLastName());
+}
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,Administrator);
 }
 }
 
@@ -233,3 +243,4 @@ public class AdministratorHomeController implements Initializable {
 		notific.start(splitpane,Administrator);
 	}
 }*/
+

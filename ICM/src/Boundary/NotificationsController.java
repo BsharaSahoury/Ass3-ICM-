@@ -31,15 +31,18 @@ import messages.CommitteeDecisionRejectController;
 import messages.ChooseTesterMessageController;
 
 import messages.FailedTestMessageController;
-
+import messages.Passedmessagecontroller;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
+import messages.approveDuratinController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
 import messages.ExtensionConfirmationMessage;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
+import messages.RejectMessageInitiatorController;
+import messages.ReminderMessageController;
 import messages.newRequestforcommitte;
 
 public class NotificationsController implements Initializable {
@@ -106,6 +109,9 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		int id;
+		//
+		
+		//
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {
@@ -154,9 +160,9 @@ public class NotificationsController implements Initializable {
 				String[] b3 = new String[2];
 				b3 = content.split("#");
 				b3 = b3[1].split("passed");
-				int id2 = Integer.valueOf(b3[0]);
+				IDRequestForDecision = Integer.valueOf(b3[0]);
 				SuccessTestMessageController stmc = new SuccessTestMessageController();
-				stmc.start(splitpane, id2);
+				stmc.start(splitpane,IDRequestForDecision);
 				break;
 			case "Decision of Committee Member":
 				content = n2.getContent();
@@ -216,25 +222,37 @@ public class NotificationsController implements Initializable {
 
 			case "Exception message":
 				content=n2.getContent();
+				numberOnly=content.replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
 				b=new String[2];
-				b=content.split("#");
-				b=b[1].split(":");
-				id=Integer.valueOf(b[0]);
-				b=b[1].split("is over");
-				b=b[0].split("phase ");
-				String phase=b[1];
+				b=content.split("in phase ");
+				b=b[1].split(" ");
+				String phase=b[0];
 				ExceptionMessageController emc=new ExceptionMessageController();
-				emc.start(splitpane,id,phase);
+
+				emc.start(splitpane, id, phase);
+				break;
+
+
 			case "Exception document":
 				content=n2.getContent();
 				b=new String[2];
-				numberOnly=content.replaceAll("[^0-9]", "");
-				id=Integer.valueOf(numberOnly);
-				b=content.split("is over");
-				b=b[0].split("phase ");
-				phase=b[1];
+				String[] a=new String[2];
+				String[] c=new String[2];
+				b=content.split("#");
+				b=b[1].split(":");
+				id=Integer.valueOf(b[0]);
+				content=n2.getContent();
+				b=content.split("phase ");
+				b=b[1].split(" with");
+				phase=b[0];
+				b=content.split("repetion ");
+				b=b[1].split(" is");
+				int repetion=Integer.valueOf(b[0]);
 				ExceptionDocumentController edc=new ExceptionDocumentController();
-				edc.start(splitpane,id,phase);
+
+				edc.start(splitpane,id,phase,repetion);
+				break;
 			case "recruitNotificationForPerformer":
 				content = n2.getContent();
 				b = new String[2];
@@ -259,6 +277,53 @@ public class NotificationsController implements Initializable {
 				ecm.start(splitpane, id3,Enum.valueOf(Phase.class, phase1),content);
 				break;
 				
+			case "reminder to finish work":
+				content=n2.getContent();
+				numberOnly=content.replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				b=content.split(": ");
+				System.out.println(b[1]);
+				b=b[1].split("!");
+				phase=b[0];
+				ReminderMessageController rmc8=new ReminderMessageController();
+				rmc8.start(splitpane,id,phase);
+				break;
+			case "Duratin of evaluator":
+				content = n2.getContent();
+				b = new String[2];
+				b=content.split("from: ");
+				b=b[1].split(" to: ");
+				String start=b[0];
+				b=b[1].split(",");
+				String due=b[0];
+				numberOnly=b[1].replaceAll("[^0-9]", "");
+				id=Integer.valueOf(numberOnly);
+				System.out.println(id+"            3333333333");
+				due = due.replaceAll("(\\r|\\n)", "");
+				start = start.replaceAll("(\\r|\\n)", "");
+				approveDuratinController ad=new approveDuratinController();
+				ad.start(splitpane, content,start,due,id);
+				break;
+			case "Committee reject the request and wait for initiator approve":
+				content = n2.getContent();
+				b = new String[2];
+				b = content.split("#");
+				b = b[1].split("has");
+				IDRequestForDecision = Integer.valueOf(b[0]);
+				CommittteDecision="reject";
+				RejectMessageInitiatorController obj5 = new RejectMessageInitiatorController();
+				obj5.start(splitpane, "/messages/Rejectmessageinitiator.fxml");
+				break;
+			case "Request test passed and wait for intitiator approve to close":
+				content = n2.getContent();
+				b = new String[2];
+				b = content.split("#");
+				b = b[1].split("has");
+				IDRequestForDecision = Integer.valueOf(b[0]);
+				CommittteDecision="passed";
+				Passedmessagecontroller obj6 = new Passedmessagecontroller();
+				obj6.start(splitpane, "/messages/approvemessageinitiator.fxml");
+				break;
 			}
 
 		}
@@ -276,3 +341,4 @@ public class NotificationsController implements Initializable {
 		return idnotification;
 	}
 }
+

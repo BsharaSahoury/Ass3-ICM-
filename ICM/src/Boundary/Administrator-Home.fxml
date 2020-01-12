@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Rectangle2D?>
@@ -19,11 +20,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AdministratorHomeController">
    <children>
-      <SplitPane fx:id="splitpane" dividerPositions="0.5, 0.5, 0.5, 0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
+      <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="227.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button fx:id="MyRequestsbtn" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Employees" textFill="WHITE">
+                  <Button fx:id="allEmployees" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#AllEmployeesAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  All Employees" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -126,14 +127,14 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="RequestSubmissionbtn4" alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="362.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
+                  <Button fx:id="MyRequestsbtn" alignment="BASELINE_LEFT" graphicTextGap="12.0" layoutX="-6.0" layoutY="362.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="My Requests" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Downloads/PinClipart.com_career-day-clipart_1587117.png" />
+                              <Image url="@../Images/back.png" />
                            </image>
                            <effect>
                               <Lighting>
@@ -213,7 +214,7 @@
                   </Label>
                   <AnchorPane layoutX="-208.0" layoutY="-1.0" prefHeight="31.0" prefWidth="932.0">
                      <children>
-                        <Button fx:id="notifications" alignment="BASELINE_LEFT" layoutX="662.0" layoutY="2.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+                        <Button fx:id="notifications" alignment="BASELINE_LEFT" layoutX="662.0" layoutY="2.0" mnemonicParsing="false" onAction="#clickNotifications" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -255,72 +256,6 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Button fx:id="RequestSubmissionbtn1" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
-                     </image>
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="BLACK" />
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="RequestSubmissionbtn2" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
-                     </image>
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="BLACK" />
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="RequestSubmissionbtn3" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#RequestSubmissionAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Request Submission" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
-                     </image>
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant color="BLACK" />
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </Button>
          </items>
       </SplitPane>
    </children>
@@ -328,3 +263,4 @@
       <DropShadow />
    </effect>
 </AnchorPane>
+

@@ -1,3 +1,4 @@
+
 package messages;
 
 import Boundary.LoginController;
@@ -12,7 +13,7 @@ public class ExceptionMessageController {
 	@FXML
 	Label label1;
 	@FXML
-	public static RecruitMessageController ctrl;
+	public static ExceptionMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
@@ -35,3 +36,4 @@ public class ExceptionMessageController {
 	}
 
 }
+

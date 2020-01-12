@@ -1,6 +1,5 @@
 package Boundary;
-
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -151,6 +150,24 @@ public class SetDurationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		if(RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
+			note.setVisible(false);
+			note.setText("this duratin wating for Inapector approve");
+			note.setVisible(true);
+			save.setDisable(true);
+		}
+		else if(RequestsWorkedOnController.getRP().getState().equals(State.wait)&&RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null){
+			note.setVisible(false);
+			note.setText("The the duratin after inspector check");
+			note.setVisible(true);
+			save.setDisable(true);
+		}
+		if(RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null)
+ {
+			save.setDisable(true);
+			dueDate.setValue(RequestsWorkedOnController.getRP().getDueDate().toLocalDate());
+			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
+		}
 		if (RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
 			note.setText("this duratin wating for Inapector approve");
 			save.setDisable(true);
