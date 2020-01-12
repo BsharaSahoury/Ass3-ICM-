@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -42,7 +43,7 @@ public class SetDurationController implements Initializable {
 	@FXML
 	private Button save;
 	@FXML
-	private TextField note;
+	private Label note;
 	@FXML
 	private TextArea ExtensionReasonText;
 	@FXML
@@ -172,7 +173,7 @@ public class SetDurationController implements Initializable {
 			note.setText("this duratin wating for Inapector approve");
 			save.setDisable(true);
 		}
-		if (RequestsWorkedOnController.getRP().getStartDate() != null
+		/*if (RequestsWorkedOnController.getRP().getStartDate() != null
 				&& RequestsWorkedOnController.getRP().getDueDate() != null) {
 
 			save.setDisable(true);
@@ -188,6 +189,6 @@ public class SetDurationController implements Initializable {
 			long diffdays = diff / (24 * 60 * 60 * 1000);
 			long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
 			ReaminingTimeForThisPhase.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
-		}
+		}*/
 	}
 }
