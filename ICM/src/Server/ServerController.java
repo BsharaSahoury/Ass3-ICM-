@@ -65,7 +65,6 @@ public class ServerController implements Initializable {
 			dbHostname.setEditable(false);
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
-			dbUsername.setText("root");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,6 +92,8 @@ public class ServerController implements Initializable {
 	    		{
 		    		wrong.setText("wrong MySQL Username OR Password, please try again!");
 					wrong.setVisible(true);	
+					dbUsername.clear();
+					dbPassword.clear();
 					
 		 			System.out.println("mySqlPassword OR mySqlUsername is wrong");	
 		 			///CONNECTION ERROR alert
@@ -149,13 +150,6 @@ public class ServerController implements Initializable {
 	        if(MainForServer.get_ObservableServer().isListening())
 	        	{
 	        	MainForServer.get_ObservableServer().close();
-	        	Thread [] clients =MainForServer.get_ObservableServer().getClientConnections();
-	 //       	for(Thread client : clients)
-	  //      	{
-	   //     		client.stop();
-	    //    		NewHandler eh=new NewHandler();
-	     //   		client.setUncaughtExceptionHandler(eh);
-	      //  	}//for
 		 }//if
 		 }//try
 		 catch(ClassCastException e1) {}
