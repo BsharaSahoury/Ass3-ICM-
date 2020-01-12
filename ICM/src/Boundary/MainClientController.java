@@ -29,6 +29,7 @@ import Client.ClientMessageSentToInitiatorObserver;
 import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
+import Client.ClientObserver;
 import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRejectRequestMessageSendToInitiatorObserver;
 import Client.ClientRequestInfoObserver;
@@ -55,6 +56,7 @@ public class MainClientController {
 		System.out.println(Thread.currentThread().toString());
 		try {
 			ClientConsole cc=new ClientConsole(host);
+			ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
