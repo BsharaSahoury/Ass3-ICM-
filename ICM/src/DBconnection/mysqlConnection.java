@@ -160,7 +160,8 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				if(rs3.next()) {				
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));					
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));	
+					result.setRepetion(rs3.getInt(3));
 					rs3.close();
 				}	       
 			    }while(i!=-1&&i!=5);
@@ -1326,7 +1327,58 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		return null;
 	}
 
-
+	public static boolean FreazeRequest(Connection con,int id)
+	{
+		PreparedStatement stm=null;
+		PreparedStatement stmt1=null;
+		PreparedStatement stmt2=null;
+		try {
+			stmt2=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stmt2.setInt(1, id);
+			ResultSet rs2=stmt2.executeQuery();
+			rs2.next();
+			if(!rs2.getString(8).equals("frozen")) {
+			stm=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stm.setInt(1, id);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				System.out.println("ww");
+			stmt1 = con.prepareStatement("UPDATE request SET status=? WHERE id=?;");
+			stmt1.setString(1, "frozen");
+			stmt1.setInt(2, id);
+			stmt1.executeUpdate();
+			return true;
+			}
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return true;
+	}
+	public static void EnterFreazeToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
+	{
+		PreparedStatement stm=null;
+		PreparedStatement stmt1=null;
+		PreparedStatement stmt2=null;		
+		try {
+			
+			stm = con.prepareStatement("INSERT INTO icm.update VALUES(?,?,?,?,?);");		
+			stm.setString(1, Inspector.getUsername());
+			stm.setString(2,Inspector.getFirstName()+Inspector.getLastName() );
+			stm.setString(3, explain);
+			long millis = System.currentTimeMillis();
+			stm.setDate(4, new java.sql.Date(millis));
+			stm.setInt(5, requestid);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public static Map<Integer, String> getMap(Connection con) {
 		PreparedStatement stm=null;
 		Map<Integer,String> map=new HashMap<>();
@@ -1408,6 +1460,27 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
+	public static EvaluationReport getevaluationreport(Connection con,int request_id) {
+		PreparedStatement stm =null;
+		EvaluationReport report=null;
+		try {
+			stm=con.prepareStatement("SELECT E.* FROM evaluationreport E WHERE request_id=?;");
+			stm.setInt(1, request_id);
+			ResultSet rs=stm.executeQuery();
+			int max=0;
+			while(rs.next()) {
+				if(rs.getInt(1)>=max) {
+					max=rs.getInt(1);
+					report=new EvaluationReport(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7),request_id);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	return report;
 	}
 }
 

@@ -1,5 +1,6 @@
 package Boundary;
 
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -13,16 +14,20 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entity.Request;
+import Entity.RequestPhase;
 import Entity.Phase;
-public class RequestTreatmentAction implements Initializable {
+public class RequestTreatmentAction extends AllRequestsController implements Initializable {
  public static Stage primaryStage;
  private static ClientConsole cc;
  private AnchorPane lowerAnchorPane;
@@ -37,15 +42,12 @@ public class RequestTreatmentAction implements Initializable {
  @FXML
  private DatePicker DatePickerTo;
  @FXML
- private RadioButton activeradio;
- @FXML
- private RadioButton Frozenradio;
+ private Label statuslable;
  @FXML
  private TextArea Explaintxt;
  private int chosenindex;
- private  Request chosenRequest;
+ private  RequestPhase chosenRequest;
  ObservableList<Phase> phaseslist;
- ObservableList<String> Statuslist;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ArrayList<Phase> Phases=new ArrayList<Phase>();
@@ -55,20 +57,11 @@ public class RequestTreatmentAction implements Initializable {
 		Phases.add(Phase.testing);
 		Phases.add(Phase.closing);
 		phaseslist=FXCollections.observableArrayList(Phases);
-		ArrayList<String> Statuses=new ArrayList<String>();
-		Statuses.add("Frozen");
-		Statuslist=FXCollections.observableArrayList(Statuses);
 		Phasee.setItems(phaseslist);
     	chosenindex=AllRequestsController.getselectedindex();
         chosenRequest=AllRequestsController.getList().get(chosenindex);  
-        if(chosenRequest.getStatus().equals(State._ACTIVE)) {
-        	
-        }else if() {
-        	
-        }
-        Status.setValue(chosenRequest.getStatus());
-     //   PhaseAdministrator.setText(chosenRequest.get);
-		
+        statuslable.setText(chosenRequest.getStatus());
+
 	}
 	public void start(SplitPane splitpane) {
 		this.splitpane=splitpane;
@@ -85,11 +78,32 @@ public class RequestTreatmentAction implements Initializable {
 		}			
 	}
 	public void ApplyAction() {
-		
+		String explain=null;
+		explain=Explaintxt.getText();
+		if(explain.equals("")) {
+			Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Miss");
+			 alertSuccess.setContentText("PLease fill explain for your decision");
+			 alertSuccess.showAndWait();
+		}
+		else {
+			statuslable.setText("frozen");
+			RequestPhase chosen=AllRequestsController.getselectedRequest();
+			Object[] send=new Object[4];
+			send[0]="Inspector changed status to Frozen";
+			send[1]=chosen.getR().getId();
+			send[2]=InspectorHomeController.getinspector();
+			send[3]=explain;
+			try {
+				LoginController.cc.getClient().sendToServer(send);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
+		}
 	}
-	public void changeFrozen() {
-		
-	}
+
 	public void cantactive() {
 		
 	}

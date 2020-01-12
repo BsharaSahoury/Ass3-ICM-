@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -63,7 +62,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="537.0" layoutY="405.0" mnemonicParsing="false" onAction="#ApplyAction" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: #9d1b34;" text="Apply" textFill="WHITE">
+                        <Button layoutX="537.0" layoutY="405.0" mnemonicParsing="false" onAction="#ApplyAction" prefHeight="53.0" prefWidth="124.0" style="-fx-background-color: #9d1b34;" text="Change to Frozen" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
@@ -72,9 +71,8 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="activeradio" layoutX="157.0" layoutY="60.0" mnemonicParsing="false" onAction="#cantactive" text="Active" />
-                        <RadioButton fx:id="Forzenradio" layoutX="325.0" layoutY="60.0" mnemonicParsing="false" onAction="#changeFrozen" text="Frozen" />
-                        <TextArea fx:id="Explaintxt" layoutX="148.0" layoutY="138.0" prefHeight="200.0" prefWidth="261.0" promptText="Explain your decision" />
+                        <TextArea fx:id="Explaintxt" layoutX="114.0" layoutY="142.0" prefHeight="200.0" prefWidth="261.0" promptText="Explain your decision" />
+                        <Label fx:id="statuslable" layoutX="137.0" layoutY="60.0" prefHeight="23.0" prefWidth="103.0" />
                      </children>
                   </AnchorPane>
                </content>

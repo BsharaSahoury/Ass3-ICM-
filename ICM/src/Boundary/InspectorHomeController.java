@@ -125,13 +125,17 @@ public class InspectorHomeController implements Initializable{
 		logOut.start(primaryStage);
 	}
 
+	public static Employee getinspector() {
+		return inspector;
+	}
+	public void setallrequest() {
+		AllRequests = new AllRequestsController();
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		System.out.println(UserNameMenu==null);
-
 		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
-		//AboutICMbtn.setFocusTraversable(true);
     }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();
