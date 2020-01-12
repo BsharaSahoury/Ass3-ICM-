@@ -10,10 +10,12 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
+import Client.ClientApproveDuratinObserver;
 //import Client.ClientApproveDuratinObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
+import Client.ClientCheckApproveDuratinObserver;
 //import Client.ClientCheckApproveDuratinObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
@@ -79,8 +81,8 @@ public class MainClientController {
 			ClientMapObserver cmo=new ClientMapObserver(cc.getClient());
 			ClientInitiatorapprovedrequestdecisionObserver qqw=new ClientInitiatorapprovedrequestdecisionObserver(cc.getClient());
 			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
-			//ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
-			//ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
+			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
+			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
