@@ -173,7 +173,7 @@ public class SetDurationController implements Initializable {
 			note.setText("this duratin wating for Inapector approve");
 			save.setDisable(true);
 		}
-		/*if (RequestsWorkedOnController.getRP().getStartDate() != null
+		if (RequestsWorkedOnController.getRP().getStartDate() != null
 				&& RequestsWorkedOnController.getRP().getDueDate() != null) {
 
 			save.setDisable(true);
@@ -189,6 +189,6 @@ public class SetDurationController implements Initializable {
 			long diffdays = diff / (24 * 60 * 60 * 1000);
 			long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
 			ReaminingTimeForThisPhase.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
-		}*/
+		}
 	}
 }
