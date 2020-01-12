@@ -159,7 +159,7 @@ public class SetDurationController implements Initializable {
 		}
 		else if(RequestsWorkedOnController.getRP().getState().equals(State.wait)&&RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null){
 			note.setVisible(false);
-			note.setText("The the duratin after inspector check");
+			note.setText("* The the duratin after inspector check");
 			note.setVisible(true);
 			save.setDisable(true);
 		}
@@ -170,7 +170,7 @@ public class SetDurationController implements Initializable {
 			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
 		}
 		if (RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
-			note.setText("this duratin wating for Inapector approve");
+			note.setText("* This duratin wating for Inapector approve");
 			save.setDisable(true);
 		}
 		if (RequestsWorkedOnController.getRP().getStartDate() != null
