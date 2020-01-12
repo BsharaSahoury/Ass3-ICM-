@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ocsf.server.ObservableServer;
-
+ 
 public class MainForServer extends Application{
 	public static Connection con;
 	private static Stage ServerStage;

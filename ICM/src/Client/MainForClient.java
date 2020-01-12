@@ -44,7 +44,7 @@ public class MainForClient extends Application {
 		}
 		catch(RuntimeException e2) 
 		{
-			System.out.println("Client Stopped!!");	
+			System.out.println("Client Stopped!!");		
 		}		
 	}
 

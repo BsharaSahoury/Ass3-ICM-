@@ -63,7 +63,6 @@ public class mysqlConnection {
 
 	public static User isInDB(Connection con, String username, String password) {
 		PreparedStatement stm = null;
-
 		try {
 			stm = con
 					.prepareStatement("SELECT user.username, user.password FROM user WHERE username=? AND password=?;");
