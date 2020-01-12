@@ -16,10 +16,18 @@ import Entity.Employee;
 import Entity.Request;
 import Entity.Student;
 import Entity.User;
+import Server.MainForServer;
 
 public class mysqlConnection {
-	private static Connection conn = null;
 	private static int count=0;
+	private static String DB_PASSWORD;
+	private static String DB_USERNAME;
+	/**
+	 * 
+	 * @param construdtor of mysqlConnection ,received DB_Password
+	 */
+	public mysqlConnection() {
+	}
 	//this method creates and returns a connection to the relevant schema in the database that we would like to work with
 	public static Connection makeAndReturnConnection()
 	{
@@ -32,10 +40,12 @@ public class mysqlConnection {
         	 System.out.println("Driver definition failed");
         	 }      
         try 
-        {      
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST","root","ahmed1234567891");
+        {  
+        	DB_USERNAME = Server.ServerController.get_DB_UserName();
+    		DB_PASSWORD = Server.ServerController.get_DB_Password();
+            MainForServer.set_Connection(DriverManager.getConnection("jdbc:mysql://localhost/icm?serverTimezone=IST",DB_USERNAME,DB_PASSWORD));
             System.out.println("SQL connection succeed");
-            return conn;
+            return MainForServer.get_Connection();
      	} catch (SQLException ex) 
      	    {/* handle any errors*/
             System.out.println("SQLException: " + ex.getMessage());
