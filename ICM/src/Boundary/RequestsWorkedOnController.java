@@ -78,12 +78,12 @@ public class RequestsWorkedOnController implements Initializable {
 	public static  FXMLLoader loader;
 	private User user;
 	private static RequestPhase rp; 
-	public void start(SplitPane splitpane, String path,User user,String job) {
+	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
 		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
-		String [] RequestWorkedON=new String[3];
+		String [] RequestWorkedON=new String[4];
 		try {
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
@@ -97,13 +97,14 @@ public class RequestsWorkedOnController implements Initializable {
 			RequestWorkedON[1]=user.getUsername();
 			}
 			RequestWorkedON[2]=job;
-			
+			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
+		System.out.println(arr1.get(0).getState());
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);

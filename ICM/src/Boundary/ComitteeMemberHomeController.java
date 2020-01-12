@@ -84,7 +84,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	
 	public void RequestForTestOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
-		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member");
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member","testing");
 		}
    
 	
@@ -92,7 +92,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
-		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member");
+		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member","decision");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {

@@ -87,7 +87,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON = new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator");}
+	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator","evaluation");}
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
