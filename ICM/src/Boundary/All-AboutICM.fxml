@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AboutICMController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.AboutICMController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="601.0" prefWidth="728.0">
          <children>
@@ -70,25 +70,11 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
-               <effect>
-                  <Lighting bumpInput="$null">
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
             </Label>
             <Label accessibleRole="BUTTON" layoutX="74.0" layoutY="473.0" text="arkan123.am@gmail.com" textFill="#868686" textOverrun="CLIP" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
-               <effect>
-                  <Lighting bumpInput="$null">
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
             </Label>
             <Label accessibleRole="BUTTON" layoutX="504.0" layoutY="471.0" text="rm.ahmad1997@gmail.com" textFill="#868686" textOverrun="CLIP" underline="true">
                <font>
@@ -180,29 +166,15 @@
                   <Image url="@../images/pngtree-vector-male-student-icon-png-image_3787629.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="25.0" layoutY="221.0" text="ICM is a computerized information system For managing and controlling of planning" textFill="#868686" textOverrun="CLIP">
+            <Label layoutX="25.0" layoutY="221.0" text="ICM is a computerized information system For managing and controlling of planning" textFill="#858585fc" textOverrun="CLIP">
                <font>
                   <Font size="14.0" />
                </font>
-               <effect>
-                  <Lighting bumpInput="$null">
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
             </Label>
-            <Label layoutX="25.0" layoutY="266.0" text="The ICM system receives requests for changes from the college population, so it allows" textFill="#868686">
+            <Label layoutX="25.0" layoutY="266.0" text="The ICM system receives requests for changes from the college population, so it allows">
                <font>
                   <Font size="14.0" />
                </font>
-               <effect>
-                  <Lighting bumpInput="$null">
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
             </Label>
             <Label layoutX="25.0" layoutY="290.0" text="them (such as lecturer, student and employee) to submit requests for changes of spicific systems." textFill="#868686" textOverrun="CLIP">
                <font>
@@ -265,7 +237,4 @@
             </Label>
          </children></AnchorPane>
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>

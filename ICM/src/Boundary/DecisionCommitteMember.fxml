@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -78,23 +79,26 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <RadioButton layoutX="40.0" layoutY="183.0" mnemonicParsing="false" text="Approve request" textOverrun="CLIP">
+            <RadioButton fx:id="Approve" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#VisibleExplain" text="Approve request" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Group1" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="Reject" layoutX="193.0" layoutY="182.0" mnemonicParsing="false" onAction="#VisibleExplain" text="Reject request" toggleGroup="$Group1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton layoutX="193.0" layoutY="182.0" mnemonicParsing="false" text="Reject request">
+            <RadioButton fx:id="AdditionalInfo" layoutX="326.0" layoutY="181.0" mnemonicParsing="false" onAction="#VisibleExplain" text="Ask for additional information" toggleGroup="$Group1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton layoutX="326.0" layoutY="181.0" mnemonicParsing="false" text="Ask for additional information">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </RadioButton>
-            <TextArea layoutX="216.0" layoutY="219.0" prefHeight="322.0" prefWidth="378.0" />
-            <Button layoutX="611.0" layoutY="546.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Send" textFill="WHITE">
+            <TextArea fx:id="ExplainDectxt" layoutX="216.0" layoutY="219.0" prefHeight="322.0" prefWidth="378.0" />
+            <Button fx:id="Sendbtn" layoutX="611.0" layoutY="546.0" mnemonicParsing="false" onAction="#SendToChairMan" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Send" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

@@ -1,8 +1,11 @@
 package Client;
 
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.LoginController;
+import Boundary.RequestSubmissionController;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -31,10 +34,12 @@ public class ClientSubmissionObserver implements Observer {
 						}
 						
 					});
-				}
+					
 			}
 		}
 		
 	}
-
+	}
 }
+
+

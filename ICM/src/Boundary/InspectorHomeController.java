@@ -1,8 +1,11 @@
 package Boundary;
 
 import java.awt.Label;
+
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Client.MainForClient;
@@ -13,16 +16,20 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InspectorHomeController {
+public class InspectorHomeController implements Initializable{
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -39,10 +46,13 @@ public class InspectorHomeController {
 	public SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee inspector;
-	private MenuItem logOut;
+	private MenuItem btlogOut;
 	public static AllRequestsController AllRequests;
+	public static MyRequestsController MyRequests;
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
 	public void start(Employee inspector) {
@@ -85,26 +95,24 @@ public class InspectorHomeController {
 		home.start(splitpane);
 	}
 
-	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+	public void AllRequestsAction(ActionEvent event) throws Exception {
 		AllRequests = new AllRequestsController();
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml");
-
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		Submit.start(splitpane,inspector);
-		Submit.start(splitpane,inspector);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,inspector);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane,inspector,"Inspector");
 	}
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
@@ -115,5 +123,18 @@ public class InspectorHomeController {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
 		logOut.start(primaryStage);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		System.out.println(UserNameMenu==null);
+
+		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+		//AboutICMbtn.setFocusTraversable(true);
+    }
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,inspector);
 	}
 }

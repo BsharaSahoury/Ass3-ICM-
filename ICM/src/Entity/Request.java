@@ -1,8 +1,9 @@
 package Entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
+
 /**
  * 
  * @author aimanouda
@@ -24,6 +25,7 @@ private String comment;
 private Date date;
 private User initiator;
 private MyFile myfile;
+private String filename;
 
 /**
  * 
@@ -42,8 +44,11 @@ private MyFile myfile;
  */
 
 private Phase currentPhase;
+public Request(int id) {
+	this.id=id;
+}
 
-public Request(int id, String initiatorName, String status,String privilegedInfoSys,Date date) {
+public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.status = status;
@@ -52,7 +57,7 @@ public Request(int id, String initiatorName, String status,String privilegedInfo
 }
 public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
-Date date, Phase currentPhase) {
+java.sql.Date date, Phase currentPhase) {
 	this.id = id;
 	this.initiatorName = initiatorName;
 	this.initiatorEmail = initiatorEmail;
@@ -68,7 +73,7 @@ Date date, Phase currentPhase) {
 }
 
 public Request(String selectedItem, String existingSituation, String requestedChange, String requestReason, String comment, Date time, User user,
-		MyFile msg) {
+		MyFile msg,String filename) {
 	this.privilegedInfoSys=selectedItem;
 	this.existingSituation=existingSituation;
 	this.explainRequest=requestedChange;
@@ -77,6 +82,34 @@ public Request(String selectedItem, String existingSituation, String requestedCh
 	this.date=time;
 	this.initiator=user;
 	this.myfile=msg;
+	this.filename=filename;
+}
+public String getFilename() {
+	return filename;
+}
+public void setFilename(String filename) {
+	this.filename = filename;
+}
+public Request() {
+	// TODO Auto-generated constructor stub
+}
+public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
+String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
+java.sql.Date date,MyFile file,String filename) {
+	this.id = id;
+	this.initiatorName = initiatorName;
+	this.initiatorEmail = initiatorEmail;
+	this.initiatorRole = initiatorRole;
+	this.status = status;
+	this.existingSituation = existingSituation;
+	this.explainRequest = explainRequest;
+	this.privilegedInfoSys = privilegedInfoSys;
+	this.reason = reason;
+	this.comment = comment;
+	this.date = date;
+	this.myfile=file;
+	this.filename=filename;
+	
 }
 public User getInitiator() {
 	return initiator;
@@ -147,7 +180,7 @@ public void setComment(String comment) {
 public Date getDate() {
 	return date;
 }
-public void setDate(Date date) {
+public void setDate(java.sql.Date date) {
 	this.date = date;
 }
 public Phase getCurrentPhase() {

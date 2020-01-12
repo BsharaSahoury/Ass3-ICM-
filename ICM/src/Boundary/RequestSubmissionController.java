@@ -97,10 +97,12 @@ public class RequestSubmissionController implements Initializable {
 	        return;
 		}
 		MyFile msg=null;
+		String filename=null;
 		if(fileToChoose != null) {
 			msg=new MyFile();
 			try {
 				File newFile=fileToChoose;
+				filename=newFile.getName();
 				byte[] mybytearray=new byte[(int)newFile.length()];
 				FileInputStream fis=new FileInputStream(newFile);
 				BufferedInputStream bis=new BufferedInputStream(fis);
@@ -111,7 +113,7 @@ public class RequestSubmissionController implements Initializable {
 			}
 		}
 		    long millis=System.currentTimeMillis();
-			Request request=new Request(chosenCombo.getSelectionModel().getSelectedItem(),existingSituation.getText(),requestedChange.getText(),requestReason.getText(),comment.getText(),new java.sql.Date(millis),user,msg);
+			Request request=new Request(chosenCombo.getSelectionModel().getSelectedItem(),existingSituation.getText(),requestedChange.getText(),requestReason.getText(),comment.getText(),new java.sql.Date(millis),user,msg,filename);
 			Object[] message= {"submitRequest",request};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
@@ -121,4 +123,5 @@ public class RequestSubmissionController implements Initializable {
 			}
 		
 	}
+
 }

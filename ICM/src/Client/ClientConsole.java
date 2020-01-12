@@ -4,13 +4,18 @@ import java.io.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 import Boundary.LoginController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 
@@ -32,6 +37,7 @@ public class ClientConsole
    */
 	private static Stage connectstage;
   final public static int DEFAULT_PORT = 5555;
+  public static Map<Integer,String> map=new HashMap<Integer,String>();
   
   //Instance variables **********************************************
   
@@ -75,6 +81,22 @@ public class ClientConsole
   }
   //Instance methods ************************************************
 
+public static void displayFreezeError() {
+	Platform.runLater(new Runnable() {
+
+		@Override
+		public void run() {
+			Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("TEST");
+	        alert.setHeaderText("fail");
+	        alert.setContentText("The request status is frozen!");
+	        alert.showAndWait();
+		}
+		
+	});
+	
+}
+
   
   /**
    * This method waits for input from the console.  Once it is 
@@ -95,3 +117,4 @@ public class ClientConsole
    */
 }
 //End of ConsoleChat class
+

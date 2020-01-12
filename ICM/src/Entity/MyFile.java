@@ -16,6 +16,10 @@ public class MyFile implements Serializable {
 	public byte[] getMybyterray() {
 		return array;
 	}
+	public void setMybytearray(byte[] arr) {
+		array=arr;
+		
+	}
 	
 	
 

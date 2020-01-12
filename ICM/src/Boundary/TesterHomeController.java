@@ -2,21 +2,27 @@ package Boundary;
 
 import java.io.IOException;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class TesterHomeController {
-
+public class TesterHomeController implements Initializable {
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -31,9 +37,12 @@ public class TesterHomeController {
 	private SplitPane splitpane;
 	@FXML
 	private AnchorPane lowerAnchorPane;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee Tester;
-	public static RequestsWorkedOnController RequestOnWorkCommitteTester;
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
 
 	public void start(Employee Tester) {
 		this.Tester = Tester;
@@ -68,10 +77,12 @@ public class TesterHomeController {
 		home.start(splitpane);
 	}
 
+	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		RequestOnWorkCommitteTester = new RequestsWorkedOnController();
-		RequestOnWorkCommitteTester.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml");
-	}
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",Tester,"Tester","testing");
+		}
+   
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
@@ -80,12 +91,12 @@ public class TesterHomeController {
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,Tester);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane, Tester,"Tester");
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {
@@ -98,10 +109,14 @@ public class TesterHomeController {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
-	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		UserNameMenu.setText(Tester.getFirstName()+Tester.getLastName());
 	}
-	
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,Tester);
+	}
 
 }

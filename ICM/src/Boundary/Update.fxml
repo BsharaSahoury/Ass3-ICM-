@@ -4,14 +4,16 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestTreatmentAction">
    <children>
       <TabPane layoutX="7.0" layoutY="43.0" prefHeight="543.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -51,7 +53,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" prefWidth="150.0" promptText="Evaluation" />
+                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" onAction="#ChangePhase" prefWidth="150.0" promptText="Evaluation" />
                         <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
                      </children>
                   </AnchorPane>
@@ -61,15 +63,18 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="227.0" layoutY="226.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="save" />
-                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="45.0" layoutY="35.0" text="Status:">
+                        <Button layoutX="537.0" layoutY="405.0" mnemonicParsing="false" onAction="#ApplyAction" prefHeight="53.0" prefWidth="96.0" style="-fx-background-color: #9d1b34;" text="Apply" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="14.0" layoutY="46.0" prefHeight="45.0" prefWidth="78.0" text="Status:">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
                            </font>
-                           <graphic>
-                              <ComboBox fx:id="Status" prefWidth="150.0" promptText="Activate" />
-                           </graphic>
                         </Label>
+                        <RadioButton fx:id="activeradio" layoutX="157.0" layoutY="60.0" mnemonicParsing="false" onAction="#cantactive" text="Active" />
+                        <RadioButton fx:id="Forzenradio" layoutX="325.0" layoutY="60.0" mnemonicParsing="false" onAction="#changeFrozen" text="Frozen" />
+                        <TextArea fx:id="Explaintxt" layoutX="148.0" layoutY="138.0" prefHeight="200.0" prefWidth="261.0" promptText="Explain your decision" />
                      </children>
                   </AnchorPane>
                </content>
@@ -77,14 +82,11 @@
          </tabs>
       </TabPane>
       <Label layoutX="51.0" layoutY="8.0" text="ICM-&gt;All Requests-&gt;Request treatment" />
-      <Button layoutY="2.0" minWidth="18.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="18.0" style="-fx-background-insets: 8888888888888;">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/back-arrow.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <Button layoutY="2.0" minWidth="18.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="18.0" style="-fx-background-insets: 8888888888888;" />
+      <ImageView fitHeight="30.0" fitWidth="23.0" layoutX="17.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/back-arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

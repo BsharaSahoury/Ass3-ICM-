@@ -1,6 +1,7 @@
 package Client;
 
 import java.util.Observable;
+
 import java.util.Observer;
 
 import Boundary.AdministratorHomeController;
@@ -11,6 +12,7 @@ import Boundary.InspectorHomeController;
 import Boundary.LecturerHomeController;
 import Boundary.LoginController;
 import Boundary.MainClientController;
+import Boundary.PerformanceLeaderHomeController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
 import Entity.Employee;
@@ -53,6 +55,10 @@ public class ClientLoginObserver implements Observer{
 				ChairmanHomeController chairman=new ChairmanHomeController();
 				chairman.start(employee1);
 				break;
+			case "performer":
+				PerformanceLeaderHomeController performer=new PerformanceLeaderHomeController();
+				performer.start(employee1);
+				break;
 			case "lecturer":
 				LecturerHomeController lecturer=new LecturerHomeController();
 				lecturer.start(employee1);
@@ -61,11 +67,10 @@ public class ClientLoginObserver implements Observer{
 				TesterHomeController tester=new TesterHomeController();
 				tester.start(employee1);
 				break;
-			case "Administrator":
+			case "administrator":
 				AdministratorHomeController Administrator=new AdministratorHomeController();
 				Administrator.start(employee1);
 				break;
-				
 			}
 		}
 		else if(arg1 instanceof Student) {

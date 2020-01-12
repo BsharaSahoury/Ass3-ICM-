@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,41 +10,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.SetDurationController">
    <children>
-      <AnchorPane layoutX="200.0" prefHeight="430.0" prefWidth="703.0">
+      <AnchorPane layoutX="-1.0" prefHeight="600.0" prefWidth="728.0">
          <children>
-            <MenuButton layoutX="577.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #9d1b34;" text="Admin" textFill="WHITE">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Admin">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/585e4beacb11b227491c3399.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Log Out" />
-               </items>
-               <graphic>
-                  <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </MenuButton>
-            <Label layoutX="482.0" layoutY="2.0" text="Notification">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <Line endX="396.0" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
+            <Line endX="422.5" endY="-13.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
             <Label layoutX="40.0" layoutY="7.0" text="ICM">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -81,8 +48,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <DatePicker layoutX="279.0" layoutY="194.0" prefHeight="1.0" prefWidth="166.0" promptText="Due date" />
-            <DatePicker layoutX="102.0" layoutY="197.0" prefHeight="1.0" prefWidth="123.0" promptText="Start date" />
+            <DatePicker fx:id="dueDate" layoutX="279.0" layoutY="194.0" prefHeight="1.0" prefWidth="166.0" promptText="Due date" />
+            <DatePicker fx:id="startDate" layoutX="102.0" layoutY="197.0" prefHeight="1.0" prefWidth="123.0" promptText="Start date" />
             <Label contentDisplay="RIGHT" graphicTextGap="120.0" layoutX="245.0" layoutY="198.0" text="To">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -93,99 +60,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="227.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="79.0" style="-fx-background-color: #9d1b34;" text="save" textFill="#fffdfd" />
+            <Button fx:id="save" layoutX="227.0" layoutY="297.0" mnemonicParsing="false" onAction="#saveBtn" prefHeight="50.0" prefWidth="79.0" style="-fx-background-color: #9d1b34;" text="save" textFill="#fffdfd" />
             <ImageView fitHeight="137.0" fitWidth="145.0" layoutX="30.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/kisspng-timesheet-computer-icons-time-tracking-software-cl-land-developer-5b495960560b54.7467423115315336643525.png" />
                </image></ImageView>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutY="-1.0" prefHeight="431.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;">
-         <children>
-            <Button alignment="BASELINE_LEFT" layoutY="99.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Home" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Requests that I work on" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-1.0" layoutY="199.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Request Submission" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="249.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            My Requests" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            Profile Setting" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #9d1b34;" text="            About ICM" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <AnchorPane layoutX="-4.0" layoutY="-11.0" prefHeight="611.0" prefWidth="38.0" style="-fx-background-color: #ffffff;">
-               <effect>
-                  <DropShadow radius="17.4125" width="50.65" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <children>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="3.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/home.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_clip-art-computer-programs_4057042.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="7.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/128x128.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="5.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="6.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/myRequests.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="168.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/LOGO%20White.png" />
-               </image>
-            </ImageView>
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
       </AnchorPane>
    </children>
    <effect>

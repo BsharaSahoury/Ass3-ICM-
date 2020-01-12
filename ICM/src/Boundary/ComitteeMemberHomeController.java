@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ComitteeMemberHomeController implements Initializable {
-
+	@FXML
+	private Button notifications;
 	@FXML
 	private Button Homebtn;
 	@FXML
@@ -37,10 +38,13 @@ public class ComitteeMemberHomeController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private MenuButton MBusername;
+	@FXML
+	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
-	public static RequestsWorkedOnController RequestOnWorkCommitteMembers;
-
+	public static MyRequestsController MyRequests;
+	public static RequestsWorkedOnController RequestWorkON;
+    public static Employee Chairman;
 	public void start(Employee comitteeMember) {
 		this.comitteeMember = comitteeMember;
 		primaryStage = LoginController.primaryStage;
@@ -50,6 +54,7 @@ public class ComitteeMemberHomeController implements Initializable {
 				try {
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/CommitteeMember-Home.fxml"));
 					Scene scene = new Scene(root);
+					System.out.println("zzzz");
 					primaryStage.setScene(scene);
 					primaryStage.setResizable(false);
 					primaryStage.setTitle("ICM");
@@ -64,7 +69,9 @@ public class ComitteeMemberHomeController implements Initializable {
 			}
 		});
 	}
-
+ public static void setChairman(Employee user) {
+	 Chairman=user;
+ }
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
@@ -73,10 +80,19 @@ public class ComitteeMemberHomeController implements Initializable {
 		HomeController home = new HomeController();
 		home.start(splitpane);
 	}
-
+     
+	
+	public void RequestForTestOnAction(ActionEvent event) throws Exception {
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member","testing");
+		}
+   
+	
+	
+	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-		RequestOnWorkCommitteMembers = new RequestsWorkedOnController();
-		RequestOnWorkCommitteMembers.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml");
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member","decision");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -86,12 +102,12 @@ public class ComitteeMemberHomeController implements Initializable {
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane);
+		Submit.start(splitpane,comitteeMember);
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
-		MyRequestsController Submit = new MyRequestsController();
-		Submit.start(splitpane);
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane, comitteeMember,"Comittee Member");
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {
@@ -104,16 +120,21 @@ public class ComitteeMemberHomeController implements Initializable {
 		primaryStage.close();
 		logOut.start(primaryStage);
 	}
-	public void RequestInfoAction() {
-		RequestInfoController info = new RequestInfoController();
-		info.start(splitpane);
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//MBusername.setText(comitteeMember.getUsername());
-		
+		UserNameMenu.setText(comitteeMember.getFirstName()+" "+comitteeMember.getLastName());
+		String msg="get ChairMan";
+		try {
+			LoginController.cc.getClient().sendToServer(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific=new NotificationsController();
+		notific.start(splitpane,comitteeMember);
+	}
 }
