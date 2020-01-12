@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -78,6 +78,8 @@ public class RequestsWorkedOnController implements Initializable {
 	public static  FXMLLoader loader;
 	private User user;
 	private static RequestPhase rp; 
+
+	
 	public void start(SplitPane splitpane, String path,User user,String job) {
 		this.job=job;
 		this.user=user;
@@ -337,7 +339,7 @@ public class RequestsWorkedOnController implements Initializable {
 public static RequestPhase getRP() {
 	return rp;
 }
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Groupby.setItems(statuslist);
