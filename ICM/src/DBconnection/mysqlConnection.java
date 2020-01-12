@@ -833,6 +833,23 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 		
 	}
+	
+	public static void sendExtensionConfiramtionToInspector(Connection con, Notification n) {
+		Statement st=null;
+		Employee inspector = null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT username,first_name,last_name FROM employee WHERE job='inspector';");
+			if(rs.next()) {
+				inspector=new Employee(rs.getString(1),rs.getString(2),rs.getString(3));
+			}
+			mysqlConnection.insertNotificationForUserToDB(con, n, inspector);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public static void updateDBdueToSuccessTest(Connection con, int requestId) {
 		

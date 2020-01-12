@@ -38,6 +38,7 @@ import messages.approveDuratinController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
+import messages.ExtensionConfirmationMessage;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
 import messages.RejectMessageInitiatorController;
@@ -57,6 +58,8 @@ public class NotificationsController implements Initializable {
 	TableColumn<Notification, String> date;
 
 	public ObservableList<Notification> list;
+	
+	private static Phase phase;
 
 	public static NotificationsController ctrl;
 	@FXML
@@ -106,9 +109,6 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		int id;
-		//
-		
-		//
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {
@@ -247,18 +247,33 @@ public class NotificationsController implements Initializable {
 				b=b[1].split(" is");
 				int repetion=Integer.valueOf(b[0]);
 				ExceptionDocumentController edc=new ExceptionDocumentController();
+
 				edc.start(splitpane,id,phase,repetion);
 				break;
 			case "recruitNotificationForPerformer":
-				System.out.println("Notification Controller OKAY!!");
 				content = n2.getContent();
 				b = new String[2];
 				b = content.split("#");
-				System.out.println("Notification Controller OKAY!");
 				id = Integer.valueOf(b[1]);
 				RecruitMessageController rmc2 = new RecruitMessageController();
 				rmc2.start(splitpane, id);
 				break;
+			case "Extension Confirmation message sent to Inspector":	
+				content = n2.getContent();
+				String[] b4 = new String[2];
+				b4 = content.split("#");
+				b4 = b4[1].split("time");
+				int id3 = Integer.valueOf(b4[0]);
+				
+				String[] b5 = new String[2];
+				b5 = content.split("???");
+				b5 = b5[1].split(", Do");
+				String phase1=b5[0];
+				
+				ExtensionConfirmationMessage ecm = new ExtensionConfirmationMessage();
+				ecm.start(splitpane, id3,Enum.valueOf(Phase.class, phase1),content);
+				break;
+				
 			case "reminder to finish work":
 				content=n2.getContent();
 				numberOnly=content.replaceAll("[^0-9]", "");
