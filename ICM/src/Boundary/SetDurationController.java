@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -42,7 +43,7 @@ public class SetDurationController implements Initializable {
 	@FXML
 	private Button save;
 	@FXML
-	private TextField note;
+	private Label note;
 	@FXML
 	private TextArea ExtensionReasonText;
 	@FXML
@@ -158,7 +159,7 @@ public class SetDurationController implements Initializable {
 		}
 		else if(RequestsWorkedOnController.getRP().getState().equals(State.wait)&&RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null){
 			note.setVisible(false);
-			note.setText("The the duratin after inspector check");
+			note.setText("* The the duratin after inspector check");
 			note.setVisible(true);
 			save.setDisable(true);
 		}
@@ -169,7 +170,7 @@ public class SetDurationController implements Initializable {
 			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
 		}
 		if (RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
-			note.setText("this duratin wating for Inapector approve");
+			note.setText("* This duratin wating for Inapector approve");
 			save.setDisable(true);
 		}
 		if (RequestsWorkedOnController.getRP().getStartDate() != null

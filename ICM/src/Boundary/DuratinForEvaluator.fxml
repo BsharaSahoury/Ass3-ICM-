@@ -47,7 +47,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="note" layoutX="234.0" layoutY="401.0" textFill="RED" />
+                        <Label fx:id="note" layoutX="48.0" layoutY="385.0" prefHeight="27.0" prefWidth="419.0" textFill="RED">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>
@@ -81,9 +85,9 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField editable="false" layoutX="156.0" layoutY="121.0" text="318476520" />
-                        <TextField editable="false" layoutX="178.0" layoutY="157.0" text="Exuction-Phase" />
-                        <TextArea layoutX="37.0" layoutY="259.0" prefHeight="86.0" prefWidth="562.0" />
+                        <TextField fx:id="RequestID" editable="false" layoutX="156.0" layoutY="121.0" />
+                        <TextField fx:id="RequestPhase" editable="false" layoutX="178.0" layoutY="157.0" />
+                        <TextArea fx:id="ExtensionReasonText" layoutX="37.0" layoutY="259.0" prefHeight="86.0" prefWidth="562.0" />
                         <Label layoutX="34.0" layoutY="197.0" text="Reamining-Time For this phase:">
                            <font>
                               <Font name="System Bold" size="18.0" />

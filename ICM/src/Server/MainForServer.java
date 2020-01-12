@@ -4,6 +4,7 @@ package Server;
 import java.io.IOException;
 import java.sql.Connection;
 
+import Client.ClientObserver;
 import DBconnection.mysqlConnection;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -12,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ocsf.server.ObservableServer;
-
+ 
 public class MainForServer extends Application{
 	public static Connection con;
 	private static Stage ServerStage;
@@ -32,7 +33,6 @@ public class MainForServer extends Application{
 	 }	
 	  public static void ConnectAfterDBPassword()
 	  {
-		  con=mysqlConnection.makeAndReturnConnection();
 		    int port = 0; //Port to listen ons
 		    try
 		    {    

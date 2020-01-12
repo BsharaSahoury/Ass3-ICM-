@@ -7,13 +7,22 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
+
+import DBconnection.mysqlConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
+import java.sql.Connection;
 
 
 public class ServerController implements Initializable {
@@ -42,6 +51,7 @@ public class ServerController implements Initializable {
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
 	    	editTextFeilds();
+	    	
 		}
 	 
 	 public void editTextFeilds()  {
@@ -55,7 +65,6 @@ public class ServerController implements Initializable {
 			dbHostname.setEditable(false);
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
-			dbUsername.setText("root");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,12 +86,48 @@ public class ServerController implements Initializable {
 	    	db_Username=dbUsername.getText();
 	    	if((!(dbPassword.getText().equals("")))&&(!(dbUsername.getText().equals(""))))
 	    		{
-	    		wrong.setText("Connection established");
-				wrong.setVisible(true);	    
-				dbUsername.setEditable(false);
-				dbPassword.setEditable(false);
-	    		connectBtn.setDisable(true);
-	    		MainForServer.ConnectAfterDBPassword();
+	    		
+	    		Connection con1=mysqlConnection.makeAndReturnConnection();
+	    		if(con1==null)
+	    		{
+		    		wrong.setText("wrong MySQL Username OR Password, please try again!");
+					wrong.setVisible(true);	
+					dbUsername.clear();
+					dbPassword.clear();
+					
+		 			System.out.println("mySqlPassword OR mySqlUsername is wrong");	
+		 			///CONNECTION ERROR alert
+		 			Alert alert = new Alert(Alert.AlertType.ERROR);
+		 			alert.setTitle("Connection Error To DB");
+		 			alert.setHeaderText("Connection Error To DB");
+		 			Text headerText=new Text("Connection Error To DB");
+		 			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20)); 
+		 			VBox dialogPaneContent = new VBox();
+		 			Label label1 = new Label("There was a problem connecting to the DB.");
+		 			Label label2 = new Label("Your MySQLPassword OR MySQLUsername is wrong!!");
+		 			Label label3 = new Label("Please Try again!");
+
+		 			dialogPaneContent.getChildren().addAll(label1, label2,label3);
+		 			//onClicking OK button the system will exit!
+		 			//END
+		 			alert.setOnHiding(click -> {
+		 				System.out.println("Try again!");
+		 			});
+		 			// Set content for Dialog Pane
+		 			alert.getDialogPane().setContent(dialogPaneContent);
+		 			alert.showAndWait();
+					
+	    		}
+	    		else//conEstablished
+	    		{
+	    			MainForServer.con=con1;
+		    		MainForServer.ConnectAfterDBPassword();
+		    		wrong.setText("Connection established");
+					wrong.setVisible(true);	    
+					dbUsername.setEditable(false);
+					dbPassword.setEditable(false);
+		    		connectBtn.setDisable(true);
+	    		}
 	    		}
 	    	else
 	    	{
@@ -104,15 +149,7 @@ public class ServerController implements Initializable {
 	        System.out.println("StopAll");
 	        if(MainForServer.get_ObservableServer().isListening())
 	        	{
-	        	MainForServer.get_ObservableServer().stopListening();
 	        	MainForServer.get_ObservableServer().close();
-	        	Thread [] clients =MainForServer.get_ObservableServer().getClientConnections();
-	        	for(Thread client : clients)
-	        	{
-	        		client.stop();
-	        		NewHandler eh=new NewHandler();
-	        		client.setUncaughtExceptionHandler(eh);
-	        	}//for
 		 }//if
 		 }//try
 		 catch(ClassCastException e1) {}
