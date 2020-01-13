@@ -3,6 +3,8 @@ package Boundary;
 import java.awt.Button;
 
 
+
+
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Observable;
@@ -11,20 +13,20 @@ import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientApproveDuratinObserver;
-//import Client.ClientApproveDuratinObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
 import Client.ClientCheckApproveDuratinObserver;
-//import Client.ClientCheckApproveDuratinObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
+import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
+import Client.ClientInspectorfreazerequestObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMapObserver;
 import Client.ClientMessageSentToInitiatorObserver;
@@ -85,6 +87,8 @@ public class MainClientController {
 			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
 			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
 			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
+			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
+			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

@@ -30,6 +30,7 @@ public class ServerExtendRequestTimeObserver implements Observer {
 					
 					int id = (int) arg3[1];
 					String d[] = (String[]) arg3[2];
+					String d1=d[0]+"#"+d[1];
 					Phase p = (Phase) arg3[3];
 					
 					Connection con=mysqlConnection.makeAndReturnConnection();
@@ -38,6 +39,7 @@ public class ServerExtendRequestTimeObserver implements Observer {
 					
 					long millis=System.currentTimeMillis();
 					Notification n=new Notification("Extension request#"+id+"time on phase ???"+p+", Do you confirm extension?",new java.sql.Date(millis),"Extension Confirmation message sent to Inspector");
+					mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
 					n=mysqlConnection.insertNotificationToDB(con, n);
 					mysqlConnection.sendExtensionConfiramtionToInspector(con,n);
 					

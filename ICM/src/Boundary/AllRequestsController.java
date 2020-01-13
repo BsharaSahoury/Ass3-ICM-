@@ -68,6 +68,7 @@ public class AllRequestsController implements Initializable {
 	private static ObservableList<RequestPhase> list;
 	private static ArrayList<RequestPhase> arrofRequests;
 	private static String job;
+	private static RequestPhase chosenR;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("Active", "Frozen", "Closed", "All");
 
 	public void start(SplitPane splitpane, String path, String job) {
@@ -160,10 +161,13 @@ public class AllRequestsController implements Initializable {
 	public static ObservableList<RequestPhase> getList() {
 		return list;
 	}
-
+    public static RequestPhase getselectedRequest() {
+    	return chosenR;
+    }
 	public void RequestTreatmentAction(ActionEvent e) {
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
+			chosenR=tableRequests.getSelectionModel().getSelectedItem();
 			RequestTreatmentAction Treatment = new RequestTreatmentAction();
 			Treatment.start(splitpane);
 		} else {

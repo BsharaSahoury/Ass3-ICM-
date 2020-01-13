@@ -12,6 +12,7 @@ import messages.CommitteeDecisionApproveController;
 import messages.CommitteeDecisionAskForaddInfoController;
 import messages.CommitteeDecisionRejectController;
 import messages.DecisionCommitteeMemberMessageController;
+import messages.ExtensionConfirmationMessage;
 import messages.RejectMessageInitiatorController;
 
 public class ClientNotificationdetailsObserver implements Observer {
@@ -42,6 +43,9 @@ public class ClientNotificationdetailsObserver implements Observer {
 									CommitteeDecisionRejectController.ctrl.setdetails(details);
 								else if(job.equals("Initiator to approve the reject message"))
 									RejectMessageInitiatorController.ctrl.setdetails(details);
+								else if (job.equals("Inspector to approve the Extension"))
+									ExtensionConfirmationMessage.ctrl.setdetails(details);
+								       
 							}
 						});
 					}
