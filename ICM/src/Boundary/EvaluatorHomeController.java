@@ -118,6 +118,9 @@ public void LogOutAction(ActionEvent event) throws Exception {
 	primaryStage.close();
 	logOut.start(primaryStage,evaluator);
 }
+public Employee getEvaluator() {
+	return evaluator;
+}
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
