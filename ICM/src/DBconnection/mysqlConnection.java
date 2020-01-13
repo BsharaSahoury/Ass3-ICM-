@@ -850,6 +850,24 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 		
 	}
+	
+	public static void sendExtensionConfiramtionToAdmin(Connection con, Notification n) {
+		Statement st=null;
+		Employee Admin = null;
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT username,first_name,last_name FROM employee WHERE job='administrator';");
+			if(rs.next()) {
+				Admin=new Employee(rs.getString(1),rs.getString(2),rs.getString(3));
+			}
+			mysqlConnection.insertNotificationForUserToDB(con, n, Admin);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	public static void updateDBdueToSuccessTest(Connection con, int requestId) {
 		

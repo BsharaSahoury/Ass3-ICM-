@@ -74,7 +74,9 @@ public class MainForServer extends Application{
 			ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
 			ServerInspectorFrozeRequestObserver change=new ServerInspectorFrozeRequestObserver(sv);
 			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
-		      try {
+		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
+		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
+			try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//
 			} catch (IOException e) {
