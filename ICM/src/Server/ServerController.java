@@ -67,6 +67,7 @@ public class ServerController implements Initializable {
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
+			dbPassword.setText("ahmed1234567891");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,8 +93,6 @@ public class ServerController implements Initializable {
 	    		Connection con1=mysqlConnection.makeAndReturnConnection();
 	    		if(con1==null)
 	    		{
-		    		wrong.setText("incorrect MySQL Username OR Password, please try again!");
-					wrong.setVisible(true);	
 					dbUsername.clear();
 					dbPassword.clear();
 					
@@ -133,11 +132,33 @@ public class ServerController implements Initializable {
 	    		}
 	    	else
 	    	{
-	    		wrong.setText("incorrect MySQL Username OR Password, please try again!");	    		
-				wrong.setVisible(true);
 				dbUsername.clear();
 				dbPassword.clear();
-	    	}
+				
+	 			System.out.println("mySqlPassword OR mySqlUsername is wrong");	
+	 			///CONNECTION ERROR alert
+	 			Alert alert = new Alert(Alert.AlertType.ERROR);
+	 			alert.setTitle("Connection Error To DB");
+	 			alert.setHeaderText("Connection Error To DB");
+	 			Text headerText=new Text("Connection Error To DB");
+	 			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20)); 
+	 			VBox dialogPaneContent = new VBox();
+	 			Label label1 = new Label("There was a problem connecting to the DB.");
+	 			Label label2 = new Label("Your MySQLPassword OR MySQLUsername is wrong!!");
+	 			Label label3 = new Label("Please Try again!");
+
+	 			dialogPaneContent.getChildren().addAll(label1, label2,label3);
+	 			//onClicking OK button the system will exit!
+	 			//END
+	 			alert.setOnHiding(click -> {
+	 				System.out.println("Try again!");
+	 			});
+	 			// Set content for Dialog Pane
+	 			alert.getDialogPane().setContent(dialogPaneContent);
+	 			alert.showAndWait();
+				
+    		}
+	    	
 	    }
 	public static class NewHandler implements Thread.UncaughtExceptionHandler {
 			public NewHandler() {}

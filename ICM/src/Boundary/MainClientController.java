@@ -45,8 +45,14 @@ import Client.ClientSubmissionObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 
@@ -96,9 +102,27 @@ public class MainClientController {
 			login=new LoginController();
 			login.start(MainForClient.stage,cc);
 		}catch(Exception e) {
-			wrong.setVisible(true);
 			ip.clear();
 			System.out.println("connection failed");
+ 			Alert alert = new Alert(Alert.AlertType.ERROR);
+ 			alert.setTitle("Connection Error");
+ 			alert.setHeaderText("Connection Error");
+ 			Text headerText=new Text("Connection Error");
+ 			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20)); 
+ 			VBox dialogPaneContent = new VBox();
+ 			Label label1 = new Label("wrong IP");
+ 			Label label2 = new Label("Please Try again!");
+
+ 			dialogPaneContent.getChildren().addAll(label1, label2);
+ 			//onClicking OK button the system will exit!
+ 			//END
+ 			alert.setOnHiding(click -> {
+ 				System.out.println("Try again!");
+ 			});
+ 			// Set content for Dialog Pane
+ 			alert.getDialogPane().setContent(dialogPaneContent);
+ 			alert.showAndWait();
+
 		}		
 	}
 }
