@@ -61,7 +61,8 @@ public class ChairmanHomeController implements Initializable {
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
-						System.exit(0);
+						LogOutController logOut = new LogOutController();
+						logOut.exit(primaryStage,chairman);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -138,7 +139,7 @@ public class ChairmanHomeController implements Initializable {
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage);
+		logOut.start(primaryStage,chairman);
 	}
 
 	@Override

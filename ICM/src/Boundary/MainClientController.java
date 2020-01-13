@@ -26,6 +26,7 @@ import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
+import Client.ClientLogOutObserver;
 import Client.ClientInspectorfreazerequestObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMapObserver;
@@ -87,6 +88,7 @@ public class MainClientController {
 			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
 			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
 			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
+			ClientLogOutObserver logout = new ClientLogOutObserver(cc.getClient());
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			cc.getClient().openConnection();

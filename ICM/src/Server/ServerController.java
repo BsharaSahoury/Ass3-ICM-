@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -41,7 +42,7 @@ public class ServerController implements Initializable {
 	@FXML
 	private TextField dbUsername;	
 	@FXML
-	private TextField dbPassword;	
+	private PasswordField dbPassword;
 	@FXML
 	private Button connectBtn;
 	@FXML
@@ -65,6 +66,7 @@ public class ServerController implements Initializable {
 			dbHostname.setEditable(false);
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
+			dbUsername.setText("root");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +92,7 @@ public class ServerController implements Initializable {
 	    		Connection con1=mysqlConnection.makeAndReturnConnection();
 	    		if(con1==null)
 	    		{
-		    		wrong.setText("wrong MySQL Username OR Password, please try again!");
+		    		wrong.setText("incorrect MySQL Username OR Password, please try again!");
 					wrong.setVisible(true);	
 					dbUsername.clear();
 					dbPassword.clear();
@@ -131,8 +133,10 @@ public class ServerController implements Initializable {
 	    		}
 	    	else
 	    	{
-	    		wrong.setText("wrong MySQL Username OR Password, please try again!");	    		
+	    		wrong.setText("incorrect MySQL Username OR Password, please try again!");	    		
 				wrong.setVisible(true);
+				dbUsername.clear();
+				dbPassword.clear();
 	    	}
 	    }
 	public static class NewHandler implements Thread.UncaughtExceptionHandler {
@@ -147,12 +151,16 @@ public class ServerController implements Initializable {
 	        // cleanup code here...
 		 try {
 	        System.out.println("StopAll");
+
+	        //AllUsers-Login=No => logging-out
+			Connection con=DBconnection.mysqlConnection.makeAndReturnConnection();
+			DBconnection.mysqlConnection.SetAllUsersLoginToNo(con);
 	        if(MainForServer.get_ObservableServer().isListening())
-	        	{
-	        	MainForServer.get_ObservableServer().close();
-		 }//if
+        	{
+        	MainForServer.get_ObservableServer().close();
+	 }//if
 		 }//try
 		 catch(ClassCastException e1) {}
 	    }
-	 
+
 }
