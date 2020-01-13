@@ -44,6 +44,7 @@ public class EvaluatorHomeController implements Initializable {
 	public static Stage primaryStage;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
+	public static EvaluatorHomeController e;
 	private static Employee evaluator;
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
@@ -93,7 +94,7 @@ public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(splitpane,evaluator);
 }
-public void MyRequestsAction(ActionEvent event) throws Exception {
+public void MyRequestsAction() throws Exception {
 	MyRequests = new MyRequestsController();
 	MyRequests.start(splitpane,evaluator,"Evaluator");
 }

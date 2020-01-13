@@ -110,7 +110,7 @@ public class InspectorHomeController implements Initializable{
 		Submit.start(splitpane,inspector);
 	}
 
-	public void MyRequestsAction(ActionEvent event) throws Exception {
+	public void MyRequestsAction() throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane,inspector,"Inspector");
 	}
