@@ -80,8 +80,16 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="371.0" layoutY="289.0" prefHeight="17.0" prefWidth="142.0" text="(*)Please Fill out" textFill="#9d1b34" />
-      <Label layoutX="371.0" layoutY="257.0" prefHeight="17.0" prefWidth="142.0" text="(*)Please Fill out" textFill="#9d1b34" />
+      <Label layoutX="112.0" layoutY="281.0" prefHeight="17.0" prefWidth="19.0" text="*" textFill="#9d1b34">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font></Label>
+      <Label layoutX="21.0" layoutY="470.0" prefHeight="17.0" prefWidth="142.0" text="(*) Required fields" textFill="#9d1b34" />
       <PasswordField fx:id="dbPassword" layoutX="258.0" layoutY="285.0" prefHeight="19.0" prefWidth="113.0" promptText="password" />
+      <Label layoutX="111.0" layoutY="247.0" prefHeight="17.0" prefWidth="19.0" text="*" textFill="#9d1b34">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
