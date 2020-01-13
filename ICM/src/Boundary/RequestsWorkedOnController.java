@@ -29,6 +29,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -65,6 +67,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private ComboBox Groupby;
 	@FXML
 	private Button approveFinish;
+	@FXML 
+	private TextField search_text;
 	private static int chosengroupbytype=-1;
 	private static int chosen=-1;
 	private static ObservableList<RequestPhase> list;
@@ -114,8 +118,43 @@ public class RequestsWorkedOnController implements Initializable {
 		tableRequests.setItems(list);
 		}
 	}
+	public void searchaction() {
+		if(!search_text.getText().equals("")) {
+			try {
+		    int searchid=Integer.valueOf(search_text.getText());
+		long x=tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+				.count();
+				if(x>0) {
+			tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+			.findAny()
+			   .ifPresent(item -> {
+				   tableRequests.getSelectionModel().select(item);
+				   tableRequests.scrollTo(item);
+			    });
+				}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Not exist");
+	        alert.setContentText("The ID doesn't exist");
+	        alert.showAndWait();
+		}
+		}catch(NumberFormatException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setContentText("Enter ID number in search field");
+	        alert.showAndWait();	
+		}
+		}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Enter ID");
+	        alert.setContentText("Please Enter ID to the search field");
+	        alert.showAndWait();
+		}
+	}
 	public void fillTable(ArrayList<RequestPhase> arr1) {
-	
 	arrofRequests=arr1;	
 	loader.<RequestsWorkedOnController>getController().setTableRequests(arr1);	
 	}
@@ -127,7 +166,7 @@ public class RequestsWorkedOnController implements Initializable {
 			if(chosengroupbytype==0)
 				groupbystatus="work";
 			else if(chosengroupbytype==1)
-				groupbystatus="chosengroupbytype";
+				groupbystatus="waitingForApprove";
 			else if(chosengroupbytype==2)
 				groupbystatus="wait";
 			else if(chosengroupbytype==3)
