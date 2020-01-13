@@ -170,6 +170,8 @@ public class ServerController implements Initializable {
 	 @SuppressWarnings("deprecation")
 	public static void shutdown() throws IOException {
 	        // cleanup code here...
+		 String msg="#OS:Server stopped.";
+		 MainForServer.get_ObservableServer().sendToAllClients(msg);
 		 try {
 	        System.out.println("StopAll");
 

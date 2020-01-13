@@ -40,6 +40,7 @@ import Client.ClientRejectRequestMessageSendToInitiatorObserver;
 import Client.ClientRequestInfoObserver;
 import Client.ClientRequestTrack;
 import Client.ClientRequestsWorkedOnObserver;
+import Client.ClientServerDisconnectedObserver;
 import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
 import Client.MainForClient;
@@ -67,7 +68,7 @@ public class MainClientController {
 		System.out.println(Thread.currentThread().toString());
 		try {
 			ClientConsole cc=new ClientConsole(host);
-			ClientObserver CO = new ClientObserver(cc.getClient());
+	//		ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
@@ -97,6 +98,7 @@ public class MainClientController {
 			ClientLogOutObserver logout = new ClientLogOutObserver(cc.getClient());
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
+			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
