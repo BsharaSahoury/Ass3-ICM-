@@ -47,7 +47,7 @@ public class ClientLoginObserver implements Observer{
 		if(arg1 instanceof Employee) {
 			Employee employee1=(Employee)arg1;
 			switch(employee1.getJob()) {
-			case "inspector":
+			case "inspector":     
 				InspectorHomeController inspector=new InspectorHomeController();
 				inspector.start(employee1);
 				break;
