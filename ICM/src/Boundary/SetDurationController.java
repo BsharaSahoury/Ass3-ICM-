@@ -1,5 +1,5 @@
 package Boundary;
-import java.io.IOException; 
+import java.io.IOException;  
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -54,6 +54,8 @@ public class SetDurationController implements Initializable {
 	private TextField ReaminingTimeForThisPhase;
 	@FXML
 	private DatePicker dueDateForExtend;
+	@FXML
+	private Button SendExtraTimeBtn;
 
 	private static Request r;
 	private static Phase phase;
@@ -113,7 +115,7 @@ public class SetDurationController implements Initializable {
 
 		boolean ExtensionReason = ExtensionReasonText.getText().equals("");
 		LocalDate due = dueDate.getValue();
-		if (ExtensionReason || due != null) {
+		if (ExtensionReason || due == null) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Send Extension Time Request");
 			alert.setHeaderText("ERROR");
@@ -130,12 +132,13 @@ public class SetDurationController implements Initializable {
 			ButtonType button = result.orElse(ButtonType.CANCEL);
 			if (button == ButtonType.OK) {
 				try {
-
+					
 					String keymessage = "send Request extension to inspector for confirm";
 					String d[] = { dueDateForExtend.getValue().toString(), ExtensionReasonText.getText().toString() };
 					Object[] message = { keymessage, r.getId(), d, phase };
-
+					
 					LoginController.cc.getClient().sendToServer(message);
+					
 					Alert alertWarning1 = new Alert(AlertType.CONFIRMATION);
 					alertWarning1.setHeaderText("Success!");
 					alertWarning1.setContentText("Request Extension has been sent to Inspector");

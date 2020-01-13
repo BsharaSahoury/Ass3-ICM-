@@ -59,8 +59,9 @@ public class PerformanceLeaderHomeController implements Initializable {
 			primaryStage.show();
 			primaryStage.setOnCloseRequest( event ->
 		    {
-		        System.out.println("EXIT ICM");
-		        System.exit(0);	
+				System.out.println("EXIT ICM");
+				LogOutController logOut = new LogOutController();
+				logOut.exit(primaryStage,performanceLeader);
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -109,7 +110,7 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
-	logOut.start(primaryStage);
+	logOut.start(primaryStage,performanceLeader);
 }
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();

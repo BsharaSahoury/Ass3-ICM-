@@ -64,8 +64,9 @@ primaryStage.setResizable(false);
 primaryStage.setTitle("ICM-Home");
 primaryStage.show();
 primaryStage.setOnCloseRequest(event -> {
-System.out.println("EXIT ICM");
-System.exit(0);
+	System.out.println("EXIT ICM");
+	LogOutController logOut = new LogOutController();
+	logOut.exit(primaryStage,Administrator);
 });
 } catch (Exception e) {
 e.printStackTrace();
@@ -140,7 +141,7 @@ runLater(() -> {
 public void LogOutAction(ActionEvent event) throws Exception {
 LogOutController logOut = new LogOutController();
 primaryStage.close();
-logOut.start(primaryStage);
+logOut.start(primaryStage,Administrator);
 }
 @Override
 public void initialize(URL location, ResourceBundle resources) {

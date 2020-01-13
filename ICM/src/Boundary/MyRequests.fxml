@@ -56,18 +56,19 @@
          </font>
       </Button>
       <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
-      <Label layoutX="31.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
-      <Button layoutX="481.0" layoutY="57.0" mnemonicParsing="false" style="-fx-background-insets: 5541;" />
-      <Button layoutX="363.0" layoutY="70.0" mnemonicParsing="false" style="-fx-background-insets: 6526;" />
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="685.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/reload-icon-5.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="689.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/q.jpg" />
          </image>
       </ImageView>
+      <Button layoutX="676.0" layoutY="46.0" mnemonicParsing="false" onAction="#refresh" style="-fx-background-insets: 88888888;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reload-icon-5.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

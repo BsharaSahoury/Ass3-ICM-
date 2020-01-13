@@ -14,6 +14,10 @@ public class Employee extends User {
 		this.job=job;
 	}
 
+	public Employee(String username,String password,String firstName, String lastName, String job) {
+		super(username,password,firstName,lastName);
+		this.job=job;
+	}
 	
 
 	public Employee(int id, Belong belong, ArrayList<Role> roles,String email, String password, String username, String firstName, String lastName,String job) {

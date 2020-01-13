@@ -26,9 +26,10 @@ import Entity.Employee;
 import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
+import Entity.Student;
 import Entity.User;
 import javafx.fxml.*;
-public class MyRequestsController implements Initializable {
+public class MyRequestsController implements Initializable  {
 		public static Stage primaryStage;
 		private static ClientConsole cc;
 		private AnchorPane lowerAnchorPane;
@@ -70,10 +71,12 @@ public class MyRequestsController implements Initializable {
 		private static ObservableList<Request> list;
 		private FXMLLoader loader;
 		private static String job;
+		private static User user;
 		private static int chosengroupbytype=-1;
 		public void start(SplitPane splitpane,User user,String job)  {
 			this.splitpane=splitpane;
 			this.job=job;
+			this.user=user;
 			primaryStage=LoginController.primaryStage;
 			String[] myRequests=new String[3];
 			this.cc=LoginController.cc;
@@ -206,6 +209,83 @@ public class MyRequestsController implements Initializable {
 				}	
 		}
 		}
+
+	public void refresh() {
+		System.out.println("00000000000");
+		System.out.println(job);
+		if (user instanceof User) {
+			if (user instanceof Employee) {
+				Employee employee = (Employee) user;
+				{
+					switch (employee.getJob()) {
+					case "inspector":
+						try {
+							InspectorHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					case "evaluator":
+						try {
+							EvaluatorHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+
+					case "comittee member":
+
+						try {
+							ComitteeMemberHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					case "chairman":
+						try {
+							ChairmanHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					case "performer":
+						try {
+							PerformanceLeaderHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					case "lecturer":
+						try {
+							LecturerHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					case "administrator":
+						try {
+							AdministratorHomeController.MyRequests.start(splitpane, user, job);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					}
+				}
+
+			} else if (user instanceof Student) {
+				Student student1 = (Student) user;
+				StudentHomeController student = new StudentHomeController();
+				student.start(student1);
+			}
+		}
+	}
 		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

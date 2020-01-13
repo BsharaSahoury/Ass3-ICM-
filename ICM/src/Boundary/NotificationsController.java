@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import java.net.URL;
 import java.sql.Date;
@@ -108,6 +108,7 @@ public class NotificationsController implements Initializable {
 		Notification n2 = table.getSelectionModel().getSelectedItem();
 		String content;
 		String[] b;
+		String phase1;
 		int id;
 		if (n2 != null) {
 			idnotification = n2.getId();
@@ -261,17 +262,16 @@ public class NotificationsController implements Initializable {
 			case "Extension Confirmation message sent to Inspector":	
 				content = n2.getContent();
 				String[] b4 = new String[2];
-				b4 = content.split("#");
-				b4 = b4[1].split("time");
+				b4 = content.split("# ");
+				b4 = b4[1].split(" time");
 				int id3 = Integer.valueOf(b4[0]);
-				
 				String[] b5 = new String[2];
-				b5 = content.split("???");
+				System.out.println(content);
+				b5 = content.split("time on phase ");
 				b5 = b5[1].split(", Do");
-				String phase1=b5[0];
-				
+			    phase1=b5[0];
 				ExtensionConfirmationMessage ecm = new ExtensionConfirmationMessage();
-				ecm.start(splitpane, id3,Enum.valueOf(Phase.class, phase1),content);
+				ecm.start(splitpane, id3,content,phase1);
 				break;
 				
 			case "reminder to finish work":
@@ -324,6 +324,20 @@ public class NotificationsController implements Initializable {
 				CommittteDecision="passed";
 				Passedmessagecontroller obj6 = new Passedmessagecontroller();
 				obj6.start(splitpane, "/messages/approvemessageinitiator.fxml");
+				break;
+			case "Extension Confirmation message sent to Admin after inspector confirmation":
+				content = n2.getContent();
+				String[] b6 = new String[2];
+				b6 = content.split("# ");
+				b6 = b6[1].split(" time");
+				int id4 = Integer.valueOf(b6[0]);
+				String[] b7 = new String[2];
+				System.out.println(content);
+				b7 = content.split("time on phase ");
+				b7 = b7[1].split(", Do");
+			    phase1=b7[0];
+				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
+				ecm1.start(splitpane, id4,content,phase1);
 				break;
 			}
 
