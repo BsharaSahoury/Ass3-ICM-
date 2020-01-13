@@ -70,8 +70,6 @@ public class MakeDicisionController implements Initializable {
 	}
 	
 	public void SendToChairMan(ActionEvent e) { 
-		if(flag==-1) {
-			flag=0;
 		if(!Approve.isSelected()&&!Reject.isSelected()&&!AdditionalInfo.isSelected()) {
 			 Alert alertWarning = new Alert(AlertType.WARNING);
 		     alertWarning.setTitle("Warning Alert Title");
@@ -96,22 +94,13 @@ public class MakeDicisionController implements Initializable {
 			else
 			Message[1]="ask for additional Information";
 			Message[2]=ExplainDectxt.getText();
-			Message[3]=Integer.toString(RequestsWorkedOnController.decision.selected.getR().getId());
+			Message[3]=Integer.toString(ctrl.selected.getR().getId());
 			try {
 				cc.getClient().sendToServer(Message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-		}
-	
-		else {	
-			 Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Already Sent");
-			 alertSuccess.setContentText("The decision for this request is already sent to chairman");
-			 alertSuccess.show();
 		}
 	}
 	public void showEvaluationReport() {

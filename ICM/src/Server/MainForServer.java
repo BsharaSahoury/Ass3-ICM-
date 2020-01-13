@@ -68,10 +68,11 @@ public class MainForServer extends Application{
 			ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 			ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 			ServerDocumentExceptionObserver sdeo=new ServerDocumentExceptionObserver(sv);
-		ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
+			ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
 			ServerCheckAprproveDurationObserver check=new ServerCheckAprproveDurationObserver(sv);
 			ServerGetInitiatorObserver init=new ServerGetInitiatorObserver(sv);
 			ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
+			ServerLogOutObserver logout=new ServerLogOutObserver(sv);
 			ServerInspectorFrozeRequestObserver change=new ServerInspectorFrozeRequestObserver(sv);
 			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
@@ -102,7 +103,8 @@ public class MainForServer extends Application{
 				ServerStage.setOnHidden(e -> {
 					 try {
 						controller.shutdown();
-					    Platform.exit();
+						System.exit(1);
+					  //  Platform.exit();
 					} catch (IOException e1) {}
 					 catch(NullPointerException e2) {}
 					 

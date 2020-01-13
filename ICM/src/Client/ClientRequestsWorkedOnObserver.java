@@ -20,8 +20,11 @@ import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ClientRequestsWorkedOnObserver implements Observer{
@@ -41,6 +44,7 @@ public class ClientRequestsWorkedOnObserver implements Observer{
 					ArrayList<RequestPhase> arr=(ArrayList<RequestPhase>)send[1];
 					if(send[2] instanceof String) {
 					String phase=(String)send[2];
+					if(!arr.equals(null)) {
 					if(phase.equals("Evaluator")) 
 					EvaluatorHomeController.RequestWorkON.fillTable(arr);
 					else if(phase.equals("Comittee Member"))
@@ -51,6 +55,7 @@ public class ClientRequestsWorkedOnObserver implements Observer{
 					TesterHomeController.RequestWorkON.fillTable(arr);
 					else if(phase.equals("Chairman")) 
 					ChairmanHomeController.RequestWorkON.fillTable(arr);
+					}
 					}
 					}
 				}
