@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import Boundary.RequestTreatmentAction;
 import Entity.Employee;
 import Entity.EvaluationReport;
 import Entity.MyFile;
@@ -193,6 +194,7 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 	PreparedStatement stmt4=null;
 	Request s=null;
 	RequestPhase result=null;
+	int count=0;
 	try {
 		stmt1=con.prepareStatement("SELECT DISTINCT R.request_id FROM icm.requestinphase R WHERE phase_administrator=? AND phase=?;");
 		stmt1.setString(1, username);
@@ -200,6 +202,7 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 		ResultSet rs=stmt1.executeQuery();
 		while(rs.next())
  		{
+			count++;
 			stmt2=con.prepareStatement("SELECT R.* FROM icm.requestinphase R WHERE phase_administrator=? AND phase=? AND request_id=?;");
 			stmt2.setString(1, username);
 			stmt2.setString(2, phase);
@@ -229,6 +232,7 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 				result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(2)),State.valueOf(rs3.getString(7)));	
 				arr.add(result);	
 			}
+			
 			}
 			stmt3 = null;
 			stmt4=null;
@@ -240,11 +244,14 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 	}
  		}
 		rs.close();
-}catch (SQLException e) {
+		}catch (SQLException e) {
 	//TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	return arr;
+	if(count>0) 
+		return arr;
+	else
+		return null;
 }
 
 public static ArrayList<Request> getmyRequestFromDB(Connection con, String username) {
@@ -283,6 +290,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 //TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	return arr;
 }
 
@@ -833,7 +841,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
             stm.setString(6, null);
             stm.setString(7,"wait");
             stm.executeUpdate();
-            
+            mysqlConnection.updateCurrentPhase(con, requestId, Phase.performance);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -878,27 +886,29 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 	public static void updateDBdueToSuccessTest(Connection con, int requestId) {
 		
 		PreparedStatement stm=null;
-		int maxRepetion;
+		int maxRepetion=0;
 		try {
-			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='testing' AND request_id=?;");
-			stm.setInt(1, requestId);
-			stm.executeUpdate();
 			
-	    /*  stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase WHERE request_id=? AND phase='performance';");
+	     stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase WHERE request_id=? AND phase='testing';");
+	     stm.setInt(1, requestId);
 			ResultSet rs = stm.executeQuery();	
             if(rs.next()) {
             	maxRepetion = rs.getInt(1);
             }
-            maxRepetion=0;
             stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
             stm.setInt(1, requestId);
-            stm.setString(2, "performance");
-            stm.setInt(3,maxRepetion);
+            stm.setString(2, "closing");
+            stm.setInt(3,0);
             stm.setDate(4,null);
             stm.setDate(5,null);
             stm.setString(6, null);
-            stm.setString(7,"wait");*/
+            stm.setString(7,"wait");
             stm.executeUpdate();
+            stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='testing' AND request_id=? AND repetion=?;");
+			stm.setInt(1, requestId);
+			stm.setInt(2, maxRepetion);
+			stm.executeUpdate();
+			mysqlConnection.updateCurrentPhase(con, requestId, Phase.closing);
             
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
