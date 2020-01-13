@@ -60,30 +60,42 @@ public class mysqlConnection {
 	        return null;
 	        
 	   	}
+	
 
 	public static User isInDB(Connection con, String username, String password) {
 		PreparedStatement stm = null;
 		try {
-			stm = con
-					.prepareStatement("SELECT user.username, user.password FROM user WHERE username=? AND password=?;");
+			stm = con.prepareStatement("SELECT user.username, user.password, user.loggedIn FROM user WHERE username=? AND password=?;");
 			stm.setString(1, username);
 			stm.setString(2, password);
 			ResultSet rs = stm.executeQuery();
-
+			
+			//if the user is not an ICM-User
 			if (!rs.next())
 				return null;
+			
+			//checking if the userAccount is Already logged-in
+			if(rs.getString(3).equals("yes"))
+				return null;
+			
+			//Logged-In ='yes'
+			stm = con.prepareStatement("UPDATE user SET loggedIn='yes' WHERE username=? AND password=?;");
+			stm.setString(1, username);
+			stm.setString(2, password);
+			stm.executeUpdate();
+			
 			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
 			stm.setString(1, username);
 			rs = stm.executeQuery();
 			if (rs.next()) {
-				Employee employee1 = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(8));
+				Employee employee1 = new Employee(rs.getString(1),password,rs.getString(2), rs.getString(3), rs.getString(8));
 				return employee1;
 			}
 			stm = con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
 			stm.setString(1, username);
 			rs = stm.executeQuery();
 			if (rs.next()) {
-				Student student1 = new Student(rs.getString(1), rs.getString(2), rs.getString(3));
+				Student student1 = new Student(rs.getString(1),password, rs.getString(2), rs.getString(3));
 				return student1;
 			}
 		} catch (SQLException e) {
@@ -93,6 +105,50 @@ public class mysqlConnection {
 		return null;
 
 	}
+	public static void SetAllUsersLoginToNo(Connection con) {
+	
+		String username,password;
+		PreparedStatement stm = null;
+		try {
+			stm = con.prepareStatement("SELECT user.username, user.password FROM user;");
+			ResultSet rs = stm.executeQuery();
+			while(rs.next()) {
+				stm = con.prepareStatement("UPDATE user SET loggedIn='no' WHERE username=? AND password=?;");
+				username=rs.getString(1);
+				password=rs.getString(2);
+				stm.setString(1, username);
+				stm.setString(2, password);
+				stm.executeUpdate();
+			}//while
+		} catch (SQLException e) {
+		//TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	}
+public static String logOutUser(Connection con, String username, String password,String endProgram)
+{
+	PreparedStatement stm = null;
+	String res="true";
+	try {
+	//Logged-In ='yes'
+	stm = con.prepareStatement("UPDATE user SET loggedIn='no' WHERE username=? AND password=?;");
+	stm.setString(1, username);
+	stm.setString(2, password);
+	stm.executeUpdate();
+	if(endProgram.equals("End"))//Exit program => true1
+		res="true1";
+	return res;
+	}
+	catch (SQLException e) {
+	// TODO Auto-generated catch block
+				e.printStackTrace();
+				res="false";
+				return res;
+	}	
+}
+
+
 public static String getinitiatorname(Connection con,String username ) {
 	PreparedStatement stmt2=null;
 	String Initiatorname=null;

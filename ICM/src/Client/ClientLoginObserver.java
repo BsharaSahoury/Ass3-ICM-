@@ -1,5 +1,6 @@
 package Client;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import java.util.Observer;
@@ -22,6 +23,12 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ClientLoginObserver implements Observer{
@@ -32,6 +39,8 @@ public class ClientLoginObserver implements Observer{
 		client.addObserver(this);
 	}
 
+	
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if(arg1 instanceof User) {
@@ -85,15 +94,25 @@ public class ClientLoginObserver implements Observer{
 				@Override
 				public void run() {
 					Alert alert = new Alert(AlertType.INFORMATION);
-			        alert.setTitle("TEST");
-			        alert.setHeaderText("ERROR");
-			        alert.setContentText("incorrect username or password");
-			        alert.showAndWait();
+					alert.setTitle("Login Failed!");
+					Text headerText=new Text("Login Failed!");
+					headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20));
+					alert.setHeaderText("Login Failed!");
+					VBox dialogPaneContent = new VBox();
+					Label label1 = new Label("incorrect username or password");
+					label1.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 12)); 
+					Label label2 = new Label("OR!!");
+					Label label3 = new Label("Another computer is currently logged into this account!");
+					label3.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 12)); 
+					Label label4 = new Label("Please Try again!");
+						
+					dialogPaneContent.getChildren().addAll(label1, label2,label3,label4);
+			 		alert.getDialogPane().setContent(dialogPaneContent);
+					alert.showAndWait();
 					
 				}
 				
 			});
 		}
 	}
-
 }

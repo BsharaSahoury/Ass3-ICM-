@@ -59,7 +59,8 @@ public class TesterHomeController implements Initializable {
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
-						System.exit(0);
+						LogOutController logOut = new LogOutController();
+						logOut.exit(primaryStage,Tester);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -107,7 +108,7 @@ public class TesterHomeController implements Initializable {
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage);
+		logOut.start(primaryStage,Tester);
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

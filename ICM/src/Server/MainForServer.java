@@ -72,6 +72,7 @@ public class MainForServer extends Application{
 			ServerCheckAprproveDurationObserver check=new ServerCheckAprproveDurationObserver(sv);
 			ServerGetInitiatorObserver init=new ServerGetInitiatorObserver(sv);
 			ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
+			ServerLogOutObserver logout=new ServerLogOutObserver(sv);
 		    
 		      try {
 			   sv.listen();
@@ -99,7 +100,8 @@ public class MainForServer extends Application{
 				ServerStage.setOnHidden(e -> {
 					 try {
 						controller.shutdown();
-					    Platform.exit();
+						System.exit(1);
+					  //  Platform.exit();
 					} catch (IOException e1) {}
 					 catch(NullPointerException e2) {}
 					 
