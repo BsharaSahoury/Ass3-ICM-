@@ -85,14 +85,6 @@ public class SuccessTestMessageController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		requestID=NotificationsController.getidofrequestforDecision();
 		System.out.println(requestID+"Sx");
-		/*
-		Object[] msg= {"Inspectors"};
-		try {
-			LoginController.cc.getClient().sendToServer(msg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	*/	
 	}
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
