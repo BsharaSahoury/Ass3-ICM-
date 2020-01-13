@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MainClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MainClientController">
    <children>
       <Label layoutX="113.0" layoutY="254.0" text="IP:">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="ip" layoutX="177.0" layoutY="263.0" prefHeight="32.0" prefWidth="170.0" />
+      <TextField fx:id="ip" layoutX="177.0" layoutY="263.0" prefHeight="32.0" prefWidth="170.0" text="localhost" />
       <Button layoutX="201.0" layoutY="322.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="88.0" style="-fx-background-radius: 444; -fx-background-color: #9d1b34;" text="connect" textFill="WHITE">
          <font>
             <Font size="15.0" />

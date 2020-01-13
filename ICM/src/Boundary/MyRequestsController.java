@@ -62,6 +62,8 @@ public class MyRequestsController implements Initializable {
 		private static SplitPane splitpane;
 		@FXML
 		private ComboBox Groupby;
+		@FXML
+		private TextField search_text;
 		private static int chosen=-1;
 		private static ArrayList<Request> arrofRequests;
 		ObservableList<String> statuslist = FXCollections.observableArrayList("Active","Frozen","Closed","All");
@@ -97,9 +99,43 @@ public class MyRequestsController implements Initializable {
 		}
 		public void fillTable(ArrayList<Request> arr1) {
 		arrofRequests=arr1;	
-			// TODO Auto-generated method stub
-		loader.<MyRequestsController>getController().setTableRequests(arr1);
-			
+		loader.<MyRequestsController>getController().setTableRequests(arr1);		
+		}
+		public void searchaction() {
+			if(!search_text.getText().equals("")) {
+				try {
+			    int searchid=Integer.valueOf(search_text.getText());
+			long x=tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+					.count();
+					if(x>0) {
+				tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+				.findAny()
+				   .ifPresent(item -> {
+					   tableRequests.getSelectionModel().select(item);
+					   tableRequests.scrollTo(item);
+				    });
+					}
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+		        alert.setTitle("Warning");
+		        alert.setHeaderText("Not exist");
+		        alert.setContentText("The ID doesn't exist");
+		        alert.showAndWait();
+			}
+			}catch(NumberFormatException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+		        alert.setTitle("Warning");
+		        alert.setContentText("Enter ID number in search field");
+		        alert.showAndWait();	
+			}
+			}
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+		        alert.setTitle("Warning");
+		        alert.setHeaderText("Enter ID");
+		        alert.setContentText("Please Enter ID to the search field");
+		        alert.showAndWait();
+			}
 		}
 		public void TrackRequestAction() {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();

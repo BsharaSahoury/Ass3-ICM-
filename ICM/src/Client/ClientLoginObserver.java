@@ -46,13 +46,12 @@ public class ClientLoginObserver implements Observer{
 				EvaluatorHomeController evaluator=new EvaluatorHomeController();
 				evaluator.start(employee1);
 				break;
-			case "comittee member":
-				
+			case "comittee member":			
 				ComitteeMemberHomeController comitteeMember=new ComitteeMemberHomeController();
 				comitteeMember.start(employee1);
 				break;
 			case "chairman":
-				ChairmanHomeController chairman=new ChairmanHomeController();
+				ComitteeMemberHomeController chairman=new ComitteeMemberHomeController();
 				chairman.start(employee1);
 				break;
 			case "performer":
@@ -64,7 +63,7 @@ public class ClientLoginObserver implements Observer{
 				lecturer.start(employee1);
 				break;
 			case "tester":
-				TesterHomeController tester=new TesterHomeController();
+				ComitteeMemberHomeController tester=new ComitteeMemberHomeController();
 				tester.start(employee1);
 				break;
 			case "administrator":

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -34,6 +36,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.layout.Pane;
 import Client.ClientConsole;
+import Client.Func;
 import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
@@ -61,6 +64,8 @@ public class AllRequestsController implements Initializable {
 	private static SplitPane splitpane;
 	@FXML
 	private ComboBox Groupby;
+	@FXML
+	private TextField search_text;
 	private FXMLLoader loader;
 	private TableView<Request> tabl;
 	private static int chosenRequest = -1;
@@ -98,13 +103,45 @@ public class AllRequestsController implements Initializable {
 
 	public void fillTable(ArrayList<RequestPhase> arr1) {
 		arrofRequests = arr1;
-		// TODO Auto-generated method stub
-		// ArrayList<RequestPhase> arr=new ArrayList<RequestPhase>();
-		// arr.add(new RequestPhase(null,null,arr1.get(0),Phase.Closed));
 		loader.<AllRequestsController>getController().setTableRequests(arr1);
 
 	}
-
+	public void searchaction() {
+		if(!search_text.getText().equals("")) {
+			try {
+		    int searchid=Integer.valueOf(search_text.getText());
+		long x=tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+				.count();
+				if(x>0) {
+			tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+			.findAny()
+			   .ifPresent(item -> {
+				   tableRequests.getSelectionModel().select(item);
+				   tableRequests.scrollTo(item);
+			    });
+				}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Not exist");
+	        alert.setContentText("The ID doesn't exist");
+	        alert.showAndWait();
+		}
+		}catch(NumberFormatException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setContentText("Enter ID number in search field");
+	        alert.showAndWait();	
+		}
+		}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Enter ID");
+	        alert.setContentText("Please Enter ID to the search field");
+	        alert.showAndWait();
+		}
+	}
 	public void GroupbyAction(ActionEvent e) {
 		chosengroupbytype = Groupby.getSelectionModel().getSelectedIndex();
 		String groupbystatus = null;
@@ -137,14 +174,27 @@ public class AllRequestsController implements Initializable {
 			}
 		}
 	}
+	private void runLater(Func f) {
+		f.call();
+		Platform.runLater(() -> {
+			try {
+				Thread.sleep(10);
+				f.call();
 
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+	}
 	public void RequestInfoAction(ActionEvent e) {
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
-			System.out.println(s.getR().getId());
 			RequestInfoController requestifo = new RequestInfoController();
-			requestifo.start(splitpane, s.getR());
+			runLater(() -> {
+				requestifo.start(splitpane, s.getR());
+			});			
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);
 			alertWarning.setTitle("Warning Alert Title");
@@ -169,7 +219,9 @@ public class AllRequestsController implements Initializable {
 		if (chosenRequest != -1) {
 			chosenR=tableRequests.getSelectionModel().getSelectedItem();
 			RequestTreatmentAction Treatment = new RequestTreatmentAction();
-			Treatment.start(splitpane);
+			runLater(() -> {
+				Treatment.start(splitpane);
+			});		
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);
 			alertWarning.setTitle("Warning Alert Title");
@@ -188,10 +240,5 @@ public class AllRequestsController implements Initializable {
 		colPriflig.setCellValueFactory(new PropertyValueFactory<RequestPhase, String>("privilegedInfoSys"));
 		colSubDate.setCellValueFactory(new PropertyValueFactory<RequestPhase, Date>("date"));
 		colPhase.setCellValueFactory(new PropertyValueFactory<RequestPhase, Phase>("phase"));
-		// this.tabl=tableRequests;
-		// ObservableList<Request> aa=FXCollections.observableArrayList();
-		// aa.add(new Request(1,"sss","xxx","Qqqq",LocalDate.of(1915, Month.SEPTEMBER,
-		// 1)));
-		// tableRequests.setItems(aa);
 	}
 }
