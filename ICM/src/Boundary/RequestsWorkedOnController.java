@@ -311,8 +311,15 @@ public class RequestsWorkedOnController implements Initializable {
 		case "Comittee Member":
 
 			try {
-				ComitteeMemberHomeController.RequestWorkON.start(splitpane,
-						"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
+				if(ComitteeMemberHomeController.getFlag()==0) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
+				}
+				if(ComitteeMemberHomeController.getFlag()==1) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestsWorkOnTester.fxml", employee, "Comittee Member", "testing");
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

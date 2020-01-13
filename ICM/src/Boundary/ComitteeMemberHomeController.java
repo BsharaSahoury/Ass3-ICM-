@@ -49,6 +49,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
     public static Employee Chairman;
+    private static int flag=0;
 	public void start(Employee comitteeMember) {
 		this.comitteeMember = comitteeMember;
 		primaryStage = LoginController.primaryStage;
@@ -88,6 +89,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	}
      	
 	public void RequestForTestOnAction(ActionEvent event) throws Exception {
+		flag=1;
 		RequestWorkON = new RequestsWorkedOnController();
 		runLater(() -> {
 			RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member","testing");
@@ -95,10 +97,14 @@ public class ComitteeMemberHomeController implements Initializable {
 		}	
 	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+		flag=0;
 		RequestWorkON = new RequestsWorkedOnController();
 		runLater(() -> {
 			RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",comitteeMember,"Comittee Member","decision");
 		});
+	}
+	public static int getFlag() {
+		return flag;
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
