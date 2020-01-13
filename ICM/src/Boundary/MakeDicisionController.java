@@ -96,7 +96,7 @@ public class MakeDicisionController implements Initializable {
 			else
 			Message[1]="ask for additional Information";
 			Message[2]=ExplainDectxt.getText();
-			Message[3]=Integer.toString(RequestsWorkedOnController.decision.selected.getR().getId());
+			Message[3]=Integer.toString(ctrl.selected.getR().getId());
 			try {
 				cc.getClient().sendToServer(Message);
 			} catch (IOException e1) {
