@@ -73,7 +73,8 @@ public class MainForServer extends Application{
 			ServerGetInitiatorObserver init=new ServerGetInitiatorObserver(sv);
 			ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
 			ServerLogOutObserver logout=new ServerLogOutObserver(sv);
-		    
+			ServerInspectorFrozeRequestObserver change=new ServerInspectorFrozeRequestObserver(sv);
+			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		      try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//

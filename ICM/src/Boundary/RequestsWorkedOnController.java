@@ -74,7 +74,7 @@ public class RequestsWorkedOnController implements Initializable {
 	public static MakeDicisionController decision;
 	private static int id;
 	private static String system;
-	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
+	ObservableList<String> statuslist = FXCollections.observableArrayList("work","waitingForApprove", "wait", "over","All");
 	public static  FXMLLoader loader;
 	private User user;
 	private static RequestPhase rp; 
@@ -91,9 +91,13 @@ public class RequestsWorkedOnController implements Initializable {
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
 			RequestWorkedON[0]="Requests worked on";
-			if(job.equals("Comittee Member")) {
+			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
-			}else {
+			}
+			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
+				RequestWorkedON[1]=user.getUsername();
+			}
+			else {
 			RequestWorkedON[1]=user.getUsername();
 			}
 			RequestWorkedON[2]=job;
@@ -123,14 +127,18 @@ public class RequestsWorkedOnController implements Initializable {
 			if(chosengroupbytype==0)
 				groupbystatus="work";
 			else if(chosengroupbytype==1)
-				groupbystatus="wait";
+				groupbystatus="chosengroupbytype";
 			else if(chosengroupbytype==2)
-				groupbystatus="over";
+				groupbystatus="wait";
 			else if(chosengroupbytype==3)
-				groupbystatus="All";
+				groupbystatus="over";
+			else if(chosengroupbytype==4)
+				groupbystatus="All";		
 			if(groupbystatus.equals("All")) {
 				arr=arrofRequests;
-			}else {
+			}
+			else {
+			
 				for(int i=0;i<arrofRequests.size();i++) 
 					if((arrofRequests.get(i)).getState().equals(State.valueOf(groupbystatus))) 
 						arr.add(arrofRequests.get(i));			
@@ -300,7 +308,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 		else {
 			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
-			decision=new MakeDicisionController();
+			decision=new MakeDicisionController();	
 			decision.start(splitpane,selected,user);
 		}
 	}
@@ -308,8 +316,6 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			System.out.println(s.getState().toString());
-			System.out.println(State.work.toString());
 			if(s.getState().toString().equals(State.work.toString()))
 			{
 			CreateEvaluationReportController requestifo = new CreateEvaluationReportController();

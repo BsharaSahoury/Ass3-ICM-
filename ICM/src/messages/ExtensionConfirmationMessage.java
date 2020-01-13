@@ -1,6 +1,6 @@
 package messages;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,6 +45,9 @@ public class ExtensionConfirmationMessage implements Initializable {
 	Button other;
 	@FXML
 	ComboBox<String> combo;
+	@FXML
+	Label ExtensionReason;
+	
 	private static Request r;
 	public static ExtensionConfirmationMessage ctrl;
 	public static Stage primaryStage;
@@ -54,27 +57,44 @@ public class ExtensionConfirmationMessage implements Initializable {
 	private String fullname;
 	private ObservableList<String> list;
 	private static Phase phase;
+	private int notificationID;
+	private static String notdetails;
+	
 	public void start(SplitPane splitpane,int id,Phase phase,String content) {
 		primaryStage=LoginController.primaryStage;
 		this.r=r;
 		this.requestID=id;
-		this.phase=phase;
-		try{	
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmationMessage.fxml"));
+		this.phase=phase;	
+			try{	
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmation.fxml"));
+				lowerAnchorPane = loader.load();
+				ctrl=loader.getController();
+				content=content.replaceAll("#",Integer.toString(id));
+				content=content.replaceAll("???", phase.toString());
+				ctrl.requestLabel.setVisible(false);
+				ctrl.requestLabel.setText(content);
+				ctrl.requestLabel.setVisible(true);
+				
+				Object[] message= {"get explain notification",ctrl.notificationID,"Inspector to approve the Extension"};
+				try {
+					LoginController.cc.getClient().sendToServer(message);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
+				splitpane.getItems().set(1, lowerAnchorPane);
+				this.splitpane=splitpane;
+			} catch(Exception e) {
+				e.printStackTrace();
+			}	
+			/*FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmationMessage.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
-			content=content.replaceAll("#",Integer.toString(id));
-			content=content.replaceAll("???", phase.toString());
-			ctrl.requestLabel.setVisible(false);
-			ctrl.requestLabel.setText(content);
-			ctrl.requestLabel.setVisible(true);
+			this.splitpane=splitpane;*/
+		
 			
 			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}			
 	}
 	public void approveAction(ActionEvent e) {
 		
@@ -132,11 +152,55 @@ public class ExtensionConfirmationMessage implements Initializable {
 		
 	}
 	
+	public static void setdetails(String details) {
+		ctrl.notdetails=details;
+		
+		details = details.getContent();
+		b = new String[2];
+		b = content.split("#");
+		b = b[1].split(" is");
+		id = Integer.valueOf(b[0]);
+		ChooseTesterMessageController ctmc = new ChooseTesterMessageController();
+		ctmc.start(splitpane, id);
+		break;
+		
+		
+		
+		
+		
+		
+		String dueDateForExtend=d[0]+"#"+d[1];
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		ctrl.ExtensionReason.setText(ctrl.notdetails);
+	}
+	
 	
 	
 	
 	
 	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		notificationID=NotificationsController.getidnotification();
+		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
+		requestID=NotificationsController.getidofrequestforDecision();
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Object[] msg= {"evaluators",getClass().getName()};
 		try {
@@ -145,7 +209,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-	}
+	}*/
 	
 	
 	
