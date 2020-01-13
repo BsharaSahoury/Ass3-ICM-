@@ -68,7 +68,7 @@ public class NotificationsController implements Initializable {
 	private static String CommittteDecision;
 	private static String ExplainDecision;
 	private static int idnotification;
-
+    private static String myPhase;
 	public void start(SplitPane splitpane, User user) {
 		this.user = user;
 		primaryStage = LoginController.primaryStage;
@@ -295,11 +295,15 @@ public class NotificationsController implements Initializable {
 				String due=b[0];
 				numberOnly=b[1].replaceAll("[^0-9]", "");
 				id=Integer.valueOf(numberOnly);
-				System.out.println(id+"            3333333333");
+				c=new String[2];
+				c=content.split("for the ");
+				c=c[1].split(" phase");
+				String p=c[0];
+				this.myPhase=p;
 				due = due.replaceAll("(\\r|\\n)", "");
 				start = start.replaceAll("(\\r|\\n)", "");
 				approveDuratinController ad=new approveDuratinController();
-				ad.start(splitpane, content,start,due,id);
+				ad.start(splitpane, content,start,due,id,p);
 				break;
 			case "Committee reject the request and wait for initiator approve":
 				content = n2.getContent();
@@ -324,6 +328,9 @@ public class NotificationsController implements Initializable {
 			}
 
 		}
+	}
+	public static String getMyPhase() {
+		return myPhase;
 	}
 
 	public static int getidofrequestforDecision() {

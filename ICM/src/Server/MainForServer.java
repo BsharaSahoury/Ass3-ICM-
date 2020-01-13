@@ -4,6 +4,7 @@ package Server;
 import java.io.IOException;
 import java.sql.Connection;
 
+import Client.ClientObserver;
 import DBconnection.mysqlConnection;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -32,7 +33,6 @@ public class MainForServer extends Application{
 	 }	
 	  public static void ConnectAfterDBPassword()
 	  {
-		  con=mysqlConnection.makeAndReturnConnection();
 		    int port = 0; //Port to listen ons
 		    try
 		    {    
@@ -68,11 +68,12 @@ public class MainForServer extends Application{
 			ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
 			ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 			ServerDocumentExceptionObserver sdeo=new ServerDocumentExceptionObserver(sv);
-		    ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
+		ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
 			ServerCheckAprproveDurationObserver check=new ServerCheckAprproveDurationObserver(sv);
 			ServerGetInitiatorObserver init=new ServerGetInitiatorObserver(sv);
 			ServeInitiatorApprovethedecisionObserver approve=new ServeInitiatorApprovethedecisionObserver(sv);
-		    
+			ServerInspectorFrozeRequestObserver change=new ServerInspectorFrozeRequestObserver(sv);
+			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		      try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//
