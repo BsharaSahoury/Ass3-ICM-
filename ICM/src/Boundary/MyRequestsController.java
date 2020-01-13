@@ -175,8 +175,6 @@ public class MyRequestsController implements Initializable  {
 		}
 
 	public void refresh() {
-		System.out.println("00000000000");
-		System.out.println(job);
 		if (user instanceof User) {
 			if (user instanceof Employee) {
 				Employee employee = (Employee) user;
