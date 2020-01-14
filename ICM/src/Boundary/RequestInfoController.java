@@ -61,6 +61,8 @@ public class RequestInfoController implements Initializable {
 	private TextField Email;
 	@FXML
 	private static SplitPane splitpane;
+	@FXML
+	Button BackBtn;
 
 	private static ClientConsole cc;
 
@@ -130,6 +132,29 @@ public class RequestInfoController implements Initializable {
         alert.setContentText("the file is downloaded, you can find it at your Downloads directory");
         alert.showAndWait();
 	}
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		System.out.println("logged1");
+		AllRequestsController AllRequests=new AllRequestsController();
+		System.out.println("logged2");
+		AllRequests = new AllRequestsController();
+		System.out.println("logged3");
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
+		System.out.println("logged4");
+		
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

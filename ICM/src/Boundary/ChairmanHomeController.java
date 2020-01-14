@@ -61,7 +61,8 @@ public class ChairmanHomeController implements Initializable {
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
-						System.exit(0);
+						LogOutController logOut = new LogOutController();
+						logOut.exit(primaryStage,chairman);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -102,7 +103,7 @@ public class ChairmanHomeController implements Initializable {
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
 		runLater(() -> {
-			RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", chairman, "Chairman");
+			RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", chairman, "Chairman","decision");
 		});		
 	}
 
@@ -138,7 +139,7 @@ public class ChairmanHomeController implements Initializable {
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage);
+		logOut.start(primaryStage,chairman);
 	}
 
 	@Override
