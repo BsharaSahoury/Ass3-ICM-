@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -81,7 +82,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="60.0" fitWidth="55.0" layoutX="651.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="86.0" fitWidth="69.0" layoutX="637.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/evaluation-report.png" />
                </image>
@@ -97,10 +98,7 @@
                </font>
             </Label>
             <TextField fx:id="lbId" editable="false" layoutX="142.0" layoutY="83.0" prefHeight="26.0" prefWidth="55.0" style="-fx-background-insets: 5555;" />
-            <Button fx:id="save" layoutX="545.0" layoutY="539.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 20px; -fx-background-color: #9d1b34;" text="save" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
+            <Button layoutX="545.0" layoutY="539.0" mnemonicParsing="false" onAction="#sendReport" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 20px;" text="Send Report" />
             <TextArea fx:id="DescriptionOfChange" layoutX="208.0" layoutY="191.0" prefHeight="60.0" prefWidth="448.0" />
             <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="16.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -112,7 +110,7 @@
                   <Image url="@../Images/description-icon.png" />
                </image>
             </ImageView>
-            <TextArea fx:id="ExpectedResult" layoutX="208.0" layoutY="272.0" prefHeight="60.0" prefWidth="448.0" />
+            <TextArea fx:id="ExpectedResult" layoutX="170.0" layoutY="272.0" prefHeight="60.0" prefWidth="448.0" />
             <ImageView fitHeight="45.0" fitWidth="27.0" layoutX="20.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/expectedresultnew.jfif" />
@@ -123,11 +121,14 @@
                   <Image url="@../Images/constraints_limits-512.png" />
                </image>
             </ImageView>
-            <TextArea fx:id="constraints" layoutX="208.0" layoutY="359.0" prefHeight="60.0" prefWidth="448.0" />
-            <TextArea fx:id="Risks" layoutX="208.0" layoutY="442.0" prefHeight="60.0" prefWidth="448.0" />
-            <TextArea fx:id="Location" layoutX="210.0" layoutY="110.0" prefHeight="60.0" prefWidth="448.0" />
+            <TextArea fx:id="constraints" layoutX="154.0" layoutY="359.0" prefHeight="60.0" prefWidth="448.0" />
+            <TextArea fx:id="Risks" layoutX="112.0" layoutY="442.0" prefHeight="51.0" prefWidth="448.0" />
+            <TextArea fx:id="Location" layoutX="186.0" layoutY="110.0" prefHeight="60.0" prefWidth="406.0" />
             <Label layoutX="316.0" layoutY="516.0" text="Days" />
             <TextField fx:id="duration" layoutX="267.0" layoutY="512.0" prefHeight="25.0" prefWidth="42.0" />
          </children></AnchorPane>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

@@ -7,5 +7,5 @@ public enum Phase implements Serializable {
 	decision,
 	performance,
 	testing,
-	closing;
+	closed;
 }

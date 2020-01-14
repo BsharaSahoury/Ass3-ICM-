@@ -2,8 +2,6 @@ package Client;
 
 import java.awt.Button;
 import java.awt.TextField;
-import java.lang.reflect.InvocationTargetException;
-import java.net.SocketException;
 
 import Boundary.MainClientController;
 import javafx.application.Application;
@@ -20,7 +18,6 @@ public class MainForClient extends Application {
 
 	public static void main(String[] args) {
 		MainForClient.args=args;
-		System.out.println(args.toString());
 		MainForClient.launch(args);
 		// TODO Auto-generated method stub
 
@@ -28,24 +25,16 @@ public class MainForClient extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		try {
 		// TODO Auto-generated method stub
 		Parent root = FXMLLoader.load(getClass().getResource("/Boundary/MainClient.fxml"));
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root,600,400);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);		
-		primaryStage.setTitle("ICM-Client");
+		primaryStage.setTitle("MainClient");
 		primaryStage.show();
 		stage=primaryStage;
-		}
-		catch(SocketException e1) 
-		{
-			System.out.println("Client Stopped!!");	
-		}
-		catch(RuntimeException e2) 
-		{
-			System.out.println("Client Stopped!!");		
-		}		
+		
+		
 	}
 
 }

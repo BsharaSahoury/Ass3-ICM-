@@ -1,12 +1,8 @@
 package Boundary;
 
-import java.io.IOException;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import org.omg.PortableServer.POAManagerPackage.State;
 
 import Client.ClientConsole;
 import javafx.collections.FXCollections;
@@ -14,20 +10,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entity.Request;
-import Entity.RequestPhase;
 import Entity.Phase;
-public class RequestTreatmentAction extends AllRequestsController implements Initializable {
+public class RequestTreatmentAction implements Initializable {
  public static Stage primaryStage;
  private static ClientConsole cc;
  private AnchorPane lowerAnchorPane;
@@ -42,26 +32,32 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
  @FXML
  private DatePicker DatePickerTo;
  @FXML
- private Label statuslable;
- @FXML
- private TextArea Explaintxt;
+ private ComboBox Status;
  private int chosenindex;
- private  RequestPhase chosenRequest;
+ private  Request chosenRequest;
  ObservableList<Phase> phaseslist;
+ ObservableList<String> Statuslist;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ArrayList<Phase> Phases=new ArrayList<Phase>();
-		Phases.add(Phase.evaluation);
-		Phases.add(Phase.decision);
-		Phases.add(Phase.performance);
-		Phases.add(Phase.testing);
-		Phases.add(Phase.closing);
+		Phases.add(Phase.Evaluation);
+		Phases.add(Phase.Decision);
+		Phases.add(Phase.Performance);
+		Phases.add(Phase.Testing);
+		Phases.add(Phase.Closed);
 		phaseslist=FXCollections.observableArrayList(Phases);
+		ArrayList<String> Statuses=new ArrayList<String>();
+		Statuses.add("Active");
+		Statuses.add("Frozen");
+		Statuses.add("Closed");
+		Statuslist=FXCollections.observableArrayList(Statuses);
+		Status.setItems(Statuslist);
 		Phasee.setItems(phaseslist);
     	chosenindex=AllRequestsController.getselectedindex();
-        chosenRequest=AllRequestsController.getList().get(chosenindex);  
-        statuslable.setText(chosenRequest.getStatus());
-
+        chosenRequest=AllRequestsController.getList().get(chosenindex);   
+        Status.setValue(chosenRequest.getStatus());
+     //   PhaseAdministrator.setText(chosenRequest.get);
+		
 	}
 	public void start(SplitPane splitpane) {
 		this.splitpane=splitpane;
@@ -71,42 +67,14 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Update.fxml"));		
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			System.out.println("zzxzx");
 			//String AllRequests="All Requests";
 			//cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
 	}
-	public void ApplyAction() {
-		String explain=null;
-		explain=Explaintxt.getText();
-		if(explain.equals("")) {
-			Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Miss");
-			 alertSuccess.setContentText("PLease fill explain for your decision");
-			 alertSuccess.showAndWait();
-		}
-		else {
-			statuslable.setText("frozen");
-			RequestPhase chosen=AllRequestsController.getselectedRequest();
-			Object[] send=new Object[4];
-			send[0]="Inspector changed status to Frozen";
-			send[1]=chosen.getR().getId();
-			send[2]=InspectorHomeController.getinspector();
-			send[3]=explain;
-			try {
-				LoginController.cc.getClient().sendToServer(send);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}	
-		}
-	}
-
-	public void cantactive() {
-		
-	}
+	
 	public void ChangePhase() {
 		//if()
 	}
