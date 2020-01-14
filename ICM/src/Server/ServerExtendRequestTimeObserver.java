@@ -43,9 +43,9 @@ public class ServerExtendRequestTimeObserver implements Observer {
 					n=mysqlConnection.insertNotificationToDB(con, n);
 					System.out.println("insertNotificationToDB");
 					mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
-					System.out.println("insertNotificationDetailsToDB");
+					//System.out.println("insertNotificationDetailsToDB");
 					mysqlConnection.sendExtensionConfiramtionToInspector(con,n);
-					System.out.println("sendExtensionConfiramtionToInspector");
+					//System.out.println("sendExtensionConfiramtionToInspector");
 					
 					
 					
