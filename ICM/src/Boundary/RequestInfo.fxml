@@ -55,7 +55,15 @@
                         <TextArea fx:id="lbComment" layoutX="35.0" layoutY="323.0" prefHeight="76.0" prefWidth="521.0" />
                         <Label fx:id="LfileName" layoutX="69.0" layoutY="437.0" prefHeight="34.0" prefWidth="134.0" text="None." />
                         <Button fx:id="downloadFile" layoutX="198.0" layoutY="441.0" mnemonicParsing="false" onAction="#downloadFile" style="-fx-background-color: #9d1b34;" text="download file" textFill="WHITE" />
-                        <Button fx:id="BackBtn" layoutX="500.0" layoutY="449.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="44.0" prefWidth="139.0" style="-fx-background-color: #9d1b34; -fx-border-radius: 50px;" text="Back to All Requests" textFill="WHITE" />
+                        <Button fx:id="BackBtn" layoutX="239.0" layoutY="23.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="24.0" prefWidth="36.0" style="-fx-background-insets: 318476520;">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../Images/340.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                </content>
@@ -95,6 +103,6 @@
          </tabs>
       </TabPane>
       <Line endX="624.0" layoutX="101.0" layoutY="29.0" startX="-100.0" />
-      <Label layoutX="47.0" layoutY="7.0" text="ICM-&gt;All Requests-&gt;RequestInfo" />
+      <Label layoutX="47.0" layoutY="7.0" text="ICM-&gt;All Request-&gt;RequestInfo" />
    </children>
 </AnchorPane>
