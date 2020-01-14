@@ -237,8 +237,76 @@ public class RequestsWorkedOnController implements Initializable {
 			}
 		}
 	}
-				
-	
+
+
+	public void refresh() {
+		System.out.println("ss");
+		Employee employee = (Employee) user;
+		switch (job) {
+		case "Inspector":
+			try {
+				InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Evaluator":
+			try {
+				EvaluatorHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",
+						employee, "Evaluator", "evaluation");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case "Comittee Member":
+
+			try {
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
+				if(ComitteeMemberHomeController.getFlag()==0) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
+				}
+				if(ComitteeMemberHomeController.getFlag()==1) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestsWorkOnTester.fxml", employee, "Comittee Member", "testing");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Chairman":
+			try {
+				ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", employee,
+						"Chairman", "decision");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Performer":
+			try {
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Performance Leader", "performance");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Administrator":
+			try {
+				AdministratorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
+	}
+
    public void InsertTestResultAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
