@@ -6,7 +6,7 @@ public class Inspector extends Employee {
 
 
 	public Inspector(Employee e) {
-		super(e.getId(), e.getJob(), e.getRoles(), e.getEmail(),e.getPassword(),e.getUsername(), e.getFirstName(), e.getLastName(),e.getMyRequests());
+		super(e.getJob(), e.getEmail(),e.getPassword(),e.getUsername());
 		// TODO Auto-generated constructor stub
 	}
 

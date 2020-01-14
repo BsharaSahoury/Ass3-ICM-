@@ -61,8 +61,9 @@ public class StudentHomeController implements Initializable {
 			primaryStage.show();
 			primaryStage.setOnCloseRequest( event ->
 		    {
-		        System.out.println("EXIT ICM");
-		        System.exit(0);	
+				System.out.println("EXIT ICM");
+				LogOutController logOut = new LogOutController();
+				logOut.exit(primaryStage,student);
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -106,7 +107,7 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
-	logOut.start(primaryStage);
+	logOut.start(primaryStage,student);
 }
 @Override
 public void initialize(URL location, ResourceBundle resources) {

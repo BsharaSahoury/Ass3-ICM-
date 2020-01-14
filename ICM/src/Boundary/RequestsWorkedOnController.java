@@ -15,6 +15,7 @@ import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
 import Entity.State;
+import Entity.Student;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -65,6 +68,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private ComboBox Groupby;
 	@FXML
 	private Button approveFinish;
+	@FXML 
+	private TextField search_text;
 	private static int chosengroupbytype=-1;
 	private static int chosen=-1;
 	private static ObservableList<RequestPhase> list;
@@ -74,16 +79,16 @@ public class RequestsWorkedOnController implements Initializable {
 	public static MakeDicisionController decision;
 	private static int id;
 	private static String system;
-	ObservableList<String> statuslist = FXCollections.observableArrayList("work", "wait", "over","All");
+	ObservableList<String> statuslist = FXCollections.observableArrayList("work","waitingForApprove", "wait", "over","All");
 	public static  FXMLLoader loader;
-	private User user;
+	private static User user;
 	private static RequestPhase rp; 
-	public void start(SplitPane splitpane, String path,User user,String job) {
+	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
 		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
-		String [] RequestWorkedON=new String[3];
+		String [] RequestWorkedON=new String[4];
 		try {
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
@@ -91,26 +96,66 @@ public class RequestsWorkedOnController implements Initializable {
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
 			RequestWorkedON[0]="Requests worked on";
-			if(job.equals("Comittee Member")) {
+			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
-			}else {
+			}
+			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
+				RequestWorkedON[1]=user.getUsername();
+			}
+			else {
 			RequestWorkedON[1]=user.getUsername();
 			}
 			RequestWorkedON[2]=job;
-			
+			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
+		System.out.println(arr1.get(0).getState());
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
 		}
 	}
+	public void searchaction() {
+		if(!search_text.getText().equals("")) {
+			try {
+		    int searchid=Integer.valueOf(search_text.getText());
+		long x=tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+				.count();
+				if(x>0) {
+			tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
+			.findAny()
+			   .ifPresent(item -> {
+				   tableRequests.getSelectionModel().select(item);
+				   tableRequests.scrollTo(item);
+			    });
+				}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Not exist");
+	        alert.setContentText("The ID doesn't exist");
+	        alert.showAndWait();
+		}
+		}catch(NumberFormatException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setContentText("Enter ID number in search field");
+	        alert.showAndWait();	
+		}
+		}
+		else {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle("Warning");
+	        alert.setHeaderText("Enter ID");
+	        alert.setContentText("Please Enter ID to the search field");
+	        alert.showAndWait();
+		}
+	}
 	public void fillTable(ArrayList<RequestPhase> arr1) {
-	
 	arrofRequests=arr1;	
 	loader.<RequestsWorkedOnController>getController().setTableRequests(arr1);	
 	}
@@ -122,14 +167,18 @@ public class RequestsWorkedOnController implements Initializable {
 			if(chosengroupbytype==0)
 				groupbystatus="work";
 			else if(chosengroupbytype==1)
-				groupbystatus="wait";
+				groupbystatus="waitingForApprove";
 			else if(chosengroupbytype==2)
-				groupbystatus="over";
+				groupbystatus="wait";
 			else if(chosengroupbytype==3)
-				groupbystatus="All";
+				groupbystatus="over";
+			else if(chosengroupbytype==4)
+				groupbystatus="All";		
 			if(groupbystatus.equals("All")) {
 				arr=arrofRequests;
-			}else {
+			}
+			else {
+			
 				for(int i=0;i<arrofRequests.size();i++) 
 					if((arrofRequests.get(i)).getState().equals(State.valueOf(groupbystatus))) 
 						arr.add(arrofRequests.get(i));			
@@ -182,10 +231,10 @@ public class RequestsWorkedOnController implements Initializable {
 				@Override
 				public void run() {
 					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,rp,"/Boundary/DuratinEvaluator.fxml",rp.getPhase());
+		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 					else {
-						setDuration.start(splitpane,rp ,"/Boundary/Duration.fxml",rp.getPhase());
+						setDuration.start(splitpane,rp ,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 				}
 			});
@@ -237,8 +286,74 @@ public class RequestsWorkedOnController implements Initializable {
 			}
 		}
 	}
-				
-	
+
+	public void refresh() {
+		Employee employee = (Employee) user;
+		switch (job) {
+		case "Inspector":
+			try {
+				InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Evaluator":
+			try {
+				EvaluatorHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",
+						employee, "Evaluator", "evaluation");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case "Comittee Member":
+
+			try {
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
+				if(ComitteeMemberHomeController.getFlag()==0) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
+				}
+				if(ComitteeMemberHomeController.getFlag()==1) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestsWorkOnTester.fxml", employee, "Comittee Member", "testing");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Chairman":
+			try {
+				ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", employee,
+						"Chairman", "decision");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Performer":
+			try {
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Performance Leader", "performance");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Administrator":
+			try {
+				AdministratorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
+	}
+
    public void InsertTestResultAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
@@ -299,7 +414,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 		else {
 			RequestPhase selected =tableRequests.getSelectionModel().getSelectedItem();
-			decision=new MakeDicisionController();
+			decision=new MakeDicisionController();	
 			decision.start(splitpane,selected,user);
 		}
 	}
@@ -307,8 +422,6 @@ public class RequestsWorkedOnController implements Initializable {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
-			System.out.println(s.getState().toString());
-			System.out.println(State.work.toString());
 			if(s.getState().toString().equals(State.work.toString()))
 			{
 			CreateEvaluationReportController requestifo = new CreateEvaluationReportController();
@@ -350,3 +463,4 @@ public static RequestPhase getRP() {
 	}
 
 }
+

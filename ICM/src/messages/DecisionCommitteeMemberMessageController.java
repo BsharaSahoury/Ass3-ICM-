@@ -1,6 +1,6 @@
 package messages;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,15 +42,15 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/CommitteeMemberDecision-message.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl=loader.getController();
-			Object[] message= {"get explain notification",ctrl.notificationID,"Chairman to approve the decision"};	
-			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane=splitpane;
+			Object[] message= {"get explain notification",ctrl.notificationID,"Chairman to approve the decision"};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}		
+			}				
+			splitpane.getItems().set(1, lowerAnchorPane);
+			this.splitpane=splitpane;
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -59,8 +59,7 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void approveAction(ActionEvent e) {
-		System.out.println("q");
+	public void approveAction(ActionEvent e) {	
 		if(flag==-1) {
 			flag=0;
 		Object[] message= {"approve committee decision",requestID,CommitteeDecision,ctrl.notdetails};
@@ -70,33 +69,14 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
-		}else {	
+		}/*else {	
 			 Alert alertSuccess = new Alert(AlertType.WARNING);
 			 alertSuccess.setTitle("Warning");
 			 alertSuccess.setHeaderText("Already Approve");
 			 alertSuccess.setContentText("You already approved this decision");
 			 alertSuccess.show();
-		}
+		}*/
 	}
-	/*
-	public void chooseOtherAction(ActionEvent e) {
-		String fullname=combo.getSelectionModel().getSelectedItem();
-		if(fullname==null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-	        alert.setTitle("TEST");
-	        alert.setHeaderText("ERROR");
-	        alert.setContentText("please choose an evaluator");
-	        alert.showAndWait();
-	        return;
-		}
-		Object[] msg= {"manualR",fullname,requestID};
-		try {
-			LoginController.cc.getClient().sendToServer(msg);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}*/
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		notificationID=NotificationsController.getidnotification();

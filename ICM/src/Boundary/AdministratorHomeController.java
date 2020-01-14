@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Client.Func;
 import Client.MainForClient;
 import Entity.Employee;
 import javafx.application.Application;
@@ -23,6 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class AdministratorHomeController implements Initializable {
+@FXML
+Button allEmployees;
 @FXML
 private Button Homebtn;
 @FXML
@@ -53,6 +56,7 @@ Platform.runLater(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 try {
+	System.out.println("Hi baby");
 Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
 Scene scene = new Scene(root);
 primaryStage.setScene(scene);
@@ -60,8 +64,9 @@ primaryStage.setResizable(false);
 primaryStage.setTitle("ICM-Home");
 primaryStage.show();
 primaryStage.setOnCloseRequest(event -> {
-System.out.println("EXIT ICM");
-System.exit(0);
+	System.out.println("EXIT ICM");
+	LogOutController logOut = new LogOutController();
+	logOut.exit(primaryStage,Administrator);
 });
 } catch (Exception e) {
 e.printStackTrace();
@@ -74,45 +79,69 @@ e.printStackTrace();
 public Stage getPrimaryStage() {
 return primaryStage;
 }
-public void PermissionsAction(ActionEvent e) {
-		PermissionsController pc=new PermissionsController();
-		pc.start(splitpane);
+public void AllEmployeesAction(ActionEvent e) {
+	
 }
+private void runLater(Func f) {
+	f.call();
+	Platform.runLater(() -> {
+		try {
+			Thread.sleep(10);
+			f.call();
 
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	});
+}
 public void GoToHome(ActionEvent event) throws Exception {
 HomeController home = new HomeController();
-home.start(splitpane);
+runLater(() -> {
+	home.start(splitpane);
+});	
 }
 
 public void AllRequestsAction(ActionEvent event) throws Exception {
 	AllRequests = new AllRequestsController();
-	AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
+	runLater(() -> {
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
+	});	
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 RequestSubmissionController Submit = new RequestSubmissionController();
-Submit.start(splitpane,Administrator);
+runLater(() -> {
+	Submit.start(splitpane,Administrator);
+});	
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
 ProfileSettingController Submit = new ProfileSettingController();
-Submit.start(splitpane,Administrator);
+runLater(() -> {
+	Submit.start(splitpane,Administrator);
+});	
+
 }
 
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
-	MyRequests.start(splitpane, Administrator,"Administrator");
+	runLater(() -> {
+		MyRequests.start(splitpane, Administrator,"Administrator");
+	});		
 }
 
-//@FXML
 public void AboutICMAction(ActionEvent event) throws Exception {
 AboutICMController about = new AboutICMController();
-about.start(splitpane);
+runLater(() -> {
+	about.start(splitpane);
+});	
 }
+
 public void LogOutAction(ActionEvent event) throws Exception {
 LogOutController logOut = new LogOutController();
 primaryStage.close();
-logOut.start(primaryStage);
+logOut.start(primaryStage,Administrator);
 }
 @Override
 public void initialize(URL location, ResourceBundle resources) {
@@ -120,6 +149,8 @@ public void initialize(URL location, ResourceBundle resources) {
 }
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
-	notific.start(splitpane,Administrator);
+	runLater(() -> {
+		notific.start(splitpane,Administrator);
+	});		
 }
 }
