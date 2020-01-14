@@ -17,7 +17,6 @@ import Client.ClientApproveEvaluatorObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
-import Client.ClientChangePermissionsObserver;
 import Client.ClientCheckApproveDuratinObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
@@ -27,7 +26,6 @@ import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
-import Client.ClientInitPermissionsPageObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
 import Client.ClientInspectorfreazerequestObserver;
@@ -102,12 +100,7 @@ public class MainClientController {
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
-
-			ClientChangePermissionsObserver ccpo=new ClientChangePermissionsObserver(cc.getClient());
-			ClientInitPermissionsPageObserver cippo=new ClientInitPermissionsPageObserver(cc.getClient());
-			
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
-
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

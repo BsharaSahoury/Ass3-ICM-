@@ -77,10 +77,6 @@ public class MainForServer extends Application{
 			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
-
-		    ServerInitPermissionsPageObserver sippo=new ServerInitPermissionsPageObserver(sv);
-		    ServerChangeEvaluatorObserver  sceo=new ServerChangeEvaluatorObserver(sv);
-		    ServerChangePermissionObserver scpoo=new ServerChangePermissionObserver(sv);
 		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
 			try {
 			   sv.listen();

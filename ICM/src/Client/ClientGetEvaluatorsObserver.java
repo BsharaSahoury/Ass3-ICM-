@@ -73,8 +73,8 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							}
 						});
 					}
-				}
-				else if(keymessage.equals("evaluatorsagain")) {
+				}*/
+				}else if(keymessage.equals("evaluatorsagain")) {
 					if(arg1[1] instanceof ArrayList<?>) {
 						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
 						ArrayList<String> names=new ArrayList<>();
@@ -89,8 +89,8 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							}
 						});
 					}
-				}*/
-			}
+				}
+			
 		}
 	
 	}

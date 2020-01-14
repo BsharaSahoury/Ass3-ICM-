@@ -30,7 +30,8 @@ public class ServerApproveDecsionCommitteeobserver implements Observer {
 						int id=(int)arg3[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						String dec=(String)arg3[2];
-					//	mysqlConnection.addRequestToDB(con,id,dec);
+						System.out.println(dec);
+						mysqlConnection.addRequestToDB(con,id,dec);
 						String Explaindec=(String)arg3[3];
 						long millis=System.currentTimeMillis();					
 						String not="Chairman Approved Comittee Members Decision is '"+dec+"' for request id="+id+"\n";
