@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.xml.internal.fastinfoset.util.DuplicateAttributeVerifier;
-
 import Client.ClientConsole;
 import Entity.EvaluationReport;
 import Entity.Request;
@@ -17,7 +15,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -36,8 +33,6 @@ public class CreateEvaluationReportController implements Initializable {
 	private TextArea Risks;
 	@FXML
 	private TextField duration;
-	@FXML
-	private Button save;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
 	private static ClientConsole cc;
@@ -78,23 +73,14 @@ public class CreateEvaluationReportController implements Initializable {
 		 try 
 	        { 
 	            // checking valid integer using parseInt() method 
-	            int t=Integer.parseInt(duration.getText());
-	            if(t<=0)
-{
-	            	Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("Wrong Input");
-					alert.setHeaderText("ERROR");
-					alert.setContentText("Please fill a positive number in duration");
-					alert.showAndWait();
-					return;
-}
+	            Integer.parseInt(duration.getText()); 
 	        }  
 	        catch (NumberFormatException e)  
 	        { 
 	        	Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Wrong Input");
+				alert.setTitle("Error Input");
 				alert.setHeaderText("ERROR");
-				alert.setContentText("Please fill a number in duration");
+				alert.setContentText("please a number in duratin");
 				alert.showAndWait();
 				return;	        } 
 		EvaluationReport er = new EvaluationReport(Location.getText(), DescriptionOfChange.getText(),
@@ -103,11 +89,9 @@ public class CreateEvaluationReportController implements Initializable {
 		Object[] message = { "send the report", er };
 		try {
 			LoginController.cc.getClient().sendToServer(message);
-			save.setDisable(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 
 	}
 
