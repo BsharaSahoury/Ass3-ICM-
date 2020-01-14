@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -72,7 +71,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" text="Button" />
       <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

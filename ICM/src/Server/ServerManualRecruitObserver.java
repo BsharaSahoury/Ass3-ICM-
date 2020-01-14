@@ -8,6 +8,7 @@ import java.util.Observer;
 import DBconnection.mysqlConnection;
 import Entity.Employee;
 import Entity.Notification;
+import Entity.Phase;
 import ocsf.server.ConnectionToClient;
 
 public class ServerManualRecruitObserver implements Observer {
@@ -54,6 +55,7 @@ public class ServerManualRecruitObserver implements Observer {
 						Employee performer=mysqlConnection.getSpecificEmployee(con,fullname);
 						boolean flag=mysqlConnection.assignEmployeeToPhaseRequest(con, performer, id,"performance");
 						if(flag) {
+							mysqlConnection.updateCurrentPhase(con, id, Phase.performance);
 							Object[] message= {"performerRecruit"};
 							try {
 								client.sendToClient(message);
@@ -69,6 +71,7 @@ public class ServerManualRecruitObserver implements Observer {
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,performer);
 						}
+						
 					}
 					else if(keymessage.equals("manualEvaluatorAgain")) {
 						String fullname=(String)arg3[1];
