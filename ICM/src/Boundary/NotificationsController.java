@@ -69,6 +69,7 @@ public class NotificationsController implements Initializable {
 	private static String ExplainDecision;
 	private static int idnotification;
     private static String myPhase;
+    private static int id;
 	public void start(SplitPane splitpane, User user) {
 		this.user = user;
 		primaryStage = LoginController.primaryStage;
@@ -109,7 +110,6 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		String phase1;
-		int id;
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {
@@ -345,6 +345,9 @@ public class NotificationsController implements Initializable {
 	}
 	public static String getMyPhase() {
 		return myPhase;
+	}
+	public static int getId() {
+		return id;
 	}
 
 	public static int getidofrequestforDecision() {

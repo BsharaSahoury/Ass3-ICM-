@@ -97,6 +97,7 @@ public class MakeDicisionController implements Initializable {
 			Message[3]=Integer.toString(ctrl.selected.getR().getId());
 			try {
 				cc.getClient().sendToServer(Message);
+				Sendbtn.setDisable(true);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
