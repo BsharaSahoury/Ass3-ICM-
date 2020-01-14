@@ -136,17 +136,9 @@ public class RequestInfoController implements Initializable {
 	
 	
 	public void BackBtnAction(ActionEvent e) {
-		/*InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
-		System.out.println("logged1");
-		AllRequestsController AllRequests=new AllRequestsController();
-		System.out.println("logged2");
-		AllRequests = new AllRequestsController();
-		System.out.println("logged3");
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
-		System.out.println("logged4");*/
 		
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
-        System.out.println("Successfully");
+      
         
 	}
 	
@@ -161,6 +153,13 @@ public class RequestInfoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-	}
+		
+		
+	           
+		
+		
+		
+		
+		
+ 	}
 }

@@ -11,6 +11,7 @@ import org.omg.PortableServer.POAManagerPackage.State;
 import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -103,7 +104,20 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			}	
 		}
 	}
-
+    
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		
+		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+      
+        
+	}
+	
+	
+	
+	
 	public void cantactive() {
 		
 	}
