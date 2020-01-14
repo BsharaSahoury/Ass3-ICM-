@@ -44,7 +44,6 @@ public class EvaluatorHomeController implements Initializable {
 	public static Stage primaryStage;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
-	public static EvaluatorHomeController e;
 	private static Employee evaluator;
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
@@ -61,9 +60,8 @@ public class EvaluatorHomeController implements Initializable {
 			primaryStage.show();
 			primaryStage.setOnCloseRequest( event ->
 		    {
-				System.out.println("EXIT ICM");
-				LogOutController logOut = new LogOutController();
-				logOut.exit(primaryStage,evaluator);
+		        System.out.println("EXIT ICM");
+		        System.exit(0);	
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -89,13 +87,13 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON = new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator","evaluation");}
+	RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",evaluator,"Evaluator");}
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 	RequestSubmissionController Submit=new RequestSubmissionController();
 	Submit.start(splitpane,evaluator);
 }
-public void MyRequestsAction() throws Exception {
+public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
 	MyRequests.start(splitpane,evaluator,"Evaluator");
 }
@@ -116,10 +114,7 @@ public void clickNotifications(ActionEvent event) throws Exception {
 public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
-	logOut.start(primaryStage,evaluator);
-}
-public Employee getEvaluator() {
-	return evaluator;
+	logOut.start(primaryStage);
 }
 @Override
 public void initialize(URL location, ResourceBundle resources) {

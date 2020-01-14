@@ -55,14 +55,6 @@ public Request(int id, String initiatorName, String status,String privilegedInfo
 	this.privilegedInfoSys = privilegedInfoSys;
 	this.date = date;
 }
-public Request(int id, String initiatorName, String status,String privilegedInfoSys,java.sql.Date date,Phase currentPhase) {
-	this.id = id;
-	this.initiatorName = initiatorName;
-	this.status = status;
-	this.privilegedInfoSys = privilegedInfoSys;
-	this.date = date;
-	this.currentPhase=currentPhase;
-}
 public Request(int id, String initiatorName, String initiatorEmail, String initiatorRole, String status,
 String existingSituation, String explainRequest, String privilegedInfoSys, String reason, String comment,
 java.sql.Date date, Phase currentPhase) {

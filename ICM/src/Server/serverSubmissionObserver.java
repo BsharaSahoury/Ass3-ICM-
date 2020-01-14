@@ -42,7 +42,6 @@ public class serverSubmissionObserver implements Observer {
 							}
 
 							Employee evaluator=mysqlConnection.getAutomaticRecruit(con,newRequest.getPrivilegedInfoSys());
-							System.out.println(evaluator==null);
 							String content="automatic recruit employee: "+evaluator.getFirstName()+" "+evaluator.getLastName()+" for request#"+newRequest.getId();
 							Date date=newRequest.getDate();
 							String type="recruitForInspector";
@@ -50,6 +49,7 @@ public class serverSubmissionObserver implements Observer {
 							Notification n1=new Notification(content,date,type);
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertRecruitNotificationForInspectorToDB(con,n1);
+							System.out.println("hi I'm server");
 		
 
 						}

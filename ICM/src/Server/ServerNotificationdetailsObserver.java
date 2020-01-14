@@ -31,7 +31,6 @@ public class ServerNotificationdetailsObserver implements Observer {
 					keymessage="notification details";
 					Object[] message= {keymessage,details,job};
 					try {
-						
 						client.sendToClient(message);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block

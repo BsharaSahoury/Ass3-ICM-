@@ -65,9 +65,8 @@ public class RequestTrackController implements Initializable {
 	}
 
 	public void SetTrack(RequestPhase rp) {
-		System.err.println("000000000");
 		requeststatus.setText(rp.getR().getStatus());
-		requestPhase.setText(rp.getCurrentPhase().toString());
+		requestPhase.setText(rp.getPhase().toString());
 		subDate.setText(rp.getStartDate().toString());
 		dueDate.setText(rp.getDueDate().toString());
 		long millis = System.currentTimeMillis();
@@ -77,7 +76,6 @@ public class RequestTrackController implements Initializable {
 		long diffdays = diff / (24 * 60 * 60 * 1000);
 		long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
 		reamining.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
-		
 
 	}
 

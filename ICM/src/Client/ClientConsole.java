@@ -117,4 +117,3 @@ public static void displayFreezeError() {
    */
 }
 //End of ConsoleChat class
-

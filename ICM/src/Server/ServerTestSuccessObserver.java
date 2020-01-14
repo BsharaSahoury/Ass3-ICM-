@@ -31,7 +31,6 @@ public class ServerTestSuccessObserver implements Observer {
 						int requestId = (int) arg3[1];
 						Connection con = mysqlConnection.makeAndReturnConnection();
 						mysqlConnection.updateDBdueToSuccessTest(con, requestId);
-						//mysqlConnection.updateDBdueToFailTest(con,requestId);
 						long millis = System.currentTimeMillis();
 						Notification n = new Notification(
 								"test for request#" + requestId + "passed, request moved to close phase",

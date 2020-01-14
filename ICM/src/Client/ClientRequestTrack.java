@@ -7,7 +7,6 @@ import Boundary.RequestInfoController;
 import Boundary.RequestTrackController;
 import Entity.Request;
 import Entity.RequestPhase;
-import javafx.application.Platform;
 import ocsf.client.ObservableClient;;
 
 public class ClientRequestTrack implements Observer {
@@ -25,16 +24,8 @@ public class ClientRequestTrack implements Observer {
 				if (keymessage.equals("Track request")) {
 					if (arg2[1] instanceof RequestPhase) {
 						RequestPhase requestphase = (RequestPhase) arg2[1];
-						System.out.println(requestphase.getR().getId());	
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {	
-								System.out.println(requestphase.getInitiatorName());
-								
-								System.out.println("sxxxx");
+						System.out.println(requestphase.getR().getId());		
 						RequestTrackController.RequestTrack.SetTrack(requestphase);
-							}
-						});
 					}
 
 				}

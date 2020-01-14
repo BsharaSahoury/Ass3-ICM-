@@ -32,8 +32,8 @@ public class ServerTestFailedObserver implements Observer {
 						mysqlConnection.updateDBdueToFailTest(con,requestId);
 						long millis=System.currentTimeMillis();
 						Notification n=new Notification("test for request#"+requestId+"failed, request returned to performance phase, please select a performer",new java.sql.Date(millis),"fail message sent to Inspector");
+						
 						n=mysqlConnection.insertNotificationToDB(con, n);
-						mysqlConnection.insertNotificationDetailsToDB(con, n,failureDetails);
 						mysqlConnection.sendFailDetailsToInspector(con,n);
 						
 
