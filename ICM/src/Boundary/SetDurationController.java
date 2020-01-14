@@ -91,9 +91,11 @@ public class SetDurationController implements Initializable {
 			ButtonType button = result.orElse(ButtonType.CANCEL);
 			if (button == ButtonType.OK) {
 				try {
+					LocalDate s =startDate.getValue();
+					LocalDate d=dueDate.getValue();
 					String keymessage = "save duration";
-					String d[] = { startDate.getValue().toString(), dueDate.getValue().toString() };
-					Object[] message = { keymessage, r.getId(), d, phase };
+					LocalDate date[] = { s,d };
+					Object[] message = { keymessage, r.getId(), date, phase };
 
 					LoginController.cc.getClient().sendToServer(message);
 					save.setDisable(true);
