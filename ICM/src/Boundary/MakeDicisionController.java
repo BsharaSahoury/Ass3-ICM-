@@ -21,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -41,17 +42,24 @@ public class MakeDicisionController implements Initializable {
     private TextArea ExplainDectxt;
     @FXML
     private Button Sendbtn;
+    @FXML
+    private Label requestid;
+    public static MakeDicisionController ctrl;
     private RequestPhase selected;
     public static int flag=-1;
+    private User user;
 	public void start(SplitPane splitpane,RequestPhase selected,User user) {
-		primaryStage = LoginController.primaryStage;
-		this.selected=selected;
-		this.cc = LoginController.cc;
-		this.splitpane = splitpane;
 		try {
 			loader = new FXMLLoader(getClass().getResource("/Boundary/DecisionCommitteMember.fxml"));
 			lowerAnchorPane = loader.load();
+			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			loader.<MakeDicisionController>getController().requestid.setText(Integer.toString(selected.getR().getId()));
+			ctrl.user=user;
+			primaryStage = LoginController.primaryStage;
+			ctrl.selected=selected;
+			this.cc = LoginController.cc;
+			this.splitpane = splitpane;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,8 +70,6 @@ public class MakeDicisionController implements Initializable {
 	}
 	
 	public void SendToChairMan(ActionEvent e) { 
-		if(flag==-1) {
-			flag=0;
 		if(!Approve.isSelected()&&!Reject.isSelected()&&!AdditionalInfo.isSelected()) {
 			 Alert alertWarning = new Alert(AlertType.WARNING);
 		     alertWarning.setTitle("Warning Alert Title");
@@ -88,7 +94,7 @@ public class MakeDicisionController implements Initializable {
 			else
 			Message[1]="ask for additional Information";
 			Message[2]=ExplainDectxt.getText();
-			Message[3]=Integer.toString(RequestsWorkedOnController.decision.selected.getR().getId());
+			Message[3]=Integer.toString(ctrl.selected.getR().getId());
 			try {
 				cc.getClient().sendToServer(Message);
 			} catch (IOException e1) {
@@ -96,15 +102,10 @@ public class MakeDicisionController implements Initializable {
 				e1.printStackTrace();
 			}
 		}
-		}
-	
-		else {	
-			 Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Already Sent");
-			 alertSuccess.setContentText("The decision for this request is already sent to chairman");
-			 alertSuccess.show();
-		}
+	}
+	public void showEvaluationReport() {
+		CommitteeEvaluationController evaluation=new CommitteeEvaluationController();
+		evaluation.start(splitpane, ctrl.selected, ctrl.user);
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

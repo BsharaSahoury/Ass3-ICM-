@@ -25,11 +25,6 @@
          </columns>
       </TableView>
       <Label layoutX="121.0" layoutY="206.0" />
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="688.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/reload-icon-5.png" />
-         </image>
-      </ImageView>
       <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
       <Button layoutX="193.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #9d1b34;" text="Search" textFill="WHITE">
          <font>
@@ -61,7 +56,7 @@
          </font>
       </Label>
       <Line endX="464.0" layoutX="264.0" layoutY="24.0" startX="-264.0" />
-      <Button fx:id="RequestInfo1" layoutX="382.0" layoutY="531.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set Duration" textFill="WHITE">
+      <Button fx:id="RequestInfo1" layoutX="382.0" layoutY="531.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -70,6 +65,15 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+      </Button>
+      <Button layoutX="673.0" layoutY="46.0" mnemonicParsing="false" onAction="#refresh" style="-fx-background-insets: 333333;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reload-icon-5.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
