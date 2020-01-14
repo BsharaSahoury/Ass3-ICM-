@@ -761,17 +761,25 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 		return rp;
 	}
-	public static boolean insertDate(Connection con, int id, String[] d, Phase p) {
+	public static boolean insertDate(Connection con, int id, LocalDate[] d, Phase p) {
 		
-		d[0] = d[0].replaceAll("(\\r|\\n)", "");
-        d[1] = d[1].replaceAll("(\\r|\\n)", "");
+	/*	d[0] = d[0].replaceAll("(\\r|\\n)", "");
+        d[1] = d[1].replaceAll("(\\r|\\n)", "");*/
         PreparedStatement stm = null;
 		Statement st = null;
 		int maxRepetion=0;
-		if(getStatus(con, id).equals("frozen"))
+		Date start=Date.valueOf(d[0]);
+		Date due=Date.valueOf(d[1]);
+		if(getStatus(con, id).equals("frozen")) {
+			System.out.println("77777777777");
 			return false;
+
+		}
 			try {
-				
+				long s=start.getTime()+(int) (1000 * 60 * 60 * 24 );
+				 start = new java.sql.Date(s);
+				 long dd=due.getTime()+(int) (1000 * 60 * 60 * 24 );
+				 due = new java.sql.Date(dd);
 				stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 				stm.setInt(1, id);
 				
@@ -783,8 +791,8 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
 						+ " SET start_date = ?, due_date = ?,state='waitingForApprove' "
 						+ "WHERE (request_id = ? and phase=? and repetion=?);");
-				stm1.setString(1, d[0]);
-				stm1.setString(2,d[1]);
+				stm1.setDate(1, start);
+				stm1.setDate(2,due);
 				stm1.setInt(3, id);
 				stm1.setString(4, p.toString());
 				stm1.setInt(5, maxRepetion);

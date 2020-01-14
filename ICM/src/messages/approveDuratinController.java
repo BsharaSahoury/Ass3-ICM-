@@ -56,10 +56,6 @@ public class approveDuratinController implements Initializable {
 			ctrl.label.setVisible(false);
 			ctrl.label.setText(content);
 			ctrl.label.setVisible(true);
-			LocalDate startDate = LocalDate.parse(start);
-			LocalDate dueDate = LocalDate.parse(due);
-			ctrl.start.setValue(startDate);
-			ctrl.due.setValue(dueDate);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -70,7 +66,7 @@ public class approveDuratinController implements Initializable {
 		LocalDate today = LocalDate.now();
 		if (startDate != null && dueDate != null & dueDate.compareTo(startDate) >= 0 && startDate.compareTo(today) >= 0) {
 			String keymessage ="ispector duration";
-			String d[] = { startDate.toString(), dueDate.toString() };
+			LocalDate d[] = { startDate, dueDate };
 			Object[] message = { keymessage, id, d,Enum.valueOf(Phase.class, phase),State.wait};
 
 			try {
@@ -113,6 +109,10 @@ public class approveDuratinController implements Initializable {
 					note.setVisible(true);
 					approve.setDisable(true);
 				}
+				LocalDate startDate = rp.getStartDate().toLocalDate();
+				LocalDate dueDate = rp.getDueDate().toLocalDate();
+				start.setValue(startDate);
+				due.setValue(dueDate);
 				
 			}
 		});

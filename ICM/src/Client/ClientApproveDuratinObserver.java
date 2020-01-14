@@ -1,5 +1,6 @@
 package Client;
 
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,7 +21,7 @@ public class ClientApproveDuratinObserver implements Observer {
 			if (arg2[0] instanceof String) {
 				String keymessage = (String) arg2[0];
 				if (keymessage.equals("approvedDuration")) {
-					if (arg2[1] instanceof String[]) {
+					if (arg2[1] instanceof LocalDate[]) {
 						Platform.runLater(new Runnable() {
 
 							@Override
