@@ -288,6 +288,7 @@ public class RequestsWorkedOnController implements Initializable {
 	}
 
 	public void refresh() {
+		System.out.println("ss");
 		Employee employee = (Employee) user;
 		switch (job) {
 		case "Inspector":
