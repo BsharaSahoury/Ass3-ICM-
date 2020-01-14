@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.xml.internal.fastinfoset.util.DuplicateAttributeVerifier;
+
 import Client.ClientConsole;
 import Entity.EvaluationReport;
 import Entity.Request;
@@ -76,14 +78,23 @@ public class CreateEvaluationReportController implements Initializable {
 		 try 
 	        { 
 	            // checking valid integer using parseInt() method 
-	            Integer.parseInt(duration.getText()); 
+	            int t=Integer.parseInt(duration.getText());
+	            if(t<=0)
+{
+	            	Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Wrong Input");
+					alert.setHeaderText("ERROR");
+					alert.setContentText("Please fill a positive number in duration");
+					alert.showAndWait();
+					return;
+}
 	        }  
 	        catch (NumberFormatException e)  
 	        { 
 	        	Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Error Input");
+				alert.setTitle("Wrong Input");
 				alert.setHeaderText("ERROR");
-				alert.setContentText("please a number in duratin");
+				alert.setContentText("Please fill a number in duration");
 				alert.showAndWait();
 				return;	        } 
 		EvaluationReport er = new EvaluationReport(Location.getText(), DescriptionOfChange.getText(),

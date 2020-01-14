@@ -2,6 +2,7 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,7 +29,7 @@ public class ServerSetDuratinObserver implements Observer {
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("save duration")) {
 					int id = (int) arg3[1];
-					String d[] = (String[]) arg3[2];
+					LocalDate d[] = (LocalDate[]) arg3[2];
 					Phase p = (Phase) arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
 					boolean b = mysqlConnection.insertDate(con, id, d, p);
@@ -38,11 +39,12 @@ public class ServerSetDuratinObserver implements Observer {
 						send[1] = false;
 					} else {
 						ArrayList<Employee> inspector = mysqlConnection.getEmployees(con, "inspector");
-						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, "evaluation");
+						RequestPhase rp = mysqlConnection.getRequestPhase(con, id, p.toString());
 						long millis = System.currentTimeMillis();
 						Notification n = new Notification(
-								"You have duratin from the evaluator " + rp.getEmployee() + " from " + rp.getStartDate()
-										+ " to  " + rp.getDueDate() ,
+								"You have duration from  " + rp.getEmployee() + " from: " + rp.getStartDate() + " to: "
+										+ rp.getDueDate() + System.lineSeparator() + ", for the " + rp.getPhase()
+										+ " phase with the request number " + rp.getId(),
 								new java.sql.Date(millis), "Duratin of evaluator");
 						n = mysqlConnection.insertNotificationToDB(con, n);
 						mysqlConnection.insertNotificationForUserToDB(con, n, inspector.get(0));

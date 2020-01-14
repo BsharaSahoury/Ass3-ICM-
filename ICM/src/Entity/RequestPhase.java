@@ -17,7 +17,7 @@ private State phasestate;
 private int repetion;
 private String employee;
 public RequestPhase(Date startDate, Date dueDate,Request r,Phase phase,State phasestate) {
-	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate());
+	super(r.getId(),r.getInitiatorName(),r.getStatus(),r.getPrivilegedInfoSys(),r.getDate(),r.getCurrentPhase());
 	this.phase=phase;
 	this.r=r;
 	this.startDate = startDate;

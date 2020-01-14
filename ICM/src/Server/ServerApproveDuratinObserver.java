@@ -2,6 +2,7 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,7 +25,7 @@ public class ServerApproveDuratinObserver implements Observer{
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("ispector duration")) {
 					int id = (int) arg3[1];
-					String d[] = (String[]) arg3[2];
+					LocalDate[] d = (LocalDate[]) arg3[2];
 					Phase p = (Phase) arg3[3];
 					State s=(State) arg3[4];
 					Connection con = mysqlConnection.makeAndReturnConnection();

@@ -11,6 +11,7 @@ import Boundary.RequestsWorkedOnController;
 import Entity.Phase;
 import Entity.RequestPhase;
 import Entity.State;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,8 +42,10 @@ public class approveDuratinController implements Initializable {
 	private AnchorPane lowerAnchorPane;
 	public  static SplitPane splitpane;
 	public static int id;
-	public void start(SplitPane splitpane,String content, String start, String due, int id) {
+	public static String phase;
+	public void start(SplitPane splitpane,String content, String start, String due, int id, String p) {
 		this.id=id;
+		this.phase=p;
 		primaryStage=LoginController.primaryStage;
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/approveDuration.fxml"));
@@ -53,10 +56,6 @@ public class approveDuratinController implements Initializable {
 			ctrl.label.setVisible(false);
 			ctrl.label.setText(content);
 			ctrl.label.setVisible(true);
-			LocalDate startDate = LocalDate.parse(start);
-			LocalDate dueDate = LocalDate.parse(due);
-			ctrl.start.setValue(startDate);
-			ctrl.due.setValue(dueDate);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -67,8 +66,8 @@ public class approveDuratinController implements Initializable {
 		LocalDate today = LocalDate.now();
 		if (startDate != null && dueDate != null & dueDate.compareTo(startDate) >= 0 && startDate.compareTo(today) >= 0) {
 			String keymessage ="ispector duration";
-			String d[] = { startDate.toString(), dueDate.toString() };
-			Object[] message = { keymessage, id, d,Phase.evaluation,State.wait};
+			LocalDate d[] = { startDate, dueDate };
+			Object[] message = { keymessage, id, d,Enum.valueOf(Phase.class, phase),State.wait};
 
 			try {
 				LoginController.cc.getClient().sendToServer(message);
@@ -89,7 +88,7 @@ public class approveDuratinController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		String keymessage ="checkAprproveDuration";
-		Object[] message = { keymessage, id, Phase.evaluation.toString()};
+		Object[] message = { keymessage, id, NotificationsController.getMyPhase()};
 		try {
 			LoginController.cc.getClient().sendToServer(message);
 		} catch (IOException e) {
@@ -99,12 +98,24 @@ public class approveDuratinController implements Initializable {
 
 	}
 	public void checkApprove(RequestPhase rp) {
-		if(rp.getState().equals(State.work))
-		{
-			note.setDisable(false);
-			note.setText("you already approved duration");
-			note.setDisable(true);
-			approve.setDisable(true);
-		}
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				if(rp.getState().equals(State.work)||rp.getState().equals(State.wait))
+				{
+					note.setVisible(false);
+					note.setText("* You already approved duration");
+					note.setVisible(true);
+					approve.setDisable(true);
+				}
+				LocalDate startDate = rp.getStartDate().toLocalDate();
+				LocalDate dueDate = rp.getDueDate().toLocalDate();
+				start.setValue(startDate);
+				due.setValue(dueDate);
+				
+			}
+		});
+		
 	}
 }
