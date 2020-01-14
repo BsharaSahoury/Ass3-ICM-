@@ -287,12 +287,12 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 				s=new Request(rs4.getInt(7),Initiatorname,rs4.getString(8),rs4.getString(1),rs4.getDate(6));
 				result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(2)),State.valueOf(rs3.getString(7)));	
 				arr.add(result);	
-			}
-			
+			}		
 			}
 			stmt3 = null;
 			stmt4=null;
 			rs4.close();
+			rs3.close();
 		}
 	 catch (SQLException e) {
 //TODO Auto-generated catch block
@@ -1733,6 +1733,71 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 		return null;
 	}
-
+    public static ArrayList<RequestPhase> getrequestEngineerworkon(Connection con,String username){
+    	String Initiatorname=null;
+    	ArrayList<RequestPhase> arr = new ArrayList<RequestPhase>();
+    	PreparedStatement stmt1 = null;
+    	PreparedStatement stmt2=null;
+    	PreparedStatement stmt3=null;
+    	PreparedStatement stmt4=null;
+    	Request s=null;
+    	RequestPhase result=null;
+    	int count=0;
+    	try {
+    		stmt1=con.prepareStatement("SELECT DISTINCT R.request_id FROM icm.enginnerequest R WHERE username=?;");
+    		stmt1.setString(1, username);
+    		ResultSet rs=stmt1.executeQuery();
+    		while(rs.next())
+     		{
+    			count++;
+    			stmt2=con.prepareStatement("SELECT R.* FROM icm.enginnerequest R WHERE request_id=? AND username=?;");
+    			stmt2.setInt(1, rs.getInt(1));
+    			stmt2.setString(2, username);			
+    			ResultSet rs2=stmt2.executeQuery();
+    			int max=0;
+    			while(rs2.next()) {
+    				if(rs2.getInt(2)>=max)
+    					max=rs2.getInt(2);
+    			}
+    			rs2.close();
+    			stmt3=con.prepareStatement("SELECT R.* FROM icm.requestinphase R WHERE request_id=? AND phase=? AND repetion=?;");
+    			stmt3.setInt(1, rs.getInt(1));
+    			stmt3.setString(2, "performance");
+    			stmt3.setInt(3, max);
+    			ResultSet rs3=stmt3.executeQuery();	
+    			rs3.next();
+    			try {
+    				stmt4 = con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+    				stmt4.setInt(1, rs.getInt(1));	
+    				ResultSet rs4=stmt4.executeQuery();	
+    			if(rs4.next()) {
+    				Initiatorname=getinitiatorname(con,rs4.getString(9));
+    			if(!Initiatorname.equals(null)) {
+    				s=new Request(rs4.getInt(7),Initiatorname,rs4.getString(8),rs4.getString(1),rs4.getDate(6));
+    				result=new RequestPhase(null,null,s,Phase.valueOf("performance"),State.valueOf(rs3.getString(7)));	
+    				arr.add(result);	
+    			}
+    			}
+    			stmt2=null;
+    			stmt3 = null;
+    			stmt4=null;
+    			rs4.close();
+    			rs3.close();
+    		}
+    	 catch (SQLException e) {
+    //TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+     		}
+    		rs.close();
+    		}catch (SQLException e) {
+    	//TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	if(count>0) 
+    		return arr;
+    	else
+    		return null;
+    }
 }
 
