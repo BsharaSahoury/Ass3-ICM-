@@ -84,6 +84,10 @@ public void GoToHome(ActionEvent event) throws Exception {
 	}
 }
 
+public void RequestThatIlead(ActionEvent event) throws Exception{
+	RequestWorkON=new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
+}
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
 	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
