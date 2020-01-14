@@ -46,8 +46,6 @@ public class RequestTrackController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/UserStatus.fxml"));
 			lowerAnchorPane = loader.load();
 			RequestTrack = loader.getController();
-			if (RequestTrackController.RequestTrack == null)
-				System.out.println("nulllllllll");
 			splitpane.getItems().set(1, lowerAnchorPane);
 			String keymessage = "Track request";
 			int id = r.getId();
@@ -65,18 +63,27 @@ public class RequestTrackController implements Initializable {
 	}
 
 	public void SetTrack(RequestPhase rp) {
-		System.err.println("000000000");
 		requeststatus.setText(rp.getR().getStatus());
 		requestPhase.setText(rp.getCurrentPhase().toString());
-		subDate.setText(rp.getStartDate().toString());
-		dueDate.setText(rp.getDueDate().toString());
+		subDate.setText(rp.getDate().toString());
 		long millis = System.currentTimeMillis();
 		Date date = new java.sql.Date(millis);
 		currentDate.setText(date.toString());
-		long diff = rp.getDueDate().getTime() - date.getTime();
-		long diffdays = diff / (24 * 60 * 60 * 1000);
-		long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
-		reamining.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
+		if(rp.getDueDate()!=null)
+		{
+			dueDate.setText(rp.getDueDate().toString());
+			long diff = rp.getDueDate().getTime() - date.getTime();
+			long diffdays = diff / (24 * 60 * 60 * 1000);
+			long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
+			reamining.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
+		}
+		else {
+			dueDate.setText("not defined");
+			reamining.setText("not defined");
+		}
+		
+		
+		
 		
 
 	}

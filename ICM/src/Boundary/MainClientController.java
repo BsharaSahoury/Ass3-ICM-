@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
 import Client.ClientApproveDuratinObserver;
+import Client.ClientApproveEvaluatorObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
@@ -101,9 +102,12 @@ public class MainClientController {
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
+
 			ClientChangePermissionsObserver ccpo=new ClientChangePermissionsObserver(cc.getClient());
 			ClientInitPermissionsPageObserver cippo=new ClientInitPermissionsPageObserver(cc.getClient());
 			
+			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
+
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
