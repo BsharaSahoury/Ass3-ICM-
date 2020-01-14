@@ -1645,5 +1645,94 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 	return report;
 	}
+
+	public static boolean changePermission(Connection con, Employee oldE, Employee newE) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE employee SET job=? WHERE id=?;");
+			stm.setString(1, oldE.getJob());
+			stm.setInt(2, newE.getId());
+			stm.executeUpdate();
+			stm=con.prepareStatement("UPDATE employee SET job=? WHERE id=?;");
+			stm.setString(1, "engineer");
+			stm.setInt(2, oldE.getId());
+			stm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public static void changeEvaluator(Connection con, Employee oldEv, Employee newEv) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE employee SET job=?,support_system=? WHERE id=?;");
+			stm.setString(1, "evaluator");
+			stm.setString(2, oldEv.getSupportSystem());
+			stm.setInt(3, newEv.getId());
+			stm.executeUpdate();
+			stm=con.prepareStatement("UPDATE employee SET job=?,support_system=? WHERE id=?;");
+			stm.setString(1, "engineer");
+			stm.setString(2, null);
+			stm.setInt(3, oldEv.getId());
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void setNewJob(Connection con, Employee newEv, String job) {
+		PreparedStatement stm=null;
+		try {
+			stm=con.prepareStatement("UPDATE employee SET job=?,support_system=? WHERE id=?;");
+			stm.setString(1, job);
+			stm.setString(2, newEv.getSupportSystem());
+			stm.setInt(3, newEv.getId());
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public static ArrayList<Employee> getAllengineers(Connection con) {
+		Statement st=null;
+		ArrayList<Employee> list=new ArrayList<>();
+		
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT first_name,last_name,id,job,support_system FROM employee WHERE belonging<>'lecturer' AND job<>'administrator';");
+			while(rs.next()) {
+				list.add(new Employee(rs.getString(1)+" "+rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5)));
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static Employee[] getComittee(Connection con) {
+		Statement st=null;
+		Employee[] Comember=new Employee[2];
+		try {
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery("SELECT first_name,last_name,id,job FROM employee WHERE job='comittee member';");
+			rs.next();
+			Comember[0]=new Employee(rs.getString(1)+" "+rs.getString(2),rs.getInt(3),rs.getString(4));
+			rs.next();
+			Comember[1]=new Employee(rs.getString(1)+" "+rs.getString(2),rs.getInt(3),rs.getString(4));
+			return Comember;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }
 
