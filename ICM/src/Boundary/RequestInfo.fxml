@@ -14,7 +14,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestInfoController">
    <children>
-      <TabPane layoutX="3.0" layoutY="32.0" prefHeight="560.0" prefWidth="722.0" stylesheets="@tabs.css" tabClosingPolicy="UNAVAILABLE">
+      <Button fx:id="BackBtn" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="24.0" prefWidth="36.0" style="-fx-background-insets: 318476520;">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../Images/340.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TabPane layoutX="3.0" layoutY="30.0" prefHeight="562.0" prefWidth="722.0" stylesheets="@tabs.css" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Request Info">
                <content>
@@ -57,6 +66,7 @@
                         <TextArea fx:id="lbComment" layoutX="35.0" layoutY="323.0" prefHeight="76.0" prefWidth="521.0" />
                         <Label fx:id="LfileName" layoutX="69.0" layoutY="437.0" prefHeight="34.0" prefWidth="134.0" text="None." />
                         <Button fx:id="downloadFile" layoutX="198.0" layoutY="441.0" mnemonicParsing="false" onAction="#downloadFile" style="-fx-background-color: #9d1b34;" text="download file" textFill="WHITE" />
+                        <Button fx:id="BackBtn1" layoutX="418.0" layoutY="63.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="24.0" prefWidth="36.0" style="-fx-background-insets: 318476520;" />
                      </children>
                   </AnchorPane>
                </content>
@@ -97,14 +107,5 @@
       </TabPane>
       <Line endX="624.0" layoutX="101.0" layoutY="29.0" startX="-100.0" />
       <Label layoutX="47.0" layoutY="7.0" text="ICM-&gt;All Request-&gt;RequestInfo" />
-      <Button fx:id="BackBtn" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="24.0" prefWidth="36.0" style="-fx-background-insets: 318476520;">
-         <graphic>
-            <ImageView fitHeight="16.0" fitWidth="20.0">
-               <image>
-                  <Image url="@../Images/340.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </AnchorPane>

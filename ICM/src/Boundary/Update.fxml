@@ -80,11 +80,13 @@
          </tabs>
       </TabPane>
       <Label layoutX="51.0" layoutY="8.0" text="ICM-&gt;All Requests-&gt;Request treatment" />
-      <Button layoutY="2.0" minWidth="18.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="18.0" style="-fx-background-insets: 8888888888888;" />
-      <ImageView fitHeight="30.0" fitWidth="23.0" layoutX="17.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/back-arrow.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="9.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="31.0" prefWidth="32.0" style="-fx-background-insets: 8888888888888;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/back-arrow.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
