@@ -53,6 +53,9 @@ public class ServerDetectorObserver implements Observer {
 		Map<Integer,String> requestMap=mysqlConnection.getMap(con);
 		ObservableServer server=(ObservableServer)arg0;
 		Object[] msg= {"requests map",requestMap};
-		server.sendToAllClients(msg);	
+		server.sendToAllClients(msg);
+		
+		
 	}
+
 }

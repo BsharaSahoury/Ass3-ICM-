@@ -1,4 +1,3 @@
-
 package messages;
 
 import java.io.IOException;
@@ -130,4 +129,3 @@ public class AutomaticRecruitMessageController implements Initializable {
 	
 
 }
-

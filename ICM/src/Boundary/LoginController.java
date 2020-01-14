@@ -1,6 +1,5 @@
 package Boundary;
 
-import java.net.SocketException;
 import java.net.URL;
 
 import java.util.Observable;
@@ -15,7 +14,6 @@ import Entity.Student;
 import Entity.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,11 +27,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 /**

@@ -93,6 +93,30 @@ public class ServerManualRecruitObserver implements Observer {
 							mysqlConnection.insertNotificationForUserToDB(con, n1,evaluator);
 						}
 					}
+					else if (keymessage.equals("manualTester")) {
+						String fullname=(String)arg3[1];
+						int id=(int)arg3[2];
+						System.out.println(id+"             111111111111");
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						Employee tester=mysqlConnection.getSpecificEmployee(con,fullname);
+						boolean flag=mysqlConnection.assignEmployeeToPhaseRequest(con, tester, id,"testing");
+						if(flag) {
+							Object[] message= {"testerRecruit"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							long millis=System.currentTimeMillis();
+							Notification n1=new Notification(
+									"You've been recruited to evaluate request#"+id,
+									new java.sql.Date(millis),
+									"recruitNotificationForEvaluator");
+							n1=mysqlConnection.insertNotificationToDB(con, n1);
+							mysqlConnection.insertNotificationForUserToDB(con, n1,tester);
+						}
+					}
 					
 				}
 			}

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -33,7 +34,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="requestid" layoutX="160.0" layoutY="99.0" text="requestID">
+            <Label layoutX="160.0" layoutY="99.0" text="requestID">
                <font>
                   <Font size="16.0" />
                </font>
@@ -41,6 +42,16 @@
             <Label layoutX="40.0" layoutY="140.0" text="Evaluation report:" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="207.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/kissclipart-icon-word-png-clipart-microsoft-word-computer-ico-11658691c56ae5d9.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="251.0" layoutY="139.0" text="report_requestID.docx" textOverrun="CLIP">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Label>
             <Label layoutX="39.0" layoutY="220.0" text="Explain the decision:" textOverrun="CLIP">
@@ -92,11 +103,9 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="190.0" layoutY="140.0" mnemonicParsing="false" onAction="#showEvaluationReport" prefHeight="25.0" prefWidth="57.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20;" text="Show" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
          </children></AnchorPane>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

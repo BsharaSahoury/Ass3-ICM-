@@ -23,7 +23,7 @@
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;">
                <children>
-                  <Button alignment="BASELINE_LEFT" layoutX="-8.0" layoutY="365.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="365.0" mnemonicParsing="false" onAction="#PermissionsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="Permissions" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -211,7 +211,6 @@
                         <Font name="Comic Sans MS Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="143.0" layoutY="88.0" text="HI sami" />
                </children>
             </AnchorPane>
          </items>

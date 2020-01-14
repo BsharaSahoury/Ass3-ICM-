@@ -25,4 +25,7 @@ public class AboutICMController {
 			e.printStackTrace();
 		}	
 	}
+	public void clickNotification(ActionEvent e) {
+		
+	}
 }
