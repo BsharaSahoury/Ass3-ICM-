@@ -26,10 +26,9 @@ import Entity.Employee;
 import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
-import Entity.Student;
 import Entity.User;
 import javafx.fxml.*;
-public class MyRequestsController implements Initializable  {
+public class MyRequestsController implements Initializable {
 		public static Stage primaryStage;
 		private static ClientConsole cc;
 		private AnchorPane lowerAnchorPane;
@@ -63,20 +62,16 @@ public class MyRequestsController implements Initializable  {
 		private static SplitPane splitpane;
 		@FXML
 		private ComboBox Groupby;
-		@FXML
-		private TextField search_text;
 		private static int chosen=-1;
 		private static ArrayList<Request> arrofRequests;
 		ObservableList<String> statuslist = FXCollections.observableArrayList("Active","Frozen","Closed","All");
 		private static ObservableList<Request> list;
 		private FXMLLoader loader;
 		private static String job;
-		private static User user;
 		private static int chosengroupbytype=-1;
 		public void start(SplitPane splitpane,User user,String job)  {
 			this.splitpane=splitpane;
 			this.job=job;
-			this.user=user;
 			primaryStage=LoginController.primaryStage;
 			String[] myRequests=new String[3];
 			this.cc=LoginController.cc;
@@ -102,43 +97,9 @@ public class MyRequestsController implements Initializable  {
 		}
 		public void fillTable(ArrayList<Request> arr1) {
 		arrofRequests=arr1;	
-		loader.<MyRequestsController>getController().setTableRequests(arr1);		
-		}
-		public void searchaction() {
-			if(!search_text.getText().equals("")) {
-				try {
-			    int searchid=Integer.valueOf(search_text.getText());
-			long x=tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
-					.count();
-					if(x>0) {
-				tableRequests.getItems().stream().filter(item -> item.getId()==searchid)
-				.findAny()
-				   .ifPresent(item -> {
-					   tableRequests.getSelectionModel().select(item);
-					   tableRequests.scrollTo(item);
-				    });
-					}
-			else {
-				Alert alert = new Alert(AlertType.WARNING);
-		        alert.setTitle("Warning");
-		        alert.setHeaderText("Not exist");
-		        alert.setContentText("The ID doesn't exist");
-		        alert.showAndWait();
-			}
-			}catch(NumberFormatException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-		        alert.setTitle("Warning");
-		        alert.setContentText("Enter ID number in search field");
-		        alert.showAndWait();	
-			}
-			}
-			else {
-				Alert alert = new Alert(AlertType.WARNING);
-		        alert.setTitle("Warning");
-		        alert.setHeaderText("Enter ID");
-		        alert.setContentText("Please Enter ID to the search field");
-		        alert.showAndWait();
-			}
+			// TODO Auto-generated method stub
+		loader.<MyRequestsController>getController().setTableRequests(arr1);
+			
 		}
 		public void TrackRequestAction() {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();
@@ -209,81 +170,6 @@ public class MyRequestsController implements Initializable  {
 				}	
 		}
 		}
-
-	public void refresh() {
-		if (user instanceof User) {
-			if (user instanceof Employee) {
-				Employee employee = (Employee) user;
-				{
-					switch (employee.getJob()) {
-					case "inspector":
-						try {
-							InspectorHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					case "evaluator":
-						try {
-							EvaluatorHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-
-					case "comittee member":
-
-						try {
-							ComitteeMemberHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					case "chairman":
-						try {
-							ChairmanHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					case "performer":
-						try {
-							PerformanceLeaderHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					case "lecturer":
-						try {
-							LecturerHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					case "administrator":
-						try {
-							AdministratorHomeController.MyRequests.start(splitpane, user, job);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						break;
-					}
-				}
-
-			} else if (user instanceof Student) {
-				Student student1 = (Student) user;
-				StudentHomeController student = new StudentHomeController();
-				student.start(student1);
-			}
-		}
-	}
 		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

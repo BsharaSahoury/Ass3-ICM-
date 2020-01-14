@@ -41,8 +41,11 @@ public class ServerCreateEvaluationReportObserver implements Observer {
 					}
 					Employee chairman = mysqlConnection.getChairman(con);
 					ArrayList<Employee> committeMember =mysqlConnection.getEmployees(con, "comittee member");
+					System.out.println(committeMember.get(0).getUsername());
+					System.out.println(committeMember.get(1).getUsername());
 					long millis=System.currentTimeMillis();
 					String notifcation="you have new Request: request with id "+" "+er.getRequestID()+" start work";
+					System.out.println(notifcation);
 					Notification not=new Notification(notifcation,new java.sql.Date(millis),"new request for committe");
 					not=mysqlConnection.insertNotificationToDB(con,not);
 					mysqlConnection.insertNotificationForUserToDB(con,not,chairman);

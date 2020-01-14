@@ -9,9 +9,6 @@ private String department;
 public Student(String username,String firstName,String lastName) {
 	super(username,firstName,lastName);
 }
-public Student(String username,String password,String firstName,String lastName) {
-	super(username,password,firstName,lastName);
-}
 public Student(int id, String firstName, String lastName, String email, String department, String password,String username) {
 	super( email, password, username, firstName, lastName);
 	this.id = id;

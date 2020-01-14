@@ -34,7 +34,6 @@ public class ClientSubmissionObserver implements Observer {
 						}
 						
 					});
-					
 			}
 		}
 		

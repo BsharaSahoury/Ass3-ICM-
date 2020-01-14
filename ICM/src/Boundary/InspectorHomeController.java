@@ -33,7 +33,7 @@ public class InspectorHomeController implements Initializable{
 	@FXML
 	private Button Homebtn;
 	@FXML
-	private Button Allrequestbtn;
+	private Button RequestWorkedOnbtn;
 	@FXML
 	private Button RequestSubmissionbtn;
 	@FXML
@@ -73,8 +73,7 @@ public class InspectorHomeController implements Initializable{
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
-						LogOutController logOut = new LogOutController();
-						logOut.exit(primaryStage,inspector);
+						System.exit(0);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -111,7 +110,7 @@ public class InspectorHomeController implements Initializable{
 		Submit.start(splitpane,inspector);
 	}
 
-	public void MyRequestsAction() throws Exception {
+	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane,inspector,"Inspector");
 	}
@@ -123,20 +122,16 @@ public class InspectorHomeController implements Initializable{
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage,inspector);
+		logOut.start(primaryStage);
 	}
 
-	public static Employee getinspector() {
-		return inspector;
-	}
-	public void setallrequest() {
-		AllRequests = new AllRequestsController();
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
-	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		System.out.println(UserNameMenu==null);
+
 		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+		//AboutICMbtn.setFocusTraversable(true);
     }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();

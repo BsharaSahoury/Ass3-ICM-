@@ -59,9 +59,8 @@ public class PerformanceLeaderHomeController implements Initializable {
 			primaryStage.show();
 			primaryStage.setOnCloseRequest( event ->
 		    {
-				System.out.println("EXIT ICM");
-				LogOutController logOut = new LogOutController();
-				logOut.exit(primaryStage,performanceLeader);
+		        System.out.println("EXIT ICM");
+		        System.exit(0);	
 		    });			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -86,7 +85,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader");
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -110,7 +109,7 @@ public void AboutICMAction(ActionEvent event) throws Exception {
 public void LogOutAction(ActionEvent event) throws Exception {
 	LogOutController logOut = new LogOutController();
 	primaryStage.close();
-	logOut.start(primaryStage,performanceLeader);
+	logOut.start(primaryStage);
 }
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
@@ -120,5 +119,9 @@ public void clickNotifications(ActionEvent event) throws Exception {
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	UserNameMenu.setText(performanceLeader.getFirstName()+performanceLeader.getLastName());
+}
+public void clickNotifications(ActionEvent event) throws Exception {
+	NotificationsController notific=new NotificationsController();
+	notific.start(splitpane,performanceLeader);
 }
 }

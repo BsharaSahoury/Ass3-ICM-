@@ -59,8 +59,7 @@ public class TesterHomeController implements Initializable {
 					primaryStage.show();
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
-						LogOutController logOut = new LogOutController();
-						logOut.exit(primaryStage,Tester);
+						System.exit(0);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -81,7 +80,7 @@ public class TesterHomeController implements Initializable {
 	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
-		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",Tester,"Tester","testing");
+		RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",Tester,"Tester");
 		}
    
 
@@ -108,7 +107,7 @@ public class TesterHomeController implements Initializable {
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage,Tester);
+		logOut.start(primaryStage);
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -26,6 +26,8 @@ public class CommitteeDecisionRejectController implements Initializable {
 	@FXML
 	Label DecisionLable;
 	@FXML
+	Button approve;
+	@FXML
 	ComboBox<String> combo;
 	private ObservableList<String> list;
 	public static CommitteeDecisionRejectController ctrl;
@@ -60,29 +62,11 @@ public class CommitteeDecisionRejectController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void SendToInitiatorAction(ActionEvent e) {	
-		if(flag==-1) {
-			flag=0;
-			Object[] msg= {"Send to initiator that committee rejected the request",requestID,CommitteeDecision,ctrl.notdetails};
-				try {
-					LoginController.cc.getClient().sendToServer(msg);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}		
-			}
-			else {	
-			 Alert alertSuccess = new Alert(AlertType.WARNING);
-			 alertSuccess.setTitle("Warning");
-			 alertSuccess.setHeaderText("Already Sent");
-			 alertSuccess.setContentText("You already sent the decision to the initiator");
-			 alertSuccess.showAndWait();
-		}
-	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		requestID=NotificationsController.getidofrequestforDecision();
 		CommitteeDecision=NotificationsController.getDecisionofcommitteemember();
+		requestID=NotificationsController.getidofrequestforDecision();
 		notificationID=NotificationsController.getidnotification();
 	}
 }

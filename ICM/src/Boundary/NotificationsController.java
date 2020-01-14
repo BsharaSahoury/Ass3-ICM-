@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException; 
+import java.io.IOException;
 
 import java.net.URL;
 import java.sql.Date;
@@ -31,17 +31,14 @@ import messages.CommitteeDecisionRejectController;
 import messages.ChooseTesterMessageController;
 
 import messages.FailedTestMessageController;
-import messages.Passedmessagecontroller;
+
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
-import messages.approveDuratinController;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
-import messages.ExtensionConfirmationMessage;
 import messages.RecruitMessageController;
 import messages.RecruitPerformanceMessageController;
-import messages.RejectMessageInitiatorController;
 import messages.ReminderMessageController;
 import messages.newRequestforcommitte;
 
@@ -58,8 +55,6 @@ public class NotificationsController implements Initializable {
 	TableColumn<Notification, String> date;
 
 	public ObservableList<Notification> list;
-	
-	private static Phase phase;
 
 	public static NotificationsController ctrl;
 	@FXML
@@ -68,7 +63,7 @@ public class NotificationsController implements Initializable {
 	private static String CommittteDecision;
 	private static String ExplainDecision;
 	private static int idnotification;
-    private static String myPhase;
+
 	public void start(SplitPane splitpane, User user) {
 		this.user = user;
 		primaryStage = LoginController.primaryStage;
@@ -108,7 +103,6 @@ public class NotificationsController implements Initializable {
 		Notification n2 = table.getSelectionModel().getSelectedItem();
 		String content;
 		String[] b;
-		String phase1;
 		int id;
 		if (n2 != null) {
 			idnotification = n2.getId();
@@ -158,9 +152,9 @@ public class NotificationsController implements Initializable {
 				String[] b3 = new String[2];
 				b3 = content.split("#");
 				b3 = b3[1].split("passed");
-				IDRequestForDecision = Integer.valueOf(b3[0]);
+				int id2 = Integer.valueOf(b3[0]);
 				SuccessTestMessageController stmc = new SuccessTestMessageController();
-				stmc.start(splitpane,IDRequestForDecision);
+				stmc.start(splitpane, id2);
 				break;
 			case "Decision of Committee Member":
 				content = n2.getContent();
@@ -227,11 +221,8 @@ public class NotificationsController implements Initializable {
 				b=b[1].split(" ");
 				String phase=b[0];
 				ExceptionMessageController emc=new ExceptionMessageController();
-
 				emc.start(splitpane, id, phase);
 				break;
-
-
 			case "Exception document":
 				content=n2.getContent();
 				b=new String[2];
@@ -248,32 +239,18 @@ public class NotificationsController implements Initializable {
 				b=b[1].split(" is");
 				int repetion=Integer.valueOf(b[0]);
 				ExceptionDocumentController edc=new ExceptionDocumentController();
-
 				edc.start(splitpane,id,phase,repetion);
 				break;
 			case "recruitNotificationForPerformer":
+				System.out.println("Notification Controller OKAY!!");
 				content = n2.getContent();
 				b = new String[2];
 				b = content.split("#");
+				System.out.println("Notification Controller OKAY!");
 				id = Integer.valueOf(b[1]);
 				RecruitMessageController rmc2 = new RecruitMessageController();
 				rmc2.start(splitpane, id);
 				break;
-			case "Extension Confirmation message sent to Inspector":	
-				content = n2.getContent();
-				String[] b4 = new String[2];
-				b4 = content.split("# ");
-				b4 = b4[1].split(" time");
-				int id3 = Integer.valueOf(b4[0]);
-				String[] b5 = new String[2];
-				System.out.println(content);
-				b5 = content.split("time on phase ");
-				b5 = b5[1].split(", Do");
-			    phase1=b5[0];
-				ExtensionConfirmationMessage ecm = new ExtensionConfirmationMessage();
-				ecm.start(splitpane, id3,content,phase1);
-				break;
-				
 			case "reminder to finish work":
 				content=n2.getContent();
 				numberOnly=content.replaceAll("[^0-9]", "");
@@ -284,67 +261,9 @@ public class NotificationsController implements Initializable {
 				phase=b[0];
 				ReminderMessageController rmc8=new ReminderMessageController();
 				rmc8.start(splitpane,id,phase);
-				break;
-			case "Duratin of evaluator":
-				content = n2.getContent();
-				b = new String[2];
-				b=content.split("from: ");
-				b=b[1].split(" to: ");
-				String start=b[0];
-				b=b[1].split(",");
-				String due=b[0];
-				numberOnly=b[1].replaceAll("[^0-9]", "");
-				id=Integer.valueOf(numberOnly);
-				c=new String[2];
-				c=content.split("for the ");
-				c=c[1].split(" phase");
-				String p=c[0];
-				this.myPhase=p;
-				due = due.replaceAll("(\\r|\\n)", "");
-				start = start.replaceAll("(\\r|\\n)", "");
-				approveDuratinController ad=new approveDuratinController();
-				ad.start(splitpane, content,start,due,id,p);
-				break;
-			case "Committee reject the request and wait for initiator approve":
-				content = n2.getContent();
-				b = new String[2];
-				b = content.split("#");
-				b = b[1].split("has");
-				IDRequestForDecision = Integer.valueOf(b[0]);
-				CommittteDecision="reject";
-				RejectMessageInitiatorController obj5 = new RejectMessageInitiatorController();
-				obj5.start(splitpane, "/messages/Rejectmessageinitiator.fxml");
-				break;
-			case "Request test passed and wait for intitiator approve to close":
-				content = n2.getContent();
-				b = new String[2];
-				b = content.split("#");
-				b = b[1].split("has");
-				IDRequestForDecision = Integer.valueOf(b[0]);
-				CommittteDecision="passed";
-				Passedmessagecontroller obj6 = new Passedmessagecontroller();
-				obj6.start(splitpane, "/messages/approvemessageinitiator.fxml");
-				break;
-			case "Extension Confirmation message sent to Admin after inspector confirmation":
-				content = n2.getContent();
-				String[] b6 = new String[2];
-				b6 = content.split("# ");
-				b6 = b6[1].split(" time");
-				int id4 = Integer.valueOf(b6[0]);
-				String[] b7 = new String[2];
-				System.out.println(content);
-				b7 = content.split("time on phase ");
-				b7 = b7[1].split(", Do");
-			    phase1=b7[0];
-				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
-				ecm1.start(splitpane, id4,content,phase1);
-				break;
 			}
 
 		}
-	}
-	public static String getMyPhase() {
-		return myPhase;
 	}
 
 	public static int getidofrequestforDecision() {
@@ -359,4 +278,3 @@ public class NotificationsController implements Initializable {
 		return idnotification;
 	}
 }
-

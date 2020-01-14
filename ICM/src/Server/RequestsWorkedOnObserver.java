@@ -27,20 +27,19 @@ public class RequestsWorkedOnObserver implements Observer {
 		ConnectionToClient client=(ConnectionToClient)args[0];
 		if(args[1] instanceof String[]) {
 			String[] Message=(String[])args[1];
-			if(Message.length==4 && Message[0].equals("Requests worked on")) {				
+			if(Message.length==3 && Message[0].equals("Requests worked on")) {
 				Connection con=mysqlConnection.makeAndReturnConnection();
 				ArrayList<RequestPhase> arr;
 				if(Message[2].equals("Comittee Member")) {
-				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[3]);
+				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],"Chairman");
 				}
 				else {
-				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[3]);
+				arr=mysqlConnection.getRequestsWorkOn(con,Message[1],Message[2]);
 				}
-				Object[] send=new Object[4];
+				Object[] send=new Object[3];
 				send[0]="Requests worked on";
 				send[1]=arr;
 				send[2]=Message[2];//here i send the job of the username
-				send[3]=Message[3];
 			try {
 				client.sendToClient(send);
 			} catch (IOException e) {
