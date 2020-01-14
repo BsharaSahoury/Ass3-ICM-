@@ -59,25 +59,6 @@ public class MainForServer {
 		   //ServerWindow.launchMain(sv, args);//we launch the server's window//
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-		//		Parent root = FXMLLoader.load(getClass().getResource("/Server/Server_Configure.fxml"));
-				Parent root = loader.load();
-				ServerController controller = loader.getController();
-				Scene scene = new Scene(root);
-				primaryStage.setScene(scene);
-				primaryStage.setResizable(false);		
-				primaryStage.setTitle("ICM-Server");
-				primaryStage.show();
-				this.ServerStage=primaryStage;
-				ServerStage.setOnHidden(e -> {
-					 try {
-						controller.shutdown();
-						System.exit(1);
-					  //  Platform.exit();
-					} catch (IOException e1) {}
-					 catch(NullPointerException e2) {}
-					 
-				});
-		} catch(Exception e) {
 			e.printStackTrace();
 		} //Start listening for connections	  	
 	  }

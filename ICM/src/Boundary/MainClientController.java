@@ -1,7 +1,20 @@
+package Boundary;
+
+import java.awt.Button;
+
+
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.ResourceBundle;
 
 import Client.ClientAllRequestsObserver;
+
 import Client.ClientApprovePerformanceObserver;
+
 import Client.ClientChairmanApproveObserver;
+import Client.ClientChangPermissionObserver;
 import Client.ClientChangePermissionsObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
@@ -16,25 +29,20 @@ import Client.ClientMapObserver;
 import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
+import Client.ClientObserver;
+
 import Client.ClientRecruitEvaluatorObserver;
-import Client.ClientRejectRequestMessageSendToInitiatorObserver;
+
 import Client.ClientRequestInfoObserver;
 import Client.ClientRequestTrack;
 import Client.ClientRequestsWorkedOnObserver;
-import Client.ClientServerDisconnectedObserver;
 import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 
@@ -49,7 +57,7 @@ public class MainClientController {
 		System.out.println(Thread.currentThread().toString());
 		try {
 			ClientConsole cc=new ClientConsole(host);
-	//		ClientObserver CO = new ClientObserver(cc.getClient());
+			ClientObserver co=new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
@@ -69,47 +77,28 @@ public class MainClientController {
 			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
 			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
 			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
-			ClientMessageSentToInitiatorObserver ee=new ClientMessageSentToInitiatorObserver(cc.getClient());
 			ClientDocumentExceptionObserver cdeo=new ClientDocumentExceptionObserver(cc.getClient());
 			ClientMapObserver cmo=new ClientMapObserver(cc.getClient());
-			ClientInitiatorapprovedrequestdecisionObserver qqw=new ClientInitiatorapprovedrequestdecisionObserver(cc.getClient());
-			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
-			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
-			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
-			ClientLogOutObserver logout = new ClientLogOutObserver(cc.getClient());
-			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
-			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
-			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
 			ClientInitPermissionsPageObserver cippo=new ClientInitPermissionsPageObserver(cc.getClient());
 			ClientChangePermissionsObserver ccpo=new ClientChangePermissionsObserver(cc.getClient());
+			
+			
+			
+			
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
 			login.start(MainForClient.stage,cc);
 		}catch(Exception e) {
+			wrong.setVisible(true);
 			ip.clear();
 			System.out.println("connection failed");
- 			Alert alert = new Alert(Alert.AlertType.ERROR);
- 			alert.setTitle("Connection Error");
- 			alert.setHeaderText("Connection Error");
- 			Text headerText=new Text("Connection Error");
- 			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20)); 
- 			VBox dialogPaneContent = new VBox();
- 			Label label1 = new Label("wrong IP");
- 			Label label2 = new Label("Please Try again!");
+		}
 
- 			dialogPaneContent.getChildren().addAll(label1, label2);
- 			//onClicking OK button the system will exit!
- 			//END
- 			alert.setOnHiding(click -> {
- 				System.out.println("Try again!");
- 			});
- 			// Set content for Dialog Pane
- 			alert.getDialogPane().setContent(dialogPaneContent);
- 			alert.showAndWait();
-
-		}		
+	
+		
 	}
-}
 
+
+}
 
