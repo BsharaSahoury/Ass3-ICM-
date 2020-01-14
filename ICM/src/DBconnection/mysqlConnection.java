@@ -577,7 +577,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm3.setInt(3, 0);
 			ResultSet rs3 = stm3.executeQuery();
 			if(rs3.next()) {
-				System.out.println("ccc");
 				stm4=con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
 				stm4.setInt(2, id);
 				stm4.setString(3, "evaluation");
