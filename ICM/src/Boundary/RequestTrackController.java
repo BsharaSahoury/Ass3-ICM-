@@ -68,7 +68,7 @@ public class RequestTrackController implements Initializable {
 		System.err.println("000000000");
 		requeststatus.setText(rp.getR().getStatus());
 		requestPhase.setText(rp.getCurrentPhase().toString());
-		subDate.setText(rp.getStartDate().toString());
+		subDate.setText(rp.getDate().toString());
 		dueDate.setText(rp.getDueDate().toString());
 		long millis = System.currentTimeMillis();
 		Date date = new java.sql.Date(millis);
