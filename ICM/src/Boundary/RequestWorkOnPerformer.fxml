@@ -72,7 +72,7 @@
          </font>
       </Button>
       <Button mnemonicParsing="false" text="Button" />
-      <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set duration" textFill="WHITE">
+      <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
