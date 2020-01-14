@@ -1,6 +1,6 @@
 package Boundary;
 
-import javafx.application.Platform;
+import javafx.application.Platform; 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -136,15 +136,18 @@ public class RequestInfoController implements Initializable {
 	
 	
 	public void BackBtnAction(ActionEvent e) {
+		/*InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 		System.out.println("logged1");
 		AllRequestsController AllRequests=new AllRequestsController();
 		System.out.println("logged2");
 		AllRequests = new AllRequestsController();
 		System.out.println("logged3");
 		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
-		System.out.println("logged4");
+		System.out.println("logged4");*/
 		
-	
+		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+        System.out.println("Successfully");
+        
 	}
 	
 	
