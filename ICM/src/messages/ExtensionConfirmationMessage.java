@@ -91,7 +91,6 @@ public class ExtensionConfirmationMessage implements Initializable {
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
 			ctrl.RequestPhaseLabel.setText(phase1);
-			System.out.println(id);
 			ctrl.RequestIdLabel.setText(Integer.toString(id));
 			Object[] message = { "get explain notification", ctrl.notificationID,
 					"Inspector to approve the Extension" };
@@ -157,7 +156,6 @@ public class ExtensionConfirmationMessage implements Initializable {
 		ctrl.notdetails = details;
 		String[] b = new String[2];
 		b = ctrl.notdetails.split("#");
-		//ctrl.RequestIdLabel.setText(Integer.toString(ctrl.requestID));
 		ctrl.ExtensionReasonLabel.setText(b[1]);
 		ctrl.NewDueDateLabel.setText(b[0]);
 		ctrl.OldDueDateLabel.setText(RequestsWorkedOnController.getRP().getDueDate().toString());
@@ -174,7 +172,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		notificationID = NotificationsController.getidnotification();
-		// ExtensionRequest=NotificationsController.getDecisionofcommitteemember();
+		
 		requestID = NotificationsController.getidofrequestforDecision();
 	}
 
