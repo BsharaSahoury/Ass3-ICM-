@@ -41,7 +41,7 @@ public class MainForServer extends Application{
 		    catch(Throwable t)
 		    {
 		      port = 5555; //Set port to 5555
-		    }		
+		    }
 		    sv = new ObservableServer(port);
 		    ServerObserver so=new ServerObserver(sv);
 		    loginHandler loginHandler=new loginHandler(sv);
