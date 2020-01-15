@@ -288,15 +288,18 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				else {
 			do {
 				i++;
-				stmt3 = con.prepareStatement("SELECT E.phase,E.state,E.repetion FROM icm.requestinphase E WHERE request_id=? AND phase=? AND state!='over';");
+				stmt3 = con.prepareStatement("SELECT E.phase,E.state,E.repetion,E.phase_administrator,E.start_date,E.due_date FROM icm.requestinphase E WHERE request_id=? AND phase=? AND state!='over';");
 				stmt3.setInt(1, rs.getInt(7));
 				stmt3.setString(2, phases[i]);
 				ResultSet rs3=stmt3.executeQuery();
 				if(rs3.next()) {				
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));	
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));
+					result.setEmployee(rs3.getString(4));
 					result.setRepetion(rs3.getInt(3));
+					result.setStartDate(rs3.getDate(5));
+					result.setDueDate(rs3.getDate(6));
 					rs3.close();
 				}	       
 			    }while(i!=-1&&i!=5);

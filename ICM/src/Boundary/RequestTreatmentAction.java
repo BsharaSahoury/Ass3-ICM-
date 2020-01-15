@@ -48,6 +48,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
  private TextArea Explaintxt;
  private int chosenindex;
  private  RequestPhase chosenRequest;
+ private static RequestTreatmentAction ctrl;
  ObservableList<Phase> phaseslist;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -69,8 +70,12 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 		try{	
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Update.fxml"));		
 			lowerAnchorPane = loader.load();
+			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
-			Phasee.setPromptText(chosenRequest.getPhase().toString());
+			ctrl.Phasee.setPromptText(ctrl.chosenRequest.getPhase().toString());
+			ctrl.PhaseAdministrator.setPromptText(ctrl.chosenRequest.getEmployee());
+			ctrl.DatePickerFrom.setPromptText(ctrl.chosenRequest.getStartDate().toString());
+			ctrl.DatePickerTo.setPromptText(ctrl.chosenRequest.getDueDate().toString());
 			//String AllRequests="All Requests";
 			//cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
