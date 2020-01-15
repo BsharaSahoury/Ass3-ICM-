@@ -222,8 +222,9 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				}	       
 			    }while(i!=-1&&i!=5);
 				}
-			    if(!result.equals(null))
-				arr.add(result);
+			    if(!result.equals(null)) {
+				         arr.add(result);
+			    }
 			    stmt2=null;
 				stmt3=null;
 				stmt4=null;
@@ -231,13 +232,13 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				result=null;
 				i=0;
 				Initiatorname=null;
-				}					
+				}
 				rs.close();	
                 }			 		
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		return arr;
 	}
 
