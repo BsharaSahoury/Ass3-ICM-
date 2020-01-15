@@ -71,10 +71,6 @@ public class ClientLoginObserver implements Observer{
 				LecturerHomeController lecturer=new LecturerHomeController();
 				lecturer.start(employee1);
 				break;
-			case "tester":
-				ComitteeMemberHomeController tester=new ComitteeMemberHomeController();
-				tester.start(employee1);
-				break;
 			case "administrator":
 				AdministratorHomeController Administrator=new AdministratorHomeController();
 				Administrator.start(employee1);

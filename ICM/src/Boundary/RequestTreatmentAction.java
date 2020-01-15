@@ -53,16 +53,14 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ArrayList<Phase> Phases=new ArrayList<Phase>();
 		Phases.add(Phase.evaluation);
-		Phases.add(Phase.decision);
 		Phases.add(Phase.performance);
-		Phases.add(Phase.testing);
-		Phases.add(Phase.closing);
 		phaseslist=FXCollections.observableArrayList(Phases);
 		Phasee.setItems(phaseslist);
     	chosenindex=AllRequestsController.getselectedindex();
         chosenRequest=AllRequestsController.getList().get(chosenindex);  
         statuslable.setText(chosenRequest.getStatus());
-
+        //
+    //    PhaseAdministrator.setPromptText(chosenRequest.getph);
 	}
 	public void start(SplitPane splitpane) {
 		this.splitpane=splitpane;
@@ -72,6 +70,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Update.fxml"));		
 			lowerAnchorPane = loader.load();
 			splitpane.getItems().set(1, lowerAnchorPane);
+			Phasee.setPromptText(chosenRequest.getPhase().toString());
 			//String AllRequests="All Requests";
 			//cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
