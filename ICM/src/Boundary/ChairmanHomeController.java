@@ -76,7 +76,16 @@ public class ChairmanHomeController implements Initializable {
 		return primaryStage;
 	}
 
-	private void runLater(Func f) {
+	public static Employee getchairman() {
+		return chairman;
+	}
+	
+	
+	
+	
+	
+	
+	private void runLater(Func f) { 
 		f.call();
 		Platform.runLater(() -> {
 			try {
@@ -107,7 +116,7 @@ public class ChairmanHomeController implements Initializable {
 			RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", chairman, "Chairman","decision");
 		});		
 	}
-
+ 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		runLater(() -> {

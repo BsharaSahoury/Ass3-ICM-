@@ -25,7 +25,7 @@ import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 
-
+ 
 public class ServerController implements Initializable {
 
 	private static String db_Password;
@@ -67,7 +67,8 @@ public class ServerController implements Initializable {
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
-			dbPassword.setText("arkan123456");
+
+			dbPassword.setText("Xd0509144223");
 
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
