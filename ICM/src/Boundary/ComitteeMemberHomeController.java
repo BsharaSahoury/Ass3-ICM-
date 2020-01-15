@@ -27,7 +27,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	@FXML
 	private Button Homebtn;
 	@FXML
-	private Button RequestWorkedOnbtn;
+	private Button RequestWorkedOnbtn; 
 	@FXML
 	private Button RequestSubmissionbtn;
 	@FXML
@@ -107,7 +107,12 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static int getFlag() {
 		return flag;
 	}
-
+    
+	public static Employee getcomitteeMember() {
+		return comitteeMember;
+	}
+	
+	
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		runLater(() -> {

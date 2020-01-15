@@ -105,7 +105,7 @@ public class AllRequestsController implements Initializable {
 		arrofRequests = arr1;
 		loader.<AllRequestsController>getController().setTableRequests(arr1);
 
-	}
+	} 
 	public void searchaction() {
 		if(!search_text.getText().equals("")) {
 			try {
@@ -193,7 +193,7 @@ public class AllRequestsController implements Initializable {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
-				requestifo.start(splitpane, s.getR(),"Back To AllRequests");
+				requestifo.start(splitpane, s.getR(),job);
 			});			
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);

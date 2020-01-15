@@ -207,7 +207,7 @@ public class RequestsWorkedOnController implements Initializable {
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
 			id=s.getId();
-
+ 
 			String keymessage = "get duration";
 			Object[] message = { keymessage, s.getId(),s.getPhase()};
 			try {
@@ -246,7 +246,7 @@ public class RequestsWorkedOnController implements Initializable {
 		if(chosen!=-1) {
 			Request s =tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
-	    	requestifo.start(splitpane,s,"Back To RequestsWorkOn");
+	    	requestifo.start(splitpane,s,job);
 		}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);
