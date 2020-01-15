@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Client.Func;
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -45,6 +46,8 @@ public class EngineerHomeController implements Initializable{
 	private static Employee performanceLeader;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
+	public static ProfileSettingController ProfileSetting;
+
 	public void start(Employee performanceLeader) {
 		this.performanceLeader=performanceLeader;
 		primaryStage=LoginController.primaryStage;
@@ -85,6 +88,10 @@ public void GoToHome(ActionEvent event) throws Exception {
 		e.printStackTrace();
 	}
 }
+public void RequestThatIlead(ActionEvent event) throws Exception{
+	RequestWorkON=new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
+}
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
@@ -97,8 +104,10 @@ public void RequestSubmissionAction(ActionEvent event) throws Exception {
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSettingController Submit=new ProfileSettingController();
-	Submit.start(splitpane,performanceLeader);
+	ProfileSetting = new ProfileSettingController();
+	runLater(() -> {
+		ProfileSetting.start(splitpane,performanceLeader,"Engineer");
+});	
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
@@ -121,7 +130,19 @@ public void clickNotifications(ActionEvent event) throws Exception {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.set
+		UserNameMenu.setText(performanceLeader.getFirstName()+" "+performanceLeader.getLastName());
 	}
+	private void runLater(Func f) {
+		f.call();
+		Platform.runLater(() -> {
+			try {
+				Thread.sleep(10);
+				f.call();
 
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+	}
 }
