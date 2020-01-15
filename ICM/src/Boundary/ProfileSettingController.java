@@ -37,7 +37,6 @@ public class ProfileSettingController {
 	
 	private static ClientConsole cc;
 
-	///PrfileSettingforStudent
 	@FXML
 	private TextField id_txt;
 	@FXML
@@ -49,6 +48,8 @@ public class ProfileSettingController {
 	@FXML
 	private TextField faculty_txt;
 	@FXML
+	private TextField role_txt;
+	@FXML
 	private CheckBox allowrecSMS;
 	@FXML
 	private CheckBox allowrecGmail;
@@ -57,32 +58,7 @@ public class ProfileSettingController {
 	@FXML
 	private Button browsebtn;
 	@FXML
-	private Button applyandsavebtn;
-	
-	//ProfileSettingForEmployee
-	@FXML
-	private TextField id_txt1;
-	@FXML
-	private TextField username_txt1;	
-	@FXML
-	private TextField fullname_txt1;	
-	@FXML
-	private TextField email_txt1;
-	@FXML
-	private TextField job_txt1;
-	@FXML
-	private TextField faculty_txt1;
-	@FXML
-	private CheckBox allowrecSMS1;
-	@FXML
-	private CheckBox allowrecGmail1;
-	@FXML
-	private TextField dest_txt1;
-	@FXML
-	private Button browsebtn1;
-	@FXML
-	private Button applyandsavebtn1;
-	
+	private Button updateandsavebtn;
 	
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
@@ -104,10 +80,7 @@ public class ProfileSettingController {
 			Object[] msg=new String[3];
 			this.cc=LoginController.cc;
 			try{	
-				if(job.equals("Student"))
-					loader = new FXMLLoader(getClass().getResource("/Boundary/ProfileSettingForStudent.fxml"));
-				else
-					loader = new FXMLLoader(getClass().getResource("/Boundary/ProfileSettingForEmployee.fxml"));
+				loader = new FXMLLoader(getClass().getResource("/Boundary/ProfileSetting.fxml"));
 				lowerAnchorPane = loader.load();
 				splitpane.getItems().set(1, lowerAnchorPane);
 				msg[0]="ProfileSetting";
@@ -124,8 +97,6 @@ public class ProfileSettingController {
 	}
 	public void setProfileSetting(ArrayList<String> arr){
 		if(!arr.equals(null)) {
-			if(job.equals("Student"))
-			{
 			id_txt.setText(arr.get(0));
 			id_txt.setEditable(false);
 			username_txt.setText(arr.get(1));
@@ -136,60 +107,37 @@ public class ProfileSettingController {
 			email_txt.setEditable(false);
 			faculty_txt.setText(arr.get(4));
 			faculty_txt.setEditable(false);
+			role_txt.setText(job);
+			role_txt.setEditable(false);
 			allowrecSMS.setSelected(true);
 			allowrecGmail.setSelected(true);
 			allowrecSMS.setDisable(true);
 			allowrecGmail.setDisable(true);
 			dest_txt.setText("");
 			dest_txt.setEditable(false);	
-			}
-			else
-			{
-				id_txt1.setText(arr.get(0));
-				id_txt1.setEditable(false);
-				username_txt1.setText(arr.get(1));	
-				username_txt1.setEditable(false);
-				fullname_txt1.setText(arr.get(2));
-				fullname_txt1.setEditable(false);
-				email_txt1.setText(arr.get(3));
-				email_txt1.setEditable(false);
-				job_txt1.setText(job);
-				job_txt1.setEditable(false);
-				faculty_txt1.setText(arr.get(4));
-				faculty_txt1.setEditable(false);
-				allowrecSMS1.setSelected(true);
-				allowrecSMS1.setDisable(true);
-				allowrecGmail1.setSelected(true);
-				allowrecGmail1.setDisable(true);
-				dest_txt1.setText("");
-				dest_txt1.setEditable(false);			
-				}
+			
 		}
 	}
 	
 	
-	public void ApplyAndSaveAction(ActionEvent event) {
-		if(job.equals("Student"))
-			if(dest_txt.getText().equals(""))
+	public void updateAndSaveAction(ActionEvent event) {
+		if(dest_txt.getText().equals(""))
 			{
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Updating picture Failed!");
         alert.setHeaderText("Updating picture Failed!");
-        alert.setContentText("please browse an Image");
+        alert.setContentText("please browse an Image to Apply updating :)");
         alert.showAndWait();
 		}
 	}
 
-	public void BrowseAction(ActionEvent event) {
+	public void browseAction(ActionEvent event) {
 			FileChooser fc=new FileChooser();
 			fc.getExtensionFilters().addAll(new ExtensionFilter("PNG Files","*.png"));
 			File selectedFile=fc.showOpenDialog(null);
 			if(selectedFile != null) {
 				choosenFile=selectedFile;
-				if(job.equals("Student"))
-					dest_txt.setText(choosenFile.getName());
-				else
-					dest_txt1.setText(choosenFile.getName());
+				dest_txt.setText(choosenFile.getName());
 			}
 		}	
 }
