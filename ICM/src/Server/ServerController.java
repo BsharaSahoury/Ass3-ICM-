@@ -67,7 +67,7 @@ public class ServerController implements Initializable {
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
-			dbPassword.setText("ahmed1234567891");
+			dbPassword.setText("arkan123456");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,6 +128,7 @@ public class ServerController implements Initializable {
 					dbUsername.setEditable(false);
 					dbPassword.setEditable(false);
 		    		connectBtn.setDisable(true);
+		    		DBconnection.mysqlConnection.SetAllUsersLoginToNo(con1);
 	    		}
 	    		}
 	    	else

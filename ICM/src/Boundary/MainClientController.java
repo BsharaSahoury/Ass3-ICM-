@@ -27,6 +27,7 @@ import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
+import Client.ClientLoginByAnotherClientObserver;
 import Client.ClientInspectorfreazerequestObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMapObserver;
@@ -35,6 +36,7 @@ import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
 import Client.ClientObserver;
+import Client.ClientProfileSettingObserver;
 import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRejectRequestMessageSendToInitiatorObserver;
 import Client.ClientRequestInfoObserver;
@@ -67,6 +69,9 @@ public class MainClientController {
 		String host=ip.getText();
 		System.out.println(Thread.currentThread().toString());
 		try {
+			if(host.equals(""))
+				throw new Exception();
+			
 			ClientConsole cc=new ClientConsole(host);
 	//		ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
@@ -99,6 +104,8 @@ public class MainClientController {
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
+			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
+			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

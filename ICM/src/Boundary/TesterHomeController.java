@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Client.Func;
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -43,6 +44,8 @@ public class TesterHomeController implements Initializable {
 	private static Employee Tester;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
+	public static ProfileSettingController ProfileSetting;
+
 
 	public void start(Employee Tester) {
 		this.Tester = Tester;
@@ -91,8 +94,10 @@ public class TesterHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane,Tester);
+		ProfileSetting = new ProfileSettingController();
+		runLater(() -> {
+			ProfileSetting.start(splitpane,Tester,"Tester");
+	});	
 	}
 
 	public void MyRequestsAction(ActionEvent event) throws Exception {
@@ -113,11 +118,24 @@ public class TesterHomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(Tester.getFirstName()+Tester.getLastName());
+		UserNameMenu.setText(Tester.getFirstName()+" "+Tester.getLastName());
 	}
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();
 		notific.start(splitpane,Tester);
+	}
+	private void runLater(Func f) {
+		f.call();
+		Platform.runLater(() -> {
+			try {
+				Thread.sleep(10);
+				f.call();
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 
 }

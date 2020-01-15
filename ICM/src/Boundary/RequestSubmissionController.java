@@ -114,6 +114,9 @@ public class RequestSubmissionController implements Initializable {
 		}
 		    long millis=System.currentTimeMillis();
 			Request request=new Request(chosenCombo.getSelectionModel().getSelectedItem(),existingSituation.getText(),requestedChange.getText(),requestReason.getText(),comment.getText(),new java.sql.Date(millis),user,msg,filename);
+			System.out.println(new java.sql.Date(millis));
+			System.out.println("**********************************************");
+
 			Object[] message= {"submitRequest",request};
 			try {
 				LoginController.cc.getClient().sendToServer(message);

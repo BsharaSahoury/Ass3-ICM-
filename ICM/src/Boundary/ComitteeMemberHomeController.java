@@ -47,6 +47,8 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
 	public static MyRequestsController MyRequests;
+	public static ProfileSettingController ProfileSetting;
+
 	public static RequestsWorkedOnController RequestWorkON;
     public static Employee Chairman;
 	public void start(Employee comitteeMember) {
@@ -109,9 +111,9 @@ public class ComitteeMemberHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSettingController Submit = new ProfileSettingController();
+		ProfileSetting = new ProfileSettingController();
 		runLater(() -> {
-			Submit.start(splitpane,comitteeMember);
+			ProfileSetting.start(splitpane,comitteeMember,"Comittee Member");
 		});
 	}
 
