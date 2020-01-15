@@ -58,6 +58,7 @@ public class InspectorHomeController implements Initializable{
 
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
+
 	public void start(Employee inspector) {
 		this.inspector = inspector;
 		s=this;
@@ -115,7 +116,7 @@ public class InspectorHomeController implements Initializable{
 			ProfileSetting.start(splitpane,inspector,"Inspector");
 		});
 	}
-
+	
 	public void MyRequestsAction() throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane,inspector,"Inspector");

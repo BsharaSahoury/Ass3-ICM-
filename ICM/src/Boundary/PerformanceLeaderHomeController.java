@@ -126,6 +126,11 @@ public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
 	UserNameMenu.setText(performanceLeader.getFirstName()+" "+performanceLeader.getLastName());
 }
+
+public void RequestThatIlead(ActionEvent event) throws Exception{
+	RequestWorkON=new RequestsWorkedOnController();
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
+}
 private void runLater(Func f) {
 	f.call();
 	Platform.runLater(() -> {

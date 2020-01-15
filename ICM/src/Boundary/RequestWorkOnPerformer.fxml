@@ -57,15 +57,6 @@
          </font>
       </Button>
       <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
-      <Button fx:id="refresh" layoutX="678.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-insets: 88888;">
-         <graphic>
-            <ImageView fx:id="refresh" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/reload-icon-5.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Button fx:id="question" layoutX="683.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-insets: 8888888;">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -80,11 +71,19 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" text="Button" />
-      <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Set duration" textFill="WHITE">
+      <Button layoutX="427.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+      </Button>
+      <Button layoutX="679.0" layoutY="45.0" mnemonicParsing="false" onAction="#refresh" style="-fx-background-insets: 333333;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reload-icon-5.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

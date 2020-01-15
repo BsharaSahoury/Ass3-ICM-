@@ -1,6 +1,6 @@
 package Boundary;
 
-import javafx.application.Platform;
+import javafx.application.Platform; 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,6 +61,8 @@ public class RequestInfoController implements Initializable {
 	private TextField Email;
 	@FXML
 	private static SplitPane splitpane;
+	@FXML
+	Button BackBtn;
 
 	private static ClientConsole cc;
 
@@ -130,9 +132,34 @@ public class RequestInfoController implements Initializable {
         alert.setContentText("the file is downloaded, you can find it at your Downloads directory");
         alert.showAndWait();
 	}
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		
+		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+      
+        
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-	}
+		
+		
+	           
+		
+		
+		
+		
+		
+ 	}
 }

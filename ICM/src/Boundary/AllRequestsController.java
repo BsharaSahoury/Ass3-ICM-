@@ -230,7 +230,14 @@ public class AllRequestsController implements Initializable {
 			alertWarning.showAndWait();
 		}
 	}
-
+	public void refresh() {
+	try {
+		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Groupby.setItems(statuslist);

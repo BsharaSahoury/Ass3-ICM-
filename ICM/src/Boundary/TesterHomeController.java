@@ -46,7 +46,6 @@ public class TesterHomeController implements Initializable {
 	public static RequestsWorkedOnController RequestWorkON;
 	public static ProfileSettingController ProfileSetting;
 
-
 	public void start(Employee Tester) {
 		this.Tester = Tester;
 		primaryStage = LoginController.primaryStage;
@@ -139,3 +138,4 @@ public class TesterHomeController implements Initializable {
 	}
 
 }
+

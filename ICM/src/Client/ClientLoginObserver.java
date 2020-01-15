@@ -63,7 +63,7 @@ public class ClientLoginObserver implements Observer{
 				ComitteeMemberHomeController chairman=new ComitteeMemberHomeController();
 				chairman.start(employee1);
 				break;
-			case "performer":
+			case "engineer":
 				PerformanceLeaderHomeController performer=new PerformanceLeaderHomeController();
 				performer.start(employee1);
 				break;

@@ -43,18 +43,20 @@ public class ClientRequestsWorkedOnObserver implements Observer{
 					if(send[1] instanceof ArrayList<?>) {					
 					ArrayList<RequestPhase> arr=(ArrayList<RequestPhase>)send[1];
 					if(send[2] instanceof String) {
-					String phase=(String)send[2];
+					String job=(String)send[2];
 					if(!arr.equals(null)) {
-					if(phase.equals("Evaluator")) 
+					if(job.equals("Evaluator")) 
 					EvaluatorHomeController.RequestWorkON.fillTable(arr);
-					else if(phase.equals("Comittee Member"))
+					else if(job.equals("Comittee Member"))
 					ComitteeMemberHomeController.RequestWorkON.fillTable(arr);		
-					else if(phase.equals("Performance Leader"))
+					else if(job.equals("Performance Leader"))
 					PerformanceLeaderHomeController.RequestWorkON.fillTable(arr);
-					else if(phase.equals("Tester"))
+					else if(job.equals("Tester"))
 					TesterHomeController.RequestWorkON.fillTable(arr);
-					else if(phase.equals("Chairman")) 
+					else if(job.equals("Chairman")) 
 					ChairmanHomeController.RequestWorkON.fillTable(arr);
+					else if(job.equals("Engineer"))
+					PerformanceLeaderHomeController.RequestWorkON.fillTable(arr);	
 					}
 					}
 					}

@@ -2,6 +2,7 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,18 +24,15 @@ public class ServerApproveDuratinObserver implements Observer{
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("ispector duration")) {
-					System.out.println("55555555555");
 					int id = (int) arg3[1];
-					String d[] = (String[]) arg3[2];
+					LocalDate[] d = (LocalDate[]) arg3[2];
 					Phase p = (Phase) arg3[3];
 					State s=(State) arg3[4];
 					Connection con = mysqlConnection.makeAndReturnConnection();
 					boolean b = mysqlConnection.insertDate(con, id, d, p);
 					Object[] send = new Object[2];
 					send[0] = "approvedDuration";
-					System.out.println("00000000000");
 					if (b == false) {
-						System.out.println("1111111111");
 						send[1] = false;
 					} else {
 						send[1] = d;

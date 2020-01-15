@@ -9,8 +9,12 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Boundary.RequestsWorkedOnController;
 import Client.ClientConsole;
+import Entity.Phase;
+import Entity.RequestPhase;
 import Entity.User;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,6 +45,8 @@ public class AutomaticRecruitMessageController implements Initializable {
 	Button other;
 	@FXML
 	ComboBox<String> combo;
+	@FXML
+	Label Label;
 	
 	public static AutomaticRecruitMessageController ctrl;
 	public static Stage primaryStage;
@@ -78,6 +84,8 @@ public class AutomaticRecruitMessageController implements Initializable {
 		Object[] message= {"automatic",requestID};
 		try {
 			LoginController.cc.getClient().sendToServer(message);
+			ctrl.approve.setDisable(true);
+			other.setDisable(true);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -96,6 +104,8 @@ public class AutomaticRecruitMessageController implements Initializable {
 		Object[] msg= {"manualEvaluator",fullname,requestID};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
+			other.setDisable(true);
+			ctrl.approve.setDisable(true);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -123,8 +133,31 @@ public class AutomaticRecruitMessageController implements Initializable {
 	
 	
 	public void fillCombo(ArrayList<String> names) {
-		list=FXCollections.observableArrayList(names);
-		combo.setItems(list);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				list = FXCollections.observableArrayList(names);
+				combo.setItems(list);
+				System.out.println(NotificationsController.getId());
+				Object[] msg = { "evaluatorapproves", NotificationsController.getId(),"evaluation" };
+				try {
+					LoginController.cc.getClient().sendToServer(msg);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+			
+	public void checkEvaluator(RequestPhase request) {
+		if(request.getEmployee()!=null) {
+			approve.setDisable(true);
+			other.setDisable(true);
+			Label.setVisible(false);
+			Label.setText("* You already set evaluator");
+			Label.setVisible(true);
+		}
 	}
 	
 	

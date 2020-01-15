@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ChairmanHomeController implements Initializable {
+
 	@FXML
 	private Button notifications;
 	@FXML
@@ -46,8 +47,6 @@ public class ChairmanHomeController implements Initializable {
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
 	public static ProfileSettingController ProfileSetting;
-
-
 	public void start(Employee chairman) {
 		this.chairman = chairman;
 		primaryStage = LoginController.primaryStage;

@@ -41,7 +41,7 @@ public class MainForServer extends Application{
 		    catch(Throwable t)
 		    {
 		      port = 5555; //Set port to 5555
-		    }		
+		    }
 		    sv = new ObservableServer(port);
 		    ServerObserver so=new ServerObserver(sv);
 		    loginHandler loginHandler=new loginHandler(sv);
@@ -78,7 +78,8 @@ public class MainForServer extends Application{
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
 		    ServerProfileSettingObserver spso=new ServerProfileSettingObserver(sv);
-		    try {
+		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
+			try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//
 			} catch (IOException e) {

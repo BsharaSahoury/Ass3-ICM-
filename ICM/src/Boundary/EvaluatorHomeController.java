@@ -45,10 +45,10 @@ public class EvaluatorHomeController implements Initializable {
 	public static Stage primaryStage;
 	public static MyRequestsController MyRequests;
 	public static ProfileSettingController ProfileSetting;
-
 	public static RequestsWorkedOnController RequestWorkON;
 	public static EvaluatorHomeController e;
 	private static Employee evaluator;
+
 	public void start(Employee evaluator) {
 		this.evaluator=evaluator;
 		primaryStage=LoginController.primaryStage;

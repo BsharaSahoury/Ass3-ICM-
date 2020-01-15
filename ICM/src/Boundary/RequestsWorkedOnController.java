@@ -15,6 +15,7 @@ import Entity.Request;
 import Entity.RequestPhase;
 import Entity.User;
 import Entity.State;
+import Entity.Student;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,7 +81,7 @@ public class RequestsWorkedOnController implements Initializable {
 	private static String system;
 	ObservableList<String> statuslist = FXCollections.observableArrayList("work","waitingForApprove", "wait", "over","All");
 	public static  FXMLLoader loader;
-	private User user;
+	private static User user;
 	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
@@ -101,9 +102,10 @@ public class RequestsWorkedOnController implements Initializable {
 			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=user.getUsername();
 			}
-			else {
+			else if(job.equals("Engineer")){
+				RequestWorkedON[0]="engineer request work on";	
+			}						
 			RequestWorkedON[1]=user.getUsername();
-			}
 			RequestWorkedON[2]=job;
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
@@ -285,8 +287,82 @@ public class RequestsWorkedOnController implements Initializable {
 			}
 		}
 	}
-				
-	
+
+	public void refresh() {
+		Employee employee = (Employee) user;
+		switch (job) {
+		case "Inspector":
+			try {
+				InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Evaluator":
+			try {
+				EvaluatorHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnEvaluator.fxml",
+						employee, "Evaluator", "evaluation");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case "Comittee Member":
+
+			try {
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
+				if(ComitteeMemberHomeController.getFlag()==0) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
+				}
+				if(ComitteeMemberHomeController.getFlag()==1) {
+					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+							"/Boundary/RequestsWorkOnTester.fxml", employee, "Comittee Member", "testing");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Chairman":
+			try {
+				ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", employee,
+						"Chairman", "decision");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Performer":
+			try {
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Performance Leader", "performance");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		case "Engineer":
+			try {
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Engineer", "performance");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "Administrator":
+			try {
+				AdministratorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		}
+	}
+
    public void InsertTestResultAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
