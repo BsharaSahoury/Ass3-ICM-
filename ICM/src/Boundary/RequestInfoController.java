@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Request;
+import Entity.User;
 import javafx.fxml.*;
 
 public class RequestInfoController implements Initializable {
@@ -65,12 +66,13 @@ public class RequestInfoController implements Initializable {
 	Button BackBtn;
 
 	private static ClientConsole cc;
-
+    private static String BackTo;
 	public static RequestInfoController Requestinfo;
 	
 	public static Request r2;
 
-	public void start(SplitPane splitpane, Request s) {
+	public void start(SplitPane splitpane, Request s,String BackTo) {	
+		this.BackTo=BackTo;	
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.splitpane = splitpane;
@@ -88,7 +90,7 @@ public class RequestInfoController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	public void SetInfo(Request r) {
 		r2=r;
@@ -136,13 +138,20 @@ public class RequestInfoController implements Initializable {
 	
 	
 	public void BackBtnAction(ActionEvent e) {
-		
+		System.out.println("Okay1");
+		if(BackTo.equals("Back To AllRequests"))
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
-      
+		else if(BackTo.equals("Back To RequestsWorkOn"))
+		{
+			System.out.println("okay if");
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
+		}
+        
+		System.out.println("okayfinal");
         
 	}
 	
-	
+	 
 	
 	
 	

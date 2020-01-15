@@ -42,7 +42,7 @@ public class MakeDicisionController implements Initializable {
     private TextArea ExplainDectxt;
     @FXML
     private Button Sendbtn;
-    @FXML
+    @FXML 
     private Label requestid;
     public static MakeDicisionController ctrl;
     private RequestPhase selected;
@@ -60,7 +60,7 @@ public class MakeDicisionController implements Initializable {
 			ctrl.selected=selected;
 			this.cc = LoginController.cc;
 			this.splitpane = splitpane;
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 		}
 	}
@@ -108,6 +108,36 @@ public class MakeDicisionController implements Initializable {
 		CommitteeEvaluationController evaluation=new CommitteeEvaluationController();
 		evaluation.start(splitpane, ctrl.selected, ctrl.user);
 	}
+	
+	
+	
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		
+		
+		
+		System.out.println("okay bshara");
+		
+		
+		ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
+       
+		
+		System.out.println("okay bshara2");
+		
+		
+		
+        
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
