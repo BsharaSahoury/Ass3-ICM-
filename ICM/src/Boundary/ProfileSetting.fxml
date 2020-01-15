@@ -32,7 +32,7 @@
       <Label layoutX="121.0" layoutY="206.0" />
       <CheckBox fx:id="allowrecSMS" layoutX="181.0" layoutY="444.0" mnemonicParsing="false" text="allow recieving messages through SMS" />
       <CheckBox fx:id="allowrecGmail" layoutX="181.0" layoutY="469.0" mnemonicParsing="false" text="allow recieving messages through Gmail" textOverrun="CLIP" />
-      <Button fx:id="applyandsavebtn" layoutX="274.0" layoutY="561.0" mnemonicParsing="false" onAction="#ApplyAndSaveAction" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 15;" text="Update and Save" textFill="#ffffff" />
+      <Button fx:id="applyandsavebtn" layoutX="274.0" layoutY="561.0" mnemonicParsing="false" onAction="#updateAndSaveAction" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 15;" text="Update and Save" textFill="#ffffff" />
       <Label layoutX="182.0" layoutY="115.0" text="ID :" textFill="#530101">
          <font>
             <Font size="14.0" />
@@ -89,7 +89,7 @@
          </font>
       </Label>
       <TextField fx:id="dest_txt" layoutX="185.0" layoutY="518.0" prefHeight="25.0" prefWidth="276.0" promptText="Destination" />
-      <Button fx:id="browsebtn" layoutX="470.0" layoutY="518.0" mnemonicParsing="false" onAction="#BrowseAction" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
+      <Button fx:id="browsebtn" layoutX="470.0" layoutY="518.0" mnemonicParsing="false" onAction="#browseAction" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
       <Label fx:id="faculty_label1" layoutX="182.0" layoutY="390.0" text="Faculty :" textFill="#530101">
          <font>
             <Font size="14.0" />

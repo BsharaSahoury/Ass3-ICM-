@@ -27,6 +27,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -59,10 +61,11 @@ public class ProfileSettingController {
 	private Button browsebtn;
 	@FXML
 	private Button updateandsavebtn;
-	
+	@FXML
+	private ImageView userImage;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
-
+	
 	@FXML
 	private static SplitPane splitpane;
 	private FXMLLoader loader;	
@@ -86,6 +89,8 @@ public class ProfileSettingController {
 				msg[0]="ProfileSetting";
 				msg[1]=user.getUsername();
 				msg[2]=job;
+				System.out.println("ProfileSettingContoller************************");
+				System.out.println(msg);
 				cc.getClient().sendToServer(msg);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -128,6 +133,11 @@ public class ProfileSettingController {
         alert.setHeaderText("Updating picture Failed!");
         alert.setContentText("please browse an Image to Apply updating :)");
         alert.showAndWait();
+		}
+		else
+		{
+			updateandsavebtn.setDisable(true);
+			userImage.setImage(new Image(getClass().getResourceAsStream("analog.png")));
 		}
 	}
 

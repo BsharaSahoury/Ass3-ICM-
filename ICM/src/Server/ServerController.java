@@ -68,7 +68,7 @@ public class ServerController implements Initializable {
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
 
-			dbPassword.setText("Xd0509144223");
+			dbPassword.setText("arkan123456");
 
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
