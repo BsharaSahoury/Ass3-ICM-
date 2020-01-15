@@ -343,6 +343,14 @@ public class RequestsWorkedOnController implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		case "Engineer":
+			try {
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Engineer", "performance");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case "Administrator":
 			try {
