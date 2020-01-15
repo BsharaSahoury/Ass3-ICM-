@@ -1458,6 +1458,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		PreparedStatement stm=null;
 		PreparedStatement stmt1=null;
 		PreparedStatement stmt2=null;
+		PreparedStatement stmt3=null;
 		try {
 			stm=con.prepareStatement("SELECT E.* FROM icm.request E WHERE status='active' AND id=?;");
 			stm.setInt(1, id);
@@ -1467,6 +1468,13 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stmt1.setString(1, newstatus);
 			stmt1.setInt(2, id);
 			stmt1.executeUpdate();
+			if(newstatus.equals("rejected")||newstatus.equals("closed")) {
+				stmt3 = con.prepareStatement("UPDATE request SET close_date=? WHERE id=?;");
+				long millis1 = System.currentTimeMillis();
+				stmt3.setDate(1, new java.sql.Date(millis1));
+				stmt3.setInt(2, id);
+				stmt3.executeUpdate();	
+			}
 			stmt2=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='closing' AND request_id=?;");
 			stmt2.setInt(1, id);
 			stmt2.executeUpdate();
@@ -1497,7 +1505,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm.setInt(1, id);
 			ResultSet rs=stm.executeQuery();
 			if(rs.next()) {
-				System.out.println("ww");
 			stmt1 = con.prepareStatement("UPDATE request SET status=? WHERE id=?;");
 			stmt1.setString(1, "frozen");
 			stmt1.setInt(2, id);
@@ -1517,7 +1524,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 	public static void EnterFreazeToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
 	{
 		PreparedStatement stm=null;
-		PreparedStatement stmt1=null;
 		PreparedStatement stmt2=null;		
 		try {
 			
@@ -1529,6 +1535,12 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm.setDate(4, new java.sql.Date(millis));
 			stm.setInt(5, requestid);
 			stm.executeUpdate();
+			stmt2 = con.prepareStatement("INSERT INTO icm.frozen VALUES(?,?,?);");		
+			stmt2.setInt(1, requestid);
+			long millis1 = System.currentTimeMillis();
+			stmt2.setDate(2, new java.sql.Date(millis1));
+			stmt2.setDate(3, null);
+			stmt2.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

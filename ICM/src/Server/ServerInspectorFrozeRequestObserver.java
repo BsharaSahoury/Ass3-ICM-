@@ -26,12 +26,10 @@ public class ServerInspectorFrozeRequestObserver implements Observer {
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
 					if(keymessage.equals("Inspector changed status to Frozen")) {
-						System.out.println("ddd");
 						int id=(int)arg2[1];
 						Employee inspector=(Employee)arg2[2];
 						String explain=(String)arg2[3];					
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						System.out.println("sd");
 						boolean state=mysqlConnection.FreazeRequest(con, id);
 						if(state)
 						mysqlConnection.EnterFreazeToDBUpdateTable(con, inspector,id,explain);
