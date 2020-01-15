@@ -37,7 +37,7 @@ public class InspectorHomeController implements Initializable{
 	private Button Allrequestbtn;
 	@FXML
 	private Button RequestSubmissionbtn;
-	@FXML
+	@FXML 
 	private Button ProfileSettingbtn;
 	@FXML
 	private Button AboutICMbtn;

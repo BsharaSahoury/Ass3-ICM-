@@ -160,7 +160,7 @@ public class ChairmanHomeController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		UserNameMenu.setText(chairman.getFirstName() +" "+ chairman.getLastName());
-	}
+	} 
 
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific = new NotificationsController();
