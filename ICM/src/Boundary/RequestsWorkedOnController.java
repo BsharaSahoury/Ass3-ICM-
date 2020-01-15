@@ -40,7 +40,7 @@ import messages.AutomaticRecruitMessageController;
 
 public class RequestsWorkedOnController implements Initializable {
 	public static Stage primaryStage;
-	private static ClientConsole cc;
+	private static ClientConsole cc; 
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private TableView<RequestPhase> tableRequests;
@@ -201,13 +201,13 @@ public class RequestsWorkedOnController implements Initializable {
 				}
 			}		
 	      }
-	}
+	} 
 	public void SetDuration() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
 			id=s.getId();
-
+ 
 			String keymessage = "get duration";
 			Object[] message = { keymessage, s.getId(),s.getPhase()};
 			try {
@@ -246,7 +246,7 @@ public class RequestsWorkedOnController implements Initializable {
 		if(chosen!=-1) {
 			Request s =tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
-	    	requestifo.start(splitpane,s);
+	    	requestifo.start(splitpane,s,job);
 		}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);
@@ -358,7 +358,7 @@ public class RequestsWorkedOnController implements Initializable {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 			break;
 		}
 	}

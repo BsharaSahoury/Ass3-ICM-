@@ -17,11 +17,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ChairmanHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.ChairmanHomeController">
    <children>
       <SplitPane fx:id="splitpane" dividerPositions="0.5" layoutY="-1.0" prefHeight="601.0" prefWidth="900.0">
          <items>
-            <AnchorPane prefHeight="601.0" prefWidth="180.0" style="-fx-background-color: #9d1b34;">
+            <AnchorPane prefHeight="602.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;">
                <children>
                   <Button alignment="BASELINE_LEFT" layoutX="-6.0" layoutY="304.0" mnemonicParsing="false" onAction="#MyRequestsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  My Requests" textFill="WHITE">
                      <font>
@@ -173,13 +173,13 @@
                      </image>
                   </ImageView>
                   <Line endX="421.0" endY="-14.000007629394531" layoutX="301.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
-                  <Label layoutX="18.0" layoutY="6.0" text="ICM">
+                  <Label layoutX="37.0" layoutY="6.0" text="ICM">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="44.0" layoutY="6.0" text="-&gt;" />
-                  <Label layoutX="58.0" layoutY="6.0" text="Home">
+                  <Label layoutX="63.0" layoutY="6.0" text="-&gt;" />
+                  <Label layoutX="77.0" layoutY="6.0" text="Home">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -189,52 +189,52 @@
                         <Font name="Comic Sans MS Bold" size="36.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="172.0" layoutY="-4.0" prefHeight="34.0" prefWidth="462.0">
-                     <children>
-                        <Button fx:id="notifications" alignment="BASELINE_LEFT" layoutX="280.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickNotifications" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <MenuButton fx:id="UserNameMenu" layoutX="397.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="ChairmanName" textFill="WHITE">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Role : Chairman">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuItem>
-                           </items>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/585e4beacb11b227491c3399.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuButton>
-                     </children>
-                  </AnchorPane>
                </children>
             </AnchorPane>
          </items>
       </SplitPane>
+      <AnchorPane layoutX="280.0" prefHeight="31.0" prefWidth="618.0">
+         <children>
+            <Button fx:id="notifications" alignment="BASELINE_LEFT" layoutX="372.0" layoutY="1.0" mnemonicParsing="false" onAction="#clickNotifications" prefHeight="11.0" prefWidth="103.0" style="-fx-background-color: #ffffff; -fx-background-insets: 888888888;" text="Notification" textAlignment="RIGHT" textOverrun="CLIP">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <MenuButton fx:id="UserNameMenu" layoutX="500.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="153.0" style="-fx-background-color: #9d1b34;" text="ChairmanName" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Role : Chairman">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/ad6c2f305461d1b01075c391465f812e.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#LogOutAction" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/vippng.com-logout-icon-png-2967.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+               </items>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+         </children>
+      </AnchorPane>
    </children>
    <effect>
       <DropShadow />

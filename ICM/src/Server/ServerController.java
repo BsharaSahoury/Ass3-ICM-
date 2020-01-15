@@ -25,7 +25,7 @@ import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 
-
+ 
 public class ServerController implements Initializable {
 
 	private static String db_Password;
@@ -68,6 +68,7 @@ public class ServerController implements Initializable {
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
 			dbPassword.setText("ahmed1234567891");
+			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,6 +127,7 @@ public class ServerController implements Initializable {
 					dbUsername.setEditable(false);
 					dbPassword.setEditable(false);
 		    		connectBtn.setDisable(true);
+		    		DBconnection.mysqlConnection.SetAllUsersLoginToNo(con1);
 	    		}
 	    		}
 	    	else

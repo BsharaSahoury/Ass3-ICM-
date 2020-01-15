@@ -66,7 +66,7 @@ public class MainForServer extends Application{
 	        ServerNotificationdetailsObserver details=new ServerNotificationdetailsObserver(sv);
 	        ServerCreateEvaluationReportObserver report=new ServerCreateEvaluationReportObserver(sv);
 			ServerGetDurationObserver duratin = new ServerGetDurationObserver(sv);
-			ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
+		//	ServerDetectorObserver sdo=new ServerDetectorObserver(sv);
 			ServerDocumentExceptionObserver sdeo=new ServerDocumentExceptionObserver(sv);
 			ServerApproveDuratinObserver approveDuratin=new ServerApproveDuratinObserver(sv);
 			ServerCheckAprproveDurationObserver check=new ServerCheckAprproveDurationObserver(sv);
@@ -77,6 +77,7 @@ public class MainForServer extends Application{
 			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
+		    ServerProfileSettingObserver spso=new ServerProfileSettingObserver(sv);
 		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
 			try {
 			   sv.listen();
