@@ -47,6 +47,15 @@ public class ServerManualRecruitObserver implements Observer {
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,evaluator);
 						}	
+						else {
+							Object[] message= {"isRecruited"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 					}
 					else if(keymessage.equals("manualPerformer")) {
 						String fullname=(String)arg3[1];
@@ -71,6 +80,15 @@ public class ServerManualRecruitObserver implements Observer {
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,performer);
 						}
+						else {
+							Object[] message= {"isRecruited"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						
 					}
 					else if(keymessage.equals("manualEvaluatorAgain")) {
@@ -94,6 +112,49 @@ public class ServerManualRecruitObserver implements Observer {
 									"recruitNotificationForEvaluator");
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,evaluator);
+						}
+						else {
+							Object[] message= {"isRecruited"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						
+					}
+					else if(keymessage.equals("manualTester") ) {
+						String fullname=(String)arg3[1];
+						int id=(int)arg3[2];
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						Employee tester=mysqlConnection.getSpecificEmployee(con,fullname);
+						boolean flag=mysqlConnection.assignEmployeeToPhaseRequest(con, tester, id,"testing");
+						if(flag) {
+							mysqlConnection.updateCurrentPhase(con, id, Phase.testing);
+							Object[] message= {"testerRecruit"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							long millis=System.currentTimeMillis();
+							Notification n1=new Notification(
+									"You've been recruited to test request#"+id,
+									new java.sql.Date(millis),
+									"recruitNotificationForTester");
+							n1=mysqlConnection.insertNotificationToDB(con, n1);
+							mysqlConnection.insertNotificationForUserToDB(con, n1,tester);
+						}
+						else {
+							Object[] message= {"isRecruited"};
+							try {
+								client.sendToClient(message);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 					

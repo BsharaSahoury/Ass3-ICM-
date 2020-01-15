@@ -74,7 +74,6 @@ public class ChooseTesterMessageController implements Initializable {
 	        alert.showAndWait();
 	        return;
 		}
-		System.out.println(requestID+ "              00000000000");
 		Object[] msg= {"manualTester",fullname,requestID};
 		try {
 			LoginController.cc.getClient().sendToServer(msg);
