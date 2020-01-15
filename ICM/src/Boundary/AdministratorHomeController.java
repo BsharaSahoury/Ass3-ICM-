@@ -46,6 +46,8 @@ public static Stage primaryStage;
 private static Employee Administrator;
 public static MyRequestsController MyRequests;
 public static AllRequestsController AllRequests;
+public static ProfileSettingController ProfileSetting;
+
 
 public void start(Employee Administrator) {
 this.Administrator = Administrator;
@@ -117,9 +119,9 @@ runLater(() -> {
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-ProfileSettingController Submit = new ProfileSettingController();
-runLater(() -> {
-	Submit.start(splitpane,Administrator);
+	ProfileSetting = new ProfileSettingController();
+	runLater(() -> {
+	ProfileSetting.start(splitpane,Administrator,"Administrator");
 });	
 
 }

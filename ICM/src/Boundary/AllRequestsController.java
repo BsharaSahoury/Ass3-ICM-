@@ -43,8 +43,8 @@ import Entity.RequestPhase;
 
 public class AllRequestsController implements Initializable {
 	public static Stage primaryStage;
-	private static ClientConsole cc;
-	private AnchorPane lowerAnchorPane;
+	private static ClientConsole cc; 
+	private AnchorPane lowerAnchorPane; 
 	@FXML
 	private TableView<RequestPhase> tableRequests;
 	@FXML
@@ -105,7 +105,7 @@ public class AllRequestsController implements Initializable {
 		arrofRequests = arr1;
 		loader.<AllRequestsController>getController().setTableRequests(arr1);
 
-	}
+	} 
 	public void searchaction() {
 		if(!search_text.getText().equals("")) {
 			try {
@@ -193,7 +193,7 @@ public class AllRequestsController implements Initializable {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
-				requestifo.start(splitpane, s.getR());
+				requestifo.start(splitpane, s.getR(),job);
 			});			
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);

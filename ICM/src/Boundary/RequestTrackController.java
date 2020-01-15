@@ -44,6 +44,9 @@ public class RequestTrackController implements Initializable {
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 
+		
+		
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/UserStatus.fxml"));
 			lowerAnchorPane = loader.load();
@@ -57,6 +60,10 @@ public class RequestTrackController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
