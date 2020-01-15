@@ -53,7 +53,7 @@ public class EngineerHomeController implements Initializable{
 			@Override
 			public void run() {
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/performanceLeader-Home.fxml"));			
+			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/Engineer-Home.fxml"));			
 			Scene scene = new Scene(root);		
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -121,7 +121,7 @@ public void clickNotifications(ActionEvent event) throws Exception {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		UserNameMenu.set
 	}
 
 }

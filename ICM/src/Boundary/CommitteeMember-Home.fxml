@@ -30,7 +30,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/myRequests.png" />
+                              <Image url="@../Images/tester-image.png" />
                            </image>
                            <effect>
                               <Lighting>

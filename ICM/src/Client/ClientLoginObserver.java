@@ -63,7 +63,7 @@ public class ClientLoginObserver implements Observer{
 				ComitteeMemberHomeController chairman=new ComitteeMemberHomeController();
 				chairman.start(employee1);
 				break;
-			case "performer":
+			case "engineer":
 				PerformanceLeaderHomeController performer=new PerformanceLeaderHomeController();
 				performer.start(employee1);
 				break;
@@ -104,7 +104,6 @@ public class ClientLoginObserver implements Observer{
 					Label label3 = new Label("Another computer is currently logged into this account!");
 					label3.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 12)); 
 					Label label4 = new Label("Please Try again!");
-						
 					dialogPaneContent.getChildren().addAll(label1, label2,label3,label4);
 			 		alert.getDialogPane().setContent(dialogPaneContent);
 					alert.showAndWait();

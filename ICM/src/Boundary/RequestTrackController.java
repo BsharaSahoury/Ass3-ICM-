@@ -1,3 +1,4 @@
+
 package Boundary;
 
 import java.net.URL;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import Client.ClientConsole;
 import Entity.Request;
 import Entity.RequestPhase;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -61,6 +63,17 @@ public class RequestTrackController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		InspectorHomeController.MyRequests.start(splitpane,InspectorHomeController.getinspector(),"Inspector");
+	}
+	
+	
+	
+	
 
 	public void SetTrack(RequestPhase rp) {
 		requeststatus.setText(rp.getR().getStatus());
@@ -87,5 +100,4 @@ public class RequestTrackController implements Initializable {
 		
 
 	}
-
 }

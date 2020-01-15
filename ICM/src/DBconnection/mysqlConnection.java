@@ -288,12 +288,12 @@ public static ArrayList<RequestPhase> getRequestsWorkOn(Connection con,String us
 				s=new Request(rs4.getInt(7),Initiatorname,rs4.getString(8),rs4.getString(1),rs4.getDate(6));
 				result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(2)),State.valueOf(rs3.getString(7)));	
 				arr.add(result);	
-			}
-			
+			}		
 			}
 			stmt3 = null;
 			stmt4=null;
 			rs4.close();
+			rs3.close();
 		}
 	 catch (SQLException e) {
 //TODO Auto-generated catch block
@@ -377,8 +377,8 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				count = rs.getInt(1) + 1;
 			} else
 				count = 0;
-			long s=request.getDate().getTime()+(int) (1000 * 60 * 60 * 24 );
-			request.setDate(new java.sql.Date(s)); 
+			/*long s=request.getDate().getTime()+(int) (1000 * 60 * 60 * 24 );
+			request.setDate(new java.sql.Date(s)); */
 			stm = con.prepareStatement("INSERT INTO request VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
 			stm.setString(1, request.getPrivilegedInfoSys());
 			stm.setString(2, request.getExistingSituation());
@@ -545,7 +545,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			if (rs.next()) {
 				String privilegedSystem = rs.getString(1);
 				Employee evaluator = mysqlConnection.getAutomaticRecruit(con, privilegedSystem);
-				mysqlConnection.assignEmployeeToPhaseRequest(con, evaluator, id,"evaluation");
+				mysqlConnection.assignEvaluator(con, id,evaluator);
 				return evaluator;
 			}
 		} catch (SQLException e) {
@@ -555,13 +555,33 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		return null;
 
 	}
+	
+	public static void assignEvaluator(Connection con, int id,Employee evaluator) {
+		PreparedStatement stm = null;
+		PreparedStatement stm4 = null;
+		try {
+		stm=con.prepareStatement("SELECT * FROM icm.requestinphase WHERE request_id=? AND phase=? AND repetion=? AND phase_administrator IS NULL");
+		stm.setInt(1, id);
+		stm.setString(2, "evaluation");
+		stm.setInt(3, 0);
+		ResultSet rs3 = stm.executeQuery();
+		if(rs3.next()) {
+			stm4=con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm4.setInt(2, id);
+			stm4.setString(3, "evaluation");
+			stm4.setInt(4, 0);
+			stm4.setString(1, evaluator.getUsername());
+			stm4.executeUpdate();
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	}
 
 	public static boolean assignEmployeeToPhaseRequest(Connection con, Employee employee, int id,String phase) {
 		PreparedStatement stm = null;
 		PreparedStatement stm2 = null;
-		PreparedStatement stm3 = null;
-		PreparedStatement stm4 = null;
-
 		try {
 			int Max=0;
 			stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
@@ -572,22 +592,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				if(rs.getInt(1)>=Max)
 					Max=rs.getInt(1)+1;
 			}
-			stm3=con.prepareStatement("SELECT * FROM icm.requestinphase WHERE request_id=? AND phase=? AND repetion=? AND phase_administrator IS NULL");
-			stm3.setInt(1, id);
-			stm3.setString(2, "evaluation");
-			stm3.setInt(3, 0);
-			ResultSet rs3 = stm3.executeQuery();
-			if(rs3.next()) {
-				System.out.println("ccc");
-				stm4=con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
-				stm4.setInt(2, id);
-				stm4.setString(3, "evaluation");
-				stm4.setInt(4, 0);
-				stm4.setString(1, employee.getUsername());
-				stm4.executeUpdate();
-			}
-			else {
-				
 			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, phase);
@@ -597,18 +601,15 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm.setString(6, employee.getUsername());
 			stm.setString(7, "wait");
 			stm.executeUpdate();
-			}
 			return true;
 		} catch (SQLException e) {
 // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
-		}
-			
 
-	
-	
+	}
+			
 	
 	public static boolean assignPerformerToRequest(Connection con, Employee Performer, int id) {
 		PreparedStatement stm = null;
@@ -1053,8 +1054,11 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				stm.setString(6, null);
 				stm.setString(7, "wait");
 				stm.executeUpdate();
+				mysqlConnection.updateCurrentPhase(con, id, Phase.performance);
+				/*
 				PreparedStatement stm5 = con.prepareStatement(
 						"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
+				System.out.println(id+"       555555555555555555");
 				stm.setInt(1, id);
 				stm.setString(2, "decision");
 				ResultSet rs2=stm5.executeQuery();
@@ -1062,9 +1066,8 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				stm3=con.prepareStatement("UPDATE icm.requestinphase SET state='over' WHERE request_id = ? and phase='decision' and repetion=?;");
 				stm3.setInt(1, id);
 				stm3.setInt(2, rs2.getInt(1));
-				stm3.executeUpdate();
-				}
-				mysqlConnection.updateCurrentPhase(con, id, Phase.performance);
+				stm3.executeUpdate();*/
+				
 				}
 				else if(dec.equals("reject")) {
 					stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
@@ -1076,6 +1079,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 					stm.setString(6, null);
 					stm.setString(7, "wait");
 					stm.executeUpdate();
+					System.out.println("5555555555");
 				/*	PreparedStatement stm5 = con.prepareStatement(
 							"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 					stm.setInt(1, id);
@@ -1647,7 +1651,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 	return report;
 	}
-
 	public static boolean changePermission(Connection con, Employee oldE, Employee newE) {
 		PreparedStatement stm=null;
 		try {
@@ -1735,6 +1738,71 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}
 		return null;
 	}
-
+    public static ArrayList<RequestPhase> getrequestEngineerworkon(Connection con,String username){
+    	String Initiatorname=null;
+    	ArrayList<RequestPhase> arr = new ArrayList<RequestPhase>();
+    	PreparedStatement stmt1 = null;
+    	PreparedStatement stmt2=null;
+    	PreparedStatement stmt3=null;
+    	PreparedStatement stmt4=null;
+    	Request s=null;
+    	RequestPhase result=null;
+    	int count=0;
+    	try {
+    		stmt1=con.prepareStatement("SELECT DISTINCT R.request_id FROM icm.enginnerequest R WHERE username=?;");
+    		stmt1.setString(1, username);
+    		ResultSet rs=stmt1.executeQuery();
+    		while(rs.next())
+     		{
+    			count++;
+    			stmt2=con.prepareStatement("SELECT R.* FROM icm.enginnerequest R WHERE request_id=? AND username=?;");
+    			stmt2.setInt(1, rs.getInt(1));
+    			stmt2.setString(2, username);			
+    			ResultSet rs2=stmt2.executeQuery();
+    			int max=0;
+    			while(rs2.next()) {
+    				if(rs2.getInt(2)>=max)
+    					max=rs2.getInt(2);
+    			}
+    			rs2.close();
+    			stmt3=con.prepareStatement("SELECT R.* FROM icm.requestinphase R WHERE request_id=? AND phase=? AND repetion=?;");
+    			stmt3.setInt(1, rs.getInt(1));
+    			stmt3.setString(2, "performance");
+    			stmt3.setInt(3, max);
+    			ResultSet rs3=stmt3.executeQuery();	
+    			rs3.next();
+    			try {
+    				stmt4 = con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+    				stmt4.setInt(1, rs.getInt(1));	
+    				ResultSet rs4=stmt4.executeQuery();	
+    			if(rs4.next()) {
+    				Initiatorname=getinitiatorname(con,rs4.getString(9));
+    			if(!Initiatorname.equals(null)) {
+    				s=new Request(rs4.getInt(7),Initiatorname,rs4.getString(8),rs4.getString(1),rs4.getDate(6));
+    				result=new RequestPhase(null,null,s,Phase.valueOf("performance"),State.valueOf(rs3.getString(7)));	
+    				arr.add(result);	
+    			}
+    			}
+    			stmt2=null;
+    			stmt3 = null;
+    			stmt4=null;
+    			rs4.close();
+    			rs3.close();
+    		}
+    	 catch (SQLException e) {
+    //TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+     		}
+    		rs.close();
+    		}catch (SQLException e) {
+    	//TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	if(count>0) 
+    		return arr;
+    	else
+    		return null;
+    }
 }
 

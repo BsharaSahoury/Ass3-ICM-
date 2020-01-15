@@ -102,9 +102,10 @@ public class RequestsWorkedOnController implements Initializable {
 			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=user.getUsername();
 			}
-			else {
+			else if(job.equals("Engineer")){
+				RequestWorkedON[0]="engineer request work on";	
+			}						
 			RequestWorkedON[1]=user.getUsername();
-			}
 			RequestWorkedON[2]=job;
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);

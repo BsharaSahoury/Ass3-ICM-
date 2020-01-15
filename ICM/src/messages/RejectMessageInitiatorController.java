@@ -27,7 +27,7 @@ public class RejectMessageInitiatorController implements Initializable {
 	public  static SplitPane splitpane;
 	private int notificationID;
 	private int requestID;
-	private String CommitteeDecision;
+	private static String CommitteeDecision;
 	public static int flag=-1;
 	private static String notdetails;
 	public void start(SplitPane splitpane,String path) {
