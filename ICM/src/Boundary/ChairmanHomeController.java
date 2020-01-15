@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ChairmanHomeController implements Initializable {
+
 	@FXML
 	private Button notifications;
 	@FXML
@@ -45,7 +46,7 @@ public class ChairmanHomeController implements Initializable {
 	private static Employee chairman;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
-
+	public static ProfileSettingController ProfileSetting;
 	public void start(Employee chairman) {
 		this.chairman = chairman;
 		primaryStage = LoginController.primaryStage;
@@ -124,9 +125,9 @@ public class ChairmanHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSettingController Submit = new ProfileSettingController();
+		ProfileSetting = new ProfileSettingController();
 		runLater(() -> {
-			Submit.start(splitpane, chairman);
+			ProfileSetting.start(splitpane, chairman,"Chairman");
 		});
 	}
 
@@ -154,7 +155,7 @@ public class ChairmanHomeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(chairman.getFirstName() + chairman.getLastName());
+		UserNameMenu.setText(chairman.getFirstName() +" "+ chairman.getLastName());
 	}
 
 	public void clickNotifications(ActionEvent event) throws Exception {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Client.Func;
 import Client.MainForClient;
 import Entity.Employee;
 import Entity.Request;
@@ -53,8 +54,11 @@ public class InspectorHomeController implements Initializable{
 	private MenuItem btlogOut;
 	public static AllRequestsController AllRequests;
 	public static MyRequestsController MyRequests;
+	public static ProfileSettingController ProfileSetting;
+
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
+
 	public void start(Employee inspector) {
 		this.inspector = inspector;
 		s=this;
@@ -107,10 +111,12 @@ public class InspectorHomeController implements Initializable{
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSettingController Submit = new ProfileSettingController();
-		Submit.start(splitpane,inspector);
+		ProfileSetting = new ProfileSettingController();
+		runLater(() -> {
+			ProfileSetting.start(splitpane,inspector,"Inspector");
+		});
 	}
-
+	
 	public void MyRequestsAction() throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane,inspector,"Inspector");
@@ -136,10 +142,23 @@ public class InspectorHomeController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
+		UserNameMenu.setText(inspector.getFirstName()+" "+inspector.getLastName());
     }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();
 		notific.start(splitpane,inspector);
+	}
+	private void runLater(Func f) {
+		f.call();
+		Platform.runLater(() -> {
+			try {
+				Thread.sleep(10);
+				f.call();
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 }

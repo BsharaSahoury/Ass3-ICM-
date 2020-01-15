@@ -75,16 +75,6 @@ public class mysqlConnection {
 			if (!rs.next())
 				return null;
 			
-			//checking if the userAccount is Already logged-in
-			if(rs.getString(3).equals("yes"))
-				return null;
-			
-			//Logged-In ='yes'
-			stm = con.prepareStatement("UPDATE user SET loggedIn='yes' WHERE username=? AND password=?;");
-			stm.setString(1, username);
-			stm.setString(2, password);
-			stm.executeUpdate();
-			
 			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
 			stm.setString(1, username);
 			rs = stm.executeQuery();
@@ -106,6 +96,43 @@ public class mysqlConnection {
 		return null;
 
 	}
+	public static void updateUSerLoggedInToYes(Connection con,String username,String password)
+	{
+		PreparedStatement stm = null;
+		try {
+		stm = con.prepareStatement("UPDATE user SET loggedIn='yes' WHERE username=? AND password=?;");
+		stm.setString(1, username);
+		stm.setString(2, password);
+		stm.executeUpdate();
+		}
+	 catch (SQLException e) {
+		 //TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
+			
+	}
+	public static String IsConnectedByAnotherClient(Connection con,String username,String password)
+	{
+		PreparedStatement stm = null;
+		try {
+			stm = con.prepareStatement("SELECT user.loggedIn FROM user WHERE username=? AND password=?;");
+			stm.setString(1, username);
+			stm.setString(2, password);
+			ResultSet rs = stm.executeQuery();
+			
+			//if the user is not an ICM-User
+			if (!rs.next())
+				return "false";
+			//checking if the userAccount is Already logged-in
+			if(rs.getString(1).equals("yes"))
+				return "true";
+		}
+	 catch (SQLException e) {
+		 //TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return "false";
+}
 	public static void SetAllUsersLoginToNo(Connection con) {
 	
 		String username,password;
@@ -148,7 +175,59 @@ public static String logOutUser(Connection con, String username, String password
 				return res;
 	}	
 }
-
+public static ArrayList<String> getUserData(Connection con,String username,String userJob)
+{
+	System.out.println("mySQLConncection*************\n\n***************");
+	PreparedStatement stm = null;
+	ResultSet rs;
+	String id=null,USERname=null,fullname=null,email=null,faculty=null,extra=null;
+	ArrayList<String> res=new ArrayList<String>();
+	try {
+		if(userJob.equals("Student"))
+		{
+			stm = con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
+			stm.setString(1, username);
+			rs = stm.executeQuery();
+			if (rs.next()) {//data
+			USERname=rs.getString(1);
+			fullname=rs.getString(2)+" "+rs.getString(3);
+			id=rs.getString(4);
+			email=rs.getString(5);
+			faculty=rs.getString(6);//faculty
+			}
+			//res={id,USERname,fullname,email,faculty};
+			res.add(id);
+			res.add(USERname);
+			res.add(fullname);
+			res.add(email);
+			res.add(faculty);
+		}
+		else//User is an employee
+		{
+			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
+			stm.setString(1, username);
+			rs = stm.executeQuery();
+			if (rs.next()) {
+				USERname=rs.getString(1);
+				fullname=rs.getString(2)+" "+rs.getString(3);
+				email=rs.getString(4);
+				faculty=rs.getString(6);//faculty			
+				id=rs.getString(7);
+			}
+			//res= {id,username,fullname,email,faculty};
+			//res={id,USERname,fullname,email,faculty};
+			res.add(id);
+			res.add(USERname);
+			res.add(fullname);
+			res.add(email);
+			res.add(faculty);
+		}//else
+	} catch (SQLException e) {
+//TODO Auto-generated catch block
+	e.printStackTrace();
+	}
+	return res;
+}
 
 public static String getinitiatorname(Connection con,String username ) {
 	PreparedStatement stmt2=null;
