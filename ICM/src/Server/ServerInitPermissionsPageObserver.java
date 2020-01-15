@@ -26,6 +26,7 @@ public class ServerInitPermissionsPageObserver implements Observer {
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
 					if(keymessage.equals("employees&permissions")) {
+						System.out.println("hi baby");
 						Connection con=MainForServer.con;
 						ArrayList<Employee> list=mysqlConnection.getAllengineers(con);
 						Employee inspector=mysqlConnection.getInspector(con);
