@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import DBconnection.mysqlConnection;
 import Entity.Employee;
+import Entity.Phase;
 import ocsf.server.ConnectionToClient;
 
 public class ServerGetEvaluatorsObserver implements Observer {

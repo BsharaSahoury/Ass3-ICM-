@@ -125,7 +125,8 @@ public class ProfileSettingController {
 	}
 	
 	
-	public void updateAndSaveAction(ActionEvent event) {
+	public void updateAndSaveAction(ActionEvent event){
+		try {
 		if(dest_txt.getText().equals(""))
 			{
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -136,9 +137,22 @@ public class ProfileSettingController {
 		}
 		else
 		{
+			Object[] msg=new String[5];
 			updateandsavebtn.setDisable(true);
-			userImage.setImage(new Image(getClass().getResourceAsStream("analog.png")));
+			userImage.setImage(new Image(getClass().getResourceAsStream(dest_txt.getText())));
+			msg[0]="UpdatingImageOfProfileSetting";
+			msg[1]=user.getUsername();
+			msg[2]=job;
+			msg[3]=dest_txt.getText();
+			msg[4]=new Image(getClass().getResourceAsStream(dest_txt.getText()));
+			System.out.println("ProfileSettingContoller**********updateAndSaveAction");
+			System.out.println(msg);
+			cc.getClient().sendToServer(msg);
 		}
+		}catch(Exception e) {
+			e.printStackTrace();
+	}
+		
 	}
 
 	public void browseAction(ActionEvent event) {

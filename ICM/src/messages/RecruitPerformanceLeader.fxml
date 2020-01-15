@@ -29,7 +29,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="DecisionLable" layoutX="49.0" layoutY="107.0" prefHeight="154.0" prefWidth="477.0" />
+            <Label fx:id="DecisionLable" layoutX="49.0" layoutY="107.0" prefHeight="107.0" prefWidth="599.0" />
             <Label layoutX="309.0" layoutY="224.0" text="You must choose an performer:" />
          </children></AnchorPane>
       <Button fx:id="other" layoutX="522.0" layoutY="274.0" mnemonicParsing="false" onAction="#RecruitAction" prefHeight="18.0" prefWidth="62.0" style="-fx-background-color: #9d1b34;" text="Recruit" textFill="WHITE" />
