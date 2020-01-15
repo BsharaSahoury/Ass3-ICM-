@@ -1681,7 +1681,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(initiator.getUsername());
 		return initiator;
 	}
 	public static void changeState(Connection con,int id,Phase phase,State state) {

@@ -25,7 +25,6 @@ public class ServerGetEvaluatorsObserver implements Observer {
 				Object[] arg2=(Object[])arg1[1];
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
-					System.out.println(keymessage);
 					if(keymessage.equals("evaluators")) {
 						String classname=(String)arg2[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
@@ -42,7 +41,7 @@ public class ServerGetEvaluatorsObserver implements Observer {
 					else if(keymessage.equals("Performance leaders")) {
 						String classname=(String)arg2[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"performer");
+						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"engineer");
 						Object[] msg= {"employees",performers,classname};
 						try {
 							client.sendToClient(msg);
@@ -65,9 +64,7 @@ public class ServerGetEvaluatorsObserver implements Observer {
 					}
 					else if(keymessage.equals(("evaluatorsagain"))){
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						System.out.print("dddd");
 						ArrayList<Employee> evaluators=mysqlConnection.getEmployees(con,"evaluator");
-						System.out.print(evaluators.get(0).getUsername());
 						Object[] msg= {keymessage,evaluators};
 						try {
 							client.sendToClient(msg);
