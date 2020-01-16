@@ -10,8 +10,8 @@ import Entity.Employee;
 import Entity.User;
 import ocsf.server.ConnectionToClient;
 
-public class ServerInspectorFrozeRequestObserver implements Observer {
-	public ServerInspectorFrozeRequestObserver(Observable server) {
+public class ServerAdminActiveRequestObserver implements Observer {
+	public ServerAdminActiveRequestObserver(Observable server) {
 		server.addObserver(this);
 	}
 
@@ -25,14 +25,15 @@ public class ServerInspectorFrozeRequestObserver implements Observer {
 				Object[] arg2=(Object[])arg1[1];
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
-					if(keymessage.equals("Inspector changed status to Frozen")) {
+					if(keymessage.equals("Admin changed status to Active")) {
+						System.out.println("serverobserver");
 						int id=(int)arg2[1];
-						Employee inspector=(Employee)arg2[2];
+						Employee administrator = (Employee)arg2[2];
 						String explain=(String)arg2[3];					
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						boolean state=mysqlConnection.FreazeRequest(con, id);
+						boolean state=mysqlConnection.ActiveRequest(con, id);
 						if(state)
-						mysqlConnection.EnterFreazeToDBUpdateTable(con, inspector,id,explain);
+							mysqlConnection.EnterActiveToDBUpdateTable(con, administrator,id,explain);
 						try {
 							Object[] send=new Object[2];
 							send[0]=keymessage;
@@ -48,3 +49,9 @@ public class ServerInspectorFrozeRequestObserver implements Observer {
 	}
 }
 }
+
+
+
+
+
+
