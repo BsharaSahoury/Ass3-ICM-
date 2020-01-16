@@ -26,6 +26,7 @@ public class ServerGetFullNameOfEmployeeObserver implements Observer {
 					if(keymessage.equals("getFullNameOfEmployee")) {
 						String classname=(String)arg2[1];
 						String username=(String)arg2[2];
+						if(username!=null) {
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						String fullname=mysqlConnection.getinitiatorname(con, username);
 						Object[] msg= {keymessage,classname,fullname};
@@ -35,6 +36,7 @@ public class ServerGetFullNameOfEmployeeObserver implements Observer {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+					}
 					}
 	}
 }

@@ -52,7 +52,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="26.0" prefWidth="200.0" promptText="Choose phase administrator" />
                         <Label fx:id="currentphase" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="207.0" layoutY="91.0" prefHeight="20.0" prefWidth="142.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
