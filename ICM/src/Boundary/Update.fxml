@@ -20,17 +20,17 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="515.0" layoutY="438.0" mnemonicParsing="false" onAction="#updateandsaveaction" prefHeight="49.0" prefWidth="128.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Update and save" textFill="WHITE">
+                        <Button layoutX="515.0" layoutY="438.0" mnemonicParsing="false" onAction="#updateandsaveaction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Update and save" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="30.0" layoutY="91.0" text="Phase:">
+                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="30.0" layoutY="91.0" text="Current phase:">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="phaseadminlable" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="27.0" layoutY="160.0" text="Phase Administrator:">
+                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="27.0" layoutY="160.0" text="Phase Administrator:">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -40,25 +40,25 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="DatePickerTo" layoutX="287.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" />
-                        <DatePicker fx:id="DatePickerFrom" layoutX="105.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" />
+                        <DatePicker fx:id="DatePickerTo" layoutX="287.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="1/1/2021" />
+                        <DatePicker fx:id="DatePickerFrom" layoutX="105.0" layoutY="230.0" prefHeight="1.0" prefWidth="123.0" promptText="15/12/2020" />
                         <Label contentDisplay="RIGHT" graphicTextGap="120.0" layoutX="247.0" layoutY="233.0" text="To">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="30.0" layoutY="22.0" prefHeight="23.0" prefWidth="880.0" text="Choose the phase on update and then choose the admin and the duration of the phase " wrapText="true">
+                        <Label layoutX="30.0" layoutY="34.0" text="You can update the data presented below by changing it and then click on &quot;Update and save&quot; -&gt;">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" onAction="#ChangePhase" prefWidth="150.0" />
-                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="29.0" prefWidth="223.0" promptText="Choose phase administrator" />
-                        <Label layoutX="30.0" layoutY="45.0" prefHeight="23.0" prefWidth="880.0" text="Then Click &quot;Update and save&quot;" wrapText="true">
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
+                        <Label fx:id="currentphase" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="207.0" layoutY="91.0" prefHeight="20.0" prefWidth="142.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
+                        <TextArea fx:id="Explaintxt2" layoutX="25.0" layoutY="269.0" prefHeight="200.0" prefWidth="386.0" promptText="Explain your update" stylesheets="@tabs.css" />
                      </children>
                   </AnchorPane>
                </content>
@@ -77,7 +77,7 @@
                            </font>
                         </Label>
                         <TextArea fx:id="Explaintxt" layoutX="114.0" layoutY="142.0" prefHeight="200.0" prefWidth="261.0" promptText="Explain your decision" />
-                        <Label fx:id="statuslable" layoutX="137.0" layoutY="60.0" prefHeight="23.0" prefWidth="103.0" />
+                        <Label fx:id="statuslable" layoutX="142.0" layoutY="57.0" prefHeight="23.0" prefWidth="103.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -85,11 +85,13 @@
          </tabs>
       </TabPane>
       <Label layoutX="51.0" layoutY="8.0" text="ICM-&gt;All Requests-&gt;Request treatment" />
-      <Button layoutX="9.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="31.0" prefWidth="32.0" style="-fx-background-insets: 8888888888888;" />
-      <ImageView fitHeight="30.0" fitWidth="23.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/back-arrow.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="9.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="31.0" prefWidth="32.0" style="-fx-background-insets: 8888888888888;">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/back-arrow.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
