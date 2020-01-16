@@ -1,3 +1,4 @@
+
 package Client;
 
 import java.util.ArrayList;
@@ -70,10 +71,6 @@ public class ClientLoginObserver implements Observer{
 			case "lecturer":
 				LecturerHomeController lecturer=new LecturerHomeController();
 				lecturer.start(employee1);
-				break;
-			case "tester":
-				ComitteeMemberHomeController tester=new ComitteeMemberHomeController();
-				tester.start(employee1);
 				break;
 			case "administrator":
 				AdministratorHomeController Administrator=new AdministratorHomeController();

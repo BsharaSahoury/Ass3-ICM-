@@ -26,6 +26,7 @@ import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
+import Client.ClientGetFullNameEmployeeObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
 import Client.ClientLoginByAnotherClientObserver;
@@ -108,6 +109,7 @@ public class MainClientController {
 			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
+			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

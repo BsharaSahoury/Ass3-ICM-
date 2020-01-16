@@ -2,6 +2,8 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -156,6 +158,38 @@ public class ServerManualRecruitObserver implements Observer {
 								e.printStackTrace();
 							}
 						}
+					}
+					else if(keymessage.equals("manualRequestTreatmentRecruitEvaluator")) {
+						String fullname=(String)arg3[1];				
+						int id=(int)arg3[2];
+						String phase=(String)arg3[3];
+						int repetion=(int)arg3[4];
+						LocalDate start=(LocalDate)arg3[5];
+						LocalDate due=(LocalDate)arg3[6];
+						String explain=(String)arg3[7];
+						Connection con=mysqlConnection.makeAndReturnConnection();
+						Employee employee=mysqlConnection.getSpecificEmployee(con,fullname);
+						Employee Inspector=mysqlConnection.getInspector(con);
+						mysqlConnection.assignorChangeEmployee(con, employee.getUsername(), repetion, id, phase,start,due);
+						mysqlConnection.EnterUpdateToDBUpdateTable(con, Inspector,id,explain);
+						if(phase.equals("evaluation"))
+						mysqlConnection.updateCurrentPhase(con, id, Phase.evaluation);
+						else if(phase.equals("performance"))
+						mysqlConnection.updateCurrentPhase(con, id, Phase.performance);
+						Object[] message= {"manualRequestTreatmentRecruitEvaluator"};
+						try {
+							client.sendToClient(message);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						long millis=System.currentTimeMillis();
+						Notification n1=new Notification(
+								"You've been recruited to evaluate request#"+id,
+								new java.sql.Date(millis),
+								"recruitNotificationForEvaluator");
+						n1=mysqlConnection.insertNotificationToDB(con, n1);
+						mysqlConnection.insertNotificationForUserToDB(con, n1,employee);
 					}
 					
 				}
