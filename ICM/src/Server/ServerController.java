@@ -70,6 +70,7 @@ public class ServerController implements Initializable {
 
 			dbPassword.setText("Xd0509144223");
 
+
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
