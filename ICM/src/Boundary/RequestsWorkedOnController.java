@@ -335,7 +335,7 @@ public class RequestsWorkedOnController implements Initializable {
 				e.printStackTrace();
 			}
 			break;
-		case "Performer":
+		case "Performance Leader":
 			try {
 				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
 						employee, "Performance Leader", "performance");
@@ -345,8 +345,8 @@ public class RequestsWorkedOnController implements Initializable {
 			}
 		case "Engineer":
 			try {
-				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml",
-						employee, "Engineer", "performance");
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Performance Leader", "performance");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
