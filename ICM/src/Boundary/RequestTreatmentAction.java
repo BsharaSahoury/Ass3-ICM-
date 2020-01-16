@@ -17,12 +17,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entity.Request;
@@ -50,6 +54,8 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
  private TextArea Explaintxt2;
  @FXML
  private Label phaseadminlable;
+ @FXML
+ private MenuButton  chooseengineer;
  private int chosenindex;
  private static int indexphase=-1;
  private static int indexadmin=-1;
@@ -64,6 +70,25 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 		Phases.add(Phase.performance);
 		phaseslist=FXCollections.observableArrayList(Phases);
 	//	Phasee.setItems(phaseslist);
+		/*
+		 // create the data to show in the CheckComboBox 
+		 final ObservableList<String> strings = FXCollections.observableArrayList();
+		 for (int i = 0; i <= 100; i++) {
+		     strings.add("Item " + i);
+		 }
+		 
+		 // Create the CheckComboBox with the data 
+		 final CheckComboBox<String> checkComboBox = new CheckComboBox<String>(strings);
+		 
+		 // and listen to the relevant events (e.g. when the selected indices or 
+		 // selected items change).
+		 checkComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+		     public void onChanged(ListChangeListener.Change<? extends String> c) {
+		         System.out.println(checkComboBox.getCheckModel().getSelectedItems());
+		     }
+		 });
+		 }*/
+	//	chooseengineer.setItems(phaseslist);
     	chosenindex=AllRequestsController.getselectedindex();
         chosenRequest=AllRequestsController.getList().get(chosenindex);  
         statuslable.setText(chosenRequest.getStatus());
