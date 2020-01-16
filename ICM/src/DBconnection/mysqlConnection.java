@@ -1631,6 +1631,9 @@ public class mysqlConnection {
 		return true;
 	}
 
+	
+	
+	
 	public static boolean ActiveRequest(Connection con, int id) {
 		PreparedStatement stm = null;
 		PreparedStatement stmt1 = null;
@@ -1640,7 +1643,7 @@ public class mysqlConnection {
 			stmt2.setInt(1, id);
 			ResultSet rs2 = stmt2.executeQuery();
 			rs2.next();
-			if (rs2.getString(8).equals("frozen")) {
+			if (!rs2.getString(8).equals("active")) {
 				stm = con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
 				stm.setInt(1, id);
 				ResultSet rs = stm.executeQuery();
@@ -1661,7 +1664,10 @@ public class mysqlConnection {
 		return true;
 	}
 
-	public static void EnterActiveToDBFrozenTable(Connection con, Employee Inspector, int requestid, String explain) {
+	
+	
+	
+	public static void EnterActiveToDBFrozenTable(Connection con, Employee Inspector, int requestid) {
 		// PreparedStatement stm=null;
 		// PreparedStatement stmt2=null;
 		PreparedStatement stmt1 = null;

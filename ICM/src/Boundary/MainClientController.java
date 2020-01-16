@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import Client.ClientAdministratorActiveRequestObserver;
 import Client.ClientAllRequestsObserver;
 import Client.ClientApproveDuratinObserver;
 import Client.ClientApproveEvaluatorObserver;
@@ -110,6 +111,7 @@ public class MainClientController {
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
 			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
+			ClientAdministratorActiveRequestObserver caaro = new ClientAdministratorActiveRequestObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();
