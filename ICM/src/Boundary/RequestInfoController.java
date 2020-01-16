@@ -66,13 +66,13 @@ public class RequestInfoController implements Initializable {
 	Button BackBtn;
 
 	private static ClientConsole cc;
-    private static String job;
+    private static String BackString;
 	public static RequestInfoController Requestinfo;
 	
 	public static Request r2;
 
-	public void start(SplitPane splitpane, Request s,String job) {	
-		this.job=job;	
+	public void start(SplitPane splitpane, Request s,String BackString) {	
+		this.BackString=BackString;	
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.splitpane = splitpane;
@@ -139,22 +139,23 @@ public class RequestInfoController implements Initializable {
 	
 	public void BackBtnAction(ActionEvent e) {
 		
-		if(job.equals("Inspector"))
+		if(BackString.equals("AllRequestAllRequestInspector"))
 		{
 			InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 		}
-		else if(job.equals("Chairman"))
+		else if(BackString.equals("AllRequestAdministrator"))
+		{
+			AdministratorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+		}
+		/*if(BackString.equals("AllRequestAllRequestInspector"))
 		{
 			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
-		}
-		/*else if(BackTo.equals("Back To RequestsWorkOnChairman"))
-		{
-			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", comitteeMemberHomeController.getchairman(), "Chairman","decision");
 		}*/
-		else if(job.equals("Comittee Member"))
+	
+		/*else if(job.equals("Comittee Member"))
 		{
 			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
-		}
+		}*/
 		
 	}
 	

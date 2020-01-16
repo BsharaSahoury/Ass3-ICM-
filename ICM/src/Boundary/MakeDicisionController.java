@@ -44,11 +44,13 @@ public class MakeDicisionController implements Initializable {
     private Button Sendbtn;
     @FXML 
     private Label requestid;
+    private static String job;
     public static MakeDicisionController ctrl;
     private RequestPhase selected;
     public static int flag=-1;
     private User user;
-	public void start(SplitPane splitpane,RequestPhase selected,User user) {
+	public void start(SplitPane splitpane,RequestPhase selected,User user,String job) {
+		this.job=job;
 		try {
 			loader = new FXMLLoader(getClass().getResource("/Boundary/DecisionCommitteMember.fxml"));
 			lowerAnchorPane = loader.load();
@@ -115,13 +117,21 @@ public class MakeDicisionController implements Initializable {
 	
 	
 	public void BackBtnAction(ActionEvent e) {
-		
-		
-		
+	
 		System.out.println("okay bshara");
+		if(job.equals("Chairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");		}
+		/*else if(BackTo.equals("Back To RequestsWorkOnChairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", comitteeMemberHomeController.getchairman(), "Chairman","decision");
+		}*/
+		else if(job.equals("Comittee Member"))
+		{
+			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
+		}
 		
 		
-		ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
        
 		
 		System.out.println("okay bshara2");

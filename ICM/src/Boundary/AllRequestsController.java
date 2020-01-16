@@ -194,6 +194,7 @@ public class AllRequestsController implements Initializable {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
+				if(job.equals("inspector"))
 				requestifo.start(splitpane, s.getR(),job);
 			});			
 		} else {
