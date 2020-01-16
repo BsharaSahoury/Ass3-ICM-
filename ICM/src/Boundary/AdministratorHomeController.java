@@ -107,7 +107,7 @@ runLater(() -> {
 public void AllRequestsAction(ActionEvent event) throws Exception {
 	AllRequests = new AllRequestsController();
 	runLater(() -> {
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
+		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml","Administrator");
 	});	
 }
 
@@ -155,4 +155,14 @@ public void clickNotifications(ActionEvent event) throws Exception {
 		notific.start(splitpane,Administrator);
 	});		
 }
+
+
+public static Employee getAdministrator() {
+	return Administrator;
+}
+
+
+
+
+
 }

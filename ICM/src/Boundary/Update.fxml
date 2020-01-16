@@ -14,18 +14,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestTreatmentAction">
    <children>
-      <TabPane layoutX="7.0" layoutY="43.0" prefHeight="543.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="7.0" layoutY="43.0" prefHeight="543.0" prefWidth="696.0" stylesheets="@tabs.css" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Manage Phases">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="515.0" layoutY="438.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Update and save" textFill="WHITE">
+                        <Button layoutX="515.0" layoutY="438.0" mnemonicParsing="false" onAction="#updateandsaveaction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #9d1b34; -fx-background-radius: 20px;" text="Update and save" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="30.0" layoutY="91.0" text="Phase:">
+                        <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="30.0" layoutY="91.0" text="Current phase:">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -52,8 +52,13 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" onAction="#ChangePhase" prefWidth="150.0" promptText="Evaluation" />
-                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="26.0" prefWidth="200.0" promptText="Choose phase administrator" />
+                        <Label fx:id="currentphase" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="207.0" layoutY="91.0" prefHeight="20.0" prefWidth="142.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="Explaintxt2" layoutX="25.0" layoutY="269.0" prefHeight="200.0" prefWidth="386.0" promptText="Explain your update" stylesheets="@tabs.css" />
                      </children>
                   </AnchorPane>
                </content>
@@ -72,7 +77,7 @@
                            </font>
                         </Label>
                         <TextArea fx:id="Explaintxt" layoutX="114.0" layoutY="142.0" prefHeight="200.0" prefWidth="261.0" promptText="Explain your decision" />
-                        <Label fx:id="statuslable" layoutX="137.0" layoutY="60.0" prefHeight="23.0" prefWidth="103.0" />
+                        <Label fx:id="statuslable" layoutX="142.0" layoutY="57.0" prefHeight="23.0" prefWidth="103.0" />
                      </children>
                   </AnchorPane>
                </content>

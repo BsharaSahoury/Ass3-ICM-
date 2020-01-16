@@ -10,13 +10,14 @@ import Entity.Employee;
 import Entity.User;
 import ocsf.server.ConnectionToClient;
 
-public class ServerInspectorFrozeRequestObserver implements Observer {
-	public ServerInspectorFrozeRequestObserver(Observable server) {
+public class ServerAdminActiveRequestObserver implements Observer {
+	public ServerAdminActiveRequestObserver(Observable server) {
 		server.addObserver(this);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg) {
+		System.out.println("Server Admin Active Request Observer");
 		// TODO Auto-generated method stub
 		if(arg instanceof Object[]) {
 			Object[] arg1=(Object[])arg;
@@ -25,19 +26,21 @@ public class ServerInspectorFrozeRequestObserver implements Observer {
 				Object[] arg2=(Object[])arg1[1];
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
-					if(keymessage.equals("Inspector changed status to Frozen")) {
+					if(keymessage.equals("Admin changed status to Active")) {
 						int id=(int)arg2[1];
-						Employee inspector=(Employee)arg2[2];
-						String explain=(String)arg2[3];					
+						Employee administrator = (Employee)arg2[2];
+						//String explain=(String)arg2[3];					
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						boolean state=mysqlConnection.FreazeRequest(con, id);
+						boolean state=mysqlConnection.ActiveRequest(con, id);
 						if(state)
-						mysqlConnection.EnterFreazeToDBUpdateTable(con, inspector,id,explain);
-						try {
+							mysqlConnection.EnterActiveToDBFrozenTable(con, administrator,id);
+						try { 
+							System.out.println("Server Admin Active Request Observer try");
 							Object[] send=new Object[2];
 							send[0]=keymessage;
 							send[1]=state;
 							client.sendToClient(send);
+							System.out.println("Server Admin Active Request Observer try ---> after send to client");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -48,3 +51,9 @@ public class ServerInspectorFrozeRequestObserver implements Observer {
 	}
 }
 }
+
+
+
+
+
+
