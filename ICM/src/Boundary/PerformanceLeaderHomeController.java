@@ -89,7 +89,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml",performanceLeader,"Engineer","performance");
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
