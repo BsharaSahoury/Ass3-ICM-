@@ -78,6 +78,7 @@ public class AllRequestsController implements Initializable {
 
 	public void start(SplitPane splitpane, String path, String job) {
 		this.job = job;
+		
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		String[] AllRequests = new String[2];
@@ -230,6 +231,30 @@ public class AllRequestsController implements Initializable {
 			alertWarning.showAndWait();
 		}
 	}
+	
+	
+	public void ChangeStatusAction(ActionEvent e) {
+		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
+		if (chosenRequest != -1) {
+			chosenR=tableRequests.getSelectionModel().getSelectedItem();
+			RequestChangesStatusToActiveForAdmin ChangeStatus = new RequestChangesStatusToActiveForAdmin();
+			runLater(() -> {
+				ChangeStatus.start(splitpane);
+			});		
+		} else {
+			Alert alertWarning = new Alert(AlertType.WARNING);
+			alertWarning.setTitle("Warning Alert Title");
+			alertWarning.setHeaderText("Warning!");
+			alertWarning.setContentText("please choose requset");
+			alertWarning.showAndWait();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	public void refresh() {
 	try {
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");

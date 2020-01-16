@@ -1622,6 +1622,57 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}	
 		return true;
 	}
+	
+	public static boolean ActiveRequest(Connection con,int id)
+	{   
+		PreparedStatement stm=null;
+		PreparedStatement stmt1=null;
+		PreparedStatement stmt2=null;
+		try {
+			stmt2=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stmt2.setInt(1, id);
+			ResultSet rs2=stmt2.executeQuery();
+			rs2.next();
+			if(rs2.getString(8).equals("frozen")) {
+			stm=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stm.setInt(1, id);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+			stmt1 = con.prepareStatement("UPDATE request SET status=? WHERE id=?;");
+			stmt1.setString(1, "active");
+			stmt1.setInt(2, id);
+			stmt1.executeUpdate();
+			return true;
+			}
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void EnterFreazeToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
 	{
 		PreparedStatement stm=null;
@@ -1681,6 +1732,50 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	public static void EnterActiveToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
+	{
+		PreparedStatement stm=null;
+		PreparedStatement stmt1=null;
+		PreparedStatement stmt2=null;		
+		try {
+			
+			stm = con.prepareStatement("INSERT INTO icm.update VALUES(?,?,?,?,?);");		
+			stm.setString(1, Inspector.getUsername());
+			stm.setString(2,Inspector.getFirstName()+Inspector.getLastName() );
+			stm.setString(3, explain);
+			long millis = System.currentTimeMillis();
+			stm.setDate(4, new java.sql.Date(millis));
+			stm.setInt(5, requestid);
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static Map<Integer, String> getMap(Connection con) {
 		PreparedStatement stm=null;
 		Map<Integer,String> map=new HashMap<>();
