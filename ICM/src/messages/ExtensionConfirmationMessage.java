@@ -26,6 +26,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -47,12 +48,9 @@ public class ExtensionConfirmationMessage implements Initializable {
 	Button RejectBtn;
 	@FXML
 	Button other;
+
 	@FXML
-	ComboBox<String> combo;
-	@FXML
-	Label ExtensionReason;
-	@FXML
-	Label ExtensionReasonLabel;
+	TextArea ExtensionReasonLabel;
 	@FXML
 	Label RequestPhaseLabel;
 	@FXML
@@ -77,12 +75,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 
 	public void start(SplitPane splitpane, int id, String content, String phase1) {
 		System.out.println("ExtensionConfirmationMessage-start-logged-on");
-		primaryStage = LoginController.primaryStage;
-		this.r = r;
-		this.requestID = id;
-		this.phase=phase1;
-      
-        
+		primaryStage = LoginController.primaryStage;     
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmationMessage.fxml"));
 			System.out.println("location is set");
@@ -92,8 +85,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 			this.splitpane = splitpane;
 			ctrl.RequestPhaseLabel.setText(phase1);
 			ctrl.RequestIdLabel.setText(Integer.toString(id));
-			Object[] message = { "get explain notification", ctrl.notificationID,
-					"Inspector to approve the Extension" };
+			Object[] message = { "get extension data", id,phase1 };
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
@@ -104,6 +96,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		this.requestID = id;
 	}
 
 	public void approveAction(ActionEvent e) {
@@ -115,13 +108,14 @@ public class ExtensionConfirmationMessage implements Initializable {
 		Optional<ButtonType> result = alertWarning.showAndWait();
 		ButtonType button = result.orElse(ButtonType.CANCEL);
 		if (button == ButtonType.OK) {
-
-			
-		
-			
 			try {
+				 System.out.println(requestID+"       22222222222222");
+				 System.out.println(this.requestID+"       3333333333333333");
+				 System.out.println(ctrl.requestID+"       22222222222222");
+
+
 				String keymessage = "send Request extension approve to Admin";
-				Object[] message = { keymessage, r.getId(),ctrl.getRequestPhase()};
+				Object[] message = { keymessage,requestID,phase,NewDueDateLabel.getText()};
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -156,25 +150,36 @@ public class ExtensionConfirmationMessage implements Initializable {
 		ctrl.notdetails = details;
 		String[] b = new String[2];
 		b = ctrl.notdetails.split("#");
-		ctrl.ExtensionReasonLabel.setText(b[1]);
-		ctrl.NewDueDateLabel.setText(b[0]);
-		ctrl.OldDueDateLabel.setText(RequestsWorkedOnController.getRP().getDueDate().toString());
-        ctrl.phaseAdministratorLabel.setText(RequestsWorkedOnController.getRP().getEmployee().toString());
+		ctrl.ExtensionReasonLabel.setText(b[0]);
 	}
 
 	
 	public static String getRequestPhase() {
 		return phase;
 	}
-	
+	public static int getRequestId() {
+		return requestID;
+	}
 	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		notificationID = NotificationsController.getidnotification();
-		
 		requestID = NotificationsController.getidofrequestforDecision();
+		Object[] message = { "get explain notification",notificationID ,"Inspector to approve the Extension" };
+		try {
+			LoginController.cc.getClient().sendToServer(message);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 
-	
+	public void setData(String[] data) {
+		ctrl.OldDueDateLabel.setText(data[0]);
+		ctrl.NewDueDateLabel.setText(data[1]);	
+	    ctrl.phaseAdministratorLabel.setText(data[2]);
+	}
+
 }

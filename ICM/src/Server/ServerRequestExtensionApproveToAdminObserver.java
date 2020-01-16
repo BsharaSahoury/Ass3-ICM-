@@ -32,13 +32,15 @@ public class ServerRequestExtensionApproveToAdminObserver implements Observer {
 					
 					int id = (int) arg3[1];
 					String RequestPhase=(String) arg3[2];
+					String dueDate=(String) arg3[3];
 				/*	String d[] = (String[]) arg3[2];
 					String d1=d[0]+"#"+d[1];
 					Phase p = (Phase) arg3[3];
 					*/
+					System.out.println(id+"            33333333333");
 					
-					
-					Connection con=mysqlConnection.makeAndReturnConnection();		
+					Connection con=mysqlConnection.makeAndReturnConnection();
+					mysqlConnection.updateDuedate(con,id,RequestPhase,dueDate);
 					long millis=System.currentTimeMillis();
 					Notification n=new Notification("Extension request# "+id+" time on phase "+RequestPhase+", Do Has been Approved by Inspector",new java.sql.Date(millis),"Extension Confirmation message sent to Admin after inspector confirmation");
 					n=mysqlConnection.insertNotificationToDB(con, n);
@@ -46,7 +48,6 @@ public class ServerRequestExtensionApproveToAdminObserver implements Observer {
 				/*	mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
 					System.out.println("insertNotificationDetailsToDB");*/
 					mysqlConnection.sendExtensionConfiramtionToAdmin(con,n);
-					System.out.println("sendExtensionConfiramtionToAdmin");
 					
 					
 					

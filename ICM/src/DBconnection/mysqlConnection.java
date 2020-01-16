@@ -690,7 +690,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			ResultSet rs3= stm3.executeQuery();	
 			rs3.next();
 			if(rs3.getString(1)!=null) {
-				System.out.println(rs3.getString(1));
 				return false;
 			}
 			else {
@@ -1899,5 +1898,102 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
     	else
     		return null;
     }
+    public static boolean extendTime(Connection con ,RequestPhase rp,LocalDate newDue) {
+		PreparedStatement stm1 = null;
+		PreparedStatement stm2 = null;
+		PreparedStatement stm3 = null;
+
+		int maxRepetion = 0;
+		try {
+			stm1 = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
+			stm1.setInt(1, rp.getId());
+			stm1.setString(2, rp.getPhase().toString());
+			ResultSet rs = stm1.executeQuery();
+			if (rs.next())
+				maxRepetion = rs.getInt(1);
+			
+		
+		stm2=con.prepareStatement("SELECT * FROM icm.extension WHERE request_id=? AND phase=? AND repetion=?" );
+		stm2.setInt(1, rp.getId());
+		stm2.setString(2, rp.getPhase().toString());
+		stm2.setInt(3,maxRepetion);
+		ResultSet rs1=stm2.executeQuery();
+		if(rs1.next()) {
+			return false;
+		}
+		stm3=con.prepareStatement("INSERT INTO extension VALUES(?,?,?,?,?);");
+		stm3.setDate(1,rp.getDueDate());
+		stm3.setDate(2, Date.valueOf(newDue));
+		stm3.setInt(3, maxRepetion);
+		stm3.setString(4, rp.getPhase().toString());
+		stm3.setInt(5, rp.getId());
+		stm3.executeUpdate();
+		}catch (SQLException e) {
+	    	//TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}
+	    return true;
+    }
+
+
+	public static String[] getExtension(Connection con, int id, String phase) {
+		PreparedStatement stm1 = null;
+		PreparedStatement stm2 = null;
+		PreparedStatement stm3 = null;
+        String data[]= new String[3];
+		int maxRepetion = 0;
+		try {
+			stm1 = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
+			stm1.setInt(1, id);
+			stm1.setString(2, phase);
+			ResultSet rs = stm1.executeQuery();
+			if (rs.next())
+				maxRepetion = rs.getInt(1);
+			stm2=con.prepareStatement("SELECT * FROM icm.extension WHERE request_id=? AND phase=? AND repetion=?" );
+			stm2.setInt(1, id);
+			stm2.setString(2, phase);
+			stm2.setInt(3,maxRepetion);
+			ResultSet rs1=stm2.executeQuery();
+			if(rs1.next()) {
+				data[0]=rs1.getDate(1).toString();
+				data[1]=rs1.getDate(2).toString();
+				RequestPhase rp=mysqlConnection.getRequestPhase(con, id, phase);
+				data[2]=rp.getEmployee();
+			}
+		}catch (SQLException e) {
+	    	//TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}	
+		return data;
+
+	}
+
+
+	public static void updateDuedate(Connection con, int id, String phase, String dueDate) {
+		PreparedStatement stm1 = null;
+		PreparedStatement stm2 = null;
+		int maxRepetion = 0;
+		try {
+			stm1 = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
+			stm1.setInt(1, id);
+			stm1.setString(2, phase);
+			ResultSet rs = stm1.executeQuery();
+			if (rs.next())
+				maxRepetion = rs.getInt(1);
+			System.out.println(id+"     "+dueDate+"       "+phase+"       "+maxRepetion);
+			stm2=con.prepareStatement("UPDATE icm.requestinphase SET due_date=? WHERE request_id=? AND phase=? AND repetion=?;" );
+			stm2.setString(1, dueDate);
+			stm2.setInt(2, id);
+			stm2.setString(3, phase);
+			stm2.setInt(4,maxRepetion);
+			stm2.executeUpdate();
+		}catch (SQLException e) {
+	    	//TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}	
+	}
 }
 
