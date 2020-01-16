@@ -61,7 +61,7 @@ public class SetDurationController implements Initializable {
 	private static RequestPhase rp;
 	private static Phase phase;
 
-	public void start(SplitPane splitpane, RequestPhase r, String path, RequestPhase rp) {
+	public void start(SplitPane splitpane, String path, RequestPhase rp) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;

@@ -1,7 +1,8 @@
 package Server;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,45 +28,32 @@ public class ServerRequestExtensionApproveToAdminObserver implements Observer {
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("send Request extension approve to Admin")) {
-					
-					
-					
 					int id = (int) arg3[1];
-					String RequestPhase=(String) arg3[2];
-					String dueDate=(String) arg3[3];
-				/*	String d[] = (String[]) arg3[2];
-					String d1=d[0]+"#"+d[1];
-					Phase p = (Phase) arg3[3];
-					*/
-					System.out.println(id+"            33333333333");
-					
-					Connection con=mysqlConnection.makeAndReturnConnection();
-					mysqlConnection.updateDuedate(con,id,RequestPhase,dueDate);
-					long millis=System.currentTimeMillis();
-					Notification n=new Notification("Extension request# "+id+" time on phase "+RequestPhase+", Do Has been Approved by Inspector",new java.sql.Date(millis),"Extension Confirmation message sent to Admin after inspector confirmation");
-					n=mysqlConnection.insertNotificationToDB(con, n);
+					String RequestPhase = (String) arg3[2];
+					LocalDate dueDate = (LocalDate) arg3[3];
+					/*
+					 * String d[] = (String[]) arg3[2]; String d1=d[0]+"#"+d[1]; Phase p = (Phase)
+					 * arg3[3];
+					 */
+					Connection con = mysqlConnection.makeAndReturnConnection();
+					mysqlConnection.updateDuedate(con, id, RequestPhase, dueDate);
+					long millis = System.currentTimeMillis();
+					Notification n = new Notification(
+							"Extension request# " + id + " time on phase " + RequestPhase
+									+ ", Do Has been Approved by Inspector",
+							new java.sql.Date(millis),
+							"Extension Confirmation message sent to Admin after inspector confirmation");
+					n = mysqlConnection.insertNotificationToDB(con, n);
 					System.out.println("insertNotificationToDB");
-				/*	mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
-					System.out.println("insertNotificationDetailsToDB");*/
-					mysqlConnection.sendExtensionConfiramtionToAdmin(con,n);
-					
-					
-					
-					
-					
-			
+					/*
+					 * mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
+					 * System.out.println("insertNotificationDetailsToDB");
+					 */
+					mysqlConnection.sendExtensionConfiramtionToAdmin(con, n);
+
 				}
 			}
 		}
 	}
 
 }
-
-
-
-
-
-
-
-
-

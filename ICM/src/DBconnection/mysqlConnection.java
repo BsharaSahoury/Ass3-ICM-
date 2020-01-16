@@ -2041,7 +2041,7 @@ public class mysqlConnection {
 	}
 
 
-	public static void updateDuedate(Connection con, int id, String phase, String dueDate) {
+	public static void updateDuedate(Connection con, int id, String phase, LocalDate dueDate) {
 		PreparedStatement stm1 = null;
 		PreparedStatement stm2 = null;
 		int maxRepetion = 0;
@@ -2053,9 +2053,14 @@ public class mysqlConnection {
 			ResultSet rs = stm1.executeQuery();
 			if (rs.next())
 				maxRepetion = rs.getInt(1);
-			System.out.println(id+"     "+dueDate+"       "+phase+"       "+maxRepetion);
+			Date newDue = Date.valueOf(dueDate);
+			long s = newDue.getTime() + (int) (1000 * 60 * 60 * 24);
+			newDue = new java.sql.Date(s);
+			System.out.println(newDue.toString());
+			System.out.println(id);
+			System.out.println(phase);
 			stm2=con.prepareStatement("UPDATE icm.requestinphase SET due_date=? WHERE request_id=? AND phase=? AND repetion=?;" );
-			stm2.setString(1, dueDate);
+			stm2.setDate(1, newDue);
 			stm2.setInt(2, id);
 			stm2.setString(3, phase);
 			stm2.setInt(4,maxRepetion);

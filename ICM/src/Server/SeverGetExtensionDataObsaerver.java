@@ -26,15 +26,28 @@ public class SeverGetExtensionDataObsaerver  implements Observer {
 				if (keymessage.equals("get extension data")) {
 					int id = (int) arg3[1];
 					String phase = (String) arg3[2];
+					String myjob=(String)arg3[3];
 					Connection con = mysqlConnection.makeAndReturnConnection();
 					String []data=mysqlConnection.getExtension(con, id, phase.toString());
-					Object[] msg = { keymessage ,data};
+					if(myjob.equals("admen")) {
+					Object[] msg = { "get extension data admen" ,data};
 
 					try {
 						client.sendToClient(msg);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					}
+					}
+					else if(myjob.equals("inspector")) {
+						Object[] msg = { "get extension data inspector" ,data};
+
+						try {
+							client.sendToClient(msg);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 
