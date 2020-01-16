@@ -33,7 +33,7 @@ public class ServerAdminActiveRequestObserver implements Observer {
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						boolean state=mysqlConnection.ActiveRequest(con, id);
 						if(state)
-							mysqlConnection.EnterActiveToDBUpdateTable(con, administrator,id,explain);
+							mysqlConnection.EnterActiveToDBFrozenTable(con, administrator,id,explain);
 						try {
 							Object[] send=new Object[2];
 							send[0]=keymessage;
