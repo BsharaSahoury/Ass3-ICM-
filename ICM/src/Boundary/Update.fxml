@@ -53,7 +53,7 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="Phasee" layoutX="105.0" layoutY="86.0" onAction="#ChangePhase" prefWidth="150.0" />
-                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" />
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="29.0" prefWidth="223.0" promptText="Choose phase administrator" />
                         <Label layoutX="30.0" layoutY="45.0" prefHeight="23.0" prefWidth="880.0" text="Then Click &quot;Update and save&quot;" wrapText="true">
                            <font>
                               <Font name="System Bold" size="14.0" />

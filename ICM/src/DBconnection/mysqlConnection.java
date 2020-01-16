@@ -282,7 +282,10 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				if(rs4.next()) {
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-					result=new RequestPhase(null,null,s,Phase.valueOf(rs4.getString(1)),State.valueOf(rs4.getString(2)));					
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs4.getString(1)),State.valueOf(rs4.getString(2)));
+					Employee inspecotor=getInspector(con);
+					result.setEmployee(inspecotor.getUsername());
+					result.setRepetion(rs4.getInt(3));
 					rs4.close();
 				}
 				else {
@@ -693,7 +696,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			ResultSet rs3= stm3.executeQuery();	
 			rs3.next();
 			if(rs3.getString(1)!=null) {
-				System.out.println(rs3.getString(1));
 				return false;
 			}
 			else {
@@ -1913,5 +1915,32 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
     	else
     		return null;
     }
+    public static void assignorChangeEmployee(Connection con, String username,int repetion, int id,String phase,Date start,Date due) {
+		PreparedStatement stm = null;
+		PreparedStatement stm2 = null;
+		PreparedStatement stm3 = null;
+		try {
+			if(username!=null) {
+			stm = con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm.setString(1, username);
+			stm.setInt(2, id);
+			stm.setString(3, phase);
+			stm.setInt(4,repetion);
+			stm.executeUpdate();
+			}
+			if(start!=null&&due!=null) {
+			stm2 = con.prepareStatement("UPDATE requestinphase SET start_date=? AND due_date=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm2.setDate(1, start);
+			stm2.setDate(2, due);
+			stm2.setInt(3, id);
+			stm2.setString(4, phase);
+			stm2.setInt(5,repetion);
+			stm2.executeUpdate();			
+		}
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 

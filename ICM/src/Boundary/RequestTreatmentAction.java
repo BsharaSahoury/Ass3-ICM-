@@ -83,6 +83,24 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
+			if(ctrl.Phasee.getPromptText().equals("evaluation")) {
+				Object[] msg= {"evaluators",getClass().getName()};
+				try {
+					LoginController.cc.getClient().sendToServer(msg);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if(ctrl.Phasee.getPromptText().equals("performance")) {
+				Object[] msg= {"Performance leaders",getClass().getName()};
+				try {
+					LoginController.cc.getClient().sendToServer(msg);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
            // ctrl.phaseadminlable.setVisible(false);
 			//ctrl.PhaseAdministrator.setVisible(false);
 			//ctrl.PhaseAdministrator.setPromptText(ctrl.chosenRequest.getEmployee());
@@ -127,6 +145,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 	}
 	public void setcombotext(String currentadmin) {
+		if(currentadmin!=null)
 		ctrl.PhaseAdministrator.setPromptText(currentadmin);
 		//ctrl.phaseadminlable.setVisible(true);
 		//ctrl.PhaseAdministrator.setVisible(true);
@@ -138,13 +157,15 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 	public void updateandsaveaction() {
 		indexphase=ctrl.Phasee.getSelectionModel().getSelectedIndex();
 		System.out.println(ctrl.Phasee.getPromptText());
-		if(ctrl.Phasee.getPromptText().equals("decision")||ctrl.Phasee.getPromptText().equals("testing")||ctrl.Phasee.getPromptText().equals("closing")) {
+	
+		if((ctrl.Phasee.getSelectionModel().getSelectedIndex()==-1)&&ctrl.Phasee.getPromptText().equals("decision")||ctrl.Phasee.getPromptText().equals("testing")||ctrl.Phasee.getPromptText().equals("closing")) {
 		Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText("Choose phase");
-        alert.setContentText("You can't update phase administrator or duration for"+ctrl.Phasee.getPromptText()+"phase");
+        alert.setContentText("You can't update phase administrator or duration for "+ctrl.Phasee.getPromptText()+" phase");
         alert.showAndWait();
 		}
+		
 		else if(ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem()==null&&ctrl.DatePickerFrom.getValue()==null&&ctrl.DatePickerTo.getValue()==null) {
 			Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Warning");
@@ -163,12 +184,26 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 	        alert.setContentText("If you chose 'start' date you must choose 'to' date");
 	        alert.showAndWait();
 		}
-		else if(ctrl.Phasee.getPromptText().equals("evaluation")) {
-			Phase phase=Phase.evaluation;
-			String phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().toString();
-			Date start=Date.valueOf(DatePickerFrom.getValue());
-			Date end=Date.valueOf(DatePickerTo.getValue());
-			Object[] msg= {"evaluators",getClass().getName()};
+		else if(ctrl.Phasee.getSelectionModel().getSelectedIndex()==0||ctrl.Phasee.getPromptText().equals("evaluation")) {
+			String phase="evaluation";
+			String phaseadmin=null;
+			if(ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem()==null) {
+			phaseadmin=ctrl.PhaseAdministrator.getPromptText();
+            if(phaseadmin.equals("Choose phase administrator"))
+			phaseadmin=null;
+			}
+			else {
+			phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().toString();
+			}
+			Date start=null;
+			Date end=null;
+			if(DatePickerFrom.getValue()!=null&&DatePickerTo.getValue()!=null) {
+			start=Date.valueOf(DatePickerFrom.getValue());
+			end=Date.valueOf(DatePickerTo.getValue());
+			}
+			int id=ctrl.chosenRequest.getId();
+			int repetion=ctrl.chosenRequest.getRepetion();
+			Object[] msg= {"manualRequestTreatmentRecruitEvaluator",phaseadmin,id,"evaluation",repetion,start,end};
 			try {
 				LoginController.cc.getClient().sendToServer(msg);
 			} catch (IOException e) {
@@ -176,7 +211,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 				e.printStackTrace();
 			}
 		}
-		else if(ctrl.Phasee.getPromptText().equals("performance")) {
+		else if(ctrl.Phasee.getSelectionModel().getSelectedIndex()==1||ctrl.Phasee.getPromptText().equals("performance")) {
 			Phase phase=Phase.performance;
 			String phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().toString();
 			Date start=Date.valueOf(DatePickerFrom.getValue());
