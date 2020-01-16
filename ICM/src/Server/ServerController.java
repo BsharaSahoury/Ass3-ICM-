@@ -1,8 +1,8 @@
 package Server;
 
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.lang.Thread.UncaughtExceptionHandler;
+import java.io.IOException; 
+import java.lang.Thread.UncaughtExceptionHandler; 
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -67,10 +67,7 @@ public class ServerController implements Initializable {
 			dbSchema.setText("icm");
 			dbSchema.setEditable(false);
 			dbUsername.setText("root");
-
 			dbPassword.setText("Xd0509144223");
-
-
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
