@@ -85,6 +85,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
+		System.out.println(job);
+		System.out.println("sss");
 		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
@@ -98,15 +100,18 @@ public class RequestsWorkedOnController implements Initializable {
 			RequestWorkedON[0]="Requests worked on";
 			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
-			}
-			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
-				RequestWorkedON[1]=user.getUsername();
+				System.out.println("mmm");
+				System.out.println();
 			}
 			else if(job.equals("Engineer")){
 				RequestWorkedON[0]="engineer request work on";	
-			}						
-			RequestWorkedON[1]=user.getUsername();
+				RequestWorkedON[1]=user.getUsername();
+			}					
+			else {
+				RequestWorkedON[1]=user.getUsername();
+			}
 			RequestWorkedON[2]=job;
+			System.out.println(job);
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
@@ -114,7 +119,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
-	
+		System.out.println(arr1.get(0).getState());
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
@@ -312,6 +317,7 @@ public class RequestsWorkedOnController implements Initializable {
 		case "Comittee Member":
 
 			try {
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
 				if(ComitteeMemberHomeController.getFlag()==0) {
 					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
 							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");

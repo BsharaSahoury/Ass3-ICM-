@@ -106,8 +106,8 @@ public class AdministratorHomeController implements Initializable {
 	}
 
 	public void AllRequestsAction(ActionEvent event) throws Exception {
-
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+		AllRequests = new AllRequestsController();
+		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml", "Administrator");
 		runLater(() -> {
 			AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml", "Administrator");
 		});
