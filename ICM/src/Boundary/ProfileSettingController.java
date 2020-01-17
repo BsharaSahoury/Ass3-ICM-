@@ -16,13 +16,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import Entity.User;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,24 +34,41 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class ProfileSettingController {
+	
+	private static ClientConsole cc;
+
+	@FXML
+	private TextField id_txt;
+	@FXML
+	private TextField username_txt;	
+	@FXML
+	private TextField fullname_txt;	
+	@FXML
+	private TextField email_txt;
+	@FXML
+	private TextField faculty_txt;
+	@FXML
+	private TextField role_txt;
 	@FXML
 	private CheckBox allowrecSMS;
 	@FXML
 	private CheckBox allowrecGmail;
 	@FXML
-	private TextField textfileddestination;
+	private TextField dest_txt;
 	@FXML
-	private Button browsbtn;
+	private Button browsebtn;
 	@FXML
-	private Button applyandsavebtn;
+	private Button updateandsavebtn;
 	@FXML
-	private TextField textfield;
+	private ImageView userImage;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
+	
+	@FXML
+	private static SplitPane splitpane;
+	private FXMLLoader loader;	
 	private static User user;
 	private static String job;
 	private static ArrayList<String> arrOfProfileSetting;

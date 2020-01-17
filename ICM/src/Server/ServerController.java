@@ -1,8 +1,8 @@
 package Server;
 
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.lang.Thread.UncaughtExceptionHandler;
+import java.io.IOException; 
+import java.lang.Thread.UncaughtExceptionHandler; 
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -25,7 +25,7 @@ import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 
-
+ 
 public class ServerController implements Initializable {
 
 	private static String db_Password;
@@ -88,14 +88,12 @@ public class ServerController implements Initializable {
 	    	db_Password=dbPassword.getText();
 	    	db_Username=dbUsername.getText();
 	    	if((!(dbPassword.getText().equals("")))&&(!(dbUsername.getText().equals(""))))
-	    		{
-	    		
+	    		{	    		
 	    		Connection con1=mysqlConnection.makeAndReturnConnection();
 	    		if(con1==null)
 	    		{
 					dbUsername.clear();
-					dbPassword.clear();
-					
+					dbPassword.clear();	
 		 			System.out.println("mySqlPassword OR mySqlUsername is wrong");	
 		 			///CONNECTION ERROR alert
 		 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -128,6 +126,7 @@ public class ServerController implements Initializable {
 					dbUsername.setEditable(false);
 					dbPassword.setEditable(false);
 		    		connectBtn.setDisable(true);
+		    		DBconnection.mysqlConnection.SetAllUsersLoginToNo(con1);
 	    		}
 	    		}
 	    	else

@@ -45,7 +45,7 @@
       <Label layoutX="636.0" layoutY="52.0" prefHeight="17.0" prefWidth="40.0" text="Refresh" />
       <Label layoutX="626.0" layoutY="91.0" text="Instructions" />
       <ComboBox fx:id="Groupby" layoutX="25.0" layoutY="83.0" prefWidth="150.0" promptText="State" />
-      <Button fx:id="RequestInfo" layoutX="466.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
+      <Button fx:id="RequestInfo" layoutX="356.0" layoutY="534.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -61,7 +61,7 @@
          </font>
       </Button>
       <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
-      <Label layoutX="31.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
+      <Label layoutX="13.0" layoutY="547.0" text="If you want to see the evaluation report click make a decision" />
       <Button fx:id="question" layoutX="683.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-insets: 8888888;">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -80,6 +80,11 @@
                </image>
             </ImageView>
          </graphic>
+      </Button>
+      <Button fx:id="RequestInfo1" layoutX="478.0" layoutY="534.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>
