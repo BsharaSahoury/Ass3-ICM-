@@ -232,10 +232,10 @@ public class RequestsWorkedOnController implements Initializable {
 				@Override
 				public void run() {
 					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
+		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 					else {
-						setDuration.start(splitpane,rp ,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
+						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 				}
 			});
@@ -335,7 +335,7 @@ public class RequestsWorkedOnController implements Initializable {
 				e.printStackTrace();
 			}
 			break;
-		case "Performer":
+		case "Performance Leader":
 			try {
 				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
 						employee, "Performance Leader", "performance");
@@ -345,8 +345,8 @@ public class RequestsWorkedOnController implements Initializable {
 			}
 		case "Engineer":
 			try {
-				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml",
-						employee, "Engineer", "performance");
+				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
+						employee, "Performance Leader", "performance");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

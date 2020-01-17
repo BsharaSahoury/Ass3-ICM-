@@ -82,6 +82,18 @@ public class ClientRecruitEvaluatorObserver implements Observer{
 						
 					});	
 				}
+				else if(keymessage.equals("manualRequestTreatmentRecruitEvaluator")) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("TEST");
+					        alert.setHeaderText("Success");
+					        alert.setContentText("Update saved succesfully");
+					        alert.showAndWait();
+						}			
+					});
+				}
 				
 			}
 		}

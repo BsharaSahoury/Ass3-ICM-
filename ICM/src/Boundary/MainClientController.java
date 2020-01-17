@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import Client.ClientAdministratorActiveRequestObserver;
 import Client.ClientAllRequestsObserver;
 import Client.ClientApproveDuratinObserver;
 import Client.ClientApproveEvaluatorObserver;
@@ -22,10 +23,13 @@ import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
+import Client.ClientExtendRequestTimeObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
+import Client.ClientGetExtensionDataObsaerver;
+import Client.ClientGetFullNameEmployeeObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
 import Client.ClientLoginByAnotherClientObserver;
@@ -110,6 +114,10 @@ public class MainClientController {
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
 		
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
+			ClientExtendRequestTimeObserver certo=new ClientExtendRequestTimeObserver(cc.getClient());
+			ClientGetExtensionDataObsaerver cgedo=new ClientGetExtensionDataObsaerver(cc.getClient());
+			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
+			ClientAdministratorActiveRequestObserver caaro = new ClientAdministratorActiveRequestObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

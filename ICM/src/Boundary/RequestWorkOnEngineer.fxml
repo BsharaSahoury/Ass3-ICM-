@@ -61,7 +61,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="RequestInfo" layoutX="576.0" layoutY="529.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
+      <Button fx:id="RequestInfo" layoutX="462.0" layoutY="531.0" mnemonicParsing="false" onAction="#RequestInfoAction" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Request Info" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -74,6 +74,11 @@
                </image>
             </ImageView>
          </graphic>
+      </Button>
+      <Button fx:id="RequestInfo1" layoutX="598.0" layoutY="531.0" mnemonicParsing="false" onAction="#SetDuration" prefHeight="43.0" prefWidth="100.0" style="-fx-background-color: #9d1b34;" text="Duration" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>
