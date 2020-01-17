@@ -15,31 +15,34 @@ public class RecruitPerformanceMessageController {
 	public static RecruitPerformanceMessageController ctrl;
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
-	public static SplitPane splitpane;
-
-	public void start(SplitPane splitpane, int id, String path, String content) {
-		primaryStage = LoginController.primaryStage;
-		try {
+	public  static SplitPane splitpane;
+	public void start(SplitPane splitpane,int id,String path,String content) {
+		primaryStage=LoginController.primaryStage;
+		try{	
+			System.out.println("oiii");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
-			ctrl = loader.<RecruitPerformanceMessageController>getController();
+			ctrl=loader.<RecruitPerformanceMessageController>getController();
+			System.out.println("zzz");
 			splitpane.getItems().set(1, lowerAnchorPane);
-			this.splitpane = splitpane;
+			this.splitpane=splitpane;
 			ctrl.label1.setVisible(false);
-			if (path.equals("/messages/RecruitEngineerPerform.fxml"))
-				ctrl.label1.setText(content);
-			else if (path.equals("/messages/ReplacePerformanceLeader-Message.fxml")) {
-				ctrl.label1.setText(content);
+			System.out.println("mmmm");
+			if(path.equals("/messages/RecruitEngineerPerform.fxml"))
+			ctrl.label1.setText(content);
+			else if(path.equals("/messages/ReplacePerformanceLeader-Message.fxml")) {
+				System.out.println("fff");
+				ctrl.label1.setText(content);		
 			}
-
+			
 			else
-				ctrl.label1.setText(content);
-
+			ctrl.label1.setText(content);	
+			
 			ctrl.label1.setVisible(true);
-
-		} catch (Exception e) {
+			
+		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		}			
 	}
 
 }

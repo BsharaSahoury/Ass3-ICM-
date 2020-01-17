@@ -109,7 +109,7 @@ public class RequestSubmissionController implements Initializable {
 				msg.initArray(mybytearray.length);
 				bis.read(msg.getMybyterray(),0,mybytearray.length);
 			}catch(Exception e1) {
-				e1.printStackTrace();
+				System.out.println("we're fucked!");
 			}
 		}
 		    long millis=System.currentTimeMillis();
