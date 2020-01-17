@@ -104,9 +104,6 @@ public class MainForServer extends Application {
 		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Server/Server_Configure.fxml"));
-
-			// Parent root =
-			// FXMLLoader.load(getClass().getResource("/Server/Server_Configure.fxml"));
 			Parent root = loader.load();
 			ServerController controller = loader.getController();
 			Scene scene = new Scene(root);
@@ -119,7 +116,7 @@ public class MainForServer extends Application {
 				try {
 					controller.shutdown();
 					System.exit(1);
-					// Platform.exit();
+
 				} catch (IOException e1) {
 				} catch (NullPointerException e2) {
 				}
@@ -128,6 +125,6 @@ public class MainForServer extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}// start
+	}
 
 }
