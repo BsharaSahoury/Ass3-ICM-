@@ -46,6 +46,7 @@ import Client.ClientRequestsWorkedOnObserver;
 import Client.ClientServerDisconnectedObserver;
 import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
+import Client.ClientUpdatingImageProfileSettingObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -107,6 +108,7 @@ public class MainClientController {
 			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
 			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
+		
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);

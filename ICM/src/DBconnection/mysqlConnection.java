@@ -175,6 +175,24 @@ public static String logOutUser(Connection con, String username, String password
 				return res;
 	}	
 }
+
+public static MyFile updateImageUserInProfileSetting(Connection con,String username,MyFile file)
+{
+	System.out.println("mysql=**************************");
+	PreparedStatement stm = null;
+	try {
+			stm = con.prepareStatement("UPDATE user SET userImage=? WHERE username=?;");
+			stm.setBytes(1, file.getMybyterray());
+			stm.setString(2, username);
+			stm.executeUpdate();
+		}//while
+	catch (SQLException e) {
+	//TODO Auto-generated catch block
+	e.printStackTrace();
+	}
+	return file;
+}
+
 public static ArrayList<String> getUserData(Connection con,String username,String userJob)
 {
 	System.out.println("mySQLConncection*************\n\n***************");
@@ -213,7 +231,7 @@ public static ArrayList<String> getUserData(Connection con,String username,Strin
 				email=rs.getString(4);
 				faculty=rs.getString(6);//faculty			
 				id=rs.getString(7);
-			}
+	
 			//res= {id,username,fullname,email,faculty};
 			//res={id,USERname,fullname,email,faculty};
 			res.add(id);
@@ -221,6 +239,8 @@ public static ArrayList<String> getUserData(Connection con,String username,Strin
 			res.add(fullname);
 			res.add(email);
 			res.add(faculty);
+
+			}
 		}//else
 	} catch (SQLException e) {
 //TODO Auto-generated catch block
