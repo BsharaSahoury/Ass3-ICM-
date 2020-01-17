@@ -35,7 +35,6 @@ import messages.Passedmessagecontroller;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.approveDuratinController;
-import messages.massageToAdmenToApproveExtension;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
@@ -70,7 +69,6 @@ public class NotificationsController implements Initializable {
 	private static String ExplainDecision;
 	private static int idnotification;
     private static String myPhase;
-    private static int id;
 	public void start(SplitPane splitpane, User user) {
 		this.user = user;
 		primaryStage = LoginController.primaryStage;
@@ -111,6 +109,7 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		String phase1;
+		int id;
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {
@@ -332,13 +331,12 @@ public class NotificationsController implements Initializable {
 				b6 = content.split("# ");
 				b6 = b6[1].split(" time");
 				int id4 = Integer.valueOf(b6[0]);
-				IDRequestForDecision=id4;
 				String[] b7 = new String[2];
-				System.out.println(content + "                       6966969699669699");
+				System.out.println(content);
 				b7 = content.split("time on phase ");
 				b7 = b7[1].split(", Do");
 			    phase1=b7[0];
-			    massageToAdmenToApproveExtension ecm1 = new massageToAdmenToApproveExtension();
+				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
 				ecm1.start(splitpane, id4,content,phase1);
 				break;
 			}
@@ -347,9 +345,6 @@ public class NotificationsController implements Initializable {
 	}
 	public static String getMyPhase() {
 		return myPhase;
-	}
-	public static int getId() {
-		return id;
 	}
 
 	public static int getidofrequestforDecision() {

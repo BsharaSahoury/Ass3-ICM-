@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
-import Client.Func;
 import Client.MainForClient;
 import Entity.Employee;
 import Entity.Request;
@@ -25,7 +24,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
-import javafx.scene.effect.Glow;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -38,7 +36,7 @@ public class InspectorHomeController implements Initializable{
 	private Button Allrequestbtn;
 	@FXML
 	private Button RequestSubmissionbtn;
-	@FXML 
+	@FXML
 	private Button ProfileSettingbtn;
 	@FXML
 	private Button AboutICMbtn;
@@ -55,19 +53,11 @@ public class InspectorHomeController implements Initializable{
 	private MenuItem btlogOut;
 	public static AllRequestsController AllRequests;
 	public static MyRequestsController MyRequests;
-	public static ProfileSettingController ProfileSetting;
-	private static ClientConsole cc;
-
-	// create a glow effect 
-    Glow glow = new Glow(0.5);
-
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
-
 	public void start(Employee inspector) {
 		this.inspector = inspector;
 		s=this;
-		this.cc=LoginController.cc;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
@@ -81,8 +71,6 @@ public class InspectorHomeController implements Initializable{
 					primaryStage.setResizable(false);
 					primaryStage.setTitle("ICM");
 					primaryStage.show();
-					Object msg=null;
-					cc.getClient().sendToServer(inspector.getUsername());
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
 						LogOutController logOut = new LogOutController();
@@ -119,12 +107,10 @@ public class InspectorHomeController implements Initializable{
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSetting = new ProfileSettingController();
-		runLater(() -> {
-			ProfileSetting.start(splitpane,inspector,"Inspector");
-		});
+		ProfileSettingController Submit = new ProfileSettingController();
+		Submit.start(splitpane,inspector);
 	}
-	
+
 	public void MyRequestsAction() throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane,inspector,"Inspector");
@@ -150,23 +136,10 @@ public class InspectorHomeController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(inspector.getFirstName()+" "+inspector.getLastName());
+		UserNameMenu.setText(inspector.getFirstName()+inspector.getLastName());
     }
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific=new NotificationsController();
 		notific.start(splitpane,inspector);
-	}
-	private void runLater(Func f) {
-		f.call();
-		Platform.runLater(() -> {
-			try {
-				Thread.sleep(10);
-				f.call();
-
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
 	}
 }

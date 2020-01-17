@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Client.Func;
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,8 +43,6 @@ public class LecturerHomeController implements Initializable {
 	public static Stage primaryStage;
 	private static Employee lecturer;
 	public static MyRequestsController MyRequests;
-	public static ProfileSettingController ProfileSetting;
-
 	public void start(Employee lecturer) {
 		this.lecturer=lecturer;
 		primaryStage=LoginController.primaryStage;
@@ -93,10 +90,8 @@ public void RequestSubmissionAction(ActionEvent event) throws Exception {
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSetting = new ProfileSettingController();
-	runLater(() -> {
-		ProfileSetting.start(splitpane,lecturer,"Lecturer");
-});	
+	ProfileSettingController Submit=new ProfileSettingController();
+	Submit.start(splitpane,lecturer);
 }
 
 public void MyRequestsAction(ActionEvent event) throws Exception {
@@ -116,23 +111,10 @@ public void LogOutAction(ActionEvent event) throws Exception {
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
-	UserNameMenu.setText(lecturer.getFirstName()+" "+lecturer.getLastName());
+	UserNameMenu.setText(lecturer.getFirstName()+lecturer.getLastName());
 }
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
 	notific.start(splitpane,lecturer);
-}
-private void runLater(Func f) {
-	f.call();
-	Platform.runLater(() -> {
-		try {
-			Thread.sleep(10);
-			f.call();
-
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	});
 }
 }

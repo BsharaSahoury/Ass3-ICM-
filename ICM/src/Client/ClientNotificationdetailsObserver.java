@@ -15,7 +15,6 @@ import messages.DecisionCommitteeMemberMessageController;
 import messages.ExtensionConfirmationMessage;
 import messages.FailedTestMessageController;
 import messages.RejectMessageInitiatorController;
-import messages.massageToAdmenToApproveExtension;
 
 public class ClientNotificationdetailsObserver implements Observer {
 	public ClientNotificationdetailsObserver(Observable client) {
@@ -51,10 +50,6 @@ public class ClientNotificationdetailsObserver implements Observer {
 									System.out.println(details);
 									FailedTestMessageController.ctrl.setdetails(details);
 								}
-								else if (job.equals("admin message")) {
-									System.out.println(details);
-									System.out.println("888888888888888");
-									massageToAdmenToApproveExtension.ctrl.setdetails(details);}
 							}
 						});
 					}

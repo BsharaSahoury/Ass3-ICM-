@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Client.Func;
 import Entity.Employee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -43,8 +42,6 @@ public class PerformanceLeaderHomeController implements Initializable {
 	public static Stage primaryStage;
 	private static Employee performanceLeader;
 	public static MyRequestsController MyRequests;
-	public static ProfileSettingController ProfileSetting;
-
 	public static RequestsWorkedOnController RequestWorkON;
 	public void start(Employee performanceLeader) {
 		this.performanceLeader=performanceLeader;
@@ -89,7 +86,7 @@ public void GoToHome(ActionEvent event) throws Exception {
 
 public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml",performanceLeader,"Engineer","performance");
+	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -98,10 +95,8 @@ public void RequestSubmissionAction(ActionEvent event) throws Exception {
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSetting = new ProfileSettingController();
-	runLater(() -> {
-		ProfileSetting.start(splitpane,performanceLeader,"Performance Leader");
-});	
+	ProfileSettingController Submit=new ProfileSettingController();
+	Submit.start(splitpane,performanceLeader);
 }
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
@@ -124,24 +119,6 @@ public void clickNotifications(ActionEvent event) throws Exception {
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 	// TODO Auto-generated method stub
-	UserNameMenu.setText(performanceLeader.getFirstName()+" "+performanceLeader.getLastName());
-}
-
-public void RequestThatIlead(ActionEvent event) throws Exception{
-	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
-}
-private void runLater(Func f) {
-	f.call();
-	Platform.runLater(() -> {
-		try {
-			Thread.sleep(10);
-			f.call();
-
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	});
+	UserNameMenu.setText(performanceLeader.getFirstName()+performanceLeader.getLastName());
 }
 }

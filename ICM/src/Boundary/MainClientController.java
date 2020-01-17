@@ -11,10 +11,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-import Client.ClientAdministratorActiveRequestObserver;
 import Client.ClientAllRequestsObserver;
 import Client.ClientApproveDuratinObserver;
-import Client.ClientApproveEvaluatorObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
@@ -23,16 +21,12 @@ import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
-import Client.ClientExtendRequestTimeObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
-import Client.ClientGetExtensionDataObsaerver;
-import Client.ClientGetFullNameEmployeeObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
-import Client.ClientLoginByAnotherClientObserver;
 import Client.ClientInspectorfreazerequestObserver;
 import Client.ClientLoginObserver;
 import Client.ClientMapObserver;
@@ -41,7 +35,6 @@ import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
 import Client.ClientObserver;
-import Client.ClientProfileSettingObserver;
 import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRejectRequestMessageSendToInitiatorObserver;
 import Client.ClientRequestInfoObserver;
@@ -50,7 +43,6 @@ import Client.ClientRequestsWorkedOnObserver;
 import Client.ClientServerDisconnectedObserver;
 import Client.ClientSetDuratinObserver;
 import Client.ClientSubmissionObserver;
-import Client.ClientUpdatingImageProfileSettingObserver;
 import Client.MainForClient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -75,9 +67,6 @@ public class MainClientController {
 		String host=ip.getText();
 		System.out.println(Thread.currentThread().toString());
 		try {
-			if(host.equals(""))
-				throw new Exception();
-			
 			ClientConsole cc=new ClientConsole(host);
 	//		ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
@@ -110,14 +99,6 @@ public class MainClientController {
 			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
 			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
 			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
-			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
-			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
-		
-			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
-			ClientExtendRequestTimeObserver certo=new ClientExtendRequestTimeObserver(cc.getClient());
-			ClientGetExtensionDataObsaerver cgedo=new ClientGetExtensionDataObsaerver(cc.getClient());
-			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
-			ClientAdministratorActiveRequestObserver caaro = new ClientAdministratorActiveRequestObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login=new LoginController();

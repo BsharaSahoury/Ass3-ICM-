@@ -118,15 +118,6 @@
          </tabs>
       </TabPane>
       <Line endX="624.0" layoutX="101.0" layoutY="29.0" startX="-100.0" />
-      <Label layoutX="40.0" layoutY="6.0" text="ICM-&gt;All Reauest-&gt;RequestInfo" />
-      <Button layoutX="3.0" layoutY="2.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="18.0" prefWidth="25.0" style="-fx-background-insets: 4949;">
-         <graphic>
-            <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/back-arrow.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <Label layoutX="23.0" layoutY="6.0" text="ICM-&gt;All Reauest-&gt;RequestInfo" />
    </children>
 </AnchorPane>

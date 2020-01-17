@@ -85,7 +85,7 @@
                </image>
             </ImageView>
             <Button fx:id="browse" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#attachFile" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />
-            <Label fx:id="fileName" layoutX="229.0" layoutY="446.0" prefHeight="26.0" prefWidth="206.0" />
+            <Label fx:id="fileName" layoutX="229.0" layoutY="446.0" prefHeight="26.0" prefWidth="206.0" text="l" />
             <ComboBox fx:id="chosenCombo" layoutX="229.0" layoutY="99.0" prefHeight="26.0" prefWidth="217.0" promptText="choose system" />
          </children></AnchorPane>
    </children>

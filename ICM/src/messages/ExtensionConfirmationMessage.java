@@ -3,8 +3,6 @@ package messages;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,7 +26,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -50,9 +47,12 @@ public class ExtensionConfirmationMessage implements Initializable {
 	Button RejectBtn;
 	@FXML
 	Button other;
-
 	@FXML
-	TextArea ExtensionReasonLabel;
+	ComboBox<String> combo;
+	@FXML
+	Label ExtensionReason;
+	@FXML
+	Label ExtensionReasonLabel;
 	@FXML
 	Label RequestPhaseLabel;
 	@FXML
@@ -77,7 +77,12 @@ public class ExtensionConfirmationMessage implements Initializable {
 
 	public void start(SplitPane splitpane, int id, String content, String phase1) {
 		System.out.println("ExtensionConfirmationMessage-start-logged-on");
-		primaryStage = LoginController.primaryStage;     
+		primaryStage = LoginController.primaryStage;
+		this.r = r;
+		this.requestID = id;
+		this.phase=phase1;
+      
+        
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmationMessage.fxml"));
 			System.out.println("location is set");
@@ -87,7 +92,8 @@ public class ExtensionConfirmationMessage implements Initializable {
 			this.splitpane = splitpane;
 			ctrl.RequestPhaseLabel.setText(phase1);
 			ctrl.RequestIdLabel.setText(Integer.toString(id));
-			Object[] message = { "get extension data", id,phase1 };
+			Object[] message = { "get explain notification", ctrl.notificationID,
+					"Inspector to approve the Extension" };
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
@@ -98,8 +104,6 @@ public class ExtensionConfirmationMessage implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.requestID = id;
-		this.phase=phase1;
 	}
 
 	public void approveAction(ActionEvent e) {
@@ -111,16 +115,13 @@ public class ExtensionConfirmationMessage implements Initializable {
 		Optional<ButtonType> result = alertWarning.showAndWait();
 		ButtonType button = result.orElse(ButtonType.CANCEL);
 		if (button == ButtonType.OK) {
+
+			
+		
+			
 			try {
-				String date=NewDueDateLabel.getText().toString();
-				date = date.replaceAll("(\\r|\\n)", "");
-				LocalDate localDate = null;
-		        DateTimeFormatter formatter = null;
-		        System.out.println(date);
-		        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		        localDate = LocalDate.parse(date, formatter);
 				String keymessage = "send Request extension approve to Admin";
-				Object[] message = { keymessage,requestID,phase,localDate,"inspector"};
+				Object[] message = { keymessage, r.getId(),ctrl.getRequestPhase()};
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -155,36 +156,25 @@ public class ExtensionConfirmationMessage implements Initializable {
 		ctrl.notdetails = details;
 		String[] b = new String[2];
 		b = ctrl.notdetails.split("#");
-		ctrl.ExtensionReasonLabel.setText(b[0]);
+		ctrl.ExtensionReasonLabel.setText(b[1]);
+		ctrl.NewDueDateLabel.setText(b[0]);
+		ctrl.OldDueDateLabel.setText(RequestsWorkedOnController.getRP().getDueDate().toString());
+        ctrl.phaseAdministratorLabel.setText(RequestsWorkedOnController.getRP().getEmployee().toString());
 	}
 
 	
 	public static String getRequestPhase() {
 		return phase;
 	}
-	public static int getRequestId() {
-		return requestID;
-	}
+	
 	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		notificationID = NotificationsController.getidnotification();
-		requestID = NotificationsController.getidofrequestforDecision();
-		Object[] message = { "get explain notification",notificationID ,"Inspector to approve the Extension" };
-		try {
-			LoginController.cc.getClient().sendToServer(message);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
+		requestID = NotificationsController.getidofrequestforDecision();
 	}
 
-	public void setData(String[] data) {
-		ctrl.OldDueDateLabel.setText(data[0]);
-		ctrl.NewDueDateLabel.setText(data[1]);	
-	    ctrl.phaseAdministratorLabel.setText(data[2]);
-	}
-
+	
 }

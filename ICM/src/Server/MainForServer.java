@@ -77,12 +77,6 @@ public class MainForServer extends Application{
 			ServerGetEvaluationReportObserver evaluationreport=new ServerGetEvaluationReportObserver(sv);
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
-		    ServerProfileSettingObserver spso=new ServerProfileSettingObserver(sv);
-		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
-		    SeverGetExtensionDataObsaerver sgedo= new SeverGetExtensionDataObsaerver(sv);
-		    ServerAdminActiveRequestObserver saaro = new ServerAdminActiveRequestObserver(sv);
-		    ServerGetFullNameOfEmployeeObserver eeddd=new ServerGetFullNameOfEmployeeObserver(sv);
-		    ServerNotificationGlowsObserver sngo = new ServerNotificationGlowsObserver(sv);
 			try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//
