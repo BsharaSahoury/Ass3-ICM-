@@ -100,8 +100,6 @@ public class RequestsWorkedOnController implements Initializable {
 			RequestWorkedON[0]="Requests worked on";
 			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
-				System.out.println("mmm");
-				System.out.println();
 			}
 			else if(job.equals("Engineer")){
 				RequestWorkedON[0]="engineer request work on";	
@@ -111,7 +109,6 @@ public class RequestsWorkedOnController implements Initializable {
 				RequestWorkedON[1]=user.getUsername();
 			}
 			RequestWorkedON[2]=job;
-			System.out.println(job);
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
 		} catch (Exception e) {
