@@ -74,8 +74,8 @@ public class SetDurationController implements Initializable {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
-		this.rp = rp;
-		this.phase = rp.getPhase();
+		//this.rp = rp;
+	//	this.phase = rp.getPhase();
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
