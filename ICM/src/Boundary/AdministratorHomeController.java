@@ -25,8 +25,6 @@ import javafx.stage.Stage;
 
 public class AdministratorHomeController implements Initializable {
 @FXML
-Button allEmployees;
-@FXML
 private Button Homebtn;
 @FXML
 private Button RequestWorkedOnbtn;
@@ -65,9 +63,8 @@ primaryStage.setResizable(false);
 primaryStage.setTitle("ICM-Home");
 primaryStage.show();
 primaryStage.setOnCloseRequest(event -> {
-	System.out.println("EXIT ICM");
-	LogOutController logOut = new LogOutController();
-	logOut.exit(primaryStage,Administrator);
+System.out.println("EXIT ICM");
+System.exit(0);
 });
 } catch (Exception e) {
 e.printStackTrace();
@@ -79,31 +76,36 @@ e.printStackTrace();
 public Stage getPrimaryStage() {
 return primaryStage;
 }
-public void AllEmployeesAction(ActionEvent e) {
-	
+public void PermissionsAction(ActionEvent e) {
+		PermissionsController pc=new PermissionsController();
+		pc.start(splitpane);
+}
+public void generateReportAction(ActionEvent e) {
+	ReportController rc=new ReportController();
+	rc.start(splitpane);
 }
 private void runLater(Func f) {
-	f.call();
-	Platform.runLater(() -> {
-		try {
-			Thread.sleep(10);
-			f.call();
+f.call();
+Platform.runLater(() -> {
+try {
+Thread.sleep(10);
+f.call();
 
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	});
+} catch (InterruptedException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
 }
+});
+}
+
 public void GoToHome(ActionEvent event) throws Exception {
 HomeController home = new HomeController();
-runLater(() -> {
-	home.start(splitpane);
-});	
+home.start(splitpane);
 }
 
 public void AllRequestsAction(ActionEvent event) throws Exception {
-	AllRequests = new AllRequestsController();
+
+	AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
 	runLater(() -> {
 		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml","Administrator");
 	});	
@@ -111,12 +113,11 @@ public void AllRequestsAction(ActionEvent event) throws Exception {
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
 RequestSubmissionController Submit = new RequestSubmissionController();
-runLater(() -> {
-	Submit.start(splitpane,Administrator);
-});	
+Submit.start(splitpane,Administrator);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
+
 	ProfileSetting = new ProfileSettingController();
 	runLater(() -> {
 	ProfileSetting.start(splitpane,Administrator,"Administrator");
@@ -126,18 +127,14 @@ public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 public void MyRequestsAction(ActionEvent event) throws Exception {
 	MyRequests = new MyRequestsController();
-	runLater(() -> {
-		MyRequests.start(splitpane, Administrator,"Administrator");
-	});		
+	MyRequests.start(splitpane, Administrator,"Administrator");
 }
 
+//@FXML
 public void AboutICMAction(ActionEvent event) throws Exception {
 AboutICMController about = new AboutICMController();
-runLater(() -> {
-	about.start(splitpane);
-});	
+about.start(splitpane);
 }
-
 public void LogOutAction(ActionEvent event) throws Exception {
 LogOutController logOut = new LogOutController();
 primaryStage.close();
@@ -149,9 +146,7 @@ public void initialize(URL location, ResourceBundle resources) {
 }
 public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
-	runLater(() -> {
-		notific.start(splitpane,Administrator);
-	});		
+	notific.start(splitpane,Administrator);
 }
 
 

@@ -17,16 +17,22 @@ import Client.ClientApproveEvaluatorObserver;
 import Client.ClientApprovePerformanceObserver;
 
 import Client.ClientChairmanApproveObserver;
+import Client.ClientChangePermissionsObserver;
 import Client.ClientCheckApproveDuratinObserver;
 import Client.ClientConsole;
 import Client.ClientDecisionCommitteMemberObserver;
+import Client.ClientDelaysReportObserver;
 import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
+
+import Client.ClientInitPermissionsPageObserver;
+
 import Client.ClientGetFullNameEmployeeObserver;
+
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
 import Client.ClientLoginByAnotherClientObserver;
@@ -38,6 +44,10 @@ import Client.ClientMyRequestsObserver;
 import Client.ClientNotificationObserver;
 import Client.ClientNotificationdetailsObserver;
 import Client.ClientObserver;
+
+import Client.ClientPerformanceReportObserver;
+import Client.ClientPeriodricReportObserver;
+
 import Client.ClientProfileSettingObserver;
 import Client.ClientRecruitEvaluatorObserver;
 import Client.ClientRejectRequestMessageSendToInitiatorObserver;
@@ -109,6 +119,13 @@ public class MainClientController {
 			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
 			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
+
+			ClientInitPermissionsPageObserver cippo=new ClientInitPermissionsPageObserver(cc.getClient());
+			ClientChangePermissionsObserver ccpo=new ClientChangePermissionsObserver(cc.getClient());
+			ClientPeriodricReportObserver cpro=new ClientPeriodricReportObserver(cc.getClient());
+			ClientPerformanceReportObserver cproo=new ClientPerformanceReportObserver(cc.getClient());
+			ClientDelaysReportObserver cdro=new ClientDelaysReportObserver(cc.getClient());
+
 			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
