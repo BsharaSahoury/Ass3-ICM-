@@ -3,9 +3,7 @@ package Entity;
 import java.io.Serializable;
 
 public class ExtensionDuration implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	int request_id;
 	long duration;

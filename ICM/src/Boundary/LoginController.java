@@ -37,11 +37,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 
-/**
- * 
- * @author Ayman Odeh
- *
- */
+
+
 public class LoginController {
 	@FXML
 	public Label error;

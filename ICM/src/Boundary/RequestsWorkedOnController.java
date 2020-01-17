@@ -114,7 +114,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
-		System.out.println(arr1.get(0).getState());
+	
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
@@ -312,7 +312,6 @@ public class RequestsWorkedOnController implements Initializable {
 		case "Comittee Member":
 
 			try {
-				System.out.println(ComitteeMemberHomeController.getFlag()==0);
 				if(ComitteeMemberHomeController.getFlag()==0) {
 					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
 							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");
