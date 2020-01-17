@@ -271,7 +271,7 @@ public class NotificationsController implements Initializable {
 				numberOnly=content.replaceAll("[^0-9]", "");
 				id=Integer.valueOf(numberOnly);
 				b=content.split(": ");
-				System.out.println(b[1]);
+				
 				b=b[1].split("!");
 				phase=b[0];
 				ReminderMessageController rmc8=new ReminderMessageController();
@@ -349,7 +349,6 @@ public class NotificationsController implements Initializable {
 				int id4 = Integer.valueOf(b6[0]);
 				IDRequestForDecision=id4;
 				String[] b7 = new String[2];
-				System.out.println(content + "                       6966969699669699");
 				b7 = content.split("time on phase ");
 				b7 = b7[1].split(", Do");
 			    phase1=b7[0];

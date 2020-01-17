@@ -3,9 +3,7 @@ package Entity;
 import java.io.Serializable;
 
 public class EvaluationReport implements Serializable{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 private String location;
 private String description;
