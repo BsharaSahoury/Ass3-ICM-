@@ -54,31 +54,29 @@ public class AdministratorHomeController implements Initializable {
 			@Override
 			public void run() {
 // TODO Auto-generated method stub
-				try {
-					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage.setScene(scene);
-					primaryStage.setResizable(false);
-					primaryStage.setTitle("ICM-Home");
-					primaryStage.show();
-					primaryStage.setOnCloseRequest(event -> {
-						System.out.println("EXIT ICM");
-						System.exit(0);
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+try {
+Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
+Scene scene = new Scene(root);
+primaryStage.setScene(scene);
+primaryStage.setResizable(false);
+primaryStage.setTitle("ICM-Home");
+primaryStage.show();
+primaryStage.setOnCloseRequest(event -> {
+System.out.println("EXIT ICM");
+System.exit(0);
+});
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
 
-		});
-	}
-
-	public Stage getPrimaryStage() {
-		return primaryStage;
-	}
-
-	public void PermissionsAction(ActionEvent e) {
-		PermissionsController pc = new PermissionsController();
+public Stage getPrimaryStage() {
+return primaryStage;
+}
+public void PermissionsAction(ActionEvent e) {
+		PermissionsController pc=new PermissionsController();
 		pc.start(splitpane);
 	}
 

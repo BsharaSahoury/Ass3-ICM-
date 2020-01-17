@@ -219,7 +219,7 @@ public static ArrayList<String> getUserData(Connection con,String username,Strin
 				email=rs.getString(4);
 				faculty=rs.getString(6);//faculty			
 				id=rs.getString(7);
-			}
+	
 			//res= {id,username,fullname,email,faculty};
 			//res={id,USERname,fullname,email,faculty};
 			res.add(id);
@@ -227,13 +227,14 @@ public static ArrayList<String> getUserData(Connection con,String username,Strin
 			res.add(fullname);
 			res.add(email);
 			res.add(faculty);
+
+			}
 		}//else
 	} catch (SQLException e) {
-//TODO Auto-generated catch block
-	e.printStackTrace();
+			e.printStackTrace();
+		}
+		return res;
 	}
-	return res;
-}
 
 public static String getinitiatorname(Connection con,String username ) {
 	PreparedStatement stmt2=null;

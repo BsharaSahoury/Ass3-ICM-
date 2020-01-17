@@ -123,7 +123,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSetting = new ProfileSettingController();
 		runLater(() -> {
-			ProfileSetting.start(splitpane,comitteeMember,"Comittee Member");
+			ProfileSetting.start(splitpane,comitteeMember,"Committee member");
 		});
 	}
 
