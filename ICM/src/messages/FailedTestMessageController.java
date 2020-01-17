@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import Boundary.LoginController;
 import Boundary.NotificationsController;
 import Boundary.RequestsWorkedOnController;
+import Client.ClientConsole;
 import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,6 +74,10 @@ public class FailedTestMessageController implements Initializable {
 	}
 
 	public void RecruitAction(ActionEvent e) {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 
 		String fullname = combo.getSelectionModel().getSelectedItem();
 
