@@ -232,6 +232,7 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 
+
 	public void SetDurationHelp(RequestPhase s) {
 		this.rp = s;
 		rp.setId(id);
@@ -239,9 +240,10 @@ public class RequestsWorkedOnController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				setDuration.start(splitpane, rp, "/Boundary/DuratinForEvaluator.fxml", rp.getPhase(), job);
+				setDuration.start(splitpane, "/Boundary/DuratinForEvaluator.fxml", rp.getPhase(), job);
 			}
 		});
+
 	}
 
 	public void RequestInfoAction() {

@@ -1,6 +1,6 @@
 package Boundary;
 
-import javafx.application.Platform; 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,13 +66,13 @@ public class RequestInfoController implements Initializable {
 	Button BackBtn;
 
 	private static ClientConsole cc;
-    private static String BackString;
+	private static String BackString;
 	public static RequestInfoController Requestinfo;
-	
+
 	public static Request r2;
 
-	public void start(SplitPane splitpane, Request s,String BackString) {	
-		this.BackString=BackString;	
+	public void start(SplitPane splitpane, Request s, String BackString) {
+		this.BackString = BackString;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.splitpane = splitpane;
@@ -90,10 +90,10 @@ public class RequestInfoController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	} 
+	}
 
 	public void SetInfo(Request r) {
-		r2=r;
+		r2 = r;
 		InitiatorName.setText(r.getInitiatorName());
 		InitiatorRole.setText(r.getInitiatorRole());
 		Date.setText(r.getDate().toString());
@@ -103,80 +103,64 @@ public class RequestInfoController implements Initializable {
 		lbSituation.setText(r.getExistingSituation());
 		lbChange.setText(r.getExplainRequest());
 		lbComment.setText(r.getComment());
-		if(r.getMyFile().getMybyterray() != null) {	
+		if (r.getMyFile().getMybyterray() != null) {
 			Platform.runLater(new Runnable() {
 
 				@Override
 				public void run() {
-					//LfileName.setVisible(false);
+					// LfileName.setVisible(false);
 					LfileName.setText(r.getFilename());
-					//LfileName.setVisible(true);
+					// LfileName.setVisible(true);
 				}
-				
+
 			});
 		}
-		
+
 	}
+
 	@FXML
 	public void downloadFile(ActionEvent e) {
 		try {
-			FileOutputStream fos=new FileOutputStream("C://Users//Sami//Downloads//"+r2.getFilename());
-			BufferedOutputStream bos=new BufferedOutputStream(fos);
-			int len=r2.getMyFile().getMybyterray().length;
+			FileOutputStream fos = new FileOutputStream("C://Users//Sami//Downloads//" + r2.getFilename());
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			int len = r2.getMyFile().getMybyterray().length;
 			bos.write(r2.getMyFile().getMybyterray(), 0, len);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("TEST");
-        alert.setHeaderText("Success");
-        alert.setContentText("the file is downloaded, you can find it at your Downloads directory");
-        alert.showAndWait();
+		alert.setTitle("TEST");
+		alert.setHeaderText("Success");
+		alert.setContentText("the file is downloaded, you can find it at your Downloads directory");
+		alert.showAndWait();
 	}
-	
-	
-	
+
 	public void BackBtnAction(ActionEvent e) {
-		
-		if(BackString.equals("AllRequestAllRequestInspector"))
-		{
+
+		if (BackString.equals("AllRequestAllRequestInspector")) {
 			InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
-		}
-		else if(BackString.equals("AllRequestAdministrator"))
-		{
+		} else if (BackString.equals("AllRequestAdministrator")) {
 			AdministratorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
 		}
-		/*if(BackString.equals("AllRequestAllRequestInspector"))
-		{
-			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
-		}*/
-	
-		/*else if(job.equals("Comittee Member"))
-		{
-			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
-		}*/
-		
+		/*
+		 * if(BackString.equals("AllRequestAllRequestInspector")) {
+		 * ChairmanHomeController.RequestWorkON.start(splitpane,
+		 * "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(),
+		 * "Chairman","decision"); }
+		 */
+
+		/*
+		 * else if(job.equals("Comittee Member")) {
+		 * ComitteeMemberHomeController.RequestWorkON.start(splitpane,
+		 * "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.
+		 * getcomitteeMember(),"Comittee Member","decision"); }
+		 */
+
 	}
-	
-	 
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		
-	           
-		
-		
-		
-		
-		
- 	}
+
+	}
 }

@@ -195,7 +195,10 @@ public class AllRequestsController implements Initializable {
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
 				if(job.equals("inspector"))
-				requestifo.start(splitpane, s.getR(),job);
+				requestifo.start(splitpane, s.getR(),"AllRequestInspector");
+				else if(job.equals("Administrator"))
+					requestifo.start(splitpane, s.getR(),"AllRequestAdministrator");
+				
 			});			
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);
