@@ -5,7 +5,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Boundary.AdministratorHomeController;
-import Boundary.AllRequestsController;
 import Boundary.ChairmanHomeController;
 import Boundary.ComitteeMemberHomeController;
 import Boundary.EvaluatorHomeController;
@@ -14,12 +13,6 @@ import Boundary.LecturerHomeController;
 import Boundary.PerformanceLeaderHomeController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
-import Entity.Request;
-import Entity.User;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.stage.Stage;
 
 public class ClientProfileSettingObserver implements Observer{
 	public ClientProfileSettingObserver(Observable client) {

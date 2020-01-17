@@ -23,7 +23,7 @@ public class ServerProfileSettingObserver implements Observer {
 		if(arg instanceof Object[]) {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
-		if(args[1] instanceof String[]) {
+		if(args[1] instanceof Object[]) {
 			String[] Message=(String[])args[1];
 			if(Message.length==3 && Message[0].equals("ProfileSetting")) {
 				System.out.println("ServerProfileSettingObserver **********\n\n***************");
@@ -44,4 +44,5 @@ public class ServerProfileSettingObserver implements Observer {
 		}
 	}
 }
+
 
