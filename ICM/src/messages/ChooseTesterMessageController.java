@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Boundary.LoginController;
+import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,6 +66,10 @@ public class ChooseTesterMessageController implements Initializable {
 		
 	}
 	public void recruitAction(ActionEvent e) {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
 			Alert alert = new Alert(AlertType.WARNING);

@@ -73,6 +73,10 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 	}
 
 	public void ApplyAction() {
+		if(ClientConsole.map.get(chosenRequest.getId()).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		String explain = null;
 		explain = Explaintxt.getText();
 		if (explain.equals("")) {

@@ -2,9 +2,6 @@ package Boundary;
 
 import java.awt.Button;
 
-
-
-
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Observable;
@@ -77,83 +74,85 @@ public class MainClientController {
 	TextField ip;
 	@FXML
 	Label wrong;
+
 	public void connect() {
-		String host=ip.getText();
+		String host = ip.getText();
 		System.out.println(Thread.currentThread().toString());
 		try {
-			if(host.equals(""))
+			if (host.equals(""))
 				throw new Exception();
-			
-			ClientConsole cc=new ClientConsole(host);
-	//		ClientObserver CO = new ClientObserver(cc.getClient());
-			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
-			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
-			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());
-			ClientNotificationObserver cno=new ClientNotificationObserver(cc.getClient());
-			ClientMyRequestsObserver ceo=new ClientMyRequestsObserver(cc.getClient());
-			ClientGetChairmanObserver chairman=new ClientGetChairmanObserver(cc.getClient());
-			ClientRecruitEvaluatorObserver creo=new ClientRecruitEvaluatorObserver(cc.getClient());
-			ClientGetEvaluatorsObserver cgeo=new ClientGetEvaluatorsObserver(cc.getClient());
-			ClientRequestInfoObserver cri= new ClientRequestInfoObserver(cc.getClient());
-			ClientRequestsWorkedOnObserver ss=new ClientRequestsWorkedOnObserver(cc.getClient());
-			ClientRequestTrack rt=new ClientRequestTrack(cc.getClient());
-			ClientDecisionCommitteMemberObserver qq=new ClientDecisionCommitteMemberObserver(cc.getClient());
-			ClientDecisionCommitteMemberObserver xx=new ClientDecisionCommitteMemberObserver(cc.getClient());
-			ClientChairmanApproveObserver m=new ClientChairmanApproveObserver(cc.getClient());
-			ClientNotificationdetailsObserver n=new ClientNotificationdetailsObserver(cc.getClient());
-			ClientSetDuratinObserver cd=new ClientSetDuratinObserver(cc.getClient());
-			ClientApprovePerformanceObserver capo=new ClientApprovePerformanceObserver(cc.getClient());
-			ClientEvaluationReportObserver sendreport=new ClientEvaluationReportObserver(cc.getClient());
-			ClientGetDurationObserver getDuration=new ClientGetDurationObserver(cc.getClient());
-			ClientMessageSentToInitiatorObserver ee=new ClientMessageSentToInitiatorObserver(cc.getClient());
-			ClientDocumentExceptionObserver cdeo=new ClientDocumentExceptionObserver(cc.getClient());
-			ClientMapObserver cmo=new ClientMapObserver(cc.getClient());
-			ClientInitiatorapprovedrequestdecisionObserver qqw=new ClientInitiatorapprovedrequestdecisionObserver(cc.getClient());
-			ClientRejectRequestMessageSendToInitiatorObserver reject=new ClientRejectRequestMessageSendToInitiatorObserver(cc.getClient());		
-			ClientApproveDuratinObserver approveDuratin=new ClientApproveDuratinObserver(cc.getClient());
-			ClientCheckApproveDuratinObserver check= new ClientCheckApproveDuratinObserver(cc.getClient());
+
+			ClientConsole cc = new ClientConsole(host);
+			// ClientObserver CO = new ClientObserver(cc.getClient());
+			ClientLoginObserver clo = new ClientLoginObserver(cc.getClient());
+			ClientAllRequestsObserver allReqObserver = new ClientAllRequestsObserver(cc.getClient());
+			ClientSubmissionObserver cso = new ClientSubmissionObserver(cc.getClient());
+			ClientNotificationObserver cno = new ClientNotificationObserver(cc.getClient());
+			ClientMyRequestsObserver ceo = new ClientMyRequestsObserver(cc.getClient());
+			ClientGetChairmanObserver chairman = new ClientGetChairmanObserver(cc.getClient());
+			ClientRecruitEvaluatorObserver creo = new ClientRecruitEvaluatorObserver(cc.getClient());
+			ClientGetEvaluatorsObserver cgeo = new ClientGetEvaluatorsObserver(cc.getClient());
+			ClientRequestInfoObserver cri = new ClientRequestInfoObserver(cc.getClient());
+			ClientRequestsWorkedOnObserver ss = new ClientRequestsWorkedOnObserver(cc.getClient());
+			ClientRequestTrack rt = new ClientRequestTrack(cc.getClient());
+			ClientDecisionCommitteMemberObserver qq = new ClientDecisionCommitteMemberObserver(cc.getClient());
+			ClientDecisionCommitteMemberObserver xx = new ClientDecisionCommitteMemberObserver(cc.getClient());
+			ClientChairmanApproveObserver m = new ClientChairmanApproveObserver(cc.getClient());
+			ClientNotificationdetailsObserver n = new ClientNotificationdetailsObserver(cc.getClient());
+			ClientSetDuratinObserver cd = new ClientSetDuratinObserver(cc.getClient());
+			ClientApprovePerformanceObserver capo = new ClientApprovePerformanceObserver(cc.getClient());
+			ClientEvaluationReportObserver sendreport = new ClientEvaluationReportObserver(cc.getClient());
+			ClientGetDurationObserver getDuration = new ClientGetDurationObserver(cc.getClient());
+			ClientMessageSentToInitiatorObserver ee = new ClientMessageSentToInitiatorObserver(cc.getClient());
+			ClientDocumentExceptionObserver cdeo = new ClientDocumentExceptionObserver(cc.getClient());
+			ClientMapObserver cmo = new ClientMapObserver(cc.getClient());
+			ClientInitiatorapprovedrequestdecisionObserver qqw = new ClientInitiatorapprovedrequestdecisionObserver(
+					cc.getClient());
+			ClientRejectRequestMessageSendToInitiatorObserver reject = new ClientRejectRequestMessageSendToInitiatorObserver(
+					cc.getClient());
+			ClientApproveDuratinObserver approveDuratin = new ClientApproveDuratinObserver(cc.getClient());
+			ClientCheckApproveDuratinObserver check = new ClientCheckApproveDuratinObserver(cc.getClient());
 			ClientLogOutObserver logout = new ClientLogOutObserver(cc.getClient());
-			ClientInspectorfreazerequestObserver change=new ClientInspectorfreazerequestObserver(cc.getClient());
-			ClientGetEvaluationReportObserver evaluat=new ClientGetEvaluationReportObserver(cc.getClient());
-			ClientServerDisconnectedObserver Disscon=new ClientServerDisconnectedObserver(cc.getClient());
+			ClientInspectorfreazerequestObserver change = new ClientInspectorfreazerequestObserver(cc.getClient());
+			ClientGetEvaluationReportObserver evaluat = new ClientGetEvaluationReportObserver(cc.getClient());
+			ClientServerDisconnectedObserver Disscon = new ClientServerDisconnectedObserver(cc.getClient());
 			ClientProfileSettingObserver cpso = new ClientProfileSettingObserver(cc.getClient());
 			ClientLoginByAnotherClientObserver clbaco = new ClientLoginByAnotherClientObserver(cc.getClient());
-			ClientApproveEvaluatorObserver capoo=new ClientApproveEvaluatorObserver(cc.getClient());
+			ClientApproveEvaluatorObserver capoo = new ClientApproveEvaluatorObserver(cc.getClient());
 
-			ClientInitPermissionsPageObserver cippo=new ClientInitPermissionsPageObserver(cc.getClient());
-			ClientChangePermissionsObserver ccpo=new ClientChangePermissionsObserver(cc.getClient());
-			ClientPeriodricReportObserver cpro=new ClientPeriodricReportObserver(cc.getClient());
-			ClientPerformanceReportObserver cproo=new ClientPerformanceReportObserver(cc.getClient());
-			ClientDelaysReportObserver cdro=new ClientDelaysReportObserver(cc.getClient());
+			ClientInitPermissionsPageObserver cippo = new ClientInitPermissionsPageObserver(cc.getClient());
+			ClientChangePermissionsObserver ccpo = new ClientChangePermissionsObserver(cc.getClient());
+			ClientPeriodricReportObserver cpro = new ClientPeriodricReportObserver(cc.getClient());
+			ClientPerformanceReportObserver cproo = new ClientPerformanceReportObserver(cc.getClient());
+			ClientDelaysReportObserver cdro = new ClientDelaysReportObserver(cc.getClient());
 
-			ClientGetFullNameEmployeeObserver ddde=new ClientGetFullNameEmployeeObserver(cc.getClient());
+			ClientGetFullNameEmployeeObserver ddde = new ClientGetFullNameEmployeeObserver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
-			login=new LoginController();
-			login.start(MainForClient.stage,cc);
-		}catch(Exception e) {
+			login = new LoginController();
+			login.start(MainForClient.stage, cc);
+		} catch (Exception e) {
 			ip.clear();
 			System.out.println("connection failed");
- 			Alert alert = new Alert(Alert.AlertType.ERROR);
- 			alert.setTitle("Connection Error");
- 			alert.setHeaderText("Connection Error");
- 			Text headerText=new Text("Connection Error");
- 			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20)); 
- 			VBox dialogPaneContent = new VBox();
- 			Label label1 = new Label("wrong IP");
- 			Label label2 = new Label("Please Try again!");
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Connection Error");
+			alert.setHeaderText("Connection Error");
+			Text headerText = new Text("Connection Error");
+			headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20));
+			VBox dialogPaneContent = new VBox();
+			Label label1 = new Label("wrong IP");
+			Label label2 = new Label("Please Try again!");
 
- 			dialogPaneContent.getChildren().addAll(label1, label2);
- 			//onClicking OK button the system will exit!
- 			//END
- 			alert.setOnHiding(click -> {
- 				System.out.println("Try again!");
- 			});
- 			// Set content for Dialog Pane
- 			alert.getDialogPane().setContent(dialogPaneContent);
- 			alert.showAndWait();
+			dialogPaneContent.getChildren().addAll(label1, label2);
+			// onClicking OK button the system will exit!
+			// END
+			alert.setOnHiding(click -> {
+				System.out.println("Try again!");
+			});
+			// Set content for Dialog Pane
+			alert.getDialogPane().setContent(dialogPaneContent);
+			alert.showAndWait();
 
-		}		
+		}
 	}
 }
-

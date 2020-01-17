@@ -33,11 +33,11 @@ public class PerformanceLeaderHomeController implements Initializable {
 	@FXML
 	private Button AboutICMbtn;
 	@FXML
-	private ComboBox Usercombobtn;	
+	private ComboBox Usercombobtn;
 	@FXML
-	private SplitPane splitpane ;
+	private SplitPane splitpane;
 	@FXML
-    private AnchorPane lowerAnchorPane;
+	private AnchorPane lowerAnchorPane;
 	@FXML
 	private MenuButton UserNameMenu;
 	public static Stage primaryStage;
@@ -46,102 +46,110 @@ public class PerformanceLeaderHomeController implements Initializable {
 	public static ProfileSettingController ProfileSetting;
 
 	public static RequestsWorkedOnController RequestWorkON;
+
 	public void start(Employee performanceLeader) {
-		this.performanceLeader=performanceLeader;
-		primaryStage=LoginController.primaryStage;
+		this.performanceLeader = performanceLeader;
+		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-		try{
-			Parent root = FXMLLoader.load(getClass().getResource("/Boundary/performanceLeader-Home.fxml"));			
-			Scene scene = new Scene(root);		
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("ICM-Home");			
-			primaryStage.show();
-			primaryStage.setOnCloseRequest( event ->
-		    {
-				System.out.println("EXIT ICM");
-				LogOutController logOut = new LogOutController();
-				logOut.exit(primaryStage,performanceLeader);
-		    });			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}		
-	}
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/performanceLeader-Home.fxml"));
+					Scene scene = new Scene(root);
+					primaryStage.setScene(scene);
+					primaryStage.setResizable(false);
+					primaryStage.setTitle("ICM-Home");
+					primaryStage.show();
+					primaryStage.setOnCloseRequest(event -> {
+						System.out.println("EXIT ICM");
+						LogOutController logOut = new LogOutController();
+						logOut.exit(primaryStage, performanceLeader);
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		});
 	}
-public Stage getPrimaryStage() {
+
+	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
-public void GoToHome(ActionEvent event) throws Exception {
-	try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
-		lowerAnchorPane = loader.load();
-		splitpane.getItems().set(1, lowerAnchorPane);
-	} catch (IOException e) {		
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-}
-
-public void RequestWorkedOnAction(ActionEvent event) throws Exception {
-	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml",performanceLeader,"Engineer","performance");
-}
-
-public void RequestSubmissionAction(ActionEvent event) throws Exception {
-	RequestSubmissionController Submit=new RequestSubmissionController();
-	Submit.start(splitpane,performanceLeader);
-}
-
-public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSetting = new ProfileSettingController();
-	runLater(() -> {
-		ProfileSetting.start(splitpane,performanceLeader,"Performance Leader");
-});	
-}
-public void MyRequestsAction(ActionEvent event) throws Exception {
-	MyRequests = new MyRequestsController();
-	MyRequests.start(splitpane, performanceLeader,"Performance Leader");
-}
-
-public void AboutICMAction(ActionEvent event) throws Exception {
-	AboutICMController about=new AboutICMController();
-	about.start(splitpane);
-}
-public void LogOutAction(ActionEvent event) throws Exception {
-	LogOutController logOut = new LogOutController();
-	primaryStage.close();
-	logOut.start(primaryStage,performanceLeader);
-}
-public void clickNotifications(ActionEvent event) throws Exception {
-	NotificationsController notific=new NotificationsController();
-	notific.start(splitpane,performanceLeader);
-}
-@Override
-public void initialize(URL location, ResourceBundle resources) {
-	// TODO Auto-generated method stub
-	UserNameMenu.setText(performanceLeader.getFirstName()+" "+performanceLeader.getLastName());
-}
-
-public void RequestThatIlead(ActionEvent event) throws Exception{
-	RequestWorkON=new RequestsWorkedOnController();
-	RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",performanceLeader,"Performance Leader","performance");
-}
-private void runLater(Func f) {
-	f.call();
-	Platform.runLater(() -> {
+	public void GoToHome(ActionEvent event) throws Exception {
 		try {
-			Thread.sleep(10);
-			f.call();
-
-		} catch (InterruptedException e) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/Home.fxml"));
+			lowerAnchorPane = loader.load();
+			splitpane.getItems().set(1, lowerAnchorPane);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	});
-}
+	}
+
+	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnEngineer.fxml", performanceLeader, "Engineer",
+				"performance");
+	}
+
+	public void RequestSubmissionAction(ActionEvent event) throws Exception {
+		RequestSubmissionController Submit = new RequestSubmissionController();
+		Submit.start(splitpane, performanceLeader);
+	}
+
+	public void ProfileSettingAction(ActionEvent event) throws Exception {
+		ProfileSetting = new ProfileSettingController();
+		runLater(() -> {
+			ProfileSetting.start(splitpane, performanceLeader, "Performance Leader");
+		});
+	}
+
+	public void MyRequestsAction(ActionEvent event) throws Exception {
+		MyRequests = new MyRequestsController();
+		MyRequests.start(splitpane, performanceLeader, "Performance Leader");
+	}
+
+	public void AboutICMAction(ActionEvent event) throws Exception {
+		AboutICMController about = new AboutICMController();
+		about.start(splitpane);
+	}
+
+	public void LogOutAction(ActionEvent event) throws Exception {
+		LogOutController logOut = new LogOutController();
+		primaryStage.close();
+		logOut.start(primaryStage, performanceLeader);
+	}
+
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific = new NotificationsController();
+		notific.start(splitpane, performanceLeader);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		UserNameMenu.setText(performanceLeader.getFirstName() + " " + performanceLeader.getLastName());
+	}
+
+	public void RequestThatIlead(ActionEvent event) throws Exception {
+		RequestWorkON = new RequestsWorkedOnController();
+		RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml", performanceLeader, "Performance Leader",
+				"performance");
+	}
+
+	private void runLater(Func f) {
+		f.call();
+		Platform.runLater(() -> {
+			try {
+				Thread.sleep(10);
+				f.call();
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+	}
 }

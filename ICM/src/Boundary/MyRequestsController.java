@@ -144,6 +144,10 @@ public class MyRequestsController implements Initializable  {
 			chosen=tableRequests.getSelectionModel().getSelectedIndex();
 			if(chosen!=-1) {
 				Request s =tableRequests.getSelectionModel().getSelectedItem();
+				if(ClientConsole.map.get(s.getId()).equals("frozen")) {
+					ClientConsole.displayFreezeError();
+					return;
+				}
 				RequestTrackController requestTrack = new RequestTrackController();
 				requestTrack.start(splitpane,s,job);
 			}

@@ -28,7 +28,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InspectorHomeController implements Initializable{
+public class InspectorHomeController implements Initializable {
 	@FXML
 	private Button notifications;
 	@FXML
@@ -37,7 +37,7 @@ public class InspectorHomeController implements Initializable{
 	private Button Allrequestbtn;
 	@FXML
 	private Button RequestSubmissionbtn;
-	@FXML 
+	@FXML
 	private Button ProfileSettingbtn;
 	@FXML
 	private Button AboutICMbtn;
@@ -56,12 +56,12 @@ public class InspectorHomeController implements Initializable{
 	public static MyRequestsController MyRequests;
 	public static ProfileSettingController ProfileSetting;
 
-    private ArrayList<Request> arr;
-    public static InspectorHomeController s;
+	private ArrayList<Request> arr;
+	public static InspectorHomeController s;
 
 	public void start(Employee inspector) {
 		this.inspector = inspector;
-		s=this;
+		s = this;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
@@ -78,7 +78,7 @@ public class InspectorHomeController implements Initializable{
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
 						LogOutController logOut = new LogOutController();
-						logOut.exit(primaryStage,inspector);
+						logOut.exit(primaryStage, inspector);
 					});
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,9 +92,10 @@ public class InspectorHomeController implements Initializable{
 		return primaryStage;
 	}
 
-	public void setarr(ArrayList<Request> arr){
-		this.arr=arr;
+	public void setarr(ArrayList<Request> arr) {
+		this.arr = arr;
 	}
+
 	public void GoToHome(ActionEvent event) throws Exception {
 		HomeController home = new HomeController();
 		home.start(splitpane);
@@ -102,25 +103,26 @@ public class InspectorHomeController implements Initializable{
 
 	public void AllRequestsAction(ActionEvent event) throws Exception {
 		AllRequests = new AllRequestsController();
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 	}
 
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
-		Submit.start(splitpane,inspector);
+		Submit.start(splitpane, inspector);
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSetting = new ProfileSettingController();
 		runLater(() -> {
-			ProfileSetting.start(splitpane,inspector,"Inspector");
+			ProfileSetting.start(splitpane, inspector, "Inspector");
 		});
 	}
-	
+
 	public void MyRequestsAction() throws Exception {
 		MyRequests = new MyRequestsController();
-		MyRequests.start(splitpane,inspector,"Inspector");
+		MyRequests.start(splitpane, inspector, "Inspector");
 	}
+
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
@@ -129,25 +131,29 @@ public class InspectorHomeController implements Initializable{
 	public void LogOutAction(ActionEvent event) throws Exception {
 		LogOutController logOut = new LogOutController();
 		primaryStage.close();
-		logOut.start(primaryStage,inspector);
+		logOut.start(primaryStage, inspector);
 	}
 
 	public static Employee getinspector() {
 		return inspector;
 	}
+
 	public void setallrequest() {
 		AllRequests = new AllRequestsController();
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Inspector");
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(inspector.getFirstName()+" "+inspector.getLastName());
-    }
-	public void clickNotifications(ActionEvent event) throws Exception {
-		NotificationsController notific=new NotificationsController();
-		notific.start(splitpane,inspector);
+		UserNameMenu.setText(inspector.getFirstName() + " " + inspector.getLastName());
 	}
+
+	public void clickNotifications(ActionEvent event) throws Exception {
+		NotificationsController notific = new NotificationsController();
+		notific.start(splitpane, inspector);
+	}
+
 	private void runLater(Func f) {
 		f.call();
 		Platform.runLater(() -> {
