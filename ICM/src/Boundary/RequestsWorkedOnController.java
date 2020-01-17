@@ -232,10 +232,10 @@ public class RequestsWorkedOnController implements Initializable {
 				@Override
 				public void run() {
 					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
+		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 					else {
-						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
+						setDuration.start(splitpane,rp ,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
 					}
 				}
 			});

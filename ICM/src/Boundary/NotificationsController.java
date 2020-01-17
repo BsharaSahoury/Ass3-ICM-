@@ -35,7 +35,6 @@ import messages.Passedmessagecontroller;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.approveDuratinController;
-import messages.massageToAdmenToApproveExtension;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
@@ -323,12 +322,11 @@ public class NotificationsController implements Initializable {
 				b6 = content.split("# ");
 				b6 = b6[1].split(" time");
 				int id4 = Integer.valueOf(b6[0]);
-				IDRequestForDecision=id4;
 				String[] b7 = new String[2];
 				b7 = content.split("time on phase ");
 				b7 = b7[1].split(", Do");
 			    phase1=b7[0];
-			    massageToAdmenToApproveExtension ecm1 = new massageToAdmenToApproveExtension();
+				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
 				ecm1.start(splitpane, id4,content,phase1);
 				break;
 			case "recruitNotificationForPerformEngineer":

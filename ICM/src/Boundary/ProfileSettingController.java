@@ -1,32 +1,39 @@
 package Boundary;
 
-import javafx.stage.Stage;
-
-import java.io.BufferedInputStream;
+import java.applet.Applet;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Client.ClientConsole;
-import Entity.MyFile;
+import Entity.Employee;
+import Entity.Request;
+import Entity.Student;
 import Entity.User;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
-
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler; 
 
 public class ProfileSettingController {
 	
@@ -66,7 +73,6 @@ public class ProfileSettingController {
 	private static String job;
 	private static ArrayList<String> arrOfProfileSetting;
 	File choosenFile;
-	public static ProfileSettingController ProfileSetting;
 
 
 	public void start(SplitPane splitpane, User user,String userJob) {
@@ -85,7 +91,6 @@ public class ProfileSettingController {
 				msg[2]=job;
 				System.out.println("ProfileSettingContoller************************");
 				System.out.println(msg);
-
 				cc.getClient().sendToServer(msg);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -109,65 +114,47 @@ public class ProfileSettingController {
 			faculty_txt.setEditable(false);
 			role_txt.setText(job);
 			role_txt.setEditable(false);
+			allowrecSMS.setSelected(true);
+			allowrecGmail.setSelected(true);
+			allowrecSMS.setDisable(true);
+			allowrecGmail.setDisable(true);
+			dest_txt.setText("");
+			dest_txt.setEditable(false);	
+			
 		}
 	}
 	
 	
 	public void updateAndSaveAction(ActionEvent event){
-		if(dest_txt.getText().equals("")||choosenFile==null)
+		try {
+		if(dest_txt.getText().equals(""))
 			{
-			try {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Updating picture Failed!");
         alert.setHeaderText("Updating picture Failed!");
         alert.setContentText("please browse an Image to Apply updating :)");
         alert.showAndWait();
-		}catch(Exception e1) {
-				System.out.println("EXCEPION IN PROFILESETTINGCONNTROLLER!!!!!1");
-			}
 		}
 		else
 		{
-			MyFile msg=null;
-			String filename=null;
-			if(choosenFile != null) {
-				msg=new MyFile();
-				try {
-					File newFile=choosenFile;
-					filename=newFile.getName();
-					byte[] mybytearray=new byte[(int)newFile.length()];
-					FileInputStream fis=new FileInputStream(newFile);
-					BufferedInputStream bis=new BufferedInputStream(fis);
-					msg.initArray(mybytearray.length);
-					bis.read(msg.getMybyterray(),0,mybytearray.length);
-				//	userImage.setImage(new Image(getClass().getResourceAsStream(dest_txt.getText())));
-				}catch(Exception e1) {
-					System.out.println("");
-				}
-		//	userImage.setImage(new Image(getClass().getResourceAsStream(dest_txt.getText())));
-			Object[] message=new Object[4];
-			String myMsg="UpdatingImageOfProfileSetting";
-			message[0]=myMsg;
-			message[1]=user.getUsername();
-			message[2]=job;
-			message[3]=msg;
-				try {
-					cc.getClient().sendToServer(message);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			//userImage.setImage(new Image(getClass().getResourceAsStream(dest_txt.getText())));
-			//msg[4]=new Image(getClass().getResourceAsStream(dest_txt.getText()));
-		//	System.out.println("ProfileSettingContoller**********updateAndSaveAction");
-		//	System.out.println(msg);	
-			}//of if(choosenFile...)
-		}//of Else
+			Object[] msg=new String[5];
+			updateandsavebtn.setDisable(true);
+			userImage.setImage(new Image(getClass().getResourceAsStream(dest_txt.getText())));
+			msg[0]="UpdatingImageOfProfileSetting";
+			msg[1]=user.getUsername();
+			msg[2]=job;
+			msg[3]=dest_txt.getText();
+			msg[4]=new Image(getClass().getResourceAsStream(dest_txt.getText()));
+			System.out.println("ProfileSettingContoller**********updateAndSaveAction");
+			System.out.println(msg);
+			cc.getClient().sendToServer(msg);
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
 	}
-	public void settingImage(MyFile file) {
 		
 	}
-	
+
 	public void browseAction(ActionEvent event) {
 			FileChooser fc=new FileChooser();
 			fc.getExtensionFilters().addAll(new ExtensionFilter("PNG Files","*.png"));

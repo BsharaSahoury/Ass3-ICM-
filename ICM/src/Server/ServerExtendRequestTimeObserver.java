@@ -2,8 +2,6 @@ package Server;
 
 import java.io.IOException; 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,38 +27,26 @@ public class ServerExtendRequestTimeObserver implements Observer {
 				Object[] arg3 = (Object[]) arg2[1];
 				String keymessage = (String) arg3[0];
 				if (keymessage.equals("send Request extension to inspector for confirm")) {
-					RequestPhase rp = (RequestPhase) arg3[1];
-					LocalDate newDue= (LocalDate)arg3[2];
-					String Reason=(String)arg3[3];
-					int id = (int) rp.getId();
-					String d1=Reason+"#"+newDue.toString();
-					Connection con=mysqlConnection.makeAndReturnConnection();	
-					boolean flag=mysqlConnection.extendTime(con, rp, newDue);
-					if(flag)
-					{
-					long millis=System.currentTimeMillis();
-					Notification n=new Notification("Extension request# "+id+" time on phase "+rp.getPhase().toString()+", Do you confirm extension?",new java.sql.Date(millis),"Extension Confirmation message sent to Inspector");
-					n=mysqlConnection.insertNotificationToDB(con, n);
-					mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
-					mysqlConnection.sendExtensionConfiramtionToInspector(con,n);
-					Object[] message= {"its ok"};
-					try {
-						client.sendToClient(message);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					
-					}
-					else {
-						Object[] message= {"Extension possible once per stage !"};
-						try {
-							client.sendToClient(message);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
+					
+					
+					int id = (int) arg3[1];
+					String d[] = (String[]) arg3[2];
+					String d1=d[0]+"#"+d[1];
+					Phase p = (Phase) arg3[3];
+					
+					
+					
+					Connection con=mysqlConnection.makeAndReturnConnection();		
+					long millis=System.currentTimeMillis();
+					Notification n=new Notification("Extension request# "+id+" time on phase "+p.toString()+", Do you confirm extension?",new java.sql.Date(millis),"Extension Confirmation message sent to Inspector");
+					n=mysqlConnection.insertNotificationToDB(con, n);
+					System.out.println("insertNotificationToDB");
+					mysqlConnection.insertNotificationDetailsToDB(con, n,d1 );
+					//System.out.println("insertNotificationDetailsToDB");
+					mysqlConnection.sendExtensionConfiramtionToInspector(con,n);
+					//System.out.println("sendExtensionConfiramtionToInspector");
+					
 					
 					
 					

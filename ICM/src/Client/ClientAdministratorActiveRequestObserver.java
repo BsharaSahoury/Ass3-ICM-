@@ -14,7 +14,6 @@ public class ClientAdministratorActiveRequestObserver implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("Client Administrator Active Request Observer");
 		// TODO Auto-generated method stub
 		if (arg instanceof Object[]) {
 			Object[] arr = (Object[]) arg;

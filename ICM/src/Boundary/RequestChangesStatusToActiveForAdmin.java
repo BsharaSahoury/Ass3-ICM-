@@ -45,6 +45,14 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+	/*	ArrayList<Phase> Phases = new ArrayList<Phase>();
+		Phases.add(Phase.evaluation);
+		Phases.add(Phase.decision);
+		Phases.add(Phase.performance);
+		Phases.add(Phase.testing);
+		Phases.add(Phase.closing);
+		phaseslist = FXCollections.observableArrayList(Phases);
+		Phasee.setItems(phaseslist);*/
 		chosenindex = AllRequestsController.getselectedindex();
 		chosenRequest = AllRequestsController.getList().get(chosenindex);
 		statuslable.setText(chosenRequest.getStatus());
@@ -65,7 +73,7 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 	}
 
 	public void ApplyAction() {
-		/*String explain = null;
+		String explain = null;
 		explain = Explaintxt.getText();
 		if (explain.equals("")) {
 			Alert alertSuccess = new Alert(AlertType.WARNING);
@@ -73,14 +81,14 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 			alertSuccess.setHeaderText("Miss");
 			alertSuccess.setContentText("PLease fill explain for your decision");
 			alertSuccess.showAndWait();
-		} else {*/
+		} else {
 			statuslable.setText("Active");
 			RequestPhase chosen = AllRequestsController.getselectedRequest();
 			Object[] send = new Object[4];
 			send[0] = "Admin changed status to Active";
 			send[1] = chosen.getR().getId();
 			send[2] = AdministratorHomeController.getAdministrator();
-			//send[3] = explain;
+			send[3] = explain;
 			try {
 				LoginController.cc.getClient().sendToServer(send);
 			} catch (IOException e1) {
@@ -88,7 +96,7 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 				e1.printStackTrace();
 			}
 		}
-	//}
+	}
 
 	public void BackBtnAction(ActionEvent e) {
 
