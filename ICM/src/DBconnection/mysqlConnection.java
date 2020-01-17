@@ -324,18 +324,6 @@ public class mysqlConnection {
 				result=null;
 				i=0;
 				Initiatorname=null;
-
-				if (!result.equals(null)) {
-					arr.add(result);
-
-				}
-				stmt2 = null;
-				stmt3 = null;
-				stmt4 = null;
-				s = null;
-				result = null;
-				i = 0;
-				Initiatorname = null;
 			}
 			rs.close();
 		} catch (SQLException e) {
