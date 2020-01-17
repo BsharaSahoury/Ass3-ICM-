@@ -128,6 +128,8 @@ public class ExtensionConfirmationMessage implements Initializable {
 			alertWarning1.setHeaderText("Success!");
 			alertWarning1.setContentText("Request Extension has been approved successfully!");
 			alertWarning1.showAndWait();
+			ApproveBtn.setDisable(true);
+			RejectBtn.setDisable(true);
 		}
 
 	}
@@ -145,6 +147,8 @@ public class ExtensionConfirmationMessage implements Initializable {
 			alertWarning1.setHeaderText("Rejected Successfully!");
 			alertWarning1.setContentText("Request Extension has been Rejected successfully!");
 			alertWarning1.showAndWait();
+			ApproveBtn.setDisable(true);
+			RejectBtn.setDisable(true);
 		}
 
 	}
