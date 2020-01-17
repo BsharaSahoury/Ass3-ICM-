@@ -21,11 +21,12 @@ import Client.ClientDecisionCommitteMemberObserver;
 import Client.ClientDelaysReportObserver;
 import Client.ClientDocumentExceptionObserver;
 import Client.ClientEvaluationReportObserver;
+import Client.ClientExtendRequestTimeObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
 import Client.ClientGetEvaluatorsObserver;
-
+import Client.ClientGetExtensionDataObsaerver;
 import Client.ClientInitPermissionsPageObserver;
 
 import Client.ClientGetFullNameEmployeeObserver;
@@ -127,6 +128,8 @@ public class MainClientController {
 			ClientDelaysReportObserver cdro = new ClientDelaysReportObserver(cc.getClient());
 
 			ClientGetFullNameEmployeeObserver ddde = new ClientGetFullNameEmployeeObserver(cc.getClient());
+			ClientExtendRequestTimeObserver certo=new ClientExtendRequestTimeObserver(cc.getClient());
+			ClientGetExtensionDataObsaerver cedo=new ClientGetExtensionDataObsaerver(cc.getClient());
 			cc.getClient().openConnection();
 			wrong.setVisible(false);
 			login = new LoginController();
