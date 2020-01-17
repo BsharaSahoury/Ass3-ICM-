@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Boundary.RequestTreatmentAction;
@@ -29,7 +30,9 @@ import Entity.State;
 import Entity.Student;
 import Entity.User;
 import Server.MainForServer;
+
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 
 public class mysqlConnection {
@@ -78,16 +81,6 @@ public class mysqlConnection {
 			if (!rs.next())
 				return null;
 			
-			//checking if the userAccount is Already logged-in
-			if(rs.getString(3).equals("yes"))
-				return null;
-			
-			//Logged-In ='yes'
-			stm = con.prepareStatement("UPDATE user SET loggedIn='yes' WHERE username=? AND password=?;");
-			stm.setString(1, username);
-			stm.setString(2, password);
-			stm.executeUpdate();
-			
 			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
 			stm.setString(1, username);
 			rs = stm.executeQuery();
@@ -109,6 +102,43 @@ public class mysqlConnection {
 		return null;
 
 	}
+	public static void updateUSerLoggedInToYes(Connection con,String username,String password)
+	{
+		PreparedStatement stm = null;
+		try {
+		stm = con.prepareStatement("UPDATE user SET loggedIn='yes' WHERE username=? AND password=?;");
+		stm.setString(1, username);
+		stm.setString(2, password);
+		stm.executeUpdate();
+		}
+	 catch (SQLException e) {
+		 //TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
+			
+	}
+	public static String IsConnectedByAnotherClient(Connection con,String username,String password)
+	{
+		PreparedStatement stm = null;
+		try {
+			stm = con.prepareStatement("SELECT user.loggedIn FROM user WHERE username=? AND password=?;");
+			stm.setString(1, username);
+			stm.setString(2, password);
+			ResultSet rs = stm.executeQuery();
+			
+			//if the user is not an ICM-User
+			if (!rs.next())
+				return "false";
+			//checking if the userAccount is Already logged-in
+			if(rs.getString(1).equals("yes"))
+				return "true";
+		}
+	 catch (SQLException e) {
+		 //TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		return "false";
+}
 	public static void SetAllUsersLoginToNo(Connection con) {
 	
 		String username,password;
@@ -151,7 +181,59 @@ public static String logOutUser(Connection con, String username, String password
 				return res;
 	}	
 }
-
+public static ArrayList<String> getUserData(Connection con,String username,String userJob)
+{
+	System.out.println("mySQLConncection*************\n\n***************");
+	PreparedStatement stm = null;
+	ResultSet rs;
+	String id=null,USERname=null,fullname=null,email=null,faculty=null,extra=null;
+	ArrayList<String> res=new ArrayList<String>();
+	try {
+		if(userJob.equals("Student"))
+		{
+			stm = con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
+			stm.setString(1, username);
+			rs = stm.executeQuery();
+			if (rs.next()) {//data
+			USERname=rs.getString(1);
+			fullname=rs.getString(2)+" "+rs.getString(3);
+			id=rs.getString(4);
+			email=rs.getString(5);
+			faculty=rs.getString(6);//faculty
+			}
+			//res={id,USERname,fullname,email,faculty};
+			res.add(id);
+			res.add(USERname);
+			res.add(fullname);
+			res.add(email);
+			res.add(faculty);
+		}
+		else//User is an employee
+		{
+			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
+			stm.setString(1, username);
+			rs = stm.executeQuery();
+			if (rs.next()) {
+				USERname=rs.getString(1);
+				fullname=rs.getString(2)+" "+rs.getString(3);
+				email=rs.getString(4);
+				faculty=rs.getString(6);//faculty			
+				id=rs.getString(7);
+			}
+			//res= {id,username,fullname,email,faculty};
+			//res={id,USERname,fullname,email,faculty};
+			res.add(id);
+			res.add(USERname);
+			res.add(fullname);
+			res.add(email);
+			res.add(faculty);
+		}//else
+	} catch (SQLException e) {
+//TODO Auto-generated catch block
+	e.printStackTrace();
+	}
+	return res;
+}
 
 public static String getinitiatorname(Connection con,String username ) {
 	PreparedStatement stmt2=null;
@@ -206,21 +288,27 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				if(rs4.next()) {
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-					result=new RequestPhase(null,null,s,Phase.valueOf(rs4.getString(1)),State.valueOf(rs4.getString(2)));					
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs4.getString(1)),State.valueOf(rs4.getString(2)));
+					Employee inspecotor=getInspector(con);
+					result.setEmployee(inspecotor.getUsername());
+					result.setRepetion(rs4.getInt(3));
 					rs4.close();
 				}
 				else {
 			do {
 				i++;
-				stmt3 = con.prepareStatement("SELECT E.phase,E.state,E.repetion FROM icm.requestinphase E WHERE request_id=? AND phase=? AND state!='over';");
+				stmt3 = con.prepareStatement("SELECT E.phase,E.state,E.repetion,E.phase_administrator,E.start_date,E.due_date FROM icm.requestinphase E WHERE request_id=? AND phase=? AND state!='over';");
 				stmt3.setInt(1, rs.getInt(7));
 				stmt3.setString(2, phases[i]);
 				ResultSet rs3=stmt3.executeQuery();
 				if(rs3.next()) {				
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
-					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));	
+					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));
+					result.setEmployee(rs3.getString(4));
 					result.setRepetion(rs3.getInt(3));
+					result.setStartDate(rs3.getDate(5));
+					result.setDueDate(rs3.getDate(6));
 					rs3.close();
 				}	       
 			    }while(i!=-1&&i!=5);
@@ -548,7 +636,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			if (rs.next()) {
 				String privilegedSystem = rs.getString(1);
 				Employee evaluator = mysqlConnection.getAutomaticRecruit(con, privilegedSystem);
-				mysqlConnection.assignEvaluator(con, id,evaluator);
+				mysqlConnection.newassignEmployee(con, id,evaluator,"evaluation");
 				return evaluator;
 			}
 		} catch (SQLException e) {
@@ -559,32 +647,44 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 
 	}
 	
-	public static void assignEvaluator(Connection con, int id,Employee evaluator) {
+	public static void newassignEmployee(Connection con, int id,Employee employee,String phase) {
 		PreparedStatement stm = null;
+		PreparedStatement stm1 = null;
 		PreparedStatement stm4 = null;
+		int maxRepetion = 0;
 		try {
-		stm=con.prepareStatement("SELECT * FROM icm.requestinphase WHERE request_id=? AND phase=? AND repetion=? AND phase_administrator IS NULL");
-		stm.setInt(1, id);
-		stm.setString(2, "evaluation");
-		stm.setInt(3, 0);
-		ResultSet rs3 = stm.executeQuery();
-		if(rs3.next()) {
-			stm4=con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
-			stm4.setInt(2, id);
-			stm4.setString(3, "evaluation");
-			stm4.setInt(4, 0);
-			stm4.setString(1, evaluator.getUsername());
-			stm4.executeUpdate();
-		}
+			stm1 = con.prepareStatement(
+					"SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
+			stm1.setInt(1, id);
+			stm1.setString(2, phase);
+			ResultSet rs = stm1.executeQuery();
+			if (rs.next())
+				maxRepetion = rs.getInt(1);
+			stm = con.prepareStatement(
+					"SELECT * FROM icm.requestinphase WHERE request_id=? AND phase=? AND repetion=? AND phase_administrator IS NULL");
+			stm.setInt(1, id);
+			stm.setString(2, phase);
+			stm.setInt(3, maxRepetion);
+			ResultSet rs3 = stm.executeQuery();
+			if (rs3.next()) {
+				stm4 = con.prepareStatement(
+						"UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
+				stm4.setInt(2, id);
+				stm4.setString(3, phase);
+				stm4.setInt(4, 0);
+				stm4.setString(1, employee.getUsername());
+				stm4.executeUpdate();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			e.printStackTrace();
+		}
 	}
 
 	public static boolean assignEmployeeToPhaseRequest(Connection con, Employee employee, int id,String phase) {
 		PreparedStatement stm = null;
 		PreparedStatement stm2 = null;
+		PreparedStatement stm3 = null;
 		try {
 			int Max=0;
 			stm2 = con.prepareStatement("SELECT R.repetion FROM icm.requestinphase R WHERE request_id=? AND phase=?;");
@@ -593,24 +693,31 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			ResultSet rs = stm2.executeQuery();	
 			while(rs.next()) {
 				if(rs.getInt(1)>=Max)
-					Max=rs.getInt(1)+1;
+					Max=rs.getInt(1);
 			}
-			stm = con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
-			stm.setInt(1, id);
-			stm.setString(2, phase);
-			stm.setInt(3, Max);
-			stm.setDate(4, null);
-			stm.setDate(5, null);
-			stm.setString(6, employee.getUsername());
-			stm.setString(7, "wait");
+			stm3 = con.prepareStatement("SELECT R.phase_administrator FROM icm.requestinphase R WHERE request_id=? AND phase=? AND repetion=?;");
+			stm3.setInt(1, id);
+			stm3.setString(2, phase);
+			stm3.setInt(3,Max);
+			ResultSet rs3= stm3.executeQuery();	
+			rs3.next();
+			if(rs3.getString(1)!=null) {
+				return false;
+			}
+			else {
+			stm = con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm.setString(1, employee.getUsername());
+			stm.setInt(2, id);
+			stm.setString(3, phase);
+			stm.setInt(4,Max);
 			stm.executeUpdate();
 			return true;
+			}
 		} catch (SQLException e) {
 // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
-
 	}
 			
 	
@@ -756,32 +863,25 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		String currentPhase = null;
 		RequestPhase rp=null;
 		Request r=null;
-		System.out.println("ss");
 		try {
-			System.out.println("!!!!!!!!!!!");
 			stmR=con.prepareStatement("SELECT R.* FROM icm.request R WHERE id=?;");
 			stmR.setInt(1, id);
 			ResultSet rs1 = stmR.executeQuery();
 			if(rs1.next()) {
 				currentPhase=rs1.getString(12);
-				System.out.println(currentPhase);
 				r=new Request(rs1.getInt(7), rs1.getString(9),rs1.getString(8),rs1.getString(1),rs1.getDate(6),Enum.valueOf(Phase.class, rs1.getString(12)));
-				System.out.println(r.getCurrentPhase().toString());
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
-			System.out.println(currentPhase);
 			stm=con.prepareStatement("SELECT MAX(icm.requestinphase.repetion) FROM icm.requestinphase where request_id=? AND phase=?;");
 			stm.setInt(1, id);
 			stm.setString(2,currentPhase);
 			ResultSet rs = stm.executeQuery();
 			if (rs.next())
 				maxRepetion = rs.getInt(1);
-			System.out.println(id);
-			System.out.println(maxRepetion);
 			stmRP=con.prepareStatement(" SELECT RP.* FROM icm.requestinphase RP where request_id=? AND phase=? AND repetion=?;");
 			stmRP.setInt(1, id);
 			stmRP.setString(2,currentPhase);
@@ -820,7 +920,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 				ResultSet rs = stm.executeQuery();	
 	            if(rs.next()) {
 	            	maxRepetion = rs.getInt(1);
-	            	System.out.println(rs.getInt(1));
 				PreparedStatement stm1 = con.prepareStatement("UPDATE icm.requestinphase"
 						+ " SET start_date = ?, due_date = ?,state='waitingForApprove' "
 						+ "WHERE (request_id = ? and phase=? and repetion=?);");
@@ -897,13 +996,17 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE request_id=?;");
 			stm.setInt(1, id);
 			stm.executeUpdate();
+			long millis=System.currentTimeMillis();			
+			Date s=new java.sql.Date(millis);
+			long week =s.getTime()+(int) (1000 * 60 * 60 * 24 * 7);
+			Date d = new java.sql.Date(week);
 			stm=con.prepareStatement("INSERT INTO requestinphase VALUES(?,?,?,?,?,?,?);");
 			stm.setInt(1, id);
 			stm.setString(2, "testing");
 			stm.setInt(3, 0);
-			stm.setDate(4, null);
-			stm.setDate(5, null);
-			stm.setDate(6, null);
+			stm.setDate(4, s);
+			stm.setDate(5, d);
+			stm.setString(6, null);
 			stm.setString(7, "wait");
 			stm.executeUpdate();
 		}
@@ -1462,6 +1565,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		PreparedStatement stm=null;
 		PreparedStatement stmt1=null;
 		PreparedStatement stmt2=null;
+		PreparedStatement stmt3=null;
 		try {
 			stm=con.prepareStatement("SELECT E.* FROM icm.request E WHERE status='active' AND id=?;");
 			stm.setInt(1, id);
@@ -1471,6 +1575,13 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stmt1.setString(1, newstatus);
 			stmt1.setInt(2, id);
 			stmt1.executeUpdate();
+			if(newstatus.equals("rejected")||newstatus.equals("closed")) {
+				stmt3 = con.prepareStatement("UPDATE request SET close_date=? WHERE id=?;");
+				long millis1 = System.currentTimeMillis();
+				stmt3.setDate(1, new java.sql.Date(millis1));
+				stmt3.setInt(2, id);
+				stmt3.executeUpdate();	
+			}
 			stmt2=con.prepareStatement("UPDATE requestinphase SET state='over' WHERE phase='closing' AND request_id=?;");
 			stmt2.setInt(1, id);
 			stmt2.executeUpdate();
@@ -1501,7 +1612,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			stm.setInt(1, id);
 			ResultSet rs=stm.executeQuery();
 			if(rs.next()) {
-				System.out.println("ww");
 			stmt1 = con.prepareStatement("UPDATE request SET status=? WHERE id=?;");
 			stmt1.setString(1, "frozen");
 			stmt1.setInt(2, id);
@@ -1518,7 +1628,121 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		}	
 		return true;
 	}
+	
+	public static boolean ActiveRequest(Connection con,int id)
+	{   
+		PreparedStatement stm=null;
+		PreparedStatement stmt1=null;
+		PreparedStatement stmt2=null;
+		try {
+			stmt2=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stmt2.setInt(1, id);
+			ResultSet rs2=stmt2.executeQuery();
+			rs2.next();
+			if(rs2.getString(8).equals("frozen")) {
+			stm=con.prepareStatement("SELECT E.* FROM icm.request E WHERE id=?;");
+			stm.setInt(1, id);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+			stmt1 = con.prepareStatement("UPDATE request SET status=? WHERE id=?;");
+			stmt1.setString(1, "active");
+			stmt1.setInt(2, id);
+			stmt1.executeUpdate();
+			return true;
+			}
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void EnterFreazeToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
+	{
+		PreparedStatement stm=null;
+		PreparedStatement stmt2=null;	
+		PreparedStatement stmt1=null;	
+		long millis = System.currentTimeMillis();
+		try {
+			stmt1 = con.prepareStatement("SELECT E.* FROM icm.update E WHERE updater_name=?AND essence=? AND date=? AND request_id=?;");		
+			stmt1.setString(1, Inspector.getUsername());
+			stmt1.setString(2,explain);
+			stmt1.setDate(3, new java.sql.Date(millis));
+			stmt1.setInt(4, requestid);
+			ResultSet rs=stmt1.executeQuery();
+			if(!rs.next()) {
+			stm = con.prepareStatement("INSERT INTO icm.update VALUES(?,?,?,?,?);");		
+			stm.setString(1, Inspector.getUsername());
+			stm.setString(2,Inspector.getFirstName()+Inspector.getLastName() );
+			stm.setString(3, explain);
+			stm.setDate(4, new java.sql.Date(millis));
+			stm.setInt(5, requestid);
+			stm.executeUpdate();
+			stmt2 = con.prepareStatement("INSERT INTO icm.frozen VALUES(?,?,?);");		
+			stmt2.setInt(1, requestid);
+			long millis1 = System.currentTimeMillis();
+			stmt2.setDate(2, new java.sql.Date(millis1));
+			stmt2.setDate(3, null);
+			stmt2.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void EnterUpdateToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
+	{
+		PreparedStatement stm=null;	
+		PreparedStatement stmt1=null;
+		long millis = System.currentTimeMillis();
+		try {
+			stmt1 = con.prepareStatement("SELECT E.* FROM icm.update E WHERE updater_name=?AND essence=? AND date=? AND request_id=?;");		
+			stmt1.setString(1, Inspector.getUsername());
+			stmt1.setString(2,explain);
+			stmt1.setDate(3, new java.sql.Date(millis));
+			stmt1.setInt(4, requestid);
+			ResultSet rs=stmt1.executeQuery();
+			if(!rs.next()) {
+			stm = con.prepareStatement("INSERT INTO icm.update VALUES(?,?,?,?,?);");		
+			stm.setString(1, Inspector.getUsername());
+			stm.setString(2,Inspector.getFirstName()+Inspector.getLastName() );
+			stm.setString(3, explain);
+			stm.setDate(4, new java.sql.Date(millis));
+			stm.setInt(5, requestid);
+			stm.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	public static void EnterActiveToDBUpdateTable(Connection con,Employee Inspector,int requestid,String explain)
 	{
 		PreparedStatement stm=null;
 		PreparedStatement stmt1=null;
@@ -1538,6 +1762,26 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static Map<Integer, String> getMap(Connection con) {
 		PreparedStatement stm=null;
 		Map<Integer,String> map=new HashMap<>();
@@ -1590,7 +1834,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(initiator.getUsername());
 		return initiator;
 	}
 	public static void changeState(Connection con,int id,Phase phase,State state) {
@@ -1807,6 +2050,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
     	else
     		return null;
     }
+
 
 
 
@@ -2251,5 +2495,65 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		return arr;
 
 	}
+
+    public static void assignorChangeEmployee(Connection con, String username,int repetion, int id,String phase,LocalDate start,LocalDate due) {
+		PreparedStatement stm = null;
+		PreparedStatement stm2 = null;
+		PreparedStatement stm3 = null;
+		try {
+			if(username!=null) {
+			stm = con.prepareStatement("UPDATE requestinphase SET phase_administrator=? WHERE request_id=? AND phase=? AND repetion=?;");
+			stm.setString(1, username);
+			stm.setInt(2, id);
+			stm.setString(3, phase);
+			stm.setInt(4,repetion);
+			stm.executeUpdate();
+			}
+			if(start!=null&&due!=null) {
+			stm2 = con.prepareStatement("UPDATE requestinphase SET start_date=?,due_date=? WHERE request_id=? AND phase=? AND repetion=?;");
+			Date st=Date.valueOf(start);
+			Date du=Date.valueOf(due);
+			long s=st.getTime()+(int) (1000 * 60 * 60 * 24 );
+			st = new java.sql.Date(s);
+			 long dd=du.getTime()+(int) (1000 * 60 * 60 * 24 );
+			 du = new java.sql.Date(dd);
+			stm2.setDate(1, st);
+			stm2.setDate(2, du);
+			stm2.setInt(3, id);
+			stm2.setString(4, phase);
+			stm2.setInt(5,repetion);
+			stm2.executeUpdate();			
+		}
+		} catch (SQLException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    public static void EnterrequestonengineerrequestDB(Connection con, ArrayList<String> fullname,int repetion, int id) {
+    	PreparedStatement stmt4=null;
+    	PreparedStatement stm=null;
+    	for(int i=0;i<fullname.size();i++) {
+    		Employee engineer=getSpecificEmployee(con,fullname.get(i));		
+			try {
+				stmt4 = con.prepareStatement("SELECT E.* FROM icm.enginnerequest E WHERE request_id=? AND repetion=? AND username=?;");
+				stmt4.setInt(1, id);
+				stmt4.setInt(2, repetion);
+				stmt4.setString(3, engineer.getUsername());
+				ResultSet rs4=stmt4.executeQuery();	
+				if(!rs4.next()) {
+					stm = con.prepareStatement("INSERT INTO icm.enginnerequest VALUES(?,?,?);");		
+					stm.setInt(1, id);
+					stm.setInt(2, repetion);
+					stm.setString(3, engineer.getUsername());
+					stm.executeUpdate();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+    	}
+    	
+    }
 }
 

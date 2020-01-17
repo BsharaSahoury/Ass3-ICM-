@@ -42,8 +42,7 @@ public class ServerChoosedPerformerObserver implements Observer {
 							System.out.println("ServerChoosedPerformerObserver-Cheaked");
 							long millis = System.currentTimeMillis();
 							Notification n1 = new Notification("You've been recruited to perform request#" + id,
-									new java.sql.Date(millis), "recruitNotificationForPerformer");
-							System.out.println("Successfully maked notification");
+									new java.sql.Date(millis), "recruitNotificationForPerformance");
 							n1 = mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1, performer);
 						}

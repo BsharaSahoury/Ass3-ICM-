@@ -23,7 +23,9 @@
          <items>
             <AnchorPane prefHeight="602.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;">
                <children>
+
                   <Button alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="352.0" mnemonicParsing="false" onAction="#PermissionsAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Permissions" textFill="WHITE">
+
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -160,7 +162,10 @@
                         </ImageView>
                      </graphic>
                   </Button>
+
                   <Button alignment="BASELINE_LEFT" layoutX="1.0" layoutY="414.0" mnemonicParsing="false" onAction="#generateReportAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="   Reports" textFill="WHITE">
+
+
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

@@ -36,14 +36,19 @@ public class RequestTrackController implements Initializable {
 	@FXML
 	
 	private TextField currentDate;
-
+	private static String job;
+	
 	public static RequestTrackController RequestTrack;
 
-	public void start(SplitPane splitpane, Request r) {
+	public void start(SplitPane splitpane, Request r,String job) {
+		this.job=job;	
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 
+		
+		
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/UserStatus.fxml"));
 			lowerAnchorPane = loader.load();
@@ -57,6 +62,10 @@ public class RequestTrackController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -68,7 +77,25 @@ public class RequestTrackController implements Initializable {
 	
 	
 	public void BackBtnAction(ActionEvent e) {
-		InspectorHomeController.MyRequests.start(splitpane,InspectorHomeController.getinspector(),"Inspector");
+		
+		if(job.equals("Inspector"))
+		{
+			InspectorHomeController.MyRequests.start(splitpane,InspectorHomeController.getinspector(),"Inspector");
+		}
+		else if(job.equals("Chairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
+		}
+		/*else if(BackTo.equals("Back To RequestsWorkOnChairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", comitteeMemberHomeController.getchairman(), "Chairman","decision");
+		}*/
+		else if(job.equals("Comittee Member"))
+		{
+			ComitteeMemberHomeController.MyRequests.start(splitpane, ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member");
+			//ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
+		}
+		
 	}
 	
 	

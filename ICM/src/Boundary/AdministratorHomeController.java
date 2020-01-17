@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Client.ClientConsole;
+import Client.Func;
 import Client.MainForClient;
 import Entity.Employee;
 import javafx.application.Application;
@@ -43,6 +44,8 @@ public static Stage primaryStage;
 private static Employee Administrator;
 public static MyRequestsController MyRequests;
 public static AllRequestsController AllRequests;
+public static ProfileSettingController ProfileSetting;
+
 
 public void start(Employee Administrator) {
 this.Administrator = Administrator;
@@ -82,6 +85,19 @@ public void generateReportAction(ActionEvent e) {
 	ReportController rc=new ReportController();
 	rc.start(splitpane);
 }
+private void runLater(Func f) {
+f.call();
+Platform.runLater(() -> {
+try {
+Thread.sleep(10);
+f.call();
+
+} catch (InterruptedException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+});
+}
 
 public void GoToHome(ActionEvent event) throws Exception {
 HomeController home = new HomeController();
@@ -89,8 +105,11 @@ home.start(splitpane);
 }
 
 public void AllRequestsAction(ActionEvent event) throws Exception {
-	AllRequests = new AllRequestsController();
+
 	AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
+	runLater(() -> {
+		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml","Administrator");
+	});	
 }
 
 public void RequestSubmissionAction(ActionEvent event) throws Exception {
@@ -99,8 +118,12 @@ Submit.start(splitpane,Administrator);
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-ProfileSettingController Submit = new ProfileSettingController();
-Submit.start(splitpane,Administrator);
+
+	ProfileSetting = new ProfileSettingController();
+	runLater(() -> {
+	ProfileSetting.start(splitpane,Administrator,"Administrator");
+});	
+
 }
 
 public void MyRequestsAction(ActionEvent event) throws Exception {
@@ -126,4 +149,14 @@ public void clickNotifications(ActionEvent event) throws Exception {
 	NotificationsController notific=new NotificationsController();
 	notific.start(splitpane,Administrator);
 }
+
+
+public static Employee getAdministrator() {
+	return Administrator;
+}
+
+
+
+
+
 }

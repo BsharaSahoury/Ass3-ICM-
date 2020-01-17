@@ -1,3 +1,4 @@
+
 package Client;
 
 import java.util.ArrayList;
@@ -71,10 +72,6 @@ public class ClientLoginObserver implements Observer{
 				LecturerHomeController lecturer=new LecturerHomeController();
 				lecturer.start(employee1);
 				break;
-			case "tester":
-				ComitteeMemberHomeController tester=new ComitteeMemberHomeController();
-				tester.start(employee1);
-				break;
 			case "administrator":
 				AdministratorHomeController Administrator=new AdministratorHomeController();
 				Administrator.start(employee1);
@@ -92,7 +89,7 @@ public class ClientLoginObserver implements Observer{
 
 				@Override
 				public void run() {
-					Alert alert = new Alert(AlertType.INFORMATION);
+					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Login Failed!");
 					Text headerText=new Text("Login Failed!");
 					headerText.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -100,11 +97,9 @@ public class ClientLoginObserver implements Observer{
 					VBox dialogPaneContent = new VBox();
 					Label label1 = new Label("incorrect username or password");
 					label1.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 12)); 
-					Label label2 = new Label("OR!!");
-					Label label3 = new Label("Another computer is currently logged into this account!");
-					label3.setFont(Font.font("System", FontWeight.BOLD, FontPosture.REGULAR, 12)); 
-					Label label4 = new Label("Please Try again!");
-					dialogPaneContent.getChildren().addAll(label1, label2,label3,label4);
+					Label label2 = new Label("Please Try again!");
+						
+					dialogPaneContent.getChildren().addAll(label1, label2);
 			 		alert.getDialogPane().setContent(dialogPaneContent);
 					alert.showAndWait();
 					
