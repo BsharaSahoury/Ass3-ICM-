@@ -129,15 +129,6 @@
                         <Image url="@../images/LOGO%20White.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="154.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #9d1b34;">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
                <effect>
                   <DropShadow />
