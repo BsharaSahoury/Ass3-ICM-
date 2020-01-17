@@ -79,6 +79,13 @@ public class MainForServer extends Application{
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
 		    ServerProfileSettingObserver spso=new ServerProfileSettingObserver(sv);
 		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
+		    ServerInitPermissionsPageObserver sippo=new ServerInitPermissionsPageObserver(sv);
+		    ServerChangePermissionObserver scpoo=new ServerChangePermissionObserver(sv);
+		    ServerChangeEvaluatorObserver sceo=new ServerChangeEvaluatorObserver(sv);
+		    ServerPeriodricReportObserver spro=new ServerPeriodricReportObserver(sv);
+		    ServerPeriodricReportForDaysObserver sprrfdo=new ServerPeriodricReportForDaysObserver(sv);
+		    ServerPerformanceReportObserver sproo=new ServerPerformanceReportObserver(sv);
+		    ServerDelaysReportObserver sdro=new ServerDelaysReportObserver(sv);
 		    ServerAdminActiveRequestObserver saaro = new ServerAdminActiveRequestObserver(sv);
 		    ServerGetFullNameOfEmployeeObserver eeddd=new ServerGetFullNameOfEmployeeObserver(sv);
 
