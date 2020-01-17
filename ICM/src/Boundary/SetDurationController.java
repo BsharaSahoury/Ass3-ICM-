@@ -58,17 +58,24 @@ public class SetDurationController implements Initializable {
 	private DatePicker dueDateForExtend;
 	@FXML
 	private Button SendExtraTimeBtn;
+
 	private static String job;
 	private static Request r;
 	private static Phase phase;
 
 	public void start(SplitPane splitpane, Request r, String path, Phase phase, String job) {
-		this.job = job;
+/*
+
+	private static RequestPhase rp;
+	private static Phase phase;
+
+	public void start(SplitPane splitpane, String path, RequestPhase rp) {
+*/
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
-		this.r = r;
-		this.phase = phase;
+		this.rp = rp;
+		this.phase = rp.getPhase();
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -97,8 +104,13 @@ public class SetDurationController implements Initializable {
 					LocalDate s = startDate.getValue();
 					LocalDate d = dueDate.getValue();
 					String keymessage = "save duration";
+
 					LocalDate date[] = { s, d };
 					Object[] message = { keymessage, r.getId(), date, phase };
+/*
+					LocalDate date[] = { s,d };
+					Object[] message = { keymessage, rp.getId(), date, phase };
+*/
 
 					LoginController.cc.getClient().sendToServer(message);
 					save.setDisable(true);
@@ -148,6 +160,13 @@ public class SetDurationController implements Initializable {
 					alertWarning1.setHeaderText("Success!");
 					alertWarning1.setContentText("Request Extension has been sent to Inspector");
 					alertWarning1.showAndWait();
+/*
+					LocalDate d=dueDateForExtend.getValue();
+				    String Reason= ExtensionReasonText.getText() ;
+					Object[] message = { keymessage, rp, d,Reason };
+					
+					LoginController.cc.getClient().sendToServer(message);
+					*/
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

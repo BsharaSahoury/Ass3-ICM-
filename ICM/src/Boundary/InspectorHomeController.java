@@ -25,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
+import javafx.scene.effect.Glow;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -55,6 +56,10 @@ public class InspectorHomeController implements Initializable{
 	public static AllRequestsController AllRequests;
 	public static MyRequestsController MyRequests;
 	public static ProfileSettingController ProfileSetting;
+	private static ClientConsole cc;
+
+	// create a glow effect 
+    Glow glow = new Glow(0.5);
 
     private ArrayList<Request> arr;
     public static InspectorHomeController s;
@@ -62,6 +67,7 @@ public class InspectorHomeController implements Initializable{
 	public void start(Employee inspector) {
 		this.inspector = inspector;
 		s=this;
+		this.cc=LoginController.cc;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 
@@ -75,6 +81,8 @@ public class InspectorHomeController implements Initializable{
 					primaryStage.setResizable(false);
 					primaryStage.setTitle("ICM");
 					primaryStage.show();
+					Object msg=null;
+					cc.getClient().sendToServer(inspector.getUsername());
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
 						LogOutController logOut = new LogOutController();
