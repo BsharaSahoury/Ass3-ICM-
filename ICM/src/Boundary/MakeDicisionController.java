@@ -112,12 +112,12 @@ public class MakeDicisionController implements Initializable {
 
 	public void BackBtnAction(ActionEvent e) {
 
-		System.out.println("okay bshara");
+		
 
 		ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml",
 				ChairmanHomeController.getchairman(), "Chairman", "decision");
 
-		System.out.println("okay bshara2");
+	
 
 	}
 

@@ -34,9 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ExtensionConfirmationMessage implements Initializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@FXML
 	Label RequestIdLabel;

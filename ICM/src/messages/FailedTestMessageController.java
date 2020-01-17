@@ -74,7 +74,7 @@ public class FailedTestMessageController implements Initializable {
 	}
 
 	public void RecruitAction(ActionEvent e) {
-		if(ClientConsole.map.get(requestID).equals("frozen")) {
+		if (ClientConsole.map.get(requestID).equals("frozen")) {
 			ClientConsole.displayFreezeError();
 			return;
 		}
@@ -96,9 +96,7 @@ public class FailedTestMessageController implements Initializable {
 
 		Object[] msg = { "Performer confirmation for step", fullname, ctrl.requestID };
 		try {
-			System.out.println("try-logged");
 			LoginController.cc.getClient().sendToServer(msg);
-			System.out.println("after-send-to-server");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
