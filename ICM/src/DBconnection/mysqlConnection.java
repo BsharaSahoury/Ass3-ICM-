@@ -549,7 +549,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 		ArrayList<Notification> Nlist = new ArrayList<>();
 		try {
 			stm = con.prepareStatement(
-					"SELECT notification.* FROM notification,notificationforuser WHERE notification.id=notificationforuser.notification_id AND notificationforuser.username=?;");
+					"SELECT notification.* FROM notification,notificationforuser WHERE notification.id=notificationforuser.notification_id AND notificationforuser.username=? ORDER BY id DESC;");
 			stm.setString(1, username);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {

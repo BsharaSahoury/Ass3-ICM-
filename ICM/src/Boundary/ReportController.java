@@ -243,14 +243,14 @@ public class ReportController implements Initializable {
 	}
 
 	public void buildGraph(ArrayList<Long> arr, Date from, Date to, String per, String rtype) {
-		/*if(arr==null) {
+		if(arr==null) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("TEST");
 	        alert.setHeaderText("error");
 	        alert.setContentText("There is no Data to be shown!");
 	        alert.showAndWait();
 	        return;
-		}*/
+		}
 		XYChart.Series<String, Long> set1=new XYChart.Series<>();
 		if(rtype.contains("No. days of Treatments")) {
 			String numberOnly=rtype.replaceAll("[^0-9]", "");
@@ -345,14 +345,14 @@ public class ReportController implements Initializable {
 	}
 
 	public void getPerformanceData(ArrayList<ExtensionDuration> arr, String keymessage) {
-		/*if(arr==null) {
+		if(arr==null) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("TEST");
 	        alert.setHeaderText("error");
 	        alert.setContentText("There is no Data to be shown!");
 	        alert.showAndWait();
 	        return;
-		}*/
+		}
 		Elist=FXCollections.observableArrayList(arr);
 		idCol.setCellValueFactory(new PropertyValueFactory<ExtensionDuration, Integer>("request_id"));
 		durCol.setCellValueFactory(new PropertyValueFactory<ExtensionDuration, Long>("duration"));
@@ -397,14 +397,14 @@ public class ReportController implements Initializable {
 	}
 
 	public void buildDelayGraph(String keymessage, ArrayList<Long> arr) {
-		/*if(arr==null) {
+		if(arr==null) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("TEST");
 	        alert.setHeaderText("error");
 	        alert.setContentText("There is no Data to be shown!");
 	        alert.showAndWait();
 	        return;
-		}*/
+		}
 		XYChart.Series<String, Long> set3=new XYChart.Series<>();
 		set3.getData().add(new XYChart.Data<>("Moodle",arr.get(0)));
 		set3.getData().add(new XYChart.Data<>("Student information system",arr.get(1)));
