@@ -58,15 +58,15 @@ public class SetDurationController implements Initializable {
 	@FXML
 	private Button SendExtraTimeBtn;
 
-	private static Request r;
+	private static RequestPhase rp;
 	private static Phase phase;
 
-	public void start(SplitPane splitpane, Request r, String path, Phase phase) {
+	public void start(SplitPane splitpane, String path, RequestPhase rp) {
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
-		this.r = r;
-		this.phase = phase;
+		this.rp = rp;
+		this.phase = rp.getPhase();
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -96,7 +96,7 @@ public class SetDurationController implements Initializable {
 					LocalDate d=dueDate.getValue();
 					String keymessage = "save duration";
 					LocalDate date[] = { s,d };
-					Object[] message = { keymessage, r.getId(), date, phase };
+					Object[] message = { keymessage, rp.getId(), date, phase };
 
 					LoginController.cc.getClient().sendToServer(message);
 					save.setDisable(true);
@@ -137,15 +137,12 @@ public class SetDurationController implements Initializable {
 				try {
 					
 					String keymessage = "send Request extension to inspector for confirm";
-					String d[] = { dueDateForExtend.getValue().toString(), ExtensionReasonText.getText().toString() };
-					Object[] message = { keymessage, r.getId(), d, phase };
+					LocalDate d=dueDateForExtend.getValue();
+				    String Reason= ExtensionReasonText.getText() ;
+					Object[] message = { keymessage, rp, d,Reason };
 					
 					LoginController.cc.getClient().sendToServer(message);
 					
-					Alert alertWarning1 = new Alert(AlertType.CONFIRMATION);
-					alertWarning1.setHeaderText("Success!");
-					alertWarning1.setContentText("Request Extension has been sent to Inspector");
-					alertWarning1.showAndWait();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

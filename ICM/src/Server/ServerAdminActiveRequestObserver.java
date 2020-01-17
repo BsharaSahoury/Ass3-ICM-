@@ -17,6 +17,7 @@ public class ServerAdminActiveRequestObserver implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg) {
+		System.out.println("Server Admin Active Request Observer");
 		// TODO Auto-generated method stub
 		if(arg instanceof Object[]) {
 			Object[] arg1=(Object[])arg;
@@ -26,19 +27,20 @@ public class ServerAdminActiveRequestObserver implements Observer {
 				if(arg2[0] instanceof String) {
 					String keymessage=(String)arg2[0];
 					if(keymessage.equals("Admin changed status to Active")) {
-						System.out.println("serverobserver");
 						int id=(int)arg2[1];
 						Employee administrator = (Employee)arg2[2];
-						String explain=(String)arg2[3];					
+						//String explain=(String)arg2[3];					
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						boolean state=mysqlConnection.ActiveRequest(con, id);
 						if(state)
-							mysqlConnection.EnterActiveToDBUpdateTable(con, administrator,id,explain);
-						try {
+							mysqlConnection.EnterActiveToDBFrozenTable(con, administrator,id);
+						try { 
+							System.out.println("Server Admin Active Request Observer try");
 							Object[] send=new Object[2];
 							send[0]=keymessage;
 							send[1]=state;
 							client.sendToClient(send);
+							System.out.println("Server Admin Active Request Observer try ---> after send to client");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
