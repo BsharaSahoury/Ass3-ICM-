@@ -1,12 +1,11 @@
 package Boundary;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import org.omg.PortableServer.POAManagerPackage.State;
 
 import Client.ClientConsole;
 import javafx.collections.FXCollections;

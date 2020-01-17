@@ -96,8 +96,6 @@ public class AllRequestsController implements Initializable {
 
 	public void setTableRequests(ArrayList<RequestPhase> arr1) {
 		list = FXCollections.observableArrayList(arr1);
-		// tableRequests.setStyle("-fx-alignment: CENTER;");
-		// colName.set
 		tableRequests.setItems(list);
 	}
 
@@ -191,6 +189,10 @@ public class AllRequestsController implements Initializable {
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
+			if(ClientConsole.map.get(s.getId()).equals("frozen")) {
+				ClientConsole.displayFreezeError();
+				return;
+			}
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
 				requestifo.start(splitpane, s.getR());
@@ -215,6 +217,10 @@ public class AllRequestsController implements Initializable {
     	return chosenR;
     }
 	public void RequestTreatmentAction(ActionEvent e) {
+		if(ClientConsole.map.get(r.getId()).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
 			chosenR=tableRequests.getSelectionModel().getSelectedItem();

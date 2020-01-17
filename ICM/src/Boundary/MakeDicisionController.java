@@ -70,6 +70,7 @@ public class MakeDicisionController implements Initializable {
 	}
 	
 	public void SendToChairMan(ActionEvent e) { 
+		
 		if(!Approve.isSelected()&&!Reject.isSelected()&&!AdditionalInfo.isSelected()) {
 			 Alert alertWarning = new Alert(AlertType.WARNING);
 		     alertWarning.setTitle("Warning Alert Title");

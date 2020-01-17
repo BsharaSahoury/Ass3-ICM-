@@ -68,7 +68,7 @@ public class MainClientController {
 		System.out.println(Thread.currentThread().toString());
 		try {
 			ClientConsole cc=new ClientConsole(host);
-	//		ClientObserver CO = new ClientObserver(cc.getClient());
+			ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());
 			ClientAllRequestsObserver allReqObserver=new ClientAllRequestsObserver(cc.getClient());
 			ClientSubmissionObserver cso=new ClientSubmissionObserver(cc.getClient());

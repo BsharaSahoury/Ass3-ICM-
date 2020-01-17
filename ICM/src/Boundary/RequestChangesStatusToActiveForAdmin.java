@@ -65,6 +65,7 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 	}
 
 	public void ApplyAction() {
+		
 		/*String explain = null;
 		explain = Explaintxt.getText();
 		if (explain.equals("")) {

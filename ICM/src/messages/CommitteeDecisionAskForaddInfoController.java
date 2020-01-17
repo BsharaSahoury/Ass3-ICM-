@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,7 +70,11 @@ public class CommitteeDecisionAskForaddInfoController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void RecruitAction(ActionEvent e) {	
+	public void RecruitAction(ActionEvent e) {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		String fullname=combo.getSelectionModel().getSelectedItem();
 		if(fullname==null) {
 			Alert alert = new Alert(AlertType.INFORMATION);

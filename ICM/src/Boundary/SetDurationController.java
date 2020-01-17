@@ -78,6 +78,10 @@ public class SetDurationController implements Initializable {
 	}
 
 	public void saveBtn() {
+		if(ClientConsole.map.get(r.getId()).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		LocalDate start = startDate.getValue();
 		LocalDate due = dueDate.getValue();
 		LocalDate today = LocalDate.now();

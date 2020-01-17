@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +60,11 @@ public class DecisionCommitteeMemberMessageController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void approveAction(ActionEvent e) {	
+	public void approveAction(ActionEvent e) {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		if(flag==-1) {
 			flag=0;
 		Object[] message= {"approve committee decision",requestID,CommitteeDecision,ctrl.notdetails};

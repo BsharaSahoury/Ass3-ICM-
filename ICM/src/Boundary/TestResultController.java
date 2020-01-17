@@ -80,6 +80,10 @@ public class TestResultController implements Initializable {
 	}
 
 	public void FaildSendBtn() {
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		String FaildDetails = FailureDetails.getText().trim();
 		if (!FaildDetails.equals("")) {
 			try {

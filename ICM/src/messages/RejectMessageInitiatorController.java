@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
+import Client.ClientConsole;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,10 @@ public class RejectMessageInitiatorController implements Initializable {
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
 	public void approveAction(ActionEvent e) {	
+		if(ClientConsole.map.get(requestID).equals("frozen")) {
+			ClientConsole.displayFreezeError();
+			return;
+		}
 		
 		Object[] message= {"initiator approved the decision of the request",requestID,CommitteeDecision};
 		try {
