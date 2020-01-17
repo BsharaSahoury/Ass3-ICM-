@@ -82,7 +82,7 @@ public class InspectorHomeController implements Initializable{
 					primaryStage.setTitle("ICM");
 					primaryStage.show();
 					Object msg=null;
-					cc.getClient().sendToServer(msg);
+					cc.getClient().sendToServer(inspector.getUsername());
 					primaryStage.setOnCloseRequest(event -> {
 						System.out.println("EXIT ICM");
 						LogOutController logOut = new LogOutController();

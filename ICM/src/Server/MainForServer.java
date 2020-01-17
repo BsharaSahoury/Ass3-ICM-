@@ -82,6 +82,7 @@ public class MainForServer extends Application{
 		    SeverGetExtensionDataObsaerver sgedo= new SeverGetExtensionDataObsaerver(sv);
 		    ServerAdminActiveRequestObserver saaro = new ServerAdminActiveRequestObserver(sv);
 		    ServerGetFullNameOfEmployeeObserver eeddd=new ServerGetFullNameOfEmployeeObserver(sv);
+		    ServerNotificationGlowsObserver sngo = new ServerNotificationGlowsObserver(sv);
 			try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//
