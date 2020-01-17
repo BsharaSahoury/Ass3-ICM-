@@ -35,6 +35,7 @@ import messages.Passedmessagecontroller;
 import messages.RecruitMessageController;
 import messages.SuccessTestMessageController;
 import messages.approveDuratinController;
+import messages.massageToAdmenToApproveExtension;
 import messages.DecisionCommitteeMemberMessageController;
 import messages.ExceptionDocumentController;
 import messages.ExceptionMessageController;
@@ -316,19 +317,6 @@ public class NotificationsController implements Initializable {
 				Passedmessagecontroller obj6 = new Passedmessagecontroller();
 				obj6.start(splitpane, "/messages/approvemessageinitiator.fxml");
 				break;
-			case "Extension Confirmation message sent to Admin after inspector confirmation":
-				content = n2.getContent();
-				String[] b6 = new String[2];
-				b6 = content.split("# ");
-				b6 = b6[1].split(" time");
-				int id4 = Integer.valueOf(b6[0]);
-				String[] b7 = new String[2];
-				b7 = content.split("time on phase ");
-				b7 = b7[1].split(", Do");
-			    phase1=b7[0];
-				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
-				ecm1.start(splitpane, id4,content,phase1);
-				break;
 			case "recruitNotificationForPerformEngineer":
 				RecruitPerformanceMessageController ttr=new RecruitPerformanceMessageController();
 				content = n2.getContent();
@@ -353,7 +341,24 @@ public class NotificationsController implements Initializable {
 				int id5=Integer.valueOf(b12[1]);
 				ttr2.start(splitpane, id5, "/messages/ReplacePerformanceLeader-Message.fxml",content);
 				break;
+			case "Extension Confirmation message sent to Admin after inspector confirmation":
+				content = n2.getContent();
+				String[] b6 = new String[2];
+				b6 = content.split("# ");
+				b6 = b6[1].split(" time");
+				int id4 = Integer.valueOf(b6[0]);
+				IDRequestForDecision=id4;
+				String[] b7 = new String[2];
+				System.out.println(content + "                       6966969699669699");
+				b7 = content.split("time on phase ");
+				b7 = b7[1].split(", Do");
+			    phase1=b7[0];
+			    massageToAdmenToApproveExtension ecm1 = new massageToAdmenToApproveExtension();
+				ecm1.start(splitpane, id4,content,phase1);
+				break;
 			}
+
+			
 
 		}
 	}

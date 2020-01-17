@@ -33,7 +33,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ExtensionConfirmationMessage implements Initializable {
+public class massageToAdmenToApproveExtension implements Initializable {
 	/**
 	 * 
 	 */
@@ -42,15 +42,6 @@ public class ExtensionConfirmationMessage implements Initializable {
 	Label RequestIdLabel;
 	@FXML
 	Label requestLabel;
-	@FXML
-	Label evaluatorLabel;
-	@FXML
-	Button ApproveBtn;
-	@FXML
-	Button RejectBtn;
-	@FXML
-	Button other;
-
 	@FXML
 	TextArea ExtensionReasonLabel;
 	@FXML
@@ -62,7 +53,7 @@ public class ExtensionConfirmationMessage implements Initializable {
 	@FXML
 	Label NewDueDateLabel;
 	private static Request r;
-	public static ExtensionConfirmationMessage ctrl;
+	public static massageToAdmenToApproveExtension ctrl;
 
 	public static Stage primaryStage;
 	private AnchorPane lowerAnchorPane;
@@ -78,14 +69,15 @@ public class ExtensionConfirmationMessage implements Initializable {
 	public void start(SplitPane splitpane, int id, String content, String phase1) {
 		primaryStage = LoginController.primaryStage;
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/messages/ExtensionConfirmationMessage.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/messages/RequestExtendedSuccessfullyToAdmin.fxml"));
 			lowerAnchorPane = loader.load();
 			ctrl = loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			this.splitpane = splitpane;
 			ctrl.RequestPhaseLabel.setText(phase1);
 			ctrl.RequestIdLabel.setText(Integer.toString(id));
-			Object[] message = { "get extension data", id, phase1, "inspector" };
+			Object[] message = { "get extension data", id, phase1, "admen" };
 			try {
 				LoginController.cc.getClient().sendToServer(message);
 			} catch (IOException e1) {
@@ -100,82 +92,24 @@ public class ExtensionConfirmationMessage implements Initializable {
 		this.phase = phase1;
 	}
 
-	public void approveAction(ActionEvent e) {
-
-		Alert alertWarning = new Alert(AlertType.INFORMATION);
-		alertWarning.setTitle("Approve Extension Request Time Warning");
-		alertWarning.setHeaderText("Are you sure about your Approve!");
-		alertWarning.setContentText("Extension request will Approved!");
-		Optional<ButtonType> result = alertWarning.showAndWait();
-		ButtonType button = result.orElse(ButtonType.CANCEL);
-		if (button == ButtonType.OK) {
-			try {
-				String date = NewDueDateLabel.getText().toString();
-				date = date.replaceAll("(\\r|\\n)", "");
-				LocalDate localDate = null;
-				DateTimeFormatter formatter = null;
-				formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				localDate = LocalDate.parse(date, formatter);
-				String keymessage = "send Request extension approve to Admin";
-				Object[] message = { keymessage, requestID, phase, localDate,
-						ExtensionReasonLabel.getText().toString() };
-				LoginController.cc.getClient().sendToServer(message);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			Alert alertWarning1 = new Alert(AlertType.CONFIRMATION);
-			alertWarning1.setHeaderText("Success!");
-			alertWarning1.setContentText("Request Extension has been approved successfully!");
-			alertWarning1.showAndWait();
-		}
-
-	}
-
-	public void RejectBtn(ActionEvent e) {
-
-		Alert alertWarning = new Alert(AlertType.INFORMATION);
-		alertWarning.setTitle("Reject Extension Request Time Warning");
-		alertWarning.setHeaderText("Are you sure about your reject!");
-		alertWarning.setContentText("Extension request will reject!");
-		Optional<ButtonType> result = alertWarning.showAndWait();
-		ButtonType button = result.orElse(ButtonType.CANCEL);
-		if (button == ButtonType.OK) {
-			Alert alertWarning1 = new Alert(AlertType.CONFIRMATION);
-			alertWarning1.setHeaderText("Rejected Successfully!");
-			alertWarning1.setContentText("Request Extension has been Rejected successfully!");
-			alertWarning1.showAndWait();
-		}
-
-	}
-
-	public static void setdetails(String details) {
-		ctrl.notdetails = details;
-		String[] b = new String[2];
-		b = ctrl.notdetails.split("#");
-		ctrl.ExtensionReasonLabel.setText(b[0]);
-	}
-
-	public static String getRequestPhase() {
-		return phase;
-	}
-
-	public static int getRequestId() {
-		return requestID;
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		notificationID = NotificationsController.getidnotification();
 		requestID = NotificationsController.getidofrequestforDecision();
-		Object[] message = { "get explain notification", notificationID, "Inspector to approve the Extension" };
+		Object[] message = { "get explain notification", notificationID, "admin message" };
 		try {
 			LoginController.cc.getClient().sendToServer(message);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
 
+	public static void setdetails(String details) {
+		massageToAdmenToApproveExtension.notdetails = details;
+		String[] b = new String[2];
+		b = massageToAdmenToApproveExtension.notdetails.split("#");
+		ctrl.ExtensionReasonLabel.setText(b[0]);
 	}
 
 	public void setData(String[] data) {

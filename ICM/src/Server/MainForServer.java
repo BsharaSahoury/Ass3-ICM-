@@ -88,6 +88,7 @@ public class MainForServer extends Application{
 		    ServerDelaysReportObserver sdro=new ServerDelaysReportObserver(sv);
 		    ServerAdminActiveRequestObserver saaro = new ServerAdminActiveRequestObserver(sv);
 		    ServerGetFullNameOfEmployeeObserver eeddd=new ServerGetFullNameOfEmployeeObserver(sv);
+		    SeverGetExtensionDataObsaerver sgedo=new SeverGetExtensionDataObsaerver(sv);
 
 			try {
 			   sv.listen();
