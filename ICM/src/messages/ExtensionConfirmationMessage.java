@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 import Boundary.LoginController;
 import Boundary.NotificationsController;
 import Boundary.RequestsWorkedOnController;
-import Client.ClientConsole;
 import Entity.Phase;
 import Entity.Request;
 import Entity.RequestPhase;
@@ -108,11 +107,6 @@ public class ExtensionConfirmationMessage implements Initializable {
 	}
 
 	public void approveAction(ActionEvent e) {
-       
-		if(ClientConsole.map.get(requestID).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 
 		Alert alertWarning = new Alert(AlertType.INFORMATION);
 		alertWarning.setTitle("Approve Extension Request Time Warning");

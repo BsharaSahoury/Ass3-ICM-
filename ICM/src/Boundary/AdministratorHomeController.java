@@ -46,6 +46,7 @@ public class AdministratorHomeController implements Initializable {
 	private static Employee Administrator;
 	public static MyRequestsController MyRequests;
 	public static AllRequestsController AllRequests;
+	public static ProfileSettingController ProfileSetting;
 
 	public void start(Employee Administrator) {
 		this.Administrator = Administrator;
@@ -56,7 +57,7 @@ public class AdministratorHomeController implements Initializable {
 			public void run() {
 // TODO Auto-generated method stub
 				try {
-					
+					System.out.println("Hi baby");
 					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage.setScene(scene);
@@ -108,7 +109,7 @@ public class AdministratorHomeController implements Initializable {
 	public void AllRequestsAction(ActionEvent event) throws Exception {
 		AllRequests = new AllRequestsController();
 		runLater(() -> {
-			AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+			AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml", "Administrator");
 		});
 	}
 
@@ -120,9 +121,9 @@ public class AdministratorHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSettingController Submit = new ProfileSettingController();
+		ProfileSetting = new ProfileSettingController();
 		runLater(() -> {
-			Submit.start(splitpane, Administrator);
+			ProfileSetting.start(splitpane, Administrator, "Administrator");
 		});
 
 	}
@@ -158,4 +159,9 @@ public class AdministratorHomeController implements Initializable {
 			notific.start(splitpane, Administrator);
 		});
 	}
+
+	public static Employee getAdministrator() {
+		return Administrator;
+	}
+
 }

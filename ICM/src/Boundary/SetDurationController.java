@@ -1,5 +1,7 @@
 package Boundary;
-import java.io.IOException;  
+
+import java.io.IOException;
+
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -56,11 +58,12 @@ public class SetDurationController implements Initializable {
 	private DatePicker dueDateForExtend;
 	@FXML
 	private Button SendExtraTimeBtn;
-
+	private static String job;
 	private static Request r;
 	private static Phase phase;
 
-	public void start(SplitPane splitpane, Request r, String path, Phase phase) {
+	public void start(SplitPane splitpane, Request r, String path, Phase phase, String job) {
+		this.job = job;
 		this.splitpane = splitpane;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
@@ -78,10 +81,6 @@ public class SetDurationController implements Initializable {
 	}
 
 	public void saveBtn() {
-		if(ClientConsole.map.get(r.getId()).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 		LocalDate start = startDate.getValue();
 		LocalDate due = dueDate.getValue();
 		LocalDate today = LocalDate.now();
@@ -95,10 +94,10 @@ public class SetDurationController implements Initializable {
 			ButtonType button = result.orElse(ButtonType.CANCEL);
 			if (button == ButtonType.OK) {
 				try {
-					LocalDate s =startDate.getValue();
-					LocalDate d=dueDate.getValue();
+					LocalDate s = startDate.getValue();
+					LocalDate d = dueDate.getValue();
 					String keymessage = "save duration";
-					LocalDate date[] = { s,d };
+					LocalDate date[] = { s, d };
 					Object[] message = { keymessage, r.getId(), date, phase };
 
 					LoginController.cc.getClient().sendToServer(message);
@@ -138,13 +137,13 @@ public class SetDurationController implements Initializable {
 			ButtonType button = result.orElse(ButtonType.CANCEL);
 			if (button == ButtonType.OK) {
 				try {
-					
+
 					String keymessage = "send Request extension to inspector for confirm";
 					String d[] = { dueDateForExtend.getValue().toString(), ExtensionReasonText.getText().toString() };
 					Object[] message = { keymessage, r.getId(), d, phase };
-					
+
 					LoginController.cc.getClient().sendToServer(message);
-					
+
 					Alert alertWarning1 = new Alert(AlertType.CONFIRMATION);
 					alertWarning1.setHeaderText("Success!");
 					alertWarning1.setContentText("Request Extension has been sent to Inspector");
@@ -157,23 +156,65 @@ public class SetDurationController implements Initializable {
 			}
 		}
 	}
-
+   
+	
+	
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+		
+		/*if(job.equals("Inspector"))
+		{
+			InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
+		}*/
+		/*if(job.equals("Chairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
+		}*/
+	
+		if(job.equals("Comittee Member"))
+		{
+			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		if(RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
+		if (RequestsWorkedOnController.getRP().getState().equals(State.waitingForApprove)) {
 			note.setVisible(false);
 			note.setText("this duratin wating for Inapector approve");
 			note.setVisible(true);
 			save.setDisable(true);
-		}
-		else if(RequestsWorkedOnController.getRP().getState().equals(State.wait)&&RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null){
+		} else if (RequestsWorkedOnController.getRP().getState().equals(State.wait)
+				&& RequestsWorkedOnController.getRP().getStartDate() != null
+				&& RequestsWorkedOnController.getRP().getDueDate() != null) {
 			note.setVisible(false);
 			note.setText("* The the duratin after inspector check");
 			note.setVisible(true);
 			save.setDisable(true);
 		}
-		if(RequestsWorkedOnController.getRP().getStartDate()!=null && RequestsWorkedOnController.getRP().getDueDate()!=null)
- {
+		if (RequestsWorkedOnController.getRP().getStartDate() != null
+				&& RequestsWorkedOnController.getRP().getDueDate() != null) {
 			save.setDisable(true);
 			dueDate.setValue(RequestsWorkedOnController.getRP().getDueDate().toLocalDate());
 			startDate.setValue(RequestsWorkedOnController.getRP().getStartDate().toLocalDate());
@@ -197,7 +238,8 @@ public class SetDurationController implements Initializable {
 			long diff = RequestsWorkedOnController.getRP().getDueDate().getTime() - date.getTime();
 			long diffdays = diff / (24 * 60 * 60 * 1000);
 			long diffHours = diff / (60 * 60 * 1000) - (diffdays * 24);
-			ReaminingTimeForThisPhase.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
+			ReaminingTimeForThisPhase
+					.setText(String.valueOf(diffdays) + " Days and " + String.valueOf(diffHours) + " Hours");
 		}
 	}
 }

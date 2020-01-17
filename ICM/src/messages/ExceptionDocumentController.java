@@ -4,7 +4,6 @@ package messages;
 import java.io.IOException;
 
 import Boundary.LoginController;
-import Client.ClientConsole;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,10 +54,6 @@ public class ExceptionDocumentController {
 		
 	}
 	public void saveDocument(ActionEvent e) {
-		if(ClientConsole.map.get(id).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 		if(ctrl.document.getText().equals("")) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Alert Title");

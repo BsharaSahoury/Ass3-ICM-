@@ -27,39 +27,42 @@ public class ServerUpdatingImageProfileSettingObserver implements Observer {
 		if(arg instanceof Object[]) {
 		args=(Object[])arg;
 		ConnectionToClient client=(ConnectionToClient)args[0];
-		if(args[1] instanceof Object[]) {
+		if(args[1] instanceof String[]) {
 			String msg;
 			Object[] Message=(Object[])args[1];
-			if(Message.length==4 ) 
+			if(Message.length==5 ) 
 				if(Message[0] instanceof String)
 				{
 				msg=(String)Message[0];
-				if(msg.equals("UpdatingImageOfProfileSetting")) {
-				String username = null,job;
-				MyFile file;
-				//Image pic;
-				if(Message[1] instanceof String && Message[2] instanceof String && Message[3] instanceof MyFile )
+				if(Message[0].equals("UpdatingImageOfProfileSetting")) {
+				String username,job,namePic;
+				Image pic;
+				if(Message[1] instanceof String && Message[2] instanceof String && Message[3] instanceof String && Message[4] instanceof Image)
 				username=(String)Message[1];
-				file=(MyFile)Message[3];
-				//pic=(Image)Message[4];
-				Connection con = mysqlConnection.makeAndReturnConnection();
-				 file=mysqlConnection.updateImageUserInProfileSetting(con,username,file);
-				//if (newRequest != null) {
-				String keymessage = "UpdatingImageOfProfileSettingSucceeded";
-				Object[] message=new Object[2];
-				message[0]=keymessage;
-				message[1]=file;
-				try {
-					System.out.println("ServerUpdating...........");
-						client.sendToClient(message);
-						} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				}//if
+				job=(String)Message[2];
+				namePic=(String)Message[3];
+				pic=(Image)Message[4];
+				FileOutputStream fos = new FileOutputStream(namePic);
+			    BufferedOutputStream bos = new BufferedOutputStream(fos);
+			    bos.write(pic.getMybytearray() , 0 , fileSize);
+			    bos.flush();
+				System.out.println("UpdatingImageOfProfileSetting**********\n\n***************");
+				Connection con=mysqlConnection.makeAndReturnConnection();
+				ArrayList<String> arr=mysqlConnection.getUserData(con,Message[1],Message[2]);
+				Object[] send=new Object[3];
+				send[0]="ProfileSetting";
+				send[1]=arr;//profile setting of user
+				send[2]=Message[2];//Job of user
+			try {
+				client.sendToClient(send);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		}
 		}
+		}
+	}
 }
 

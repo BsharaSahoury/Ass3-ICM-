@@ -1,6 +1,6 @@
 package Boundary;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -60,10 +60,6 @@ public class CreateEvaluationReportController implements Initializable {
 	}
 
 	public void sendReport() {
-		if(ClientConsole.map.get(id).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 		boolean flag0 = Location.getText().equals("");
 		boolean flag1 = DescriptionOfChange.getText().equals("");
 		boolean flag2 = ExpectedResult.getText().equals("");

@@ -42,13 +42,15 @@ public class MakeDicisionController implements Initializable {
     private TextArea ExplainDectxt;
     @FXML
     private Button Sendbtn;
-    @FXML
+    @FXML 
     private Label requestid;
+    private static String job;
     public static MakeDicisionController ctrl;
     private RequestPhase selected;
     public static int flag=-1;
     private User user;
-	public void start(SplitPane splitpane,RequestPhase selected,User user) {
+	public void start(SplitPane splitpane,RequestPhase selected,User user,String job) {
+		this.job=job;
 		try {
 			loader = new FXMLLoader(getClass().getResource("/Boundary/DecisionCommitteMember.fxml"));
 			lowerAnchorPane = loader.load();
@@ -60,7 +62,7 @@ public class MakeDicisionController implements Initializable {
 			ctrl.selected=selected;
 			this.cc = LoginController.cc;
 			this.splitpane = splitpane;
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 		}
 	}
@@ -70,7 +72,6 @@ public class MakeDicisionController implements Initializable {
 	}
 	
 	public void SendToChairMan(ActionEvent e) { 
-		
 		if(!Approve.isSelected()&&!Reject.isSelected()&&!AdditionalInfo.isSelected()) {
 			 Alert alertWarning = new Alert(AlertType.WARNING);
 		     alertWarning.setTitle("Warning Alert Title");
@@ -98,6 +99,7 @@ public class MakeDicisionController implements Initializable {
 			Message[3]=Integer.toString(ctrl.selected.getR().getId());
 			try {
 				cc.getClient().sendToServer(Message);
+				Sendbtn.setDisable(true);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -108,6 +110,44 @@ public class MakeDicisionController implements Initializable {
 		CommitteeEvaluationController evaluation=new CommitteeEvaluationController();
 		evaluation.start(splitpane, ctrl.selected, ctrl.user);
 	}
+	
+	
+	
+	
+	
+	
+	public void BackBtnAction(ActionEvent e) {
+	
+		System.out.println("okay bshara");
+		if(job.equals("Chairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");		}
+		/*else if(BackTo.equals("Back To RequestsWorkOnChairman"))
+		{
+			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", comitteeMemberHomeController.getchairman(), "Chairman","decision");
+		}*/
+		else if(job.equals("Comittee Member"))
+		{
+			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
+		}
+		
+		
+       
+		
+		System.out.println("okay bshara2");
+		
+		
+		
+        
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

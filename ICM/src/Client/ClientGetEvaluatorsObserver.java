@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Boundary.RequestTreatmentAction;
 import Entity.Employee;
 import javafx.application.Platform;
 import messages.AutomaticRecruitMessageController;
@@ -54,6 +55,9 @@ public class ClientGetEvaluatorsObserver implements Observer {
 						case "messages.FailedTestMessageController":
 							FailedTestMessageController.ctrl.fillCombo(names);
 							break;
+						case "Boundary.RequestTreatmentAction":
+							RequestTreatmentAction.ctrl.fillCombo(names);
+							break;
 						}
 						}
 						});
@@ -73,8 +77,8 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							}
 						});
 					}
-				}
-				else if(keymessage.equals("evaluatorsagain")) {
+				}*/
+				}else if(keymessage.equals("evaluatorsagain")) {
 					if(arg1[1] instanceof ArrayList<?>) {
 						ArrayList<Employee> Elist=(ArrayList<Employee>)arg1[1];
 						ArrayList<String> names=new ArrayList<>();
@@ -89,8 +93,7 @@ public class ClientGetEvaluatorsObserver implements Observer {
 							}
 						});
 					}
-				}*/
-			}
+				}		
 		}
 	
 	}

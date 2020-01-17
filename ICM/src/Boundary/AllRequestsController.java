@@ -43,8 +43,8 @@ import Entity.RequestPhase;
 
 public class AllRequestsController implements Initializable {
 	public static Stage primaryStage;
-	private static ClientConsole cc;
-	private AnchorPane lowerAnchorPane;
+	private static ClientConsole cc; 
+	private AnchorPane lowerAnchorPane; 
 	@FXML
 	private TableView<RequestPhase> tableRequests;
 	@FXML
@@ -78,6 +78,7 @@ public class AllRequestsController implements Initializable {
 
 	public void start(SplitPane splitpane, String path, String job) {
 		this.job = job;
+		
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		String[] AllRequests = new String[2];
@@ -96,6 +97,8 @@ public class AllRequestsController implements Initializable {
 
 	public void setTableRequests(ArrayList<RequestPhase> arr1) {
 		list = FXCollections.observableArrayList(arr1);
+		// tableRequests.setStyle("-fx-alignment: CENTER;");
+		// colName.set
 		tableRequests.setItems(list);
 	}
 
@@ -103,7 +106,7 @@ public class AllRequestsController implements Initializable {
 		arrofRequests = arr1;
 		loader.<AllRequestsController>getController().setTableRequests(arr1);
 
-	}
+	} 
 	public void searchaction() {
 		if(!search_text.getText().equals("")) {
 			try {
@@ -189,13 +192,13 @@ public class AllRequestsController implements Initializable {
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
 			RequestPhase s = tableRequests.getSelectionModel().getSelectedItem();
-			if(ClientConsole.map.get(s.getId()).equals("frozen")) {
-				ClientConsole.displayFreezeError();
-				return;
-			}
 			RequestInfoController requestifo = new RequestInfoController();
 			runLater(() -> {
-				requestifo.start(splitpane, s.getR());
+				if(job.equals("inspector"))
+				requestifo.start(splitpane, s.getR(),"AllRequestInspector");
+				else if(job.equals("Administrator"))
+					requestifo.start(splitpane, s.getR(),"AllRequestAdministrator");
+				
 			});			
 		} else {
 			Alert alertWarning = new Alert(AlertType.WARNING);
@@ -217,10 +220,6 @@ public class AllRequestsController implements Initializable {
     	return chosenR;
     }
 	public void RequestTreatmentAction(ActionEvent e) {
-		if(ClientConsole.map.get(r.getId()).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
 		if (chosenRequest != -1) {
 			chosenR=tableRequests.getSelectionModel().getSelectedItem();
@@ -236,6 +235,30 @@ public class AllRequestsController implements Initializable {
 			alertWarning.showAndWait();
 		}
 	}
+	
+	
+	public void ChangeStatusAction(ActionEvent e) {
+		chosenRequest = tableRequests.getSelectionModel().getSelectedIndex();
+		if (chosenRequest != -1) {
+			chosenR=tableRequests.getSelectionModel().getSelectedItem();
+			RequestChangesStatusToActiveForAdmin ChangeStatus = new RequestChangesStatusToActiveForAdmin();
+			runLater(() -> {
+				ChangeStatus.start(splitpane);
+			});		
+		} else {
+			Alert alertWarning = new Alert(AlertType.WARNING);
+			alertWarning.setTitle("Warning Alert Title");
+			alertWarning.setHeaderText("Warning!");
+			alertWarning.setContentText("please choose requset");
+			alertWarning.showAndWait();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	public void refresh() {
 	try {
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");

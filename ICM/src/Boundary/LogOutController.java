@@ -12,12 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LogOutController implements Initializable {
+public class LogOutController implements Initializable{
 	private Stage primaryStage;
 	private static ClientConsole cc;
 
-	public void start(Stage primaryStage, User user) {
-		this.cc = LoginController.cc;
+
+	public void start(Stage primaryStage,User user) {
+		this.cc=LoginController.cc;
 		String[] LogOutArgs = new String[4];
 		try {
 			this.primaryStage = primaryStage;
@@ -30,32 +31,30 @@ public class LogOutController implements Initializable {
 			primaryStage.setOnCloseRequest(event -> {
 				System.out.println("EXIT ICM");
 				LogOutController logOut = new LogOutController();
-				logOut.exit(primaryStage, user);
-				// System.exit(0);
+				logOut.exit(primaryStage,user);
+		//		System.exit(0);
 			});
 			String keymessage = "LogOut";
-			String[] message = { keymessage, user.getUsername(), user.getPassword(), "NOT-End" };
+			String[] message = { keymessage, user.getUsername(),user.getPassword(),"NOT-End"};
 			cc.getClient().sendToServer(message);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	public void exit(Stage primaryStage, User user) {
-		this.cc = LoginController.cc;
+	public void exit(Stage primaryStage,User user) {
+		this.cc=LoginController.cc;
 		String[] LogOutArgs = new String[4];
 		try {
-			String keymessage = "LogOut";
-			String[] message = { keymessage, user.getUsername(), user.getPassword(), "End" };
-			cc.getClient().sendToServer(message);
+		String keymessage = "LogOut";
+		String[] message = { keymessage, user.getUsername(),user.getPassword(),"End"};
+		cc.getClient().sendToServer(message);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
-
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	}
+}
 }

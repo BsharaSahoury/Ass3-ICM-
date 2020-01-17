@@ -7,13 +7,52 @@ public class Employee extends User {
 	private int id;
 	private Belong belong;
 	private String job;
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getSupportSystem() {
+		return supportSystem;
+	}
+
+	public void setSupportSystem(String supportSystem) {
+		this.supportSystem = supportSystem;
+	}
+
+	public Belong getBelong() {
+		return belong;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	private String fullname;
+	private String supportSystem;
 	private ArrayList<Role> roles = new ArrayList<Role>();
+	
+	
+	public Employee(String fullname,int id,String job) {
+		this.fullname=fullname;
+		this.id=id;
+		this.job=job;
+	}
+	
+	public Employee(String fullname,int id,String job, String supportSystem) {
+		this.fullname=fullname;
+		this.id=id;
+		this.job=job;
+		this.supportSystem=supportSystem;
+	}
 	
 	public Employee(String username,String firstName, String lastName, String job) {
 		super(username,firstName,lastName);
 		this.job=job;
 	}
-
 	public Employee(String username,String password,String firstName, String lastName, String job) {
 		super(username,password,firstName,lastName);
 		this.job=job;

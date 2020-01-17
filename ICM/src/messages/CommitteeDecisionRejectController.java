@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
-import Client.ClientConsole;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,11 +60,7 @@ public class CommitteeDecisionRejectController implements Initializable {
 		ctrl.notdetails=details;
 		ctrl.DecisionLable.setText(ctrl.notdetails);
 	}
-	public void SendToInitiatorAction(ActionEvent e) {
-		if(ClientConsole.map.get(requestID).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
+	public void SendToInitiatorAction(ActionEvent e) {	
 		if(flag==-1) {
 			flag=0;
 			Object[] msg= {"Send to initiator that committee rejected the request",requestID,CommitteeDecision,ctrl.notdetails};

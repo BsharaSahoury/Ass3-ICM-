@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import DBconnection.mysqlConnection;
 import Entity.Employee;
+import Entity.Phase;
 import ocsf.server.ConnectionToClient;
 
 public class ServerGetEvaluatorsObserver implements Observer {
@@ -29,6 +30,7 @@ public class ServerGetEvaluatorsObserver implements Observer {
 						String classname=(String)arg2[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
 						ArrayList<Employee> evaluators=mysqlConnection.getEmployees(con,"evaluator");
+						
 						Object[] msg= {"employees",evaluators,classname};
 						try {
 							client.sendToClient(msg);
@@ -40,7 +42,7 @@ public class ServerGetEvaluatorsObserver implements Observer {
 					else if(keymessage.equals("Performance leaders")) {
 						String classname=(String)arg2[1];
 						Connection con=mysqlConnection.makeAndReturnConnection();
-						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"performer");
+						ArrayList<Employee> performers=mysqlConnection.getEmployees(con,"engineer");
 						Object[] msg= {"employees",performers,classname};
 						try {
 							client.sendToClient(msg);

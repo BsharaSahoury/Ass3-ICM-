@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import Boundary.LoginController;
 import Boundary.NotificationsController;
-import Client.ClientConsole;
 import Entity.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,10 +60,7 @@ public class SuccessTestMessageController implements Initializable {
 	}
 	
 	public void SendToInitiatorAction(ActionEvent e) {	
-		if(ClientConsole.map.get(requestID).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
+		System.out.println("sc");
 		if(flag==-1) {
 			flag=0;
 			Object[] msg= {"Send to initiator that request approved",requestID,"passed"};

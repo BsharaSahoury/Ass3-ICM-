@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 import Boundary.LoginController;
 import Boundary.NotificationsController;
 import Boundary.RequestsWorkedOnController;
-import Client.ClientConsole;
 import Entity.Phase;
 import Entity.RequestPhase;
 import Entity.State;
@@ -62,10 +61,6 @@ public class approveDuratinController implements Initializable {
 		}			
 	}
 	public void approveAction(){
-		if(ClientConsole.map.get(id).equals("frozen")) {
-			ClientConsole.displayFreezeError();
-			return;
-		}
 		LocalDate startDate = start.getValue();
 		LocalDate dueDate = due.getValue();
 		LocalDate today = LocalDate.now();
