@@ -76,7 +76,6 @@ public class mysqlConnection {
 			stm.setString(1, username);
 			stm.setString(2, password);
 			ResultSet rs = stm.executeQuery();
-			
 			//if the user is not an ICM-User
 			if (!rs.next())
 				return null;
@@ -281,6 +280,7 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			ResultSet rs=stmt1.executeQuery("SELECT R.* FROM icm.request R;");
 			while(rs.next())
 	 		{
+				System.out.println("llll");
 				Initiatorname=getinitiatorname(con,rs.getString(9));
 				stmt4 = con.prepareStatement("SELECT E.phase,E.state,E.repetion FROM icm.requestinphase E WHERE request_id=? AND phase=?;");
 				stmt4.setInt(1, rs.getInt(7));
@@ -297,12 +297,13 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 				}
 				else {
 			do {
+				
 				i++;
 				stmt3 = con.prepareStatement("SELECT E.phase,E.state,E.repetion,E.phase_administrator,E.start_date,E.due_date FROM icm.requestinphase E WHERE request_id=? AND phase=? AND state!='over';");
 				stmt3.setInt(1, rs.getInt(7));
 				stmt3.setString(2, phases[i]);
 				ResultSet rs3=stmt3.executeQuery();
-				if(rs3.next()) {				
+				if(rs3.next()) {
 					i=-1;
 					s=new Request(rs.getInt(7),Initiatorname,rs.getString(8),rs.getString(1),rs.getDate(6));
 					result=new RequestPhase(null,null,s,Phase.valueOf(rs3.getString(1)),State.valueOf(rs3.getString(2)));
@@ -312,9 +313,9 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 					result.setDueDate(rs3.getDate(6));
 					rs3.close();
 				}	       
-			    }while(i!=-1&&i!=5);
+			    }while(i!=-1&&i!=4);
 				}
-			    if(!result.equals(null)) {
+			    if(result!=null) {
 				         arr.add(result);
 			    }
 			    stmt2=null;
@@ -331,6 +332,8 @@ public static ArrayList<RequestPhase> getDataFromDB(Connection con){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("kkkk");
+		System.out.println(arr);
 		return arr;
 	}
 
@@ -2423,7 +2426,7 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 }
 		return null;
 	}
-
+	
 
 	public static ArrayList<ExtensionDuration> getPerformanceReport(Connection con,String keymessage) {
 		Statement stm=null;
@@ -2436,7 +2439,8 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			else
 				rs=stm.executeQuery("SELECT start_date,due_date,request_id FROM requestinphase WHERE repetion>'0';");
 			while(rs.next()) {
-				arr.add(new ExtensionDuration(rs.getInt(3),rs.getDate(2).toLocalDate().toEpochDay()-rs.getDate(1).toLocalDate().toEpochDay()));
+				if(rs.getDate(2) != null && rs.getDate(1) != null)
+				 	 arr.add(new ExtensionDuration(rs.getInt(3),rs.getDate(2).toLocalDate().toEpochDay()-rs.getDate(1).toLocalDate().toEpochDay()));
 			}
 			return arr;
 		} catch (SQLException e) {
