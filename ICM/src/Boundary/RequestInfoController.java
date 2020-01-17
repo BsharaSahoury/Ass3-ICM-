@@ -1,6 +1,6 @@
 package Boundary;
 
-import javafx.application.Platform; 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
 
 import Client.ClientConsole;
 import Entity.Request;
-import Entity.User;
 import javafx.fxml.*;
 
 public class RequestInfoController implements Initializable {
@@ -62,17 +61,14 @@ public class RequestInfoController implements Initializable {
 	private TextField Email;
 	@FXML
 	private static SplitPane splitpane;
-	@FXML
-	Button BackBtn;
 
 	private static ClientConsole cc;
-    private static String job;
+
 	public static RequestInfoController Requestinfo;
 	
 	public static Request r2;
 
-	public void start(SplitPane splitpane, Request s,String job) {	
-		this.job=job;	
+	public void start(SplitPane splitpane, Request s) {
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
 		this.splitpane = splitpane;
@@ -90,7 +86,7 @@ public class RequestInfoController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	} 
+	}
 
 	public void SetInfo(Request r) {
 		r2=r;
@@ -134,48 +130,9 @@ public class RequestInfoController implements Initializable {
         alert.setContentText("the file is downloaded, you can find it at your Downloads directory");
         alert.showAndWait();
 	}
-	
-	
-	
-	public void BackBtnAction(ActionEvent e) {
-		
-		if(job.equals("Inspector"))
-		{
-			InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
-		}
-		else if(job.equals("Chairman"))
-		{
-			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", ChairmanHomeController.getchairman(), "Chairman","decision");
-		}
-		/*else if(BackTo.equals("Back To RequestsWorkOnChairman"))
-		{
-			ChairmanHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", comitteeMemberHomeController.getchairman(), "Chairman","decision");
-		}*/
-		else if(job.equals("Comittee Member"))
-		{
-			ComitteeMemberHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnCommittemember.fxml",ComitteeMemberHomeController.getcomitteeMember(),"Comittee Member","decision");
-		}
-		
-	}
-	
-	 
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		
-	           
-		
-		
-		
-		
-		
- 	}
+
+	}
 }

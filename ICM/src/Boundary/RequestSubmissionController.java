@@ -117,7 +117,6 @@ public class RequestSubmissionController implements Initializable {
 			Object[] message= {"submitRequest",request};
 			try {
 				LoginController.cc.getClient().sendToServer(message);
-				submit.setDisable(true);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -69,7 +69,6 @@ public class NotificationsController implements Initializable {
 	private static String ExplainDecision;
 	private static int idnotification;
     private static String myPhase;
-    private static int id;
 	public void start(SplitPane splitpane, User user) {
 		this.user = user;
 		primaryStage = LoginController.primaryStage;
@@ -110,6 +109,7 @@ public class NotificationsController implements Initializable {
 		String content;
 		String[] b;
 		String phase1;
+		int id;
 		if (n2 != null) {
 			idnotification = n2.getId();
 			switch (n2.getType()) {
@@ -323,6 +323,7 @@ public class NotificationsController implements Initializable {
 				b6 = b6[1].split(" time");
 				int id4 = Integer.valueOf(b6[0]);
 				String[] b7 = new String[2];
+				System.out.println(content);
 				b7 = content.split("time on phase ");
 				b7 = b7[1].split(", Do");
 			    phase1=b7[0];
@@ -334,8 +335,8 @@ public class NotificationsController implements Initializable {
 				content = n2.getContent();
 				String[] b10 = new String[2];
 				b10 = content.split("#");
-				int id=Integer.valueOf(b10[1]);
-				ttr.start(splitpane, id, "/messages/RecruitEngineerPerform.fxml",content);
+				int id9=Integer.valueOf(b10[1]);
+				ttr.start(splitpane, id9, "/messages/RecruitEngineerPerform.fxml",content);
 				break;
 			case "recruitNotificationForPerformance":
 				RecruitPerformanceMessageController ttr1=new RecruitPerformanceMessageController();
@@ -359,9 +360,6 @@ public class NotificationsController implements Initializable {
 	}
 	public static String getMyPhase() {
 		return myPhase;
-	}
-	public static int getId() {
-		return id;
 	}
 
 	public static int getidofrequestforDecision() {

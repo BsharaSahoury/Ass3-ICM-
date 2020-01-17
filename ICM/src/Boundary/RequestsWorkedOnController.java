@@ -40,7 +40,7 @@ import messages.AutomaticRecruitMessageController;
 
 public class RequestsWorkedOnController implements Initializable {
 	public static Stage primaryStage;
-	private static ClientConsole cc; 
+	private static ClientConsole cc;
 	private AnchorPane lowerAnchorPane;
 	@FXML
 	private TableView<RequestPhase> tableRequests;
@@ -102,10 +102,9 @@ public class RequestsWorkedOnController implements Initializable {
 			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=user.getUsername();
 			}
-			else if(job.equals("Engineer")){
-				RequestWorkedON[0]="engineer request work on";	
-			}						
+			else {
 			RequestWorkedON[1]=user.getUsername();
+			}
 			RequestWorkedON[2]=job;
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
@@ -201,13 +200,13 @@ public class RequestsWorkedOnController implements Initializable {
 				}
 			}		
 	      }
-	} 
+	}
 	public void SetDuration() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();
 		if(chosen!=-1) {
 			RequestPhase s =tableRequests.getSelectionModel().getSelectedItem();
 			id=s.getId();
- 
+
 			String keymessage = "get duration";
 			Object[] message = { keymessage, s.getId(),s.getPhase()};
 			try {
@@ -246,7 +245,7 @@ public class RequestsWorkedOnController implements Initializable {
 		if(chosen!=-1) {
 			Request s =tableRequests.getSelectionModel().getSelectedItem();
 			RequestInfoController requestifo = new RequestInfoController();
-	    	requestifo.start(splitpane,s,job);
+	    	requestifo.start(splitpane,s);
 		}
 		else {
 	        Alert alertWarning = new Alert(AlertType.WARNING);
@@ -335,15 +334,7 @@ public class RequestsWorkedOnController implements Initializable {
 				e.printStackTrace();
 			}
 			break;
-		case "Performance Leader":
-			try {
-				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
-						employee, "Performance Leader", "performance");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		case "Engineer":
+		case "Performer":
 			try {
 				PerformanceLeaderHomeController.RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnPerformer.fxml",
 						employee, "Performance Leader", "performance");
@@ -358,7 +349,7 @@ public class RequestsWorkedOnController implements Initializable {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 			break;
 		}
 	}

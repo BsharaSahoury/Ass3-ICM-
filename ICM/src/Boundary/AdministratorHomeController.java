@@ -46,8 +46,6 @@ public static Stage primaryStage;
 private static Employee Administrator;
 public static MyRequestsController MyRequests;
 public static AllRequestsController AllRequests;
-public static ProfileSettingController ProfileSetting;
-
 
 public void start(Employee Administrator) {
 this.Administrator = Administrator;
@@ -107,7 +105,7 @@ runLater(() -> {
 public void AllRequestsAction(ActionEvent event) throws Exception {
 	AllRequests = new AllRequestsController();
 	runLater(() -> {
-		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml","Administrator");
+		AllRequests.start(splitpane, "/Boundary/allRequests.fxml","Administrator");
 	});	
 }
 
@@ -119,9 +117,9 @@ runLater(() -> {
 }
 
 public void ProfileSettingAction(ActionEvent event) throws Exception {
-	ProfileSetting = new ProfileSettingController();
-	runLater(() -> {
-	ProfileSetting.start(splitpane,Administrator,"Administrator");
+ProfileSettingController Submit = new ProfileSettingController();
+runLater(() -> {
+	Submit.start(splitpane,Administrator);
 });	
 
 }
@@ -155,14 +153,4 @@ public void clickNotifications(ActionEvent event) throws Exception {
 		notific.start(splitpane,Administrator);
 	});		
 }
-
-
-public static Employee getAdministrator() {
-	return Administrator;
-}
-
-
-
-
-
 }

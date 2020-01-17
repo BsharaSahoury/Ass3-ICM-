@@ -27,7 +27,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	@FXML
 	private Button Homebtn;
 	@FXML
-	private Button RequestWorkedOnbtn; 
+	private Button RequestWorkedOnbtn;
 	@FXML
 	private Button RequestSubmissionbtn;
 	@FXML
@@ -47,8 +47,6 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static Stage primaryStage;
 	private static Employee comitteeMember;
 	public static MyRequestsController MyRequests;
-	public static ProfileSettingController ProfileSetting;
-
 	public static RequestsWorkedOnController RequestWorkON;
     public static Employee Chairman;
     private static int flag=0;
@@ -96,7 +94,8 @@ public class ComitteeMemberHomeController implements Initializable {
 		runLater(() -> {
 			RequestWorkON.start(splitpane, "/Boundary/RequestsWorkOnTester.fxml",comitteeMember,"Comittee Member","testing");
 		});			
-		}
+		}	
+	
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		flag=0;
 		RequestWorkON = new RequestsWorkedOnController();
@@ -107,12 +106,7 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static int getFlag() {
 		return flag;
 	}
-    
-	public static Employee getcomitteeMember() {
-		return comitteeMember;
-	}
-	
-	
+
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		runLater(() -> {
@@ -121,9 +115,9 @@ public class ComitteeMemberHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSetting = new ProfileSettingController();
+		ProfileSettingController Submit = new ProfileSettingController();
 		runLater(() -> {
-			ProfileSetting.start(splitpane,comitteeMember,"Comittee Member");
+			Submit.start(splitpane,comitteeMember);
 		});
 	}
 
@@ -180,6 +174,4 @@ public class ComitteeMemberHomeController implements Initializable {
 			}
 		});
 	}
-	
 }
-

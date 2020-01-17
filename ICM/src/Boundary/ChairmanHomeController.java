@@ -21,7 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ChairmanHomeController implements Initializable {
-
 	@FXML
 	private Button notifications;
 	@FXML
@@ -46,7 +45,7 @@ public class ChairmanHomeController implements Initializable {
 	private static Employee chairman;
 	public static MyRequestsController MyRequests;
 	public static RequestsWorkedOnController RequestWorkON;
-	public static ProfileSettingController ProfileSetting;
+
 	public void start(Employee chairman) {
 		this.chairman = chairman;
 		primaryStage = LoginController.primaryStage;
@@ -76,16 +75,7 @@ public class ChairmanHomeController implements Initializable {
 		return primaryStage;
 	}
 
-	public static Employee getchairman() {
-		return chairman;
-	}
-	
-	
-	
-	
-	
-	
-	private void runLater(Func f) { 
+	private void runLater(Func f) {
 		f.call();
 		Platform.runLater(() -> {
 			try {
@@ -107,20 +97,16 @@ public class ChairmanHomeController implements Initializable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-	} 
-         
-	
-	
-	
-	
+		}
+	}
+
 	public void RequestWorkedOnAction(ActionEvent event) throws Exception {
 		RequestWorkON = new RequestsWorkedOnController();
 		runLater(() -> {
 			RequestWorkON.start(splitpane, "/Boundary/RequestWorkOnChairman.fxml", chairman, "Chairman","decision");
 		});		
 	}
- 
+
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		runLater(() -> {
@@ -129,9 +115,9 @@ public class ChairmanHomeController implements Initializable {
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
-		ProfileSetting = new ProfileSettingController();
+		ProfileSettingController Submit = new ProfileSettingController();
 		runLater(() -> {
-			ProfileSetting.start(splitpane, chairman,"Chairman");
+			Submit.start(splitpane, chairman);
 		});
 	}
 
@@ -159,8 +145,8 @@ public class ChairmanHomeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		UserNameMenu.setText(chairman.getFirstName() +" "+ chairman.getLastName());
-	} 
+		UserNameMenu.setText(chairman.getFirstName() + chairman.getLastName());
+	}
 
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific = new NotificationsController();

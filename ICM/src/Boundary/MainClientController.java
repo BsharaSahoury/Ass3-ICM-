@@ -5,6 +5,7 @@ import java.awt.Button;
 
 
 
+
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Observable;
@@ -25,8 +26,10 @@ import Client.ClientEvaluationReportObserver;
 import Client.ClientGetChairmanObserver;
 import Client.ClientGetDurationObserver;
 import Client.ClientGetEvaluationReportObserver;
+
 import Client.ClientGetEvaluatorsObserver;
 import Client.ClientGetFullNameEmployeeObserver;
+import Client.ClientGetEvaluatorsObserver;
 import Client.ClientInitiatorapprovedrequestdecisionObserver;
 import Client.ClientLogOutObserver;
 import Client.ClientLoginByAnotherClientObserver;
@@ -71,9 +74,6 @@ public class MainClientController {
 		String host=ip.getText();
 		System.out.println(Thread.currentThread().toString());
 		try {
-			if(host.equals(""))
-				throw new Exception();
-			
 			ClientConsole cc=new ClientConsole(host);
 	//		ClientObserver CO = new ClientObserver(cc.getClient());
 			ClientLoginObserver clo=new ClientLoginObserver(cc.getClient());

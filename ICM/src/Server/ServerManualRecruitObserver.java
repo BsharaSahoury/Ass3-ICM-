@@ -51,15 +51,6 @@ public class ServerManualRecruitObserver implements Observer {
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,evaluator);
 						}	
-						else {
-							Object[] message= {"isRecruited"};
-							try {
-								client.sendToClient(message);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
 					}
 					else if(keymessage.equals("manualPerformer")) {
 						String fullname=(String)arg3[1];
@@ -68,7 +59,6 @@ public class ServerManualRecruitObserver implements Observer {
 						Employee performer=mysqlConnection.getSpecificEmployee(con,fullname);
 						boolean flag=mysqlConnection.assignEmployeeToPhaseRequest(con, performer, id,"performance");
 						if(flag) {
-							mysqlConnection.updateCurrentPhase(con, id, Phase.performance);
 							Object[] message= {"performerRecruit"};
 							try {
 								client.sendToClient(message);
@@ -84,16 +74,6 @@ public class ServerManualRecruitObserver implements Observer {
 							n1=mysqlConnection.insertNotificationToDB(con, n1);
 							mysqlConnection.insertNotificationForUserToDB(con, n1,performer);
 						}
-						else {
-							Object[] message= {"isRecruited"};
-							try {
-								client.sendToClient(message);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-						
 					}
 					else if(keymessage.equals("manualEvaluatorAgain")) {
 						String fullname=(String)arg3[1];

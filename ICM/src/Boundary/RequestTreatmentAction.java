@@ -2,10 +2,11 @@ package Boundary;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import org.omg.PortableServer.POAManagerPackage.State;
 
 import Client.ClientConsole;
 import javafx.collections.FXCollections;
@@ -16,7 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -26,13 +26,12 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Entity.Request;
 import Entity.RequestPhase;
 import Entity.Phase;
+
 public class RequestTreatmentAction extends AllRequestsController implements Initializable,Serializable {
  public static Stage primaryStage;
  private static ClientConsole cc;
@@ -158,7 +157,6 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			}	
 		}
 	}
-    	
 	public void BackBtnAction(ActionEvent e) {		
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 	}
