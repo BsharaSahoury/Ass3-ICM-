@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -52,13 +53,16 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="18.0" prefWidth="145.0" promptText="Ahmad" />
+                        <ComboBox fx:id="PhaseAdministrator" layoutX="203.0" layoutY="155.0" prefHeight="25.0" prefWidth="205.0" promptText="Choose phase administrator" />
                         <Label fx:id="currentphase" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="207.0" layoutY="91.0" prefHeight="20.0" prefWidth="142.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                         <TextArea fx:id="Explaintxt2" layoutX="25.0" layoutY="269.0" prefHeight="200.0" prefWidth="386.0" promptText="Explain your update" stylesheets="@tabs.css" />
+                        <ListView fx:id="chooseengineer" layoutX="452.0" layoutY="148.0" prefHeight="85.0" prefWidth="196.0" />
+                        <Label fx:id="label2" layoutX="453.0" layoutY="93.0" text="Select engineers to the performance" />
+                        <Label fx:id="label1" layoutX="454.0" layoutY="117.0" text="(Hold ctrl to choose more engineers)" />
                      </children>
                   </AnchorPane>
                </content>

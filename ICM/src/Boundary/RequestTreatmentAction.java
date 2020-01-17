@@ -1,5 +1,6 @@
 package Boundary;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -18,8 +19,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
@@ -30,7 +33,7 @@ import javafx.stage.Stage;
 import Entity.Request;
 import Entity.RequestPhase;
 import Entity.Phase;
-public class RequestTreatmentAction extends AllRequestsController implements Initializable {
+public class RequestTreatmentAction extends AllRequestsController implements Initializable,Serializable {
  public static Stage primaryStage;
  private static ClientConsole cc;
  private AnchorPane lowerAnchorPane;
@@ -53,43 +56,27 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
  @FXML
  private Label phaseadminlable;
  @FXML
- private MenuButton  chooseengineer;
+ private ListView<String>  chooseengineer;
+ @FXML 
+ private Label label1;
+ @FXML 
+ private Label label2;
+ private static String lastadmin;
  private int chosenindex;
  private static int indexphase=-1;
  private static int indexadmin=-1;
  private  RequestPhase chosenRequest;
  public static RequestTreatmentAction ctrl;
- ObservableList<Phase> phaseslist;
+ ObservableList<String> engineerslist;
  private ObservableList<String> list;
+ private ObservableList<String> selected;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ArrayList<Phase> Phases=new ArrayList<Phase>();
-		Phases.add(Phase.evaluation);
-		Phases.add(Phase.performance);
-		phaseslist=FXCollections.observableArrayList(Phases);
-	//	Phasee.setItems(phaseslist);
-		/*
-		 // create the data to show in the CheckComboBox 
-		 final ObservableList<String> strings = FXCollections.observableArrayList();
-		 for (int i = 0; i <= 100; i++) {
-		     strings.add("Item " + i);
-		 }
-		 
-		 // Create the CheckComboBox with the data 
-		 final CheckComboBox<String> checkComboBox = new CheckComboBox<String>(strings);
-		 
-		 // and listen to the relevant events (e.g. when the selected indices or 
-		 // selected items change).
-		 checkComboBox.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-		     public void onChanged(ListChangeListener.Change<? extends String> c) {
-		         System.out.println(checkComboBox.getCheckModel().getSelectedItems());
-		     }
-		 });
-		 }*/
-	//	chooseengineer.setItems(phaseslist);
+		chooseengineer.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	chosenindex=AllRequestsController.getselectedindex();
         chosenRequest=AllRequestsController.getList().get(chosenindex);  
         statuslable.setText(chosenRequest.getStatus());
+
 	}
 	public void start(SplitPane splitpane) {
 		this.splitpane=splitpane;
@@ -101,6 +88,17 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			ctrl=loader.getController();
 			splitpane.getItems().set(1, lowerAnchorPane);
 			ctrl.currentphase.setText(ctrl.chosenRequest.getPhase().toString());
+			if(ctrl.currentphase.getText().equals("performance")) {
+				ctrl.label1.setVisible(true);
+				ctrl.label2.setVisible(true);
+				ctrl.chooseengineer.setVisible(true);	
+			}
+			else {
+			ctrl.label1.setVisible(false);
+			ctrl.label2.setVisible(false);
+			ctrl.chooseengineer.setVisible(false);
+			}
+			
 			Object[] msg1= {"getFullNameOfEmployee",getClass().getName(),ctrl.chosenRequest.getEmployee()};
 			try {
 				LoginController.cc.getClient().sendToServer(msg1);
@@ -126,15 +124,10 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 					e.printStackTrace();
 				}
 			}
-           // ctrl.phaseadminlable.setVisible(false);
-			//ctrl.PhaseAdministrator.setVisible(false);
-			//ctrl.PhaseAdministrator.setPromptText(ctrl.chosenRequest.getEmployee());
 			if(ctrl.chosenRequest.getStartDate()!=null&&ctrl.chosenRequest.getDueDate()!=null) {
 			ctrl.DatePickerFrom.setPromptText(ctrl.chosenRequest.getStartDate().toString());
 			ctrl.DatePickerTo.setPromptText(ctrl.chosenRequest.getDueDate().toString());
 			}
-			//String AllRequests="All Requests";
-			//cc.getClient().sendToServer(AllRequests);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
@@ -170,18 +163,19 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 		InspectorHomeController.AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Inspector");
 	}
 	public void setcombotext(String currentadmin) {
-		if(currentadmin!=null)
+		if(currentadmin!=null) {
 		ctrl.PhaseAdministrator.setPromptText(currentadmin);
+		ctrl.lastadmin=ctrl.PhaseAdministrator.getPromptText();
+		}
 		//ctrl.phaseadminlable.setVisible(true);
 		//ctrl.PhaseAdministrator.setVisible(true);
 	}
 	public void fillCombo(ArrayList<String> names) {
 		list=FXCollections.observableArrayList(names);
 		ctrl.PhaseAdministrator.setItems(list);
+		ctrl.chooseengineer.setItems(list);
 	}
 	public void updateandsaveaction() {
-		//indexphase=ctrl.Phasee.getSelectionModel().getSelectedIndex();
-		
 		if(ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem()==null&&ctrl.DatePickerFrom.getValue()==null&&ctrl.DatePickerTo.getValue()==null) {
 			Alert alert = new Alert(AlertType.WARNING);
 	        alert.setTitle("Warning");
@@ -200,11 +194,11 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 	        alert.setContentText("If you chose 'start' date you must choose 'to' date");
 	        alert.showAndWait();
 		}
-		else if(ctrl.DatePickerTo!=null && ctrl.DatePickerFrom!=null&&(ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) >= 0 || LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) >= 0)) {
+		else if(ctrl.DatePickerTo.getValue()!=null && ctrl.DatePickerFrom.getValue()!=null&&(ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) >= 0 || LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) >= 0)) {
 			 Alert alertSuccess = new Alert(AlertType.WARNING);
 			 alertSuccess.setTitle("Warning");
 			 alertSuccess.setHeaderText("Wrong dates");
-			 alertSuccess.setContentText("Cheak the dates the you specified");
+			 alertSuccess.setContentText("Cheak the dates that you specified");
 			 alertSuccess.showAndWait();
 		}
 		else if(Explaintxt2.getText().equals("")) {
@@ -215,6 +209,42 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			 alertSuccess.showAndWait();
 		}
 		//
+		else if(ctrl.currentphase.getText().equals("performance")&&(ctrl.PhaseAdministrator.getSelectionModel().getSelectedIndex()>=0)) {
+			ctrl.selected=chooseengineer.getSelectionModel().getSelectedItems();
+			if(selected.size()==0) {
+			 Alert alertSuccess = new Alert(AlertType.WARNING);
+			 alertSuccess.setTitle("Warning");
+			 alertSuccess.setHeaderText("Miss");
+			 alertSuccess.setContentText("You must choose engineers for performance phase");
+			 alertSuccess.showAndWait();
+			}
+			else {
+				ArrayList<String> arr=new ArrayList<String>();
+				for(int i=0;i<selected.size();i++) {
+					arr.add(selected.get(i));
+				}
+				String phase=ctrl.currentphase.getText();
+				String phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().toString();
+				LocalDate start=null;
+				LocalDate end=null;
+				if(DatePickerFrom.getValue()!=null&&DatePickerTo.getValue()!=null) {
+				start=DatePickerFrom.getValue();
+				end=DatePickerTo.getValue();
+				}
+				int id=ctrl.chosenRequest.getId();
+				int repetion=ctrl.chosenRequest.getRepetion();
+				String explain=Explaintxt2.getText();
+				System.out.println("ffff");
+				System.out.println(ctrl.lastadmin);
+				Object[] msg= {"manualRequestTreatmentRecruitPerformer",phaseadmin,id,phase,repetion,start,end,explain,arr,ctrl.lastadmin};
+				try {
+					LoginController.cc.getClient().sendToServer(msg);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		else {
 			String phase=ctrl.currentphase.getText();
 			String phaseadmin=null;
@@ -226,6 +256,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			else {
 			phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().toString();
 			}
+			
 			LocalDate start=null;
 			LocalDate end=null;
 			if(DatePickerFrom.getValue()!=null&&DatePickerTo.getValue()!=null) {
@@ -235,7 +266,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			int id=ctrl.chosenRequest.getId();
 			int repetion=ctrl.chosenRequest.getRepetion();
 			String explain=Explaintxt2.getText();
-			Object[] msg= {"manualRequestTreatmentRecruitEvaluator",phaseadmin,id,phase,repetion,start,end,explain};
+			Object[] msg= {"manualRequestTreatmentRecruitEvaluator",phaseadmin,id,phase,repetion,start,end,explain,ctrl.lastadmin};
 			try {
 				LoginController.cc.getClient().sendToServer(msg);
 			} catch (IOException e) {
@@ -243,6 +274,7 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 				e.printStackTrace();
 			}
 		}
+
 		/*
 		else if(ctrl.currentphase.getText().equals("performance")) {
 			String phase="performance";

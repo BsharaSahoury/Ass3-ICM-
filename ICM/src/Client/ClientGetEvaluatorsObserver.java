@@ -42,10 +42,7 @@ public class ClientGetEvaluatorsObserver implements Observer {
 						switch(classname) {
 						case "messages.AutomaticRecruitMessageController":
 							AutomaticRecruitMessageController.ctrl.fillCombo(names);
-							break;
-						case "messages.CommitteeDecisionApproveController":
-							CommitteeDecisionApproveController.ctrl.fillCombo(names);
-							break;
+							break;									
 						case "messages.CommitteeDecisionAskForaddInfoController":
 							CommitteeDecisionAskForaddInfoController.ctrl.fillCombo(names);
 							break;

@@ -27,12 +27,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="label1" layoutX="46.0" layoutY="116.0" prefHeight="19.0" prefWidth="379.0" text="You've been recruited to work on request #">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="50.0" layoutY="150.0" text="Please go to 'Requests that I work on' section to set durations for your phase.">
+            <Label fx:id="label1" layoutX="46.0" layoutY="116.0" prefHeight="18.0" prefWidth="277.0" text="You've been recruited to work on request #">
                <font>
                   <Font size="13.0" />
                </font>

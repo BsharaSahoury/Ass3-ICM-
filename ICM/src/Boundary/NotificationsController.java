@@ -251,14 +251,6 @@ public class NotificationsController implements Initializable {
 
 				edc.start(splitpane,id,phase,repetion);
 				break;
-			case "recruitNotificationForPerformer":
-				content = n2.getContent();
-				b = new String[2];
-				b = content.split("#");
-				id = Integer.valueOf(b[1]);
-				RecruitMessageController rmc2 = new RecruitMessageController();
-				rmc2.start(splitpane, id);
-				break;
 			case "Extension Confirmation message sent to Inspector":	
 				content = n2.getContent();
 				String[] b4 = new String[2];
@@ -266,7 +258,6 @@ public class NotificationsController implements Initializable {
 				b4 = b4[1].split(" time");
 				int id3 = Integer.valueOf(b4[0]);
 				String[] b5 = new String[2];
-				System.out.println(content);
 				b5 = content.split("time on phase ");
 				b5 = b5[1].split(", Do");
 			    phase1=b5[0];
@@ -332,12 +323,35 @@ public class NotificationsController implements Initializable {
 				b6 = b6[1].split(" time");
 				int id4 = Integer.valueOf(b6[0]);
 				String[] b7 = new String[2];
-				System.out.println(content);
 				b7 = content.split("time on phase ");
 				b7 = b7[1].split(", Do");
 			    phase1=b7[0];
 				ExtensionConfirmationMessage ecm1 = new ExtensionConfirmationMessage();
 				ecm1.start(splitpane, id4,content,phase1);
+				break;
+			case "recruitNotificationForPerformEngineer":
+				RecruitPerformanceMessageController ttr=new RecruitPerformanceMessageController();
+				content = n2.getContent();
+				String[] b10 = new String[2];
+				b10 = content.split("#");
+				int id=Integer.valueOf(b10[1]);
+				ttr.start(splitpane, id, "/messages/RecruitEngineerPerform.fxml",content);
+				break;
+			case "recruitNotificationForPerformance":
+				RecruitPerformanceMessageController ttr1=new RecruitPerformanceMessageController();
+				content = n2.getContent();
+				String[] b11 = new String[2];
+				b11 = content.split("#");
+				int id2=Integer.valueOf(b11[1]);
+				ttr1.start(splitpane, id2, "/messages/RecruitPerformer-message.fxml",content);
+				break;
+			case "ReplaceNotificationforlastperformanceadmin":
+				RecruitPerformanceMessageController ttr2=new RecruitPerformanceMessageController();
+				content = n2.getContent();
+				String[] b12 = new String[2];
+				b12 = content.split("#");
+				int id5=Integer.valueOf(b12[1]);
+				ttr2.start(splitpane, id5, "/messages/ReplacePerformanceLeader-Message.fxml",content);
 				break;
 			}
 

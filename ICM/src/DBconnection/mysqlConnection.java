@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Boundary.RequestTreatmentAction;
@@ -28,6 +29,7 @@ import Entity.State;
 import Entity.Student;
 import Entity.User;
 import Server.MainForServer;
+import javafx.collections.ObservableList;
 
 public class mysqlConnection {
 	private static int count = 0;
@@ -2077,5 +2079,31 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			e.printStackTrace();
 		}
 	}
+    public static void EnterrequestonengineerrequestDB(Connection con, ArrayList<String> fullname,int repetion, int id) {
+    	PreparedStatement stmt4=null;
+    	PreparedStatement stm=null;
+    	for(int i=0;i<fullname.size();i++) {
+    		Employee engineer=getSpecificEmployee(con,fullname.get(i));		
+			try {
+				stmt4 = con.prepareStatement("SELECT E.* FROM icm.enginnerequest E WHERE request_id=? AND repetion=? AND username=?;");
+				stmt4.setInt(1, id);
+				stmt4.setInt(2, repetion);
+				stmt4.setString(3, engineer.getUsername());
+				ResultSet rs4=stmt4.executeQuery();	
+				if(!rs4.next()) {
+					stm = con.prepareStatement("INSERT INTO icm.enginnerequest VALUES(?,?,?);");		
+					stm.setInt(1, id);
+					stm.setInt(2, repetion);
+					stm.setString(3, engineer.getUsername());
+					stm.executeUpdate();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+    	}
+    	
+    }
 }
 
