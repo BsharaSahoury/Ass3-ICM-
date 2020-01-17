@@ -78,6 +78,13 @@ public class MainForServer extends Application{
 		    ServerExtendRequestTimeObserver serto=new ServerExtendRequestTimeObserver(sv);
 		    ServerRequestExtensionApproveToAdminObserver sreatao= new ServerRequestExtensionApproveToAdminObserver(sv);
 		    ServerApproveEvaluatorObserver saeo = new ServerApproveEvaluatorObserver(sv);
+		    ServerInitPermissionsPageObserver sippo=new ServerInitPermissionsPageObserver(sv);
+		    ServerChangePermissionObserver scpoo=new ServerChangePermissionObserver(sv);
+		    ServerChangeEvaluatorObserver sceo=new ServerChangeEvaluatorObserver(sv);
+		    ServerPeriodricReportObserver spro=new ServerPeriodricReportObserver(sv);
+		    ServerPeriodricReportForDaysObserver sprrfdo=new ServerPeriodricReportForDaysObserver(sv);
+		    ServerPerformanceReportObserver sproo=new ServerPerformanceReportObserver(sv);
+		    ServerDelaysReportObserver sdro=new ServerDelaysReportObserver(sv);
 			try {
 			   sv.listen();
 			   //ServerWindow.launchMain(sv, args);//we launch the server's window//

@@ -19,6 +19,7 @@ import java.util.Map;
 import Boundary.RequestTreatmentAction;
 import Entity.Employee;
 import Entity.EvaluationReport;
+import Entity.ExtensionDuration;
 import Entity.MyFile;
 import Entity.Notification;
 import Entity.Phase;
@@ -28,6 +29,8 @@ import Entity.State;
 import Entity.Student;
 import Entity.User;
 import Server.MainForServer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class mysqlConnection {
 	private static int count = 0;
@@ -1804,5 +1807,449 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
     	else
     		return null;
     }
+
+
+
+	public static ArrayList<Long> getPeriodricReportData(Connection con, String keymessage,Date from,Date to,String Rtype) {
+		Statement stm=null;
+		ResultSet rs;
+		Date date=from;
+		ArrayList<Long> arr=new ArrayList<>();
+		ArrayList<Integer> seen=new ArrayList<>();
+		int i=0;
+		try {
+			stm=con.createStatement();
+			if(keymessage.equals("Pdays")) {
+				while(!date.equals(Date.valueOf(to.toLocalDate().plusDays(1)))) {
+					arr.add((long)0);
+					rs=stm.executeQuery("SELECT * FROM request;");
+					while(rs.next()) {
+						switch(Rtype) {
+						case "No. Active Requests":
+							if(isActive(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								arr.set(i, arr.get(i)+1);
+							}
+							break;
+						case "No. Frozen Requests":
+							if(isFrozen(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13)))
+								arr.set(i, arr.get(i)+1);
+							break;
+						case "No. Closed Requests":
+							if(isClosed(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13)))
+								arr.set(i, arr.get(i)+1);
+							break;
+						case "No. Rejected Requests":
+							if(isRejected(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13)))
+								arr.set(i, arr.get(i)+1);
+							break;
+						}
+					}
+					date=Date.valueOf(date.toLocalDate().plusDays(1));
+					i++;
+				}
+				return arr;
+			}
+			if(keymessage.equals("Pmonths")) {
+				arr.add((long)0);
+				int m=date.getMonth();
+				while(!date.equals(Date.valueOf(to.toLocalDate().plusDays(1)))) {
+						if(m != date.getMonth()) {
+							m=date.getMonth();
+							i++;
+							arr.add((long)0);
+					}
+					rs=stm.executeQuery("SELECT * FROM request;");
+					while(rs.next()) {
+						switch(Rtype) {
+						case "No. Active Requests":
+							if(isActive(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						case "No. Frozen Requests":
+							if(isFrozen(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						case "No. Closed Requests":
+							if(isClosed(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						case "No. Rejected Requests":
+							if(isRejected(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+						}
+							break;
+					}
+					}
+					date=Date.valueOf(date.toLocalDate().plusDays(1));
+				}
+			return arr;
+			}
+			if(keymessage.equals("Pyears")) {
+				arr.add((long)0);
+				int y=date.getYear();
+				while(!date.equals(Date.valueOf(to.toLocalDate().plusDays(1)))) {
+					if(y != date.getYear()) {
+						y=date.getYear();
+						i++;
+						arr.add((long)0);
+					}
+					rs=stm.executeQuery("SELECT * FROM request;");
+					int count=0;
+					while(rs.next()) {
+						switch(Rtype) {
+						case "No. Active Requests":
+							if(isActive(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+									arr.set(i, arr.get(i)+1);
+									seen.add(id);
+								}
+							}
+							break;
+						case "No. Frozen Requests":
+							if(isFrozen(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						case "No. Closed Requests":
+							if(isClosed(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						case "No. Rejected Requests":
+							if(isRejected(con,date,rs.getInt(7),rs.getDate(6),rs.getDate(13))) {
+								int id=rs.getInt(7);
+								if(!seen.contains(id)) {
+								arr.set(i, arr.get(i)+1);
+								seen.add(id);
+							}
+							}
+							break;
+						}
+					}
+				date=Date.valueOf(date.toLocalDate().plusDays(1));
+			}
+			return arr;
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public static int getMaxTreatment(Connection con, Date from, Date to) {
+		Statement stm=null;
+		int max=0,len;
+		try {
+			stm=con.createStatement();
+			ResultSet rs=stm.executeQuery("SELECT date,close_date FROM request;");
+			while(rs.next()) {
+				Date sd=rs.getDate(1);
+				Date cd=rs.getDate(2);
+	
+				if(cd==null) {
+					cd=to;
+				}
+				else if(cd.after(to)) {
+					cd=to;
+				}
+				if(sd.before(from)) {
+					sd=from;
+				}
+				len=(int) (cd.toLocalDate().toEpochDay()-sd.toLocalDate().toEpochDay());
+				if(len>max)
+					max=len;
+			}
+			return max;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+
+	private static boolean isDayActive(Connection con, Date date) {
+		Statement stm=null;
+		try {
+			stm=con.createStatement();
+			ResultSet rs=stm.executeQuery("SELECT id,date,close_date FROM requests;");
+			while(rs.next()) {
+				if(isActive(con,date,rs.getInt(1),rs.getDate(2),rs.getDate(3)))
+					return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+
+	private static boolean isRejected(Connection con, Date date, int int1, Date sd, Date cd) {
+		PreparedStatement stm=null;
+		if(cd==null)
+			return false;
+		if(cd.after(date))
+			return false;
+		try {
+			stm=con.prepareStatement("SELECT status FROM request WHERE id=?;");
+			stm.setInt(1, int1);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals("rejected"))
+					return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	private static boolean isClosed(Connection con, Date date, int int1, Date sd, Date cd) {
+		PreparedStatement stm=null;
+		if(cd==null)
+			return false;
+		if(cd.after(date))
+			return false;
+		try {
+			stm=con.prepareStatement("SELECT status FROM request WHERE id=?;");
+			stm.setInt(1, int1);
+			ResultSet rs=stm.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals("closed"))
+					return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	private static boolean isFrozen(Connection con, Date date, int int1, Date sd, Date cd) {
+		PreparedStatement stm=null;
+		if(date.before(sd))
+			return false;
+		if(cd != null) {
+			if(date.after(cd))
+				return false;
+		}
+		try {
+			stm=con.prepareStatement("SELECT start,end FROM frozen WHERE id=?;");
+			stm.setInt(1, int1);
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				if(rs.getDate(2)==null)
+					return true;
+				if(date.after(rs.getDate(1)) && date.before(rs.getDate(2)))
+					return true;
+				if(date.equals(rs.getDate(1)) || date.equals(rs.getDate(2)))
+					return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	private static boolean isActive(Connection con,Date date,int int1, Date sd, Date cd) {
+		PreparedStatement stm=null;
+		if(date.before(sd))
+			return false;
+		if(cd != null) {
+			if(date.after(cd))
+				return false;
+		}
+		try {
+			stm=con.prepareStatement("SELECT start,end FROM frozen WHERE id=?;");
+			stm.setInt(1, int1);
+			ResultSet rs=stm.executeQuery();
+			while(rs.next()) {
+				if(rs.getDate(2)==null)
+					return false;
+				if(date.after(rs.getDate(1)) && date.before(rs.getDate(2)))
+					return false;
+			}
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
+	public static ArrayList<Long> getFourthReportData(Connection con, String keymessage, Date from, Date to) {
+		Statement stm=null;
+		ArrayList<Long> arr=new ArrayList<>();
+		int max=0,len;
+		int N,period,k;
+		try {
+			stm=con.createStatement();
+			ResultSet rs=stm.executeQuery("SELECT date,close_date FROM request;");
+			while(rs.next()) {
+				Date sd=rs.getDate(1);
+				Date cd=rs.getDate(2);
+	
+				if(cd==null) {
+					cd=to;
+				}
+				else if(cd.after(to)) {
+					cd=to;
+				}
+				if(sd.before(from)) {
+					sd=from;
+				}
+				len=(int) (cd.toLocalDate().toEpochDay()-sd.toLocalDate().toEpochDay());
+				if(len>max)
+					max=len;
+			}
+			if(max>10) {
+				if(max%10==0) {
+				N=max/10;
+				}
+				else
+					N=max/10+1;
+			}
+			else
+				N=1;
+			for(int j=0;j<Integer.min(max, 10);j++) {
+				arr.add((long)0);
+			}
+			rs=stm.executeQuery("SELECT date,close_date FROM request;");
+			while(rs.next()) {
+				Date sd=rs.getDate(1);
+				Date cd=rs.getDate(2);
+				if(cd==null)
+					cd=to;
+				else if(cd.after(to))
+					cd=to;
+				if(sd.before(from))
+					sd=from;
+				period=(int) (cd.toLocalDate().toEpochDay()-sd.toLocalDate().toEpochDay());
+				k=period/N;
+				if(period%N==0 || period<N)
+					arr.set(k-1, arr.get(k-1)+1);
+				else
+					arr.set(k, arr.get(k)+1);
+	}
+	return arr;
+}catch(Exception e) {
+	// TODO Auto-generated catch block
+				e.printStackTrace();
+}
+		return null;
+	}
+
+
+	public static ArrayList<ExtensionDuration> getPerformanceReport(Connection con,String keymessage) {
+		Statement stm=null;
+		ArrayList<ExtensionDuration> arr=new ArrayList<>();
+		ResultSet rs=null;
+		try {
+			stm=con.createStatement();
+			if(keymessage.equals("Extension durations"))
+				rs=stm.executeQuery("SELECT old_due_date,new_due_date,request_id FROM extension;");
+			else
+				rs=stm.executeQuery("SELECT start_date,due_date,request_id FROM requestinphase WHERE repetion>'0';");
+			while(rs.next()) {
+				arr.add(new ExtensionDuration(rs.getInt(3),rs.getDate(2).toLocalDate().toEpochDay()-rs.getDate(1).toLocalDate().toEpochDay()));
+			}
+			return arr;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public static ArrayList<Long> getDelaysReportData(Connection con, String keymessage) {
+		PreparedStatement stm=null;
+		ResultSet rs=null;
+		ArrayList<String> list=new ArrayList<>();
+		list.add("Moodle");
+		list.add("Student information system");
+		list.add("Lecturer information system");
+		list.add("Employee information system");
+		list.add("Library system");
+		list.add("Computers in the classroom");
+		list.add("Labs and computer farms");
+		list.add("College official site");
+		ArrayList<Long> arr=new ArrayList<>();
+		int i=0;
+		for(String str : list) {
+			if(keymessage.equals("No.Delays")) {
+				try {
+					stm=con.prepareStatement("SELECT COUNT(exception.request_id) FROM exception,request WHERE exception.request_id=request.id AND request.Privileged_information_system=?;");
+					stm.setString(1, str);
+					rs=stm.executeQuery();
+					if(rs.next()) {
+						arr.add((long)rs.getInt(1));
+					}
+					else
+						arr.add((long)0);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if(keymessage.equals("Delays Durations")) {
+				try {
+					stm=con.prepareStatement("SELECT SUM(exception.overdue) FROM exception,request WHERE exception.request_id=request.id AND request.Privileged_information_system=?;");
+					stm.setString(1, str);
+					rs=stm.executeQuery();
+					if(rs.next())
+						arr.add((long)rs.getInt(1));
+					else
+						arr.add((long)0);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return arr;
+
+	}
 }
 

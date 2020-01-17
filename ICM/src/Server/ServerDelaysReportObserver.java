@@ -7,12 +7,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
-import Entity.Employee;
-import javafx.scene.control.cell.PropertyValueFactory;
 import ocsf.server.ConnectionToClient;
 
-public class ServerInitPermissionsPageObserver implements Observer {
-	public ServerInitPermissionsPageObserver(Observable server) {
+public class ServerDelaysReportObserver implements Observer {
+	public ServerDelaysReportObserver(Observable server) {
 		server.addObserver(this);
 	}
 
@@ -25,26 +23,21 @@ public class ServerInitPermissionsPageObserver implements Observer {
 				Object[] arg3=(Object[])arg2[1];
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
-					if(keymessage.equals("employees&permissions")) {
+					if(keymessage.equals("No.Delays") || keymessage.equals("Delays Durations")) {
 						Connection con=MainForServer.con;
-						ArrayList<Employee> list=mysqlConnection.getAllengineers(con);
-						Employee inspector=mysqlConnection.getInspector(con);
-						Employee chairman=mysqlConnection.getChairman(con);
-						Employee[] comittee=mysqlConnection.getComittee(con);
-						Object[] msg= {"employees&permissions",list};
+						ArrayList<Long> arr=mysqlConnection.getDelaysReportData(con,keymessage);
+						Object[] msg= {keymessage,arr};
 						try {
 							client.sendToClient(msg);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
-						
 					}
 				}
 			}
 		}
+		
 	}
-	
 
 }

@@ -2,17 +2,17 @@ package Server;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import DBconnection.mysqlConnection;
-import Entity.Employee;
-import javafx.scene.control.cell.PropertyValueFactory;
 import ocsf.server.ConnectionToClient;
 
-public class ServerInitPermissionsPageObserver implements Observer {
-	public ServerInitPermissionsPageObserver(Observable server) {
+public class ServerPeriodricReportObserver implements Observer {
+	public ServerPeriodricReportObserver(Observable server) {
 		server.addObserver(this);
 	}
 
@@ -25,26 +25,27 @@ public class ServerInitPermissionsPageObserver implements Observer {
 				Object[] arg3=(Object[])arg2[1];
 				if(arg3[0] instanceof String) {
 					String keymessage=(String)arg3[0];
-					if(keymessage.equals("employees&permissions")) {
+					if(keymessage.equals("Pdays") || keymessage.equals("Pmonths") || keymessage.equals("Pyears")) {
 						Connection con=MainForServer.con;
-						ArrayList<Employee> list=mysqlConnection.getAllengineers(con);
-						Employee inspector=mysqlConnection.getInspector(con);
-						Employee chairman=mysqlConnection.getChairman(con);
-						Employee[] comittee=mysqlConnection.getComittee(con);
-						Object[] msg= {"employees&permissions",list};
-						try {
+						Date from=Date.valueOf((LocalDate)arg3[1]);
+						Date to=Date.valueOf((LocalDate)arg3[2]);
+						String Rtype=(String)arg3[3];
+						if(Rtype.equals("No. days of Treatments"))
+							return;
+					    ArrayList<Long> arr=mysqlConnection.getPeriodricReportData(con,keymessage,from,to,Rtype);
+					    Object[] msg= {keymessage,from,to,arr,Rtype}; 
+					    try {
 							client.sendToClient(msg);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						
-						
 					}
 				}
 			}
 		}
+		
 	}
-	
 
 }
