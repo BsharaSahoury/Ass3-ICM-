@@ -94,7 +94,7 @@ public class ProfileSettingController {
 	}
 
 	public void setProfileSetting(ArrayList<String> arr) {
-		if (!arr.equals(null)) {
+		if (arr.size()==6) {
 			id_txt.setText(arr.get(0));
 			id_txt.setEditable(false);
 			username_txt.setText(arr.get(1));
@@ -105,7 +105,7 @@ public class ProfileSettingController {
 			email_txt.setEditable(false);
 			faculty_txt.setText(arr.get(4));
 			faculty_txt.setEditable(false);
-			role_txt.setText(userjob);
+			role_txt.setText("arkan");
 			role_txt.setEditable(false);
 		}
 	}

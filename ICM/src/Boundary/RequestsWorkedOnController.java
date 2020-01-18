@@ -361,6 +361,11 @@ public class RequestsWorkedOnController implements Initializable {
 			break;
 		}
 	}
+	public void instructionsAction()
+	{
+		
+		
+	}
 
    public void InsertTestResultAction() {
 		chosen=tableRequests.getSelectionModel().getSelectedIndex();

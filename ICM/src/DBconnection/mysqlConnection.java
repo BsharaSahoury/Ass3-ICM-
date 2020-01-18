@@ -184,7 +184,7 @@ public class mysqlConnection {
 	public static ArrayList<String> getUserData(Connection con, String username, String userJob) {
 		PreparedStatement stm = null;
 		ResultSet rs;
-		String id = null, USERname = null, fullname = null, email = null, faculty = null, extra = null;
+		String id = null, USERname = null, fullname = null, email = null, faculty = null, role=null;
 		ArrayList<String> res = new ArrayList<String>();
 		try {
 			if (userJob.equals("Student")) {
@@ -204,6 +204,7 @@ public class mysqlConnection {
 				res.add(fullname);
 				res.add(email);
 				res.add(faculty);
+				res.add("Student");
 			} else// User is an employee
 			{
 				stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
@@ -215,6 +216,7 @@ public class mysqlConnection {
 					email = rs.getString(4);
 					faculty = rs.getString(6);// faculty
 					id = rs.getString(7);
+					role=rs.getString(8);
 
 					// res= {id,username,fullname,email,faculty};
 					// res={id,USERname,fullname,email,faculty};
@@ -223,6 +225,7 @@ public class mysqlConnection {
 					res.add(fullname);
 					res.add(email);
 					res.add(faculty);
+					res.add(role);
 
 				}
 			} // else

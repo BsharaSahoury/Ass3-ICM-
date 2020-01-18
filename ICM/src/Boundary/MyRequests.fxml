@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MyRequestsController">
+<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.MyRequestsController">
    <children>
       <Line endX="426.99993896484375" endY="-12.0" layoutX="299.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
       <Label layoutX="26.0" layoutY="6.0" text="ICM">
@@ -56,16 +56,20 @@
          </font>
       </Button>
       <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="689.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/q.jpg" />
-         </image>
-      </ImageView>
       <Button layoutX="676.0" layoutY="46.0" mnemonicParsing="false" onAction="#refresh" style="-fx-background-insets: 88888888;">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/reload-icon-5.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="682.0" layoutY="82.0" mnemonicParsing="false" onAction="#instructionsAction" style="-fx-background-insets: 88888;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/q.jpg" />
                </image>
             </ImageView>
          </graphic>

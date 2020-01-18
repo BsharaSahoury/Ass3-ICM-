@@ -288,6 +288,9 @@ public class MyRequestsController implements Initializable  {
 			}
 		}
 	}
+	public void instructionsAction(){
+		
+	}
 		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -35,7 +35,7 @@ public class ClientProfileSettingObserver implements Observer {
 								InspectorHomeController.ProfileSetting.fillProfileSettingData(arr);
 							else if (job.equals("Evaluator"))
 								EvaluatorHomeController.ProfileSetting.fillProfileSettingData(arr);
-							else if (job.equals("Comittee Member"))
+							else if (job.equals("Comittee member"))
 								ComitteeMemberHomeController.ProfileSetting.fillProfileSettingData(arr);
 							else if (job.equals("Administrator"))
 								AdministratorHomeController.ProfileSetting.fillProfileSettingData(arr);
@@ -46,7 +46,7 @@ public class ClientProfileSettingObserver implements Observer {
 							else if (job.equals("Tester"))
 								TesterHomeController.ProfileSetting.fillProfileSettingData(arr);
 							else if (job.equals("Chairman"))
-								ChairmanHomeController.ProfileSetting.fillProfileSettingData(arr);
+								ComitteeMemberHomeController.ProfileSetting.fillProfileSettingData(arr);
 							else if (job.equals("Lecturer"))
 								LecturerHomeController.ProfileSetting.fillProfileSettingData(arr);
 						}
