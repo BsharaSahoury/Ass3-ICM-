@@ -85,6 +85,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
+		System.out.println(job);
+		System.out.println("sss");
 		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
@@ -226,14 +228,15 @@ public class RequestsWorkedOnController implements Initializable {
 		public void SetDurationHelp(RequestPhase s) {
 			this.rp=s;
 			rp.setId(id);
-			SetDurationController setDuration = new SetDurationController();
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
+					if(job.equals("Comittee Member")||job.equals("Engineer")) {
+						DurationController Duration = new DurationController();
+						Duration.start(splitpane,"/Boundary/Duration.fxml",rp);
 					}
 					else {
+						SetDurationController setDuration = new SetDurationController();
 						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 				}

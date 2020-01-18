@@ -2646,9 +2646,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			Date newDue = Date.valueOf(dueDate);
 			long s = newDue.getTime() + (int) (1000 * 60 * 60 * 24);
 			newDue = new java.sql.Date(s);
-			System.out.println(newDue.toString());
-			System.out.println(id);
-			System.out.println(phase);
 			stm2 = con.prepareStatement(
 					"UPDATE icm.requestinphase SET due_date=? WHERE request_id=? AND phase=? AND repetion=?;");
 			stm2.setDate(1, newDue);

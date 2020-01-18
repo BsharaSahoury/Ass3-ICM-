@@ -59,11 +59,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lbId" layoutX="99.0" layoutY="1.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-insets: 8888;" />
-                        <TextField fx:id="lbSystem" layoutX="223.0" layoutY="50.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-insets: 8888;" />
-                        <TextArea fx:id="lbSituation" layoutX="35.0" layoutY="112.0" prefHeight="76.0" prefWidth="521.0" />
-                        <TextArea fx:id="lbChange" layoutX="35.0" layoutY="215.0" prefHeight="76.0" prefWidth="521.0" />
-                        <TextArea fx:id="lbComment" layoutX="35.0" layoutY="323.0" prefHeight="76.0" prefWidth="521.0" />
+                        <TextField fx:id="lbId" editable="false" layoutX="99.0" layoutY="1.0" prefHeight="26.0" prefWidth="100.0" style="-fx-background-insets: 8888;" />
+                        <TextField fx:id="lbSystem" editable="false" layoutX="223.0" layoutY="50.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-insets: 8888;" />
+                        <TextArea fx:id="lbSituation" editable="false" layoutX="35.0" layoutY="112.0" prefHeight="76.0" prefWidth="521.0" />
+                        <TextArea fx:id="lbChange" editable="false" layoutX="35.0" layoutY="215.0" prefHeight="76.0" prefWidth="521.0" />
+                        <TextArea fx:id="lbComment" editable="false" layoutX="35.0" layoutY="323.0" prefHeight="76.0" prefWidth="521.0" />
                         <Label fx:id="LfileName" layoutX="69.0" layoutY="437.0" prefHeight="34.0" prefWidth="134.0" text="None." />
                         <Button fx:id="downloadFile" layoutX="198.0" layoutY="441.0" mnemonicParsing="false" onAction="#downloadFile" style="-fx-background-color: #9d1b34;" text="download file" textFill="WHITE" />
                         <Button fx:id="BackBtn1" layoutX="418.0" layoutY="63.0" mnemonicParsing="false" onAction="#BackBtnAction" prefHeight="24.0" prefWidth="36.0" style="-fx-background-insets: 318476520;" />
