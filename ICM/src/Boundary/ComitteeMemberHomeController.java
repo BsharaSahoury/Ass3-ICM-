@@ -51,9 +51,11 @@ public class ComitteeMemberHomeController implements Initializable {
 
 	public static RequestsWorkedOnController RequestWorkON;
     public static Employee employee;
+    public static Employee Chairman;
     private static int flag=0;
 	public void start(Employee employee) {
 		this.comitteeMember = employee;
+		this.Chairman=employee;
 		this.employee=employee;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
