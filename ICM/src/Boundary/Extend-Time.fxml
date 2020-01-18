@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                        <Image url="@../Images/585e4beacb11b227491c3399.png" />
                      </image></ImageView>
                </graphic>
             </MenuButton>

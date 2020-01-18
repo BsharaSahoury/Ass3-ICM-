@@ -199,8 +199,8 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			alert.setContentText("If you chose 'start' date you must choose 'to' date");
 			alert.showAndWait();
 		} else if (ctrl.DatePickerTo.getValue() != null && ctrl.DatePickerFrom.getValue() != null
-				&& (ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) >= 0
-						|| LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) >= 0)) {
+				&& (ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) > 0
+						|| LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) > 0)) {
 			Alert alertSuccess = new Alert(AlertType.WARNING);
 			alertSuccess.setTitle("Warning");
 			alertSuccess.setHeaderText("Wrong dates");

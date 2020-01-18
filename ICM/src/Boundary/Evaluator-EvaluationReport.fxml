@@ -15,13 +15,13 @@
       <AnchorPane prefHeight="600.0" prefWidth="728.0">
          <children>
             <Line endX="428.0" endY="-13.0" layoutX="298.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
-            <Label layoutX="34.0" layoutY="6.0" text="ICM">
+            <Label layoutX="15.0" layoutY="6.0" text="ICM">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="62.0" layoutY="5.0" text="-&gt;" />
-            <Label layoutX="230.0" layoutY="6.0" text="Evaluation Report">
+            <Label layoutX="43.0" layoutY="5.0" text="-&gt;" />
+            <Label layoutX="211.0" layoutY="6.0" text="Evaluation Report">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -41,8 +41,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="213.0" layoutY="5.0" text="-&gt;" />
-            <Label layoutX="76.0" layoutY="6.0" text="Requests that I work on">
+            <Label layoutX="194.0" layoutY="5.0" text="-&gt;" />
+            <Label layoutX="57.0" layoutY="6.0" text="Requests that I work on">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -51,11 +51,6 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/back-arrow.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="26.0" fitWidth="23.0" layoutX="15.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/request-id.jfif" />
@@ -68,7 +63,7 @@
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="18.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/current.png" />
+                  <Image url="@../Images/current.png" />
                </image>
             </ImageView>
             <Label layoutX="56.0" layoutY="373.0" prefHeight="27.0" prefWidth="86.0" text="constraints:">

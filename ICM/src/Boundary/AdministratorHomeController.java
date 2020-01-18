@@ -54,29 +54,30 @@ public class AdministratorHomeController implements Initializable {
 			@Override
 			public void run() {
 // TODO Auto-generated method stub
-try {
-Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
-Scene scene = new Scene(root);
-primaryStage.setScene(scene);
-primaryStage.setResizable(false);
-primaryStage.setTitle("ICM-Home");
-primaryStage.show();
-primaryStage.setOnCloseRequest(event -> {
-System.out.println("EXIT ICM");
-System.exit(0);
-});
-} catch (Exception e) {
-e.printStackTrace();
-}
-}
-});
-}
+				try {
+					Parent root = FXMLLoader.load(getClass().getResource("/Boundary/newAdHome.fxml"));
+					Scene scene = new Scene(root);
+					primaryStage.setScene(scene);
+					primaryStage.setResizable(false);
+					primaryStage.setTitle("ICM-Home");
+					primaryStage.show();
+					primaryStage.setOnCloseRequest(event -> {
+						System.out.println("EXIT ICM");
+						System.exit(0);
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-public Stage getPrimaryStage() {
-return primaryStage;
-}
-public void PermissionsAction(ActionEvent e) {
-		PermissionsController pc=new PermissionsController();
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void PermissionsAction(ActionEvent e) {
+		PermissionsController pc = new PermissionsController();
 		pc.start(splitpane);
 	}
 
@@ -102,11 +103,14 @@ public void PermissionsAction(ActionEvent e) {
 	public void GoToHome(ActionEvent event) throws Exception {
 		HomeController home = new HomeController();
 		home.start(splitpane);
+		runLater(() -> {
+		home.start(splitpane);
+		});
 	}
 
 	public void AllRequestsAction(ActionEvent event) throws Exception {
-
-		AllRequests.start(splitpane, "/Boundary/allRequests.fxml", "Administrator");
+		AllRequests = new AllRequestsController();
+		AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml", "Administrator");
 		runLater(() -> {
 			AllRequests.start(splitpane, "/Boundary/allRequests-for-Admin.fxml", "Administrator");
 		});
@@ -115,11 +119,15 @@ public void PermissionsAction(ActionEvent e) {
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		Submit.start(splitpane, Administrator);
+		runLater(() -> {
+			Submit.start(splitpane, Administrator);	
+		});
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 		ProfileSetting = new ProfileSettingController();
+		ProfileSetting.start(splitpane, Administrator, "Administrator");
 		runLater(() -> {
 			ProfileSetting.start(splitpane, Administrator, "Administrator");
 		});
@@ -129,12 +137,17 @@ public void PermissionsAction(ActionEvent e) {
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane, Administrator, "Administrator");
+		runLater(() -> {
+			MyRequests.start(splitpane, Administrator, "Administrator");
+		});
 	}
-
 
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
+		runLater(() -> {
+			about.start(splitpane);	
+		});
 	}
 
 	public void LogOutAction(ActionEvent event) throws Exception {
@@ -151,6 +164,9 @@ public void PermissionsAction(ActionEvent e) {
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific = new NotificationsController();
 		notific.start(splitpane, Administrator);
+		runLater(() -> {
+			notific.start(splitpane, Administrator);	
+		});
 	}
 
 	public static Employee getAdministrator() {

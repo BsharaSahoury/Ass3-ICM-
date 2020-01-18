@@ -99,13 +99,13 @@ public class RequestsWorkedOnController implements Initializable {
 			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
 			}
-			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
-				RequestWorkedON[1]=user.getUsername();
-			}
 			else if(job.equals("Engineer")){
 				RequestWorkedON[0]="engineer request work on";	
-			}						
-			RequestWorkedON[1]=user.getUsername();
+				RequestWorkedON[1]=user.getUsername();
+			}					
+			else {
+				RequestWorkedON[1]=user.getUsername();
+			}
 			RequestWorkedON[2]=job;
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
@@ -114,7 +114,6 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
-		System.out.println(arr1.get(0).getState());
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
@@ -232,10 +231,10 @@ public class RequestsWorkedOnController implements Initializable {
 				@Override
 				public void run() {
 					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,rp,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
+		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 					else {
-						setDuration.start(splitpane,rp ,"/Boundary/DuratinForEvaluator.fxml",rp.getPhase());
+						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 				}
 			});
