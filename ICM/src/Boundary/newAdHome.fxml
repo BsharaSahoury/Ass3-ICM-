@@ -30,9 +30,9 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="43.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/back.png" />
+                              <Image url="@../Images/permisionsx.png" />
                            </image>
                            <effect>
                               <Lighting>
@@ -91,7 +91,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
+                              <Image url="@../Images/PinClipart.com_sandcastle-clipart-black-and_3663692.png" />
                            </image>
                            <effect>
                               <Lighting>
@@ -113,7 +113,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/128x128.png" />
+                              <Image url="@../Images/128x128.png" />
                            </image>
                            <effect>
                               <Lighting>
@@ -135,7 +135,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
+                              <Image url="@../Images/kisspng-computer-icons-information-symbol-clip-art-information-5ac567f67e7397.631307081522886646518.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -163,16 +163,16 @@
                      </graphic>
                   </Button>
 
-                  <Button alignment="BASELINE_LEFT" layoutX="1.0" layoutY="414.0" mnemonicParsing="false" onAction="#generateReportAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="   Reports" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="1.0" layoutY="414.0" mnemonicParsing="false" onAction="#generateReportAction" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: #9d1b34;" text="  Reports" textFill="WHITE">
 
 
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/back.png" />
+                              <Image url="@../Images/istockphoto-1001154142-1024x1024.jpg" />
                            </image>
                            <effect>
                               <Lighting>
@@ -197,18 +197,10 @@
                   </AnchorPane>
                   <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="41.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/LOGO%20White.png" />
+                        <Image url="@../Images/LOGO%20White.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="154.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #9d1b34;">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/kissclipart-hamburger-icon-white-clipart-hamburger-button-comp-9b144b450eeafba9.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Button layoutX="154.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="2.0" prefWidth="0.0" style="-fx-background-color: #9d1b34;" />
                </children>
                <effect>
                   <DropShadow />
@@ -218,7 +210,7 @@
                <children>
                   <ImageView fitHeight="359.0" fitWidth="631.0" layoutX="93.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/logo%20ICM.png" />
+                        <Image url="@../Images/logo%20ICM.png" />
                      </image>
                   </ImageView>
                   <Line endX="421.0" endY="-14.000007629394531" layoutX="301.0" layoutY="42.0" startX="-299.0" startY="-13.0" />
@@ -238,7 +230,6 @@
                         <Font name="Comic Sans MS Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="143.0" layoutY="88.0" text="HI sami" />
                </children>
             </AnchorPane>
          </items>
@@ -249,7 +240,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/PinClipart.com_notification-clipart_1895786.png" />
+                        <Image url="@../Images/PinClipart.com_notification-clipart_1895786.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -278,7 +269,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/585e4beacb11b227491c3399.png" />
+                        <Image url="@../Images/585e4beacb11b227491c3399.png" />
                      </image>
                   </ImageView>
                </graphic>

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +34,7 @@
             </Label>
             <ImageView fitHeight="98.0" fitWidth="168.0" layoutX="38.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/testresults.png" />
+                  <Image url="@../Images/testresults.png" />
                </image>
             </ImageView>
             <Label layoutX="231.0" layoutY="56.0" prefHeight="61.0" prefWidth="193.0" text="Test Results" textAlignment="CENTER" textFill="#9d1b34" underline="true">
@@ -44,11 +43,6 @@
                </font>
             </Label>
             <TextArea fx:id="FailureDetails" layoutX="327.0" layoutY="264.0" prefHeight="216.0" prefWidth="342.0" />
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/back-arrow.png" />
-               </image>
-            </ImageView>
             <Label layoutX="189.0" layoutY="145.0" text="Choose one of this options:" textFill="#9d1b34">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -78,7 +72,4 @@
             </Button>
          </children></AnchorPane>
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>

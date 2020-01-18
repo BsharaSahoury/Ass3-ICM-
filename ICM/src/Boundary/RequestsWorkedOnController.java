@@ -116,7 +116,6 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
-		System.out.println(arr1.get(0).getState());
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
@@ -229,14 +228,15 @@ public class RequestsWorkedOnController implements Initializable {
 		public void SetDurationHelp(RequestPhase s) {
 			this.rp=s;
 			rp.setId(id);
-			SetDurationController setDuration = new SetDurationController();
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
+					if(job.equals("Comittee Member")||job.equals("Engineer")) {
+						DurationController Duration = new DurationController();
+						Duration.start(splitpane,"/Boundary/Duration.fxml",rp);
 					}
 					else {
+						SetDurationController setDuration = new SetDurationController();
 						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 				}
@@ -363,6 +363,11 @@ public class RequestsWorkedOnController implements Initializable {
 			} 
 			break;
 		}
+	}
+	public void instructionsAction()
+	{
+		
+		
 	}
 
    public void InsertTestResultAction() {

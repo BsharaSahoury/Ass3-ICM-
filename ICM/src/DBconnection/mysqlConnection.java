@@ -180,54 +180,53 @@ public static String logOutUser(Connection con, String username, String password
 				return res;
 	}	
 }
-public static ArrayList<String> getUserData(Connection con,String username,String userJob)
-{
-	System.out.println("mySQLConncection*************\n\n***************");
-	PreparedStatement stm = null;
-	ResultSet rs;
-	String id=null,USERname=null,fullname=null,email=null,faculty=null,extra=null;
-	ArrayList<String> res=new ArrayList<String>();
-	try {
-		if(userJob.equals("Student"))
-		{
-			stm = con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
-			stm.setString(1, username);
-			rs = stm.executeQuery();
-			if (rs.next()) {//data
-			USERname=rs.getString(1);
-			fullname=rs.getString(2)+" "+rs.getString(3);
-			id=rs.getString(4);
-			email=rs.getString(5);
-			faculty=rs.getString(6);//faculty
-			}
-			//res={id,USERname,fullname,email,faculty};
-			res.add(id);
-			res.add(USERname);
-			res.add(fullname);
-			res.add(email);
-			res.add(faculty);
-		}
-		else//User is an employee
-		{
-			stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
-			stm.setString(1, username);
-			rs = stm.executeQuery();
-			if (rs.next()) {
-				USERname=rs.getString(1);
-				fullname=rs.getString(2)+" "+rs.getString(3);
-				email=rs.getString(4);
-				faculty=rs.getString(6);//faculty			
-				id=rs.getString(7);
-	
-			//res= {id,username,fullname,email,faculty};
-			//res={id,USERname,fullname,email,faculty};
-			res.add(id);
-			res.add(USERname);
-			res.add(fullname);
-			res.add(email);
-			res.add(faculty);
+	public static ArrayList<String> getUserData(Connection con, String username, String userJob) {
+		PreparedStatement stm = null;
+		ResultSet rs;
+		String id = null, USERname = null, fullname = null, email = null, faculty = null, role=null;
+		ArrayList<String> res = new ArrayList<String>();
+		try {
+			if (userJob.equals("Student")) {
+				stm = con.prepareStatement("SELECT student.* FROM student WHERE username=?;");
+				stm.setString(1, username);
+				rs = stm.executeQuery();
+				if (rs.next()) {// data
+					USERname = rs.getString(1);
+					fullname = rs.getString(2) + " " + rs.getString(3);
+					id = rs.getString(4);
+					email = rs.getString(5);
+					faculty = rs.getString(6);// faculty
+				}
+				// res={id,USERname,fullname,email,faculty};
+				res.add(id);
+				res.add(USERname);
+				res.add(fullname);
+				res.add(email);
+				res.add(faculty);
+				res.add("Student");
+			} else// User is an employee
+			{
+				stm = con.prepareStatement("SELECT employee.* FROM employee WHERE username=?;");
+				stm.setString(1, username);
+				rs = stm.executeQuery();
+				if (rs.next()) {
+					USERname = rs.getString(1);
+					fullname = rs.getString(2) + " " + rs.getString(3);
+					email = rs.getString(4);
+					faculty = rs.getString(6);// faculty
+					id = rs.getString(7);
+					role=rs.getString(8);
 
-			}
+					// res= {id,username,fullname,email,faculty};
+					// res={id,USERname,fullname,email,faculty};
+					res.add(id);
+					res.add(USERname);
+					res.add(fullname);
+					res.add(email);
+					res.add(faculty);
+					res.add(role);
+
+				}
 		}//else
 	} catch (SQLException e) {
 			e.printStackTrace();
@@ -2646,9 +2645,6 @@ public static ArrayList<Request> getmyRequestFromDB(Connection con, String usern
 			Date newDue = Date.valueOf(dueDate);
 			long s = newDue.getTime() + (int) (1000 * 60 * 60 * 24);
 			newDue = new java.sql.Date(s);
-			System.out.println(newDue.toString());
-			System.out.println(id);
-			System.out.println(phase);
 			stm2 = con.prepareStatement(
 					"UPDATE icm.requestinphase SET due_date=? WHERE request_id=? AND phase=? AND repetion=?;");
 			stm2.setDate(1, newDue);

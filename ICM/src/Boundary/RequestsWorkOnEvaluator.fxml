@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestsWorkedOnController">
+<AnchorPane prefHeight="601.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Boundary.RequestsWorkedOnController">
    <children>
       <TableView fx:id="tableRequests" layoutX="7.0" layoutY="142.0" prefHeight="367.0" prefWidth="719.0" stylesheets="@css1.css">
          <columns>
@@ -44,11 +44,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="692.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/q.jpg" />
-         </image>
-      </ImageView>
       <Label layoutX="21.0" layoutY="120.0" text="Plase click on a line below and then choose an option below -&gt;" />
       <Label layoutX="25.0" layoutY="9.0" text="ICM -&gt; Requests that I work on">
          <font>
@@ -70,7 +65,16 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/reload-icon-5.png" />
+                  <Image url="@../Images/reload-icon-5.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="question" layoutX="683.0" layoutY="80.0" mnemonicParsing="false" onAction="#instructionsAction" style="-fx-background-insets: 8888888;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/q.jpg" />
                </image>
             </ImageView>
          </graphic>

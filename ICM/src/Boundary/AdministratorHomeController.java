@@ -103,6 +103,9 @@ public class AdministratorHomeController implements Initializable {
 	public void GoToHome(ActionEvent event) throws Exception {
 		HomeController home = new HomeController();
 		home.start(splitpane);
+		runLater(() -> {
+		home.start(splitpane);
+		});
 	}
 
 	public void AllRequestsAction(ActionEvent event) throws Exception {
@@ -116,11 +119,15 @@ public class AdministratorHomeController implements Initializable {
 	public void RequestSubmissionAction(ActionEvent event) throws Exception {
 		RequestSubmissionController Submit = new RequestSubmissionController();
 		Submit.start(splitpane, Administrator);
+		runLater(() -> {
+			Submit.start(splitpane, Administrator);	
+		});
 	}
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 
 		ProfileSetting = new ProfileSettingController();
+		ProfileSetting.start(splitpane, Administrator, "Administrator");
 		runLater(() -> {
 			ProfileSetting.start(splitpane, Administrator, "Administrator");
 		});
@@ -130,11 +137,17 @@ public class AdministratorHomeController implements Initializable {
 	public void MyRequestsAction(ActionEvent event) throws Exception {
 		MyRequests = new MyRequestsController();
 		MyRequests.start(splitpane, Administrator, "Administrator");
+		runLater(() -> {
+			MyRequests.start(splitpane, Administrator, "Administrator");
+		});
 	}
 
 	public void AboutICMAction(ActionEvent event) throws Exception {
 		AboutICMController about = new AboutICMController();
 		about.start(splitpane);
+		runLater(() -> {
+			about.start(splitpane);	
+		});
 	}
 
 	public void LogOutAction(ActionEvent event) throws Exception {
@@ -151,6 +164,9 @@ public class AdministratorHomeController implements Initializable {
 	public void clickNotifications(ActionEvent event) throws Exception {
 		NotificationsController notific = new NotificationsController();
 		notific.start(splitpane, Administrator);
+		runLater(() -> {
+			notific.start(splitpane, Administrator);	
+		});
 	}
 
 	public static Employee getAdministrator() {

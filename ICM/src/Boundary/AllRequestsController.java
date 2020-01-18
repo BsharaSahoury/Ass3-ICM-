@@ -201,6 +201,7 @@ public class AllRequestsController implements Initializable {
 			}
 			
 			RequestInfoController requestifo = new RequestInfoController();
+			requestifo.start(splitpane, s.getR(), job);
 			runLater(() -> {
 				requestifo.start(splitpane, s.getR(), job);
 			});

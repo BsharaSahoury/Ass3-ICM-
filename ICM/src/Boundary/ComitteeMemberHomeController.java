@@ -50,10 +50,13 @@ public class ComitteeMemberHomeController implements Initializable {
 	public static ProfileSettingController ProfileSetting;
 
 	public static RequestsWorkedOnController RequestWorkON;
+    public static Employee employee;
     public static Employee Chairman;
     private static int flag=0;
-	public void start(Employee comitteeMember) {
-		this.comitteeMember = comitteeMember;
+	public void start(Employee employee) {
+		this.comitteeMember = employee;
+		this.Chairman=employee;
+		this.employee=employee;
 		primaryStage = LoginController.primaryStage;
 		Platform.runLater(new Runnable() {
 			@Override
@@ -77,7 +80,7 @@ public class ComitteeMemberHomeController implements Initializable {
 		});
 	}
  public static void setChairman(Employee user) {
-	 Chairman=user;
+	 employee=user;
  }
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -122,8 +125,14 @@ public class ComitteeMemberHomeController implements Initializable {
 
 	public void ProfileSettingAction(ActionEvent event) throws Exception {
 		ProfileSetting = new ProfileSettingController();
+		System.out.println(employee.getJob());
+		System.out.println("in methooooooooooooooooooooooooood");
 		runLater(() -> {
-			ProfileSetting.start(splitpane,comitteeMember,"Committee member");
+			if(comitteeMember.getJob().equals("comittee member"))
+				ProfileSetting.start(splitpane,employee,"Committee member");
+			else
+				ProfileSetting.start(splitpane,employee,"Chairman");
+
 		});
 	}
 
