@@ -199,8 +199,8 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 			alert.setContentText("If you chose 'start' date you must choose 'to' date");
 			alert.showAndWait();
 		} else if (ctrl.DatePickerTo.getValue() != null && ctrl.DatePickerFrom.getValue() != null
-				&& (ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) >= 0
-						|| LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) >= 0)) {
+				&& (ctrl.DatePickerFrom.getValue().compareTo(ctrl.DatePickerTo.getValue()) > 0
+						|| LocalDate.now().compareTo(ctrl.DatePickerFrom.getValue()) > 0)) {
 			Alert alertSuccess = new Alert(AlertType.WARNING);
 			alertSuccess.setTitle("Warning");
 			alertSuccess.setHeaderText("Wrong dates");
@@ -239,6 +239,8 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 				int id = ctrl.chosenRequest.getId();
 				int repetion = ctrl.chosenRequest.getRepetion();
 				String explain = Explaintxt2.getText();
+				System.out.println("ffff");
+				System.out.println(ctrl.lastadmin);
 				Object[] msg = { "manualRequestTreatmentRecruitPerformer", phaseadmin, id, phase, repetion, start, end,
 						explain, arr, ctrl.lastadmin };
 				try {
@@ -277,5 +279,27 @@ public class RequestTreatmentAction extends AllRequestsController implements Ini
 				e.printStackTrace();
 			}
 		}
+
+		/*
+		 * else if(ctrl.currentphase.getText().equals("performance")) { String
+		 * phase="performance"; String
+		 * phaseadmin=ctrl.PhaseAdministrator.getSelectionModel().getSelectedItem().
+		 * toString(); Date start=Date.valueOf(DatePickerFrom.getValue());
+		 * //System.out.println(start); Date end=Date.valueOf(DatePickerTo.getValue());
+		 * } }
+		 */
+		/*
+		 * public void ChangePhase() {
+		 * if(ctrl.Phasee.getSelectionModel().getSelectedIndex()==0) { Object[] msg=
+		 * {"evaluators",getClass().getName()}; try {
+		 * LoginController.cc.getClient().sendToServer(msg); } catch (IOException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); }
+		 * ctrl.PhaseAdministrator.setPromptText("Choose phase administrator"); } else
+		 * if(ctrl.Phasee.getSelectionModel().getSelectedIndex()==1) { Object[] msg=
+		 * {"Performance leaders",getClass().getName()}; try {
+		 * LoginController.cc.getClient().sendToServer(msg); } catch (IOException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); }
+		 * ctrl.PhaseAdministrator.setPromptText("Choose phase administrator"); } }
+		 */
 	}
 }

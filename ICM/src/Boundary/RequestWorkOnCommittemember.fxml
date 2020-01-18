@@ -76,7 +76,7 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/reload-icon-5.png" />
+                  <Image url="@../Images/reload-icon-5.png" />
                </image>
             </ImageView>
          </graphic>

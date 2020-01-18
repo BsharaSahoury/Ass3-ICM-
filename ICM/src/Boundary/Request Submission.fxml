@@ -42,46 +42,46 @@
             <Label layoutX="26.0" layoutY="454.0" text="Attach Files:" />
             <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="25.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/submission2.png" />
+                  <Image url="@../Images/submission2.png" />
                </image>
             </ImageView>
             <Button fx:id="submit" layoutX="510.0" layoutY="535.0" mnemonicParsing="false" onAction="#submitRequest" prefHeight="38.0" prefWidth="138.0" style="-fx-background-radius: 20px; -fx-background-color: #9d1b34;" text="Submit" textFill="WHITE" />
             <CheckBox fx:id="agree" layoutX="35.0" layoutY="517.0" mnemonicParsing="false" text="I agree to send my details (Full name, Role description, Email)" />
             <ImageView fitHeight="31.0" fitWidth="23.0" layoutX="98.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/attach.png" />
+                  <Image url="@../Images/attach.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="57.0" fitWidth="86.0" layoutX="452.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/upload.png" />
+                  <Image url="@../Images/upload.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/required.png" />
+                  <Image url="@../Images/required.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/required.png" />
+                  <Image url="@../Images/required.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/required.png" />
+                  <Image url="@../Images/required.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="21.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/required.png" />
+                  <Image url="@../Images/required.png" />
                </image>
             </ImageView>
             <Label layoutX="31.0" layoutY="357.0" text="Comment:" />
             <TextArea fx:id="comment" layoutX="28.0" layoutY="375.0" prefHeight="50.0" prefWidth="670.0" />
             <ImageView fitHeight="11.0" fitWidth="14.0" layoutX="15.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/required.png" />
+                  <Image url="@../Images/required.png" />
                </image>
             </ImageView>
             <Button fx:id="browse" layoutX="135.0" layoutY="450.0" mnemonicParsing="false" onAction="#attachFile" style="-fx-background-color: #9d1b34;" text="browse.." textFill="WHITE" />

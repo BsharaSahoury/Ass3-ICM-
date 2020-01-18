@@ -45,6 +45,14 @@ public class RequestChangesStatusToActiveForAdmin extends AllRequestsController 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+	/*	ArrayList<Phase> Phases = new ArrayList<Phase>();
+		Phases.add(Phase.evaluation);
+		Phases.add(Phase.decision);
+		Phases.add(Phase.performance);
+		Phases.add(Phase.testing);
+		Phases.add(Phase.closing);
+		phaseslist = FXCollections.observableArrayList(Phases);
+		Phasee.setItems(phaseslist);*/
 		chosenindex = AllRequestsController.getselectedindex();
 		chosenRequest = AllRequestsController.getList().get(chosenindex);
 		statuslable.setText(chosenRequest.getStatus());

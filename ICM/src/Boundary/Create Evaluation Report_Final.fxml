@@ -44,7 +44,7 @@
             </Label>
             <ImageView fitHeight="38.0" fitWidth="19.0" layoutX="16.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/340.png" />
+                  <Image url="@../Images/340.png" />
                </image>
             </ImageView>
             <Label layoutX="232.0" layoutY="6.0" text="Create Evaluation Report" textOverrun="CLIP">

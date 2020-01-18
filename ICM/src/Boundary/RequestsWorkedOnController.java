@@ -85,6 +85,8 @@ public class RequestsWorkedOnController implements Initializable {
 	private static RequestPhase rp; 
 	public void start(SplitPane splitpane, String path,User user,String job,String phase) {
 		this.job=job;
+		System.out.println(job);
+		System.out.println("sss");
 		this.user=user;
 		primaryStage = LoginController.primaryStage;
 		this.cc = LoginController.cc;
@@ -99,13 +101,13 @@ public class RequestsWorkedOnController implements Initializable {
 			if(job.equals("Comittee Member")&&phase.equals("decision")) {
 				RequestWorkedON[1]=ComitteeMemberHomeController.Chairman.getUsername();
 			}
-			else if(job.equals("Comittee Member")&&phase.equals("decision")) {
-				RequestWorkedON[1]=user.getUsername();
-			}
 			else if(job.equals("Engineer")){
 				RequestWorkedON[0]="engineer request work on";	
-			}						
-			RequestWorkedON[1]=user.getUsername();
+				RequestWorkedON[1]=user.getUsername();
+			}					
+			else {
+				RequestWorkedON[1]=user.getUsername();
+			}
 			RequestWorkedON[2]=job;
 			RequestWorkedON[3]=phase;
 			cc.getClient().sendToServer(RequestWorkedON);
@@ -114,7 +116,6 @@ public class RequestsWorkedOnController implements Initializable {
 		}
 	}
 	public void setTableRequests(ArrayList<RequestPhase> arr1){
-	
 		if(!arr1.equals(null)) {
 		list=FXCollections.observableArrayList(arr1);				
 		tableRequests.setItems(list);
@@ -227,14 +228,15 @@ public class RequestsWorkedOnController implements Initializable {
 		public void SetDurationHelp(RequestPhase s) {
 			this.rp=s;
 			rp.setId(id);
-			SetDurationController setDuration = new SetDurationController();
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					if(job.equals("Evaluator")) {
-		            	setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
+					if(job.equals("Comittee Member")||job.equals("Engineer")) {
+						DurationController Duration = new DurationController();
+						Duration.start(splitpane,"/Boundary/Duration.fxml",rp);
 					}
 					else {
+						SetDurationController setDuration = new SetDurationController();
 						setDuration.start(splitpane,"/Boundary/DuratinForEvaluator.fxml",rp);
 					}
 				}
@@ -312,6 +314,7 @@ public class RequestsWorkedOnController implements Initializable {
 		case "Comittee Member":
 
 			try {
+				System.out.println(ComitteeMemberHomeController.getFlag()==0);
 				if(ComitteeMemberHomeController.getFlag()==0) {
 					ComitteeMemberHomeController.RequestWorkON.start(splitpane,
 							"/Boundary/RequestWorkOnCommittemember.fxml", employee, "Comittee Member", "decision");

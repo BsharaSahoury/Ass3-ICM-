@@ -34,7 +34,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ExtensionConfirmationMessage implements Initializable {
-
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@FXML
 	Label RequestIdLabel;
@@ -126,6 +128,8 @@ public class ExtensionConfirmationMessage implements Initializable {
 			alertWarning1.setHeaderText("Success!");
 			alertWarning1.setContentText("Request Extension has been approved successfully!");
 			alertWarning1.showAndWait();
+			ApproveBtn.setDisable(true);
+			RejectBtn.setDisable(true);
 		}
 
 	}
@@ -143,6 +147,8 @@ public class ExtensionConfirmationMessage implements Initializable {
 			alertWarning1.setHeaderText("Rejected Successfully!");
 			alertWarning1.setContentText("Request Extension has been Rejected successfully!");
 			alertWarning1.showAndWait();
+			ApproveBtn.setDisable(true);
+			RejectBtn.setDisable(true);
 		}
 
 	}

@@ -14,7 +14,7 @@ import Boundary.PerformanceLeaderHomeController;
 import Boundary.StudentHomeController;
 import Boundary.TesterHomeController;
 
-public class ClientProfileSettingObserver implements Observer {
+public class ClientProfileSettingObserver implements Observer{
 	public ClientProfileSettingObserver(Observable client) {
 		client.addObserver(this);
 	}

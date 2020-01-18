@@ -83,9 +83,12 @@ public class AllRequestsController implements Initializable {
 		this.cc = LoginController.cc;
 		String[] AllRequests = new String[2];
 		try {
+			System.out.println("sss");
 			loader = new FXMLLoader(getClass().getResource(path));
 			lowerAnchorPane = loader.load();
+			System.out.println("sss");
 			splitpane.getItems().set(1, lowerAnchorPane);
+			System.out.println("mmmm");
 			this.splitpane = splitpane;
 			AllRequests[0] = "All Requests";
 			AllRequests[1] = job;
@@ -198,6 +201,7 @@ public class AllRequestsController implements Initializable {
 			}
 			
 			RequestInfoController requestifo = new RequestInfoController();
+			requestifo.start(splitpane, s.getR(), job);
 			runLater(() -> {
 				requestifo.start(splitpane, s.getR(), job);
 			});

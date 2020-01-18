@@ -26,7 +26,7 @@
       <Label layoutX="121.0" layoutY="206.0" />
       <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="688.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/reload-icon-5.png" />
+            <Image url="@../Images/reload-icon-5.png" />
          </image>
       </ImageView>
       <TextField fx:id="search_text" layoutX="24.0" layoutY="48.0" prefHeight="27.0" prefWidth="150.0" promptText="search ID" style="-fx-background-color: #EBE8F9; -fx-border-color: #000000; -fx-border-radius: 2em;" />
